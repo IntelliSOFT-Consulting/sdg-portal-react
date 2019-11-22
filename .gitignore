@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /src/assets/img
+/scr/assets/vendor
 
 # testing
 /coverage
