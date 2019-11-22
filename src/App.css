@@ -1,0 +1,67 @@
+.navbar-brand img {
+  height: 70px;
+}
+.btn{
+  letter-spacing: 0;
+  border: 0px solid transparent;
+  padding: 0.6rem 18px;
+}
+
+.home{
+  background: url("../src/assets/img/bg/trevor.jpg");
+}
+
+
+/* FAQ Page */
+
+.faqs .card{
+  margin-bottom: 8px;
+}
+
+/* About us page */
+.card-header {
+  padding: 0.5em 1.5rem;
+}
+
+.aboutCards .card{
+  height: 460px;
+}
+
+.card-img {
+  width: 100%;
+  border-radius: calc(0.25rem - 0.0625rem);
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.sdgCard, .sdgCard .card-header {
+  background-color: #239bc8;
+}
+.countryProfileCard, .countryProfileCard .card-header{
+  background-color: #dc252b;
+}
+.dashboardCard, .dashboardCard .card-header{
+  background-color: #f5c11c;
+}
+.agenda2063Card, .agenda2063Card .card-header{
+  background-color: #7ebb42;
+}
+
+.aboutCards .card{
+  color: #ffffff;
+}
+.aboutCards .card-header{
+  color: #000000;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+}
+
+.sdg .card-img{
+  padding-right: 0px;
+  padding-left: 0px;
+  border-radius: 0px;
+}
+.sdg .col-md-2{
+  padding-right: 0px;
+  padding-left: 0px;
+}
