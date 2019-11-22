@@ -2,11 +2,15 @@ import React from "react";
 import Footer from "../components/footer";
 
 import {
-    Card, 
     CardImg,
     Row,
     Col
 } from "reactstrap";
+
+import {
+    Router,
+    Link
+} from "react-router-dom";
 
 class Sdgs extends React.Component {
     render(){
@@ -78,8 +82,9 @@ class Sdgs extends React.Component {
                     {sdgs.map(function(sdg, index){
                         let  imgSrc = images(`./${sdg.image}.jpg`)
                         return <Col md="2">
-                                         <CardImg key={index} alt="..." src={ imgSrc }></CardImg>     
-                                    
+                                    <Link>
+                                            <CardImg key={index} alt="..." src={ imgSrc }></CardImg>  
+                                    </Link>   
                                 </Col>
                     })}
                  </Row>
