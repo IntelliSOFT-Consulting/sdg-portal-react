@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../components/footer";
+import Gauge from "../visualizations/gauge";
+
 import {
     Container,
     Modal,
@@ -16,6 +18,12 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
+
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
+am4core.useTheme(am4themes_animated);
 
 var data = require('../assets/data/trial.json');
 highchartsMap(Highcharts);
@@ -57,7 +65,7 @@ function CountryProfile () {
                     "capitalPopulation":countriesData[key].capitalPopulation,
                     "totalPopulation":countriesData[key].totalPopulation
                   });
-                  console.log(countriesData[key].name);
+                  
             }
         }
     }
@@ -82,7 +90,6 @@ function CountryProfile () {
                     "capitalPopulation":123456,
                     "totalPopulation":42679018
                   });
-                  console.log(key.name);
             }
         }
         
@@ -188,8 +195,8 @@ function CountryProfile () {
                                     <Row className="no-gutters sdgImages" >
                                         {sdgsData.map(function(sdg, index){
                                             let  imgSrc = sdgsImages(`./${sdg.image}.jpg`)
-                                            return <Col md="2" sm="4">
-                                                        <Link>
+                                            return <Col md="2" sm="4" key={index}>
+                                                        <Link to="">
                                                             <CardImg className="countryProfileSdgsImg" key={index} alt="..." src={ imgSrc }></CardImg>  
                                                         </Link>   
                                                     </Col>
@@ -197,7 +204,8 @@ function CountryProfile () {
                                     </Row>
                                 </Col>
                                 <Col>
-                                <h5 className="display-4 mt-2 mb-4 text-center">Perfomance by Goal </h5>
+                                    <h5 className="display-4 mt-2 mb-4 text-center">Perfomance by Goal </h5>
+                                    <Gauge></Gauge>
                                 </Col>
                             </Row>
                         </div>
