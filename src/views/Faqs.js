@@ -20,7 +20,7 @@ class Faqs extends React.Component {
       }
 
     render(){
-        const {cards, collapse} = this.state;
+        const {collapse} = this.state;
 
         return(
             <>

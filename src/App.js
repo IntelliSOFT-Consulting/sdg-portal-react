@@ -8,7 +8,7 @@ import './App.css';
 import Header from "./components/header.js"
 import Footer from "./components/footer.js"
 
-const App = () => {
+function App() {
   return (
     <div className="App">
       <Header></Header>
@@ -16,6 +16,6 @@ const App = () => {
       <Footer></Footer>
     </div>
   );
-};
+}
 
 export default App;

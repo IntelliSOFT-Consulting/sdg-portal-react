@@ -1,5 +1,4 @@
 import React from "react";
-import HomeHeader from "../components/homeHeader";
 import Footer from "../components/footer";
 
 

@@ -4,7 +4,7 @@
     "name": "Algeria",
     "capital":"Algiers",
     "region":"Northern Africa",
-    "flagURL":"assets/img/country_flags/algeria-flag-medium.png",
+    "flagURL":"algeria-flag-medium",
     "size":2381741,
     "capitalPopulation":123456,
     "totalPopulation":42679018
@@ -14,7 +14,7 @@
     "name": "Angola",
     "capital":"Luanda",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/angola-flag-medium.png",
+    "flagURL":"angola-flag-medium",
     "size":1246700,
     "capitalPopulation":678945,
     "totalPopulation":31787566
@@ -24,7 +24,7 @@
     "name": "Benin",
     "capital":"Porto-Novo",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/benin-flag-medium.png",
+    "flagURL":"benin-flag-medium",
     "size":112622,
     "capitalPopulation":123456,
     "totalPopulation":11801595
@@ -34,7 +34,7 @@
     "name": "Botswana",
     "capital":"Gaborone",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/botswana-flag-medium.png",
+    "flagURL":"botswana-flag-medium",
     "size":581730,
     "capitalPopulation":678945,
     "totalPopulation":2374636
@@ -44,7 +44,7 @@
     "name": "Burkina Faso",
     "capital":"Ouagadougou",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/burkina-faso-flag-medium.png",
+    "flagURL":"burkina-faso-flag-medium",
     "size":274200,
     "capitalPopulation":123456,
     "totalPopulation":20321560
@@ -54,7 +54,7 @@
     "name": "Burundi",
     "capital":"Bujumbura",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/burundi-flag-medium.png",
+    "flagURL":"burundi-flag-medium",
     "size":27830,
     "capitalPopulation":678945,
     "totalPopulation":11575964
@@ -64,7 +64,7 @@
     "name": "Cameroon",
     "capital":"Yaounde",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/cameroon-flag-medium.png",
+    "flagURL":"cameroon-flag-medium",
     "size":475440,
     "capitalPopulation":123456,
     "totalPopulation":25312993
@@ -74,7 +74,7 @@
     "name": "Cabo Verde",
     "capital":"Praia",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/cape-verde-flag-medium.png",
+    "flagURL":"cape-verde-flag-medium",
     "size":4033,
     "capitalPopulation":678945,
     "totalPopulation":560349
@@ -84,7 +84,7 @@
     "name": "Central African Republic",
     "capital":"Bangui",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/central-african-republic-flag-medium.png",
+    "flagURL":"central-african-republic-flag-medium",
     "size":622984,
     "capitalPopulation":123456,
     "totalPopulation":4825711
@@ -94,7 +94,7 @@
     "name": "Chad",
     "capital":"N'Djamena",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/chad-flag-medium.png",
+    "flagURL":"chad-flag-medium",
     "size":1284000,
     "capitalPopulation":678945,
     "totalPopulation":15814345
@@ -104,7 +104,7 @@
     "name": "Comoros",
     "capital":"Moroni",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/comoros-flag-medium.png",
+    "flagURL":"comoros-flag-medium",
     "size":2235,
     "capitalPopulation":123456,
     "totalPopulation":850910
@@ -114,7 +114,7 @@
     "name": "Congo",
     "capital":"Brazzaville",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/congo-republic-of-the-flag-medium.png",
+    "flagURL":"congo-republic-of-the-flag-medium",
     "size":342000,
     "capitalPopulation":678945,
     "totalPopulation":5542197
@@ -124,7 +124,7 @@
     "name": "Democratic Republic of the Congo",
     "capital":"Kinshasa",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/congo-democratic-republic-of-the-flag-medium.png",
+    "flagURL":"congo-democratic-republic-of-the-flag-medium",
     "size":2344858,
     "capitalPopulation":123456,
     "totalPopulation":86727573
@@ -134,7 +134,7 @@
     "name": "Cote d'Ivoire",
     "capital":"Yamoussoukro",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/cote-d-ivoire-flag-medium.png",
+    "flagURL":"cote-d-ivoire-flag-medium",
     "size":322463,
     "capitalPopulation":678945,
     "totalPopulation":25531083
@@ -144,7 +144,7 @@
     "name": "Djibouti",
     "capital":"Djibouti",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/djibouti-flag-medium.png",
+    "flagURL":"djibouti-flag-medium",
     "size":23200,
     "capitalPopulation":123456,
     "totalPopulation":985690
@@ -154,7 +154,7 @@
     "name": "Egypt",
     "capital":"Cairo",
     "region":"Northern Africa",
-    "flagURL":"assets/img/country_flags/egypt-flag-medium.png",
+    "flagURL":"egypt-flag-medium",
     "size":1001450,
     "capitalPopulation":678945,
     "totalPopulation":101168745
@@ -164,7 +164,7 @@
     "name": "Equatorial Guinea",
     "capital":"Malabo",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/equatorial-guinea-flag-medium.png",
+    "flagURL":"equatorial-guinea-flag-medium",
     "size":28051,
     "capitalPopulation":123456,
     "totalPopulation":1360104
@@ -174,7 +174,7 @@
     "name": "Eritrea",
     "capital":"Asmara",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/eritrea-flag-medium.png",
+    "flagURL":"eritrea-flag-medium",
     "size":117600,
     "capitalPopulation":678945,
     "totalPopulation":5309659
@@ -184,7 +184,7 @@
     "name": "Ethiopia",
     "capital":"Addis Ababa",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/ethiopia-flag-medium.png",
+    "flagURL":"ethiopia-flag-medium",
     "size":1104300,
     "capitalPopulation":123456,
     "totalPopulation":110135635
@@ -194,7 +194,7 @@
     "name": "Gabon",
     "capital":"Libreville",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/gabon-flag-medium.png",
+    "flagURL":"gabon-flag-medium",
     "size":267667,
     "capitalPopulation":678945,
     "totalPopulation":2109099
@@ -204,7 +204,7 @@
     "name": "Gambia",
     "capital":"Banjul",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/gambia-flag-medium.png",
+    "flagURL":"gambia-flag-medium",
     "size":11295,
     "capitalPopulation":123456,
     "totalPopulation":2228075
@@ -214,7 +214,7 @@
     "name": "Ghana",
     "capital":"Accra",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/ghana-flag-medium.png",
+    "flagURL":"ghana-flag-medium",
     "size":238533,
     "capitalPopulation":678945,
     "totalPopulation":30096970
@@ -224,7 +224,7 @@
     "name": "Guinea",
     "capital":"Conakry",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/guinea-flag-medium.png",
+    "flagURL":"guinea-flag-medium",
     "size":245857,
     "capitalPopulation":123456,
     "totalPopulation":13398180
@@ -234,7 +234,7 @@
     "name": "Guinea Bissau",
     "capital":"Bissau",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/guinea-bissau-flag-medium.png",
+    "flagURL":"guinea-bissau-flag-medium",
     "size":36125,
     "capitalPopulation":678945,
     "totalPopulation":1953723
@@ -244,7 +244,7 @@
     "name": "Kenya",
     "capital":"Nairobi",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/kenya-flag-medium.png",
+    "flagURL":"kenya-flag-medium",
     "size":580367,
     "capitalPopulation":123456,
     "totalPopulation":52214791
@@ -254,7 +254,7 @@
     "name": "Lesotho",
     "capital":"Maseru",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/lesotho-flag-medium.png",
+    "flagURL":"lesotho-flag-medium",
     "size":30355,
     "capitalPopulation":678945,
     "totalPopulation":2292682
@@ -264,7 +264,7 @@
     "name": "Liberia",
     "capital":"Monrovia",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/liberia-flag-medium.png",
+    "flagURL":"liberia-flag-medium",
     "size":111369,
     "capitalPopulation":123456,
     "totalPopulation":4977720
@@ -274,7 +274,7 @@
     "name": "Libya",
     "capital":"Tripoli",
     "region":"Northern Africa",
-    "flagURL":"assets/img/country_flags/libya-flag-medium.png",
+    "flagURL":"libya-flag-medium",
     "size":1759540,
     "capitalPopulation":678945,
     "totalPopulation":6569864
@@ -284,7 +284,7 @@
     "name": "Madagascar",
     "capital":"Antananarivo",
     "region":"Central Africa",
-    "flagURL":"assets/img/country_flags/madagascar-flag-medium.png",
+    "flagURL":"madagascar-flag-medium",
     "size":587041,
     "capitalPopulation":123456,
     "totalPopulation":26969642
@@ -294,7 +294,7 @@
     "name": "Malawi",
     "capital":"Lilongwe",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/malawi-flag-medium.png",
+    "flagURL":"malawi-flag-medium",
     "size":118484,
     "capitalPopulation":678945,
     "totalPopulation":19718743
@@ -304,7 +304,7 @@
     "name": "Mali",
     "capital":"Bamako",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/mali-flag-medium.png",
+    "flagURL":"mali-flag-medium",
     "size":1240192,
     "capitalPopulation":123456,
     "totalPopulation":19689140
@@ -314,7 +314,7 @@
     "name": "Mauritania",
     "capital":"Nouakchott",
     "region":"Northern Africa",
-    "flagURL":"assets/img/country_flags/mauritania-flag-medium.png",
+    "flagURL":"mauritania-flag-medium",
     "size":1030700,
     "capitalPopulation":678945,
     "totalPopulation":4661149
@@ -324,7 +324,7 @@
     "name": "Mauritius",
     "capital":"Port Louis",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/mauritius-flag-medium.png",
+    "flagURL":"mauritius-flag-medium",
     "size":2040,
     "capitalPopulation":123456,
     "totalPopulation":1271368
@@ -334,7 +334,7 @@
     "name": "Morocco",
     "capital":"Rabat",
     "region":"Northern Africa",
-    "flagURL":"assets/img/country_flags/morocco-flag-medium.png",
+    "flagURL":"morocco-flag-medium",
     "size":446550,
     "capitalPopulation":678945,
     "totalPopulation":36635156
@@ -344,7 +344,7 @@
     "name": "Mozambique",
     "capital":"Maputo",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/mozambique-flag-medium.png",
+    "flagURL":"mozambique-flag-medium",
     "size":799380,
     "capitalPopulation":123456,
     "totalPopulation":31408823
@@ -354,7 +354,7 @@
     "name": "Namibia",
     "capital":"Windhoek",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/namibia-flag-medium.png",
+    "flagURL":"namibia-flag-medium",
     "size":824292,
     "capitalPopulation":678945,
     "totalPopulation":2641996
@@ -364,7 +364,7 @@
     "name": "Niger",
     "capital":"Niamey",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/niger-flag-medium.png",
+    "flagURL":"niger-flag-medium",
     "size":1267000,
     "capitalPopulation":123456,
     "totalPopulation":23176691
@@ -374,7 +374,7 @@
     "name": "Nigeria",
     "capital":"Abuja",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/nigeria-flag-medium.png",
+    "flagURL":"nigeria-flag-medium",
     "size":923768,
     "capitalPopulation":678945,
     "totalPopulation":200962417
@@ -384,7 +384,7 @@
     "name": "Rwanda",
     "capital":"Kigali",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/rwanda-flag-medium.png",
+    "flagURL":"rwanda-flag-medium",
     "size":26338,
     "capitalPopulation":123456,
     "totalPopulation":12794412
@@ -394,7 +394,7 @@
     "name": "Sao Tome and Principe",
     "capital":"Sao Tome",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/sao-tome-and-principe-flag-medium.png",
+    "flagURL":"sao-tome-and-principe-flag-medium",
     "size":964,
     "capitalPopulation":678945,
     "totalPopulation":213379
@@ -404,7 +404,7 @@
     "name": "Senegal",
     "capital":"Dakar",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/senegal-flag-medium.png",
+    "flagURL":"senegal-flag-medium",
     "size":196722,
     "capitalPopulation":123456,
     "totalPopulation":16743859
@@ -414,7 +414,7 @@
     "name": "Seychelles",
     "capital":"Victoria",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/seychelles-flag-medium.png",
+    "flagURL":"seychelles-flag-medium",
     "size":455,
     "capitalPopulation":678945,
     "totalPopulation":95702
@@ -424,7 +424,7 @@
     "name": "Sierra Leone",
     "capital":"Freetown",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/sierra-leone-flag-medium.png",
+    "flagURL":"sierra-leone-flag-medium",
     "size":71740,
     "capitalPopulation":123456,
     "totalPopulation":7883123
@@ -434,7 +434,7 @@
     "name": "Somalia",
     "capital":"Mogadishu",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/somalia-flag-medium.png",
+    "flagURL":"somalia-flag-medium",
     "size":637657,
     "capitalPopulation":678945,
     "totalPopulation":15636171
@@ -444,7 +444,7 @@
     "name": "South Africa",
     "capital":"Pretoria",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/south-africa-flag-medium.png",
+    "flagURL":"south-africa-flag-medium",
     "size":1219090,
     "capitalPopulation":123456,
     "totalPopulation":58065097
@@ -454,7 +454,7 @@
     "name": "South Sudan",
     "capital":"Juba",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/south-sudan-flag-medium.png",
+    "flagURL":"south-sudan-flag-medium",
     "size":644329,
     "capitalPopulation":678945,
     "totalPopulation":13263184
@@ -464,7 +464,7 @@
     "name": "Sudan",
     "capital":"Khartoum",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/sudan-flag-medium.png",
+    "flagURL":"sudan-flag-medium",
     "size":1861484,
     "capitalPopulation":123456,
     "totalPopulation":42514094
@@ -474,7 +474,7 @@
     "name": "eSwatini",
     "capital":"Lobamba",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/swaziland-flag-medium.png",
+    "flagURL":"swaziland-flag-medium",
     "size":17364,
     "capitalPopulation":678945,
     "totalPopulation":1415414
@@ -484,7 +484,7 @@
     "name": "Tanzania",
     "capital":"Dar es Salaam",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/tanzania-flag-medium.png",
+    "flagURL":"tanzania-flag-medium",
     "size":947300,
     "capitalPopulation":123456,
     "totalPopulation":60913557
@@ -494,7 +494,7 @@
     "name": "Togo",
     "capital":"Lome",
     "region":"Western Africa",
-    "flagURL":"assets/img/country_flags/togo-flag-medium.png",
+    "flagURL":"togo-flag-medium",
     "size":56785,
     "capitalPopulation":678945,
     "totalPopulation":8186384
@@ -504,7 +504,7 @@
     "name": "Tunisia",
     "capital":"Tunis",
     "region":"Northern Africa",
-    "flagURL":"assets/img/country_flags/kenya-flag-medium.png",
+    "flagURL":"kenya-flag-medium",
     "size":163610,
     "capitalPopulation":123456,
     "totalPopulation":11783168
@@ -514,7 +514,7 @@
     "name": "Uganda",
     "capital":"Kampala",
     "region":"Eastern Africa",
-    "flagURL":"assets/img/country_flags/uganda-flag-medium.png",
+    "flagURL":"uganda-flag-medium",
     "size":241038,
     "capitalPopulation":678945,
     "totalPopulation":45711874
@@ -524,7 +524,7 @@
     "name": "Zambia",
     "capital":"Lusaka",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/zambia-flag-medium.png",
+    "flagURL":"zambia-flag-medium",
     "size":752618,
     "capitalPopulation":123456,
     "totalPopulation":18137369
@@ -534,7 +534,7 @@
     "name": "Zimbabwe",
     "capital":"Harare",
     "region":"Southern Africa",
-    "flagURL":"assets/img/country_flags/zimbabwe-flag-medium.png",
+    "flagURL":"zimbabwe-flag-medium",
     "size":390757,
     "capitalPopulation":678945,
     "totalPopulation":17297495

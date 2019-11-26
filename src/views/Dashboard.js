@@ -13,13 +13,14 @@ import {
 import classnames from "classnames";
 
 var data = require('../assets/data/scorecardData.json');
-console.log(data);
+//console.log(data);
 
 class Dashboard extends React.Component {
   
     state = {
         plainTabs: 1
       };
+      
       toggleNavs = (e, state, index) => {
         e.preventDefault();
         this.setState({

@@ -8,7 +8,6 @@ import {
 } from "reactstrap";
 
 import {
-    Router,
     Link
 } from "react-router-dom";
 
@@ -83,7 +82,7 @@ class Sdgs extends React.Component {
                         let  imgSrc = images(`./${sdg.image}.jpg`)
                         return <Col md="2">
                                     <Link>
-                                            <CardImg key={index} alt="..." src={ imgSrc }></CardImg>  
+                                        <CardImg key={index} alt="..." src={ imgSrc }></CardImg>  
                                     </Link>   
                                 </Col>
                     })}

@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import Footer from "../components/footer";
 import {
     Container,
-    Button,
     Modal,
     Row,
-    Col
+    Col,
+    CardImg
 } from "reactstrap";
+
+import {
+    Link
+} from "react-router-dom";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -16,127 +20,189 @@ import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 var data = require('../assets/data/trial.json');
 highchartsMap(Highcharts);
 
-const mapOptions = {
-    chart: {
-        map: 'custom/africa',
-        backgroundColor: 'transparent',
-        width: 1000,
-        height: 500,
-    },
-    credits: {
-        enabled: false
-    },
-    title: {
-        text: ''
-    },
-    legend: {
-        enabled: false
-    },
-    exporting: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            point: {
-                events: {
-                    click: function () {
-                       loadCountryData(this.value);
-                    }
-                }
-            }
-        }
-    },
-
-    mapNavigation: {},
-
-    colorAxis: {
-        min: 0,
-        minColor: 'rgb(249, 219, 142)',
-        maxColor: 'rgb(249, 219, 142)'
-    },
-
-    series: [{
-        data: data,
-        mapData: africaMapData,
-        joinBy: ['iso-a2', 'code'],
-        name: 'Country Profile',
-        cursor: 'pointer',
-        borderColor: 'black', //changes color of the country borders
-        borderWidth: 0.5,
-        states: {
-            hover: {
-                color: '#B22222'
-            }
-        },
-        dataLabels: {
-            // enabled: true,
-            // format: '{point.name}'
-        }
-    }]
-  }
-
-  function loadCountryData(countryId){
-    //alert(countryId);
-    var countryData = require('../assets/data/countryProfile.json');
-    console.log(countryData)
-}
 
 function CountryProfile () {
-    // state = {};
-    // toggleModal = state => {
-    //     this.setState({
-    //     [state]: !this.state[state]
-    //     });
-    // };
-    const [toggleModal, setOpenModal] = useState(false);
+    var flagImages = require.context('../assets/img/country_flags', true);
+    const sdgsData = require('../assets/data/sdgs.json');
+    var sdgsImages = require.context('../assets/img/sdg_icons', true);
 
-    const openModal = () => {
+    // Modal operations
+    const [toggleModal, setOpenModal] = useState(false);
+    const [countryData, setCountryData] = useState({
+        "id": 0,
+        "name": "",
+        "capital":"",
+        "region":"",
+        "flagURL":"",
+        "size":0,
+        "capitalPopulation":0,
+        "totalPopulation":0
+      });
+
+
+    const openModal = (countryId) => {
         setOpenModal(true);
+        const countriesData = require('../assets/data/countryProfile.json');
+        for(var key in countriesData){
+            var newKey = parseInt(key, 10);
+            if((newKey+1) === countryId){
+                let  imgSrc = flagImages(`./${countriesData[key].flagURL}.png`)
+                setCountryData({
+                    "id": countriesData[key].id,
+                    "name": countriesData[key].name,
+                    "capital":countriesData[key].capital,
+                    "region":countriesData[key].region,
+                    "flagURL":imgSrc,
+                    "size":countriesData[key].size,
+                    "capitalPopulation":countriesData[key].capitalPopulation,
+                    "totalPopulation":countriesData[key].totalPopulation
+                  });
+                  console.log(countriesData[key].name);
+            }
+        }
     }
+
     const closeModal = () => {
         setOpenModal(false);
     }
 
+    //Load country data
+    const handleCountryData = (countryId) => {
+        const countriesData = require('../assets/data/countryProfile.json');
+        for(var key in countriesData){
+            var newKey = parseInt(key, 10);
+            if((newKey+1) === countryId){
+                setCountryData({
+                    "id": key.id,
+                    "name": "Algeria",
+                    "capital":"Algiers",
+                    "region":"Northern Africa",
+                    "flagURL":"assets/img/country_flags/algeria-flag-medium.png",
+                    "size":2381741,
+                    "capitalPopulation":123456,
+                    "totalPopulation":42679018
+                  });
+                  console.log(key.name);
+            }
+        }
+        
+    }
+
+    const mapOptions = {
+        chart: {
+            map: 'custom/africa',
+            backgroundColor: 'transparent',
+            width: 1000,
+            height: 500,
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: ''
+        },
+        legend: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                point: {
+                    events: {
+                        click: function () {
+                        //loadCountryData(this.value);
+                        openModal(this.value);
+                        }
+                    }
+                }
+            }
+        },
+    
+        mapNavigation: {},
+    
+        colorAxis: {
+            min: 0,
+            minColor: 'rgb(249, 219, 142)',
+            maxColor: 'rgb(249, 219, 142)'
+        },
+    
+        series: [{
+            data: data,
+            mapData: africaMapData,
+            joinBy: ['iso-a2', 'code'],
+            name: 'Country Profile',
+            cursor: 'pointer',
+            borderColor: 'black', //changes color of the country borders
+            borderWidth: 0.5,
+            states: {
+                hover: {
+                    color: '#B22222'
+                }
+            },
+            dataLabels: {
+                // enabled: true,
+                // format: '{point.name}'
+            }
+        }]
+      }
 
     return(
         <>
-            <main>
-            <Container>
-                <HighchartsReact
-                    constructorType ={'mapChart'}
-                    highcharts={Highcharts}
-                    options={mapOptions}
-                    />
-            </Container>
-            <Container>
-            <Col md="4">
-                <Button block className="mb-3" color="primary" type="button" onClick={openModal}>
-                Default
-                </Button>
-                <Modal size="lg" className="modal-dialog-centered" isOpen={toggleModal}
-                    toggle={toggleModal} >
-                    <div className="modal-header">
-                        <button aria-label="Close" className="close" data-dismiss="modal" type="button"
-                            onClick={closeModal} >
-                            <span aria-hidden={true}>×</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        <p>
-                        Far far away, behind the word mountains, far from the
-                        countries Vokalia and Consonantia, there live the blind texts.
-                        Separated they live in Bookmarksgrove right at the coast of
-                        the Semantics, a large language ocean.
-                        </p>
-                        <p>
-                        A small river named Duden flows by their place and supplies it
-                        with the necessary regelialia. It is a paradisematic country,
-                        in which roasted parts of sentences fly into your mouth.
-                        </p>
-                    </div>
-                </Modal>
-            </Col>
-            </Container>
+            <main className="countryProfile">
+                <Container>
+                    <HighchartsReact
+                        constructorType ={'mapChart'}
+                        highcharts={Highcharts}
+                        options={mapOptions}
+                        />
+                </Container>
+                <Container>
+                    <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
+                        toggle={toggleModal} >
+                        <div className="modal-header">
+                            <button aria-label="Close" className="close" data-dismiss="modal" type="button"
+                                onClick={closeModal} >
+                                <span aria-hidden={true}>×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body" onLoad={handleCountryData()}>
+                            <Row className="countryDemographics">
+                                <Col md="2">
+                                    <img className="countryFlags" alt=".." src={countryData.flagURL}></img>
+                                </Col>
+                                <Col>
+                                    <label className="countryName">{countryData.name}</label>
+                                </Col>
+                                <Col></Col>
+                                <Col>
+                                    <label> Capital: {countryData.capital}</label> <br></br>
+                                    <label>Poverty line: </label> <br></br>
+                                    <label>GDP Per Capita: </label>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <h5 className="display-4 mt-2 mb-4 text-center">SDGs </h5>
+                                    <Row className="no-gutters sdgImages" >
+                                        {sdgsData.map(function(sdg, index){
+                                            let  imgSrc = sdgsImages(`./${sdg.image}.jpg`)
+                                            return <Col md="2" sm="4">
+                                                        <Link>
+                                                            <CardImg className="countryProfileSdgsImg" key={index} alt="..." src={ imgSrc }></CardImg>  
+                                                        </Link>   
+                                                    </Col>
+                                        })}
+                                    </Row>
+                                </Col>
+                                <Col>
+                                <h5 className="display-4 mt-2 mb-4 text-center">Perfomance by Goal </h5>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Modal>
+                </Container>
         </main>
         <Footer></Footer>
         </>
