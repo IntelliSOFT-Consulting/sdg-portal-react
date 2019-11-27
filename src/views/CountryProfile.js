@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../components/footer";
 import Gauge from "../visualizations/gauge";
+import Demographics from "../visualizations/demographics";
 
 import {
     Container,
@@ -46,7 +47,6 @@ function CountryProfile () {
         "capitalPopulation":0,
         "totalPopulation":0
       });
-
 
     const openModal = (countryId) => {
         setOpenModal(true);
@@ -207,6 +207,15 @@ function CountryProfile () {
                                     <h5 className="display-4 mt-2 mb-4 text-center">Perfomance by Goal </h5>
                                     <Gauge></Gauge>
                                 </Col>
+                            </Row>
+                            <Row>
+                                <Col md="2"></Col>
+                                <Col className="mt-4">
+                                <h5 className="display-4 mt-2 mb-4 text-center">Country Demographics </h5>
+                                    <Demographics></Demographics>
+                                </Col>
+                                <Col md="2"></Col>
+                               
                             </Row>
                         </div>
                     </Modal>

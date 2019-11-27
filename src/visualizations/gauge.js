@@ -6,13 +6,9 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 class Gauge extends Component {
-  
-
   componentDidMount() {
     let gaugeData = require('../assets/data/1BarometerChartData.json');
     let chart = am4core.create("chartdiv", am4charts.GaugeChart);
-
-
     // Create axis
     let axis = chart.xAxes.push(new am4charts.ValueAxis()); 
     axis.min = 0;
