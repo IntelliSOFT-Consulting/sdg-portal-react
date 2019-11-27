@@ -6,62 +6,123 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 class Gauge extends Component {
+
   componentDidMount() {
-    let gaugeData = require('../assets/data/1BarometerChartData.json');
-    let chart = am4core.create("chartdiv", am4charts.GaugeChart);
-    // Create axis
-    let axis = chart.xAxes.push(new am4charts.ValueAxis()); 
-    axis.min = 0;
-    axis.max = 4;
-    axis.strictMinMax = true;
-    axis.renderer.labels.template.radius = 85;
-    axis.renderer.inside = true;
-    axis.valueInterval = 1;
+        let gaugeData = require('../assets/data/1BarometerChartData.json');
+        var sdgID = 1;
 
-    // Set inner radius
-    chart.innerRadius = -50;
+        let chart = am4core.create("chartdiv", am4charts.GaugeChart);
+        chart.innerRadius = am4core.percent(82);
 
-    // Add ranges
-    let range = axis.axisRanges.create();
-    range.value = 0;
-    range.endValue = 1;
-    range.axisFill.fillOpacity = 1;
-    range.axisFill.fill = am4core.color("#ff3232");
+        // Create axis
+        // let axis = chart.xAxes.push(new am4charts.ValueAxis()); 
+        // axis.min = 0;
+        // axis.max = 4;
+        // axis.strictMinMax = true;
+        // axis.renderer.labels.template.radius = 85;
+        // axis.renderer.inside = true;
+        // axis.valueInterval = 1;
+        // axis.renderer.labels.template.disabled = true;
+        // axis.renderer.ticks.template.disabled = true;
+        // axis.renderer.grid.template.disabled = true;
 
 
-    let range2 = axis.axisRanges.create();
-    range2.value = 1;
-    range2.endValue = 2;
-    range2.axisFill.fillOpacity = 1;
-    range2.axisFill.fill = am4core.color("#ffb632");
+        var axis = chart.xAxes.push(new am4charts.ValueAxis());
+        axis.min = 0;
+        axis.max = 4;
+        axis.strictMinMax = true;
+        axis.renderer.radius = am4core.percent(70);
+        axis.renderer.inside = true;
+        axis.renderer.line.strokeOpacity = 1;
+        axis.renderer.ticks.template.strokeOpacity = 1;
+        axis.renderer.ticks.template.length = 10;
+        axis.renderer.labels.template.disabled = true;
+        axis.renderer.ticks.template.disabled = true;
+        axis.renderer.grid.template.disabled = true;
+        axis.renderer.labels.template.radius = 40;
+        /**
+         * Axis for ranges
+         */
+        var colorSet = new am4core.ColorSet();
+        var axis2 = chart.xAxes.push(new am4charts.ValueAxis());
+        axis2.min = 0;
+        axis2.max = 4;
+        axis2.renderer.innerRadius = 15
+        axis2.strictMinMax = true;
+        axis2.renderer.labels.template.disabled = true;
+        axis2.renderer.ticks.template.disabled = true;
+        axis2.renderer.grid.template.disabled = true;
 
-    let range3 = axis.axisRanges.create();
-    range3.value = 2;
-    range3.endValue = 3;
-    range3.axisFill.fillOpacity = 1;
-    range3.axisFill.fill = am4core.color("#f3d632");
+        // Add ranges
+        let range = axis2.axisRanges.create();
+        range.value = 0;
+        range.endValue = 1;
+        range.axisFill.fillOpacity = 1;
+        range.axisFill.fill = am4core.color("#ff3232");
 
-    let range4 = axis.axisRanges.create();
-    range4.value = 3;
-    range4.endValue = 4;
-    range4.axisFill.fillOpacity = 1;
-    range4.axisFill.fill = am4core.color("#32a332");
+        let range2 = axis2.axisRanges.create();
+        range2.value = 1;
+        range2.endValue = 2;
+        range2.axisFill.fillOpacity = 1;
+        range2.axisFill.fill = am4core.color("#ffb632");
 
-    // Add hand
-    let hand = chart.hands.push(new am4charts.ClockHand());
-    hand.value = 2;
-    hand.startWidth = 10;
-    // hand.pin.disabled = true;
-    // hand.fill = am4core.color("#2D93AD");
-    // hand.stroke = am4core.color("#2D93AD");
-    // hand.innerRadius = am4core.percent(50);
-    hand.radius = am4core.percent(65);
-    // hand.startWidth = 15;
+        let range3 = axis2.axisRanges.create();
+        range3.value = 2;
+        range3.endValue = 3;
+        range3.axisFill.fillOpacity = 1;
+        range3.axisFill.fill = am4core.color("#f3d632");
 
-    // Animate
-    // setInterval(function() {
-    //   hand.showValue(Math.random() * 4, 1000, am4core.ease.cubicOut);
-    // }, 2000);
+        let range4 = axis2.axisRanges.create();
+        range4.value = 3;
+        range4.endValue = 4;
+        range4.axisFill.fillOpacity = 1;
+        range4.axisFill.fill = am4core.color("#32a332");
+
+        // Add hand
+        let hand = chart.hands.push(new am4charts.ClockHand());
+        hand.startWidth = 10;
+        hand.radius = am4core.percent(85);
+        hand.innerRadius = am4core.percent(20);
+        hand.pin.disabled = true;
+        hand.value = 0;
+
+        var label = chart.radarContainer.createChild(am4core.Label);
+        label.isMeasured = false;
+        label.fontSize = 20;
+        label.x = am4core.percent(50);
+        label.y = am4core.percent(100);
+        label.horizontalCenter = "middle";
+        label.verticalCenter = "bottom";
+        label.text = "0";
+       
+
+        for(var key in gaugeData){
+          var newKey = parseInt(key, 10);
+          if ((newKey+1) === sdgID) {
+            var score = gaugeData[key].score;
+            // Animate
+            setInterval(() => {
+              var value = score;
+              label.text = value;
+              var animation = new am4core.Animation(hand, {
+                property: "value",
+                to: value
+              }, 1000, am4core.ease.cubicOut).start();
+            }, 2000);
+          }
+        }
+
+        function createGrid(value) {
+          let range = axis.axisRanges.create();
+          range.value = value;
+          range.label.text = "{value}";
+        }
+
+        createGrid(0);
+        createGrid(1);
+        createGrid(2);
+        createGrid(3);
+        createGrid(4);
 
   }
 
