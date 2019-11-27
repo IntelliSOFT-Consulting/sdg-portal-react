@@ -27,6 +27,7 @@ class Demographics extends Component{
        // maleCategoryAxis.renderer.inversed = true;
         maleCategoryAxis.renderer.minGridDistance = 15;
         maleCategoryAxis.fontSize = 11;
+        
 
         let maleValueAxis = maleChart.xAxes.push(new am4charts.ValueAxis());
         maleValueAxis.renderer.inversed = true;
@@ -47,6 +48,13 @@ class Demographics extends Component{
         maleSeries.interpolationDuration = 1000;
         maleSeries.columns.template.tooltipText = "Males, age {categoryY}: {valueX} ({valueX.percent.formatNumber('#.0')}%)";
         //maleSeries.sequencedInterpolation = true;
+        maleSeries.fill = am4core.color("#14496b");  
+
+        let maleRange = maleValueAxis.axisRanges.create();
+        maleRange.value = 0;
+        maleRange.endValue = 10;
+        maleRange.label.text = "Male";
+        maleRange.label.dy = 20;
 
         let femaleChart = mainContainer.createChild(am4charts.XYChart);
         femaleChart.paddingLeft = 0;
@@ -74,13 +82,19 @@ class Demographics extends Component{
         femaleSeries.dataFields.valueX = "female";
         femaleSeries.dataFields.valueXShow = "percent";
         femaleSeries.calculatePercent = true;
-        femaleSeries.fill = femaleChart.colors.getIndex(4);
+        femaleSeries.fill = am4core.color("#a31c44");   
         femaleSeries.stroke = femaleSeries.fill;
         //femaleSeries.sequencedInterpolation = true;
         femaleSeries.columns.template.tooltipText = "Females, age {categoryY}: {valueX} ({valueX.percent.formatNumber('#.0')}%)";
         femaleSeries.dataFields.categoryY = "age";
         femaleSeries.interpolationDuration = 1000;
-        femaleSeries.name = "Female";
+        
+
+        let femaleRange = femaleValueAxis.axisRanges.create();
+        femaleRange.value = 0;
+        femaleRange.endValue = 10;
+        femaleRange.label.text = "Female";
+        femaleRange.label.dy = 20;
 
 
         let label = mainContainer.createChild(am4core.Label);
