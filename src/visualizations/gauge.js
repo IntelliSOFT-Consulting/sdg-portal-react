@@ -81,7 +81,7 @@ class Gauge extends Component {
         // Add hand
         let hand = chart.hands.push(new am4charts.ClockHand());
         hand.startWidth = 10;
-        hand.radius = am4core.percent(85);
+        hand.radius = am4core.percent(95);
         hand.innerRadius = am4core.percent(20);
         hand.pin.disabled = true;
         hand.value = 0;

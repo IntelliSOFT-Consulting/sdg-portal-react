@@ -11,6 +11,48 @@
   background: url("../src/assets/img/bg/trevor.jpg");
 }
 
+.agenda2063Side .nav-link{
+  background-color: #f5593d;
+  text-transform: uppercase;
+  border-radius: 0rem;
+  font-size: 0.7rem;
+font-weight: bold;
+text-align: center;
+} 
+
+.agenda2063Side .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #fa3a0e;
+}
+
+/* Agenda 2063 */
+.agenda2063Header{
+  background-color: #a9a9a9;;
+}
+
+.agenda2063Header h5{
+  color: #fff;
+}
+
+.agenda2063Header .btn{
+  background-color: #f5593d;
+  color: #fff;
+}
+
+.agenda2063 .nav-pills .nav-link{
+  color: #fff;
+}
+
+.agenda2063Header .nav-wrapper{
+  
+}
+
+.agenda2063Header .nav-pills{
+
+}
+.goalButtons{
+ 
+}
 /* Country profile page */
  .modal-body{
   padding: 0 0.9rem;

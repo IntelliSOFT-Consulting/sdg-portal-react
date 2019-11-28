@@ -1,0 +1,37 @@
+[
+    {
+        "agenda": 1,
+        "title": "Integrated Africa",
+        "goals" : [1, 2, 3, 4, 5, 6, 7]
+    },{
+        "agenda": 2,
+        "title": "Prosperous Africa",
+        "goals" : [8, 9, 10]
+    },
+    {
+        "agenda": 3,
+        "title": "Democratic Africa",
+        "goals" : [11, 12]
+    },
+    {
+        "agenda": 4,
+        "title": "Peaceful Africa",
+        "goals" : [13, 14, 15]
+    },
+    {
+        "agenda": 5,
+        "title": "Strong Cultural Identity",
+        "goals" : [16]
+    },
+    {
+        "agenda": 6,
+        "title": "People Driven Continent",
+        "goals" : [17, 18]
+    },
+    {
+        "agenda": 7,
+        "title": "International Dynamic Force",
+        "goals" : [19, 20]
+    }
+
+]
