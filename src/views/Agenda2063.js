@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "../components/footer";
+import Map from "../visualizations/map";
 
 import {
     Row, 
@@ -10,11 +11,15 @@ import {
     Card,
     CardBody,
     TabContent,
-    TabPane
+    TabPane,
+    Input,
+    Form,
+    FormGroup,
+    Button
 } from "reactstrap";
 import classnames from "classnames";
 var agenda2063Data = require('../assets/data/agenda2063.json');
-
+console.log(agenda2063Data)
 
 class Agenda2063 extends React.Component {
     state = {
@@ -58,9 +63,11 @@ class Agenda2063 extends React.Component {
                             agenda2063Data.map((data, index) =>{
                                 let newID = index + 1
                                 let tabId = "plainTabs"+newID
-                                let goals = data.goals
+                                let goals = []
+                                goals = data.goals
+                                console.log(goals)
                                 return <TabPane key={index} tabId={tabId}>
-                                            <Row className="agenda2063Header">
+                                            <div className="agenda2063Header">
                                                 <Col md="12">
                                                     <h5 className="display-4 mt-2 mb-2 text-center">
                                                     Aspiration {data.agenda} : {data.title}
@@ -73,7 +80,7 @@ class Agenda2063 extends React.Component {
                                                                             <NavLink aria-selected={this.state.innerTabs === index+1 } 
                                                                                 className={classnames("btn btn-warning goalButtons", { active: this.state.innerTabs === index+1 })}
                                                                                 onClick={e => this.toggleNavs(e, "innerTabs", index+1)} href="#pablo" role="tab">
-                                                                                Goal {goalData}
+                                                                                Goal {goalData.number}
                                                                             </NavLink>
                                                                         </NavItem>
                                                                 })
@@ -81,21 +88,45 @@ class Agenda2063 extends React.Component {
                                                         </Nav>
                                                     </div>
                                                 </Col>
-                                            </Row>
-                                            <Row>
+                                            </div>
+                                         
                                             <TabContent activeTab={"innerTabs" + this.state.innerTabs}>
                                                 { 
                                                     goals.map((goalData, index) =>{
+                                                        //console.log(agenda2063Data);
                                                         let newID = index + 1
                                                         let tabId = "innerTabs"+newID
                                                         return <TabPane key={index} tabId={tabId}> 
-                                                           <div> {goalData} </div>
-                                                        </TabPane>
+                                                                    <Card>
+                                                                        <Row className="selectButtons mt-2 mb-2">
+                                                                            <Col md="3">
+                                                                                <Input type="select" name="indicatorSelect" id="indicatorSelect" className="btn btn-primary">
+                                                                                    <option>1</option>
+                                                                                    <option>1</option>
+                                                                                    <option>1</option>
+                                                                                </Input>
+                                                                            </Col>
+                                                                            <Col md="6">
+                                                                                <Button color="primary" type="button">Global Database</Button>
+                                                                                <Button color="primary" type="button">PanAfrican MRS</Button>
+                                                                            </Col>
+                                                                            <Col md="3">
+                                                                            <Input type="select" name="yearSelect" id="yearSelect" className="btn btn-primary"> 
+                                                                                    <option>2019</option>
+                                                                                    <option>2018</option>
+                                                                                    <option>2017</option>
+                                                                                </Input>
+                                                                            </Col>
+                                                                        </Row>
+                                                                        <Map></Map>
+
+                                                                    </Card>
+                                                                </TabPane>
                                                                 
                                                     })
                                                 }
                                             </TabContent>
-                                            </Row>
+                                           
                                         </TabPane>
                                         
                                     })

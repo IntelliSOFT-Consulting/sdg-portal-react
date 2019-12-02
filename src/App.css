@@ -11,6 +11,11 @@
   background: url("../src/assets/img/bg/trevor.jpg");
 }
 
+.navbar{
+  padding: 0.5rem 1rem;
+}
+
+/* Agenda 2063 */
 .agenda2063Side .nav-link{
   background-color: #f5593d;
   text-transform: uppercase;
@@ -25,7 +30,7 @@ text-align: center;
   background-color: #fa3a0e;
 }
 
-/* Agenda 2063 */
+
 .agenda2063Header{
   background-color: #a9a9a9;;
 }
@@ -43,8 +48,23 @@ text-align: center;
   color: #fff;
 }
 
+.selectButtons{
+  text-align: center;
+}
+
+.selectButtons .form-control{
+  width: 75%;
+}
+
+.selectButtons .btn{
+  padding: 0.8rem 18px;
+}
+
+.nav-wrapper{
+
+}
 .agenda2063Header .nav-wrapper{
-  
+  padding: 0.3rem 0;
 }
 
 .agenda2063Header .nav-pills{
