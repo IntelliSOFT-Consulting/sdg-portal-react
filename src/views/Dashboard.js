@@ -13,7 +13,6 @@ import {
 import classnames from "classnames";
 
 var data = require('../assets/data/scorecardData.json');
-//console.log(data);
 
 class Dashboard extends React.Component {
   

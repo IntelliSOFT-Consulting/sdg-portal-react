@@ -9,17 +9,14 @@ import {
     NavItem,
     NavLink, 
     Card,
-    CardBody,
     TabContent,
     TabPane,
     Input,
-    Form,
-    FormGroup,
     Button
 } from "reactstrap";
 import classnames from "classnames";
 var agenda2063Data = require('../assets/data/agenda2063.json');
-console.log(agenda2063Data)
+//console.log(agenda2063Data)
 
 class Agenda2063 extends React.Component {
     state = {
@@ -65,20 +62,20 @@ class Agenda2063 extends React.Component {
                                 let tabId = "plainTabs"+newID
                                 let goals = []
                                 goals = data.goals
-                                console.log(goals)
+                                //console.log(goals)
                                 return <TabPane key={index} tabId={tabId}>
                                             <div className="agenda2063Header">
                                                 <Col md="12">
                                                     <h5 className="display-4 mt-2 mb-2 text-center">
                                                     Aspiration {data.agenda} : {data.title}
                                                     </h5>
-                                                    <div className="nav-wrapper">
+                                                    <div className="nav-wrapper goalButtons">
                                                         <Nav className="nav-fill flex-column flex-md-row" id="tabs-icons-text" pills role="tablist">
                                                             { 
                                                                 goals.map((goalData, index) =>{
                                                                 return <NavItem key={index}>
                                                                             <NavLink aria-selected={this.state.innerTabs === index+1 } 
-                                                                                className={classnames("btn btn-warning goalButtons", { active: this.state.innerTabs === index+1 })}
+                                                                                className={classnames("btn btn-warning", { active: this.state.innerTabs === index+1 })}
                                                                                 onClick={e => this.toggleNavs(e, "innerTabs", index+1)} href="#pablo" role="tab">
                                                                                 Goal {goalData.number}
                                                                             </NavLink>
@@ -122,7 +119,6 @@ class Agenda2063 extends React.Component {
 
                                                                     </Card>
                                                                 </TabPane>
-                                                                
                                                     })
                                                 }
                                             </TabContent>

@@ -9,12 +9,13 @@ import {
     Link,
     Switch,
     Route
-} from 'react-router-dom'
+} from 'react-router-dom';
 
-import Header from "./components/header"
+import Header from "./components/header";
 
 import Home from "./views/Home";
 import Sdgs from "./views/Sdgs";
+import Sdg from "./views/sdgs/sdg";
 import Dashboard from "./views/Dashboard";
 import CountryProfile from "./views/CountryProfile";
 import Agenda2063 from "./views/Agenda2063";
@@ -25,7 +26,8 @@ const routing = (
     <Router>
         <Header></Header>
         <div>
-            <Route path="/Sdgs" component={Sdgs}></Route>
+            <Route exact path="/Sdgs" component={Sdgs}></Route>
+            <Route exact path="/Sdgs/Sdg_1" component={Sdg}></Route>
             <Route path="/Dashboard" component={Dashboard}></Route>
             <Route path="/CountryProfile" component={CountryProfile}></Route>
             <Route path="/Agenda2063" component={Agenda2063}></Route>

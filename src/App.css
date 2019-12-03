@@ -15,6 +15,26 @@
   padding: 0.5rem 1rem;
 }
 
+/* Individual SDG 1  */
+.sdgBackground{
+  background: #e5233d;
+  color: #fff;
+}
+
+.sdgBackground h5{
+  color: #fff;
+}
+
+.targetButtons{
+  display: inherit !important;
+  background-color: #a9a9a9;
+}
+
+.targetButtons h5{
+  color: #fff;
+}
+
+
 /* Agenda 2063 */
 .agenda2063Side .nav-link{
   background-color: #f5593d;
@@ -70,8 +90,14 @@ text-align: center;
 .agenda2063Header .nav-pills{
 
 }
-.goalButtons{
- 
+
+.agenda2063Side .nav-pills .nav-item{
+  padding-right: 0rem;
+}
+.goalButtons .nav-pills .nav-link{
+  padding: 0.6rem 1rem;
+  border-radius: 0px;
+  font-weight: 600;
 }
 /* Country profile page */
  .modal-body{

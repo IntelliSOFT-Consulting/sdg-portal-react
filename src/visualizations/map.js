@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
     Container 
     } from "reactstrap";
@@ -8,12 +8,10 @@ import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
-function Map () {
-    
-
-
-        var data = require('../assets/data/trial.json');
+function Map({ value }) {
+        //var data = require('../assets/data/trial.json');
         highchartsMap(Highcharts);
+        console.log("");
 
         const mapOptions = {
             chart: {
@@ -56,7 +54,7 @@ function Map () {
             },
         
             series: [{
-                data: data,
+                data: value,
                 mapData: africaMapData,
                 joinBy: ['iso-a2', 'code'],
                 name: 'Country Profile',

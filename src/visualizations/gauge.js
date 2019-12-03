@@ -43,7 +43,6 @@ class Gauge extends Component {
         /**
          * Axis for ranges
          */
-        var colorSet = new am4core.ColorSet();
         var axis2 = chart.xAxes.push(new am4charts.ValueAxis());
         axis2.min = 0;
         axis2.max = 4;

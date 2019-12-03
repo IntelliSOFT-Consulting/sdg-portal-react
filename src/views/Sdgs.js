@@ -1,5 +1,8 @@
 import React from "react";
 import Footer from "../components/footer";
+import {
+    Link
+} from 'react-router-dom';
 
 import {
     CardImg,
@@ -7,9 +10,6 @@ import {
     Col
 } from "reactstrap";
 
-import {
-    Link
-} from "react-router-dom";
 
 class Sdgs extends React.Component {
     render(){
@@ -79,10 +79,12 @@ class Sdgs extends React.Component {
                  <div className="container">
                  <Row>
                     {sdgs.map(function(sdg, index){
-                        let  imgSrc = images(`./${sdg.image}.jpg`)
-                        return <Col md="2">
-                                    <Link>
-                                        <CardImg key={index} alt="..." src={ imgSrc }></CardImg>  
+                        let  imgSrc = images(`./${sdg.image}.jpg`);
+                        let sdgNumber = index + 1;
+                        let url = "Sdgs/Sdg_" + sdgNumber;
+                        return <Col md="2" key={index}>
+                                    <Link to={url}>
+                                        <CardImg  alt="..." src={ imgSrc }></CardImg>  
                                     </Link>   
                                 </Col>
                     })}

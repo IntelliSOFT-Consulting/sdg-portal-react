@@ -10,12 +10,9 @@ import {
     NavbarBrand,
     Navbar,
     NavItem,
-    NavLink,
     Nav,
-    Container,
     Row,
-    Col,
-    Button
+    Col
   } from "reactstrap";
 
 class Header extends React.Component{
