@@ -12,7 +12,21 @@ function Sdg(){
     const  imgSrc = image(`./${sdg.image}.jpg`);
     const targets = sdg.targets;
     const mapData = require('../../assets/data/trial.json');
-   // console.log(mapData)
+   
+    var csvFile = require("../../assets/data/sdg/sdgTarget_11_gdb.csv");
+    var Papa = require("papaparse/papaparse.min.js");
+
+    var sdgData = [];
+
+    Papa.parse(csvFile, {
+        download: true,
+        header: true,
+        complete: function(results){
+           
+            sdgData = results.data;
+            console.log(sdgData);
+        }
+    })
 
     return(
         <>
@@ -52,7 +66,7 @@ function Sdg(){
                                 </Input>
                             </Col>
                         </Row>
-                        <Map value = {mapData}></Map>
+                        <Map value = {sdgData}></Map>
                     </Card>
                 </Container>
             </div>
