@@ -18,10 +18,9 @@ function Sdg(){
     var sdgData = [];
     const period = "2017";
     
-
     const [sdgMapData, setSdgMapData] = useState([]);
 
-    // useEffect(() => {
+     useEffect(() => {
         const loadSdgMapData = (callback) => {
             Papa.parse(csvFile, {
                 download: true,
@@ -31,6 +30,8 @@ function Sdg(){
                 }
             })  
         }
+        loadSdgMapData(parseData);
+    }, []);
 
     function parseData(data){
         const newCountryData = [];
@@ -46,17 +47,10 @@ function Sdg(){
         setSdgMapData(newCountryData);
     }
 
-    loadSdgMapData(parseData);
+   // loadSdgMapData(parseData);
 
     return(
         <>
-        {/* <p>{sdgMapData.length}</p>
-    
-        { 
-            sdgMapData.map((data, index) =>{
-            return <p key={index}>{data.country} {data.value}</p>
-            })
-        } */}
             <div className="container-fluid">
                 <Row className="sdgBackground">
                     <Col md="2">
