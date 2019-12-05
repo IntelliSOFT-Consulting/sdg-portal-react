@@ -9,8 +9,13 @@
 
 .home{
   background: url("../src/assets/img/bg/trevor.jpg");
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
+.homeText{
+  margin-top: 15%;
+}
 .navbar{
   padding: 0.5rem 1rem;
 }

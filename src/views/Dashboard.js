@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../components/header";
 import Footer from "../components/footer";
 
 import {
@@ -30,6 +31,7 @@ class Dashboard extends React.Component {
     render(){
         return(
             <>
+            <Header></Header>
              <main className="container-fluid dashboard">
                 <div className="nav-wrapper">
                     <Nav

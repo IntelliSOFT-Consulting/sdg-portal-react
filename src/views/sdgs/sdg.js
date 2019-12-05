@@ -2,6 +2,8 @@ import React, { useState , useEffect} from "react";
 import {
     Container, Row, Col, Card, CardImg, Button, Input
 } from "reactstrap";
+
+import Header from "../../components/header";
 import SdgMap from "../../visualizations/sdgMap";
 
 function Sdg(){
@@ -51,6 +53,7 @@ function Sdg(){
 
     return(
         <>
+        <Header></Header>
             <div className="container-fluid">
                 <Row className="sdgBackground">
                     <Col md="2">

@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../components/header";
 import Footer from "../components/footer";
 import {
     Link
@@ -75,6 +76,7 @@ class Sdgs extends React.Component {
 
         return(
             <>
+            <Header></Header>
              <main className="sdg">
                  <div className="container">
                  <Row>

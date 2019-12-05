@@ -24,7 +24,7 @@ import Faqs from "./views/Faqs";
 
 const routing = (
     <Router>
-        <Header></Header>
+        {/* <Header></Header> */}
         <div>
             <Route exact path="/Sdgs" component={Sdgs}></Route>
             <Route exact path="/Sdgs/Sdg_1" component={Sdg}></Route>

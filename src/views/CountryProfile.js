@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "../components/header";
 import Footer from "../components/footer";
 import Gauge from "../visualizations/gauge";
 import Demographics from "../visualizations/demographics";
@@ -156,6 +157,7 @@ function CountryProfile () {
 
     return(
         <>
+        <Header></Header>
             <main className="countryProfile">
                 <Container>
                     <HighchartsReact
