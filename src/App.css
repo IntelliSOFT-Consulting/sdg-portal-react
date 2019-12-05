@@ -7,6 +7,16 @@
   padding: 0.6rem 18px;
 }
 
+.home-header .btn{
+  height: 60px;
+  line-height: 11px;
+  font-size: 0.84rem;
+}
+
+.homeOverLay{
+  
+}
+
 .home{
   background: url("../src/assets/img/bg/trevor.jpg");
   height: 100vh;
@@ -18,6 +28,11 @@
 }
 .navbar{
   padding: 0.5rem 1rem;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
 }
 
 /* Individual SDG 1  */
