@@ -1,35 +1,62 @@
-import React from "react";
+import React, { useState , useEffect} from "react";
 import {
     Container, Row, Col, Card, CardImg, Button, Input
 } from "reactstrap";
-import Map from "../../visualizations/map";
+import SdgMap from "../../visualizations/sdgMap";
 
 function Sdg(){
     const data = require('../../assets/data/sdgs.json');
+    
     //console.log(data);
     const image = require.context('../../assets/img/sdg_icons', true);
     const sdg = data[0];
     const  imgSrc = image(`./${sdg.image}.jpg`);
     const targets = sdg.targets;
-    const mapData = require('../../assets/data/trial.json');
-   
-    var csvFile = require("../../assets/data/sdg/sdgTarget_11_gdb.csv");
+    var csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
     var Papa = require("papaparse/papaparse.min.js");
 
     var sdgData = [];
+    const period = "2017";
+    
 
-    Papa.parse(csvFile, {
-        download: true,
-        header: true,
-        complete: function(results){
-           
-            sdgData = results.data;
-            console.log(sdgData);
+    const [sdgMapData, setSdgMapData] = useState([]);
+
+    // useEffect(() => {
+        const loadSdgMapData = (callback) => {
+            Papa.parse(csvFile, {
+                download: true,
+                header: true,
+                complete: function(results){
+                    callback(results.data);
+                }
+            })  
         }
-    })
+
+    function parseData(data){
+        const newCountryData = [];
+        for (var i = 0; i < data.length; i++) {
+            var dataPoint = data[i];
+            newCountryData.push({
+                    "code": dataPoint.code,
+                    "drilldown": dataPoint.drilldown,
+                    "value": dataPoint[period],
+                    "country":dataPoint.country
+                });        
+        }
+        setSdgMapData(newCountryData);
+    }
+
+    loadSdgMapData(parseData);
 
     return(
         <>
+        {/* <p>{sdgMapData.length}</p>
+    
+        { 
+            sdgMapData.map((data, index) =>{
+            return <p key={index}>{data.country} {data.value}</p>
+            })
+        } */}
             <div className="container-fluid">
                 <Row className="sdgBackground">
                     <Col md="2">
@@ -55,7 +82,7 @@ function Sdg(){
                         <p className="p-3"> Target {targets[0].code}: {targets[0].title} </p>
                         <Row className="text-center selectButtons"> 
                             <Col md="8">
-                                <Button color="primary">Global Database</Button>
+                                <Button color="primary" >Global Database</Button>
                                 <Button color="primary">PanAfrican MRS</Button>
                             </Col>
                             <Col md="3">
@@ -66,12 +93,16 @@ function Sdg(){
                                 </Input>
                             </Col>
                         </Row>
-                        <Map value = {sdgData}></Map>
+                        <SdgMap mySdgData ={sdgMapData}></SdgMap>
+
+                        
                     </Card>
                 </Container>
             </div>
         </>
     )
 }
+
+
 
 export default Sdg;

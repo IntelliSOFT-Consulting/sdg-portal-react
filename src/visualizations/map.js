@@ -11,8 +11,6 @@ import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 function Map({ value }) {
         //var data = require('../assets/data/trial.json');
         highchartsMap(Highcharts);
-        console.log("");
-
         const mapOptions = {
             chart: {
                 map: 'custom/africa',
