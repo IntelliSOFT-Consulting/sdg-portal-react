@@ -26,14 +26,14 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 am4core.useTheme(am4themes_animated);
 
-var data = require('../assets/data/trial.json');
+const data = require('../assets/data/trial.json');
 highchartsMap(Highcharts);
 
 
 function CountryProfile (props) {
-    var flagImages = require.context('../assets/img/country_flags', true);
+    const flagImages = require.context('../assets/img/country_flags', true);
     const sdgsData = require('../assets/data/sdgs.json');
-    var sdgsImages = require.context('../assets/img/sdg_icons', true);
+    const sdgsImages = require.context('../assets/img/sdg_icons', true);
     const countriesData = require('../assets/data/countryProfile.json');
 
     let country = 0;
@@ -46,8 +46,8 @@ function CountryProfile (props) {
 
     if (props.location.state != null){
         country = props.location.state;
-        for(var key in countriesData){
-            var newKey = parseInt(key, 10);
+        for(let key in countriesData){
+            let newKey = parseInt(key, 10);
             if((newKey+1) === country.value){
                 let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
                 countryCapital = countriesData[key].capital;
@@ -81,8 +81,8 @@ function CountryProfile (props) {
     const openModal = (countryId) => {
         setOpenModal(true);
         
-        for(var key in countriesData){
-            var newKey = parseInt(key, 10);
+        for(let key in countriesData){
+            let newKey = parseInt(key, 10);
             if((newKey+1) === countryId){
                 let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
                 setCountryData({

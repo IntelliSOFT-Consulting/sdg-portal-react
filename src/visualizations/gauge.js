@@ -9,25 +9,12 @@ class Gauge extends Component {
 
   componentDidMount() {
         let gaugeData = require('../assets/data/1BarometerChartData.json');
-        var sdgID = 1;
+        let sdgID = 1;
 
         let chart = am4core.create("chartdiv", am4charts.GaugeChart);
         chart.innerRadius = am4core.percent(82);
 
-        // Create axis
-        // let axis = chart.xAxes.push(new am4charts.ValueAxis()); 
-        // axis.min = 0;
-        // axis.max = 4;
-        // axis.strictMinMax = true;
-        // axis.renderer.labels.template.radius = 85;
-        // axis.renderer.inside = true;
-        // axis.valueInterval = 1;
-        // axis.renderer.labels.template.disabled = true;
-        // axis.renderer.ticks.template.disabled = true;
-        // axis.renderer.grid.template.disabled = true;
-
-
-        var axis = chart.xAxes.push(new am4charts.ValueAxis());
+        let axis = chart.xAxes.push(new am4charts.ValueAxis());
         axis.min = 0;
         axis.max = 4;
         axis.strictMinMax = true;
@@ -43,7 +30,7 @@ class Gauge extends Component {
         /**
          * Axis for ranges
          */
-        var axis2 = chart.xAxes.push(new am4charts.ValueAxis());
+        let axis2 = chart.xAxes.push(new am4charts.ValueAxis());
         axis2.min = 0;
         axis2.max = 4;
         axis2.renderer.innerRadius = 15
@@ -85,7 +72,7 @@ class Gauge extends Component {
         hand.pin.disabled = true;
         hand.value = 0;
 
-        var label = chart.radarContainer.createChild(am4core.Label);
+        let label = chart.radarContainer.createChild(am4core.Label);
         label.isMeasured = false;
         label.fontSize = 20;
         label.x = am4core.percent(50);
@@ -95,15 +82,15 @@ class Gauge extends Component {
         label.text = "0";
        
 
-        for(var key in gaugeData){
-          var newKey = parseInt(key, 10);
+        for(let key in gaugeData){
+          let newKey = parseInt(key, 10);
           if ((newKey+1) === sdgID) {
-            var score = gaugeData[key].score;
+            let score = gaugeData[key].score;
             // Animate
             setInterval(() => {
-              var value = score;
+              let value = score;
               label.text = value;
-              var animation = new am4core.Animation(hand, {
+              let animation = new am4core.Animation(hand, {
                 property: "value",
                 to: value
               }, 1000, am4core.ease.cubicOut).start();

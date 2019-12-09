@@ -9,12 +9,12 @@ import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 function SdgMap({ mySdgData }) {
-        var data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
+        let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
         highchartsMap(Highcharts);
 
-        var csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
-        var Papa = require("papaparse/papaparse.min.js");
-        var sdgData = [];
+        let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
+        let Papa = require("papaparse/papaparse.min.js");
+        let sdgData = [];
         const period = "2017";
 
         const newCountryData = [];
@@ -24,8 +24,8 @@ function SdgMap({ mySdgData }) {
             complete: function(results){
                 sdgData = results.data;
                 // cycle through source data and filter out required data points
-                for (var i = 0; i < sdgData.length; i++) {
-                    var dataPoint = sdgData[i];
+                for (let i = 0; i < sdgData.length; i++) {
+                    let dataPoint = sdgData[i];
                     newCountryData.push({
                             "code": dataPoint.code,
                             "drilldown": dataPoint.drilldown,

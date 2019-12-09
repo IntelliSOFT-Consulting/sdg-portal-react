@@ -16,7 +16,7 @@ import {
     Button
 } from "reactstrap";
 import classnames from "classnames";
-var agenda2063Data = require('../assets/data/agenda2063.json');
+const agenda2063Data = require('../assets/data/agenda2063.json');
 //console.log(agenda2063Data)
 
 class Agenda2063 extends React.Component {

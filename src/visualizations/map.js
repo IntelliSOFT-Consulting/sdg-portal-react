@@ -9,7 +9,7 @@ import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 function Map({ value }) {
-        //var data = require('../assets/data/trial.json');
+        //let data = require('../assets/data/trial.json');
         highchartsMap(Highcharts);
         const mapOptions = {
             chart: {
