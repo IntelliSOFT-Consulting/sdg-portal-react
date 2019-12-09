@@ -15,9 +15,9 @@ function Sdg(){
     const sdg = data[0];
     const  imgSrc = image(`./${sdg.image}.jpg`);
     const targets = sdg.targets;
-    var csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
-    var sdgCompiled = require("../../assets/data/sdg/sdgDataCompiled.csv")
-    var Papa = require("papaparse/papaparse.min.js");
+    const csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
+    const sdgCompiled = require("../../assets/data/sdg/sdgDataCompiled.csv")
+    const Papa = require("papaparse/papaparse.min.js");
 
     const period = "2017";
     
@@ -47,8 +47,8 @@ function Sdg(){
 
     function parseData(data){
         const newCountryData = [];
-        for (var i = 0; i < data.length; i++) {
-            var dataPoint = data[i];
+        for (let i = 0; i < data.length; i++) {
+            let dataPoint = data[i];
             newCountryData.push({
                     "code": dataPoint.code,
                     "drilldown": dataPoint.drilldown,
