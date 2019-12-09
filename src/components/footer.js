@@ -1,5 +1,4 @@
 import React from "react";
-import {Container} from "reactstrap";
 
 class Footer extends React.Component{
     render(){
@@ -13,9 +12,9 @@ class Footer extends React.Component{
                     </p>
                     <p>
 
-                        <a href="https://twitter.com/sdgcafrica" target="_blank"><i className="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.facebook.com/SDGCAfrica" target="_blank"><i className="fa fa-facebook-f"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.youtube.com/channel/UCf-dFkCW1W0g2CVDAZfLMAw" target="_blank"><i className="fa fa-youtube"></i></a>
+                        <a href="https://twitter.com/sdgcafrica" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.facebook.com/SDGCAfrica" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook-f"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.youtube.com/channel/UCf-dFkCW1W0g2CVDAZfLMAw" target="_blank" rel="noopener noreferrer"><i className="fa fa-youtube"></i></a>
                         
                     </p>
 

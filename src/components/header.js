@@ -10,12 +10,9 @@ import {
     NavbarBrand,
     Navbar,
     NavItem,
-    NavLink,
     Nav,
-    Container,
     Row,
-    Col,
-    Button
+    Col
   } from "reactstrap";
 
 class Header extends React.Component{
@@ -59,52 +56,25 @@ class Header extends React.Component{
                           
                             <Nav className="ml-lg-auto" navbar>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning">
-                                            <span className="nav-link-inner--text ml-1">
-                                                <Link to="/" className="text-white">Home</Link>
-                                            </span>
-                                        </Button>
+                                    <Link to="/" className="btn btn-warning btn-icon text-white">Home</Link>    
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning">
-                                            <span className="nav-link-inner--text ml-1">
-                                                <Link to="/Sdgs" className="text-white">SDGS</Link></span>
-                                        </Button>
+                                    <Link to="/Sdgs" className="btn btn-warning text-white">SDGs</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning">
-                                            <span className="nav-link-inner--text ml-1">
-                                            <Link to="/Dashboard" className="text-white">Dashboard</Link>
-                                            </span>
-                                        </Button>
+                                    <Link to="/Dashboard" className="btn btn-warning text-white">DASHBAORD</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning">
-                                            <span className="nav-link-inner--text ml-1">
-                                            <Link to="/CountryProfile" className="text-white">Country Profile</Link>
-                                            </span>
-                                        </Button>
+                                    <Link to="/CountryProfile" className="btn btn-warning text-white">COUNTRY PROFILE</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning">
-                                            <span className="nav-link-inner--text ml-1">
-                                            <Link to="/Agenda2063" className="text-white">Agenda 2063</Link>
-                                            </span>
-                                        </Button>
+                                    <Link to="/Agenda2063" className="btn btn-warning text-white">AGENDA 2063</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning">
-                                            <span className="nav-link-inner--text ml-1">
-                                            <Link to="/About" className="text-white">About us</Link>
-                                            </span>
-                                        </Button>
+                                    <Link to="/About" className="btn btn-warning text-white">ABOUT US</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning">
-                                            <span className="nav-link-inner--text ml-1">
-                                            <Link to="/Faqs" className="text-white">FAQS</Link>
-                                            </span>
-                                        </Button>
+                                    <Link to="/Faqs" className="btn btn-warning text-white">FAQs</Link>
                                 </NavItem>
                             </Nav>
                           

@@ -7,8 +7,147 @@
   padding: 0.6rem 18px;
 }
 
+.home-header .btn{
+  height: 60px;
+  line-height: 11px;
+  font-size: 0.84rem;
+  text-transform: capitalize;
+}
+
+.homeOverLay{
+  
+}
+
 .home{
   background: url("../src/assets/img/bg/trevor.jpg");
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.homeText{
+  margin-top: 15%;
+}
+.navbar{
+  padding: 0.5rem 1rem;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Individual SDG 1  */
+.sdgBackground{
+  background: #e5233d;
+  color: #fff;
+}
+
+.sdgBackground h5{
+  color: #fff;
+}
+
+.targetButtons{
+  display: inherit !important;
+  background-color: #a9a9a9;
+}
+
+.targetButtons h5{
+  color: #fff;
+}
+
+
+/* Agenda 2063 */
+.agenda2063Side .nav-link{
+  background-color: #f5593d;
+  text-transform: uppercase;
+  border-radius: 0rem;
+  font-size: 0.7rem;
+font-weight: bold;
+text-align: center;
+} 
+
+.agenda2063Side .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #fa3a0e;
+}
+
+
+.agenda2063Header{
+  background-color: #a9a9a9;;
+}
+
+.agenda2063Header h5{
+  color: #fff;
+}
+
+.agenda2063Header .btn{
+  background-color: #f5593d;
+  color: #fff;
+}
+
+.agenda2063 .nav-pills .nav-link{
+  color: #fff;
+}
+
+.selectButtons{
+  text-align: center;
+}
+
+.selectButtons .form-control{
+  width: 75%;
+}
+
+.selectButtons .btn{
+  padding: 0.8rem 18px;
+}
+
+.nav-wrapper{
+
+}
+.agenda2063Header .nav-wrapper{
+  padding: 0.3rem 0;
+}
+
+.agenda2063Header .nav-pills{
+
+}
+
+.agenda2063Side .nav-pills .nav-item{
+  padding-right: 0rem;
+}
+.goalButtons .nav-pills .nav-link{
+  padding: 0.6rem 1rem;
+  border-radius: 0px;
+  font-weight: 600;
+}
+/* Country profile page */
+ .modal-body{
+  padding: 0 0.9rem;
+}
+
+.countryFlags{
+  height: 100px;
+  width: 150px;
+}
+
+@media (min-width: 992px) {
+  .modal-xl {
+    max-width: 1200px; } }
+
+.countryDemographics{
+  background-color: #008fe5;
+  color: #fff;
+}
+.countryName{
+  text-transform: uppercase;
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+ .sdgImages .card-img{
+  padding-right: 0px;
+  padding-left: 0px;
+  border-radius: 0px;
 }
 
 
@@ -65,3 +204,75 @@
   padding-right: 0px;
   padding-left: 0px;
 }
+
+/* Dashboard page */
+
+.dashboard table{
+  border-collapse: separate;
+  border-spacing: 0.25em;
+}
+.sdg-header{
+  font-size: 7px;
+  text-align: center;
+  width: 5.4%;
+}
+.blank-header{
+  width: 8.2%;
+}
+.sdg-data{
+  font-size: 9px;
+  font-weight: bold;
+  color: #000;
+  text-align: right;
+}
+
+.red{
+  background-color: rgb(255, 0, 0);
+}
+.orange{
+  background-color: #ffa500;
+}
+.green{
+  background-color: rgb(0, 128, 0);
+}
+.grey{
+  background-color: grey;
+}
+
+.dashboard tr{
+  height: 28px;
+}
+
+.dashboard td{
+  border-radius: 8px;
+  /* border-top: 3px solid #fff; */
+}
+
+.dashboard #tabs-icons-text{
+  margin-left: 10%;
+  text-transform: uppercase;
+}
+
+.dashboard .nav-pills .nav-link{
+  border-radius: 0px;
+}
+.dashboard .nav-pills .nav-item:not(:last-child) {
+  padding-right: 0rem;
+}
+.dashboard .card{
+  border: 0px;
+}
+.dashboard .card-body{
+  padding: 0px;
+}
+.dashboard .nav-pills .nav-link{
+  background-color: #34b5b8;
+  color: #fff;
+  font-weight: 600;
+  padding: 1.1rem 1rem;
+}
+.dashboard .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+  background-color: #229699;
+  border-color: #229699;
+}
+

@@ -1,0 +1,99 @@
+[
+    {
+        "agenda": 1,
+        "title": "Integrated Africa",
+        "goals" : [
+            {
+                "number":1,
+                "indicators": [1, 2, 3, 4, 5, 6, 7, 8]
+            },{
+                "number":2,
+                "indicators": [9, 10, 11, 12]
+            },{
+                "number":3,
+                "indicators": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+            },{
+                "number":4,
+                "indicators": [23, 24, 25]
+            },{
+                "number":5,
+                "indicators": [26, 27]
+            },{
+                "number":6,
+                "indicators": [28, 29]
+            },{
+                "number":7,
+                "indicators": [30, 31]
+            }
+        ]
+    },{
+        "agenda": 2,
+        "title": "Prosperous Africa",
+        "goals" : [{
+            "number":8,
+            "indicators": [32, 33]
+        },{
+            "number":9,
+            "indicators": [9, 10, 11, 12]
+        },{
+            "number":10 ,
+            "indicators": [34, 35, 36, 37,38,39]
+        }]
+    },
+    {
+        "agenda": 3,
+        "title": "Democratic Africa",
+        "goals" : [{
+            "number":11,
+            "indicators": [40, 41]
+        },{
+            "number":12,
+            "indicators": [43]
+        }]
+    },
+    {
+        "agenda": 4,
+        "title": "Peaceful Africa",
+        "goals" : [{
+            "number":13,
+            "indicators": [44]
+        },{
+            "number":14,
+            "indicators": []
+        },{
+            "number":15,
+            "indicators": [45]
+        }]
+    },
+    {
+        "agenda": 5,
+        "title": "Strong Cultural Identity",
+        "goals" : [{
+            "number":16,
+            "indicators": [46]
+        }]
+    },
+    {
+        "agenda": 6,
+        "title": "People Driven Continent",
+        "goals" : [{
+            "number":17,
+            "indicators": [47, 48, 49, 50, 51]
+        },{
+            "number":18,
+            "indicators": [52, 53, 54, 55, 56]
+        }]
+    },
+    {
+        "agenda": 7,
+        "title": "International Dynamic Force",
+        "goals" : [{
+            "number":19,
+            "indicators": [57, 58, 59]
+        },{
+            "number":20,
+            "indicators": [60, 61, 62, 63]
+        }]
+    }
+
+]

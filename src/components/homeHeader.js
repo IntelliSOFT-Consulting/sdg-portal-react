@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Link} from 'react-router-dom'
+import { BrowserRouter, Link} from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -22,12 +22,11 @@ class HomeHeader extends React.Component{
     render(){
         return (
             <> 
-            <header className="header-global">
+            <header className="header-global home-header">
                 <Navbar className="navbar-main navbar-transparent navbar-light headroom" expand="lg" id="navbar-main">
-                    <Container>
-                        
+                    <div className="container-fluid">
                         <NavbarBrand>
-                            <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
+                            <img alt="..." src={require("../assets/img/brand/logo_white.png")}></img>
                         </NavbarBrand>
                         <button className="navbar-toggler" id="navbar_global">
                             <span className="navbar-toggler-icon" />
@@ -56,57 +55,59 @@ class HomeHeader extends React.Component{
                             </div>
                             <Nav className="ml-lg-auto" navbar>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning" href="#!" target="_blank">
-                                            <span className="btn-inner--icon"><i className="fa fa-home mr-2" /></span>
-                                            <br></br>
-                                            <span className="nav-link-inner--text ml-1">Home</span>
-                                        </Button>
+                                    <Link to="/" className="btn btn-warning btn-icon text-white">
+                                        <span className="btn-inner--icon">
+                                            <img className="icon" alt=".." src={require('../assets/img/home_icons/Home.png')}></img>
+                                        </span>
+                                        <br></br>
+                                        <span className="nav-link-inner--text ml-1">HOME</span>
+                                    </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning" href="#!" target="_blank">
-                                            <span className="btn-inner--icon"><i className="fa fa-cloud-download mr-2" /></span>
-                                            <br></br>
-                                            <span className="nav-link-inner--text ml-1">SDGS</span>
-                                        </Button>
+                                    <Link to="/Sdgs" className="btn btn-warning btn-icon text-white">
+                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/Sdg.png')}></img>
+                                        <br></br>
+                                        <span className="nav-link-inner--text ml-1">SDGs</span>
+                                    </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning" href="#!" target="_blank">
-                                            <span className="btn-inner--icon"><i className="fa fa-table mr-2" /></span>
-                                            <br></br>
-                                            <span className="nav-link-inner--text ml-1">Dashboard</span>
-                                        </Button>
+                                    <Link to="/Dashboard" className="btn btn-warning btn-icon text-white">
+                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/Dashboard.png')}></img>
+                                        <br></br>
+                                        <span className="nav-link-inner--text ml-1">DASHBOARD</span>
+                                    </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning" href="#!" target="_blank">
-                                            <span className="btn-inner--icon"><i className="fa fa-flag mr-2" /></span>
+                                    <Link to="/CountryProfile" className="btn btn-warning btn-icon text-white">
+                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/CountryProfile.png')}></img>
                                             <br></br>
-                                            <span className="nav-link-inner--text ml-1">Country <br></br> Profiles</span>
-                                        </Button>
+                                            <span className="nav-link-inner--text ml-1">COUNTRY <br></br> PROFILE</span>
+                                    </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning" href="#!" target="_blank">
-                                            <span className="btn-inner--icon"><i className="fa fa-globe mr-2" /></span>
-                                            <br></br>
-                                            <span className="nav-link-inner--text ml-1">Agenda <br></br> 2063</span>
-                                        </Button>
+                                    <Link to="/Agenda2063" className="btn btn-warning btn-icon text-white">
+                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/A2063.png')}></img>
+                                        <br></br>
+                                        <span className="nav-link-inner--text ml-1">AGENDA <br></br> 2063</span>
+                                    </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning" href="#!" target="_blank">
-                                            <span className="btn-inner--icon"><i className="fa fa-info mr-2" /></span>
-                                            <br></br>
-                                            <span className="nav-link-inner--text ml-1">About us</span>
-                                        </Button>
+                                    <Link to="/About" className="btn btn-warning btn-icon text-white">
+                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/AboutUs.png')}></img>
+                                        <br></br>
+                                        <span className="nav-link-inner--text ml-1">ABOUT US</span>
+                                    </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Button className="btn-icon" color="warning" href="#!" target="_blank">
-                                            <span className="btn-inner--icon"><i className="fa fa-question mr-2" /></span>
-                                            <br></br>
-                                            <span className="nav-link-inner--text ml-1">FAQS</span>
-                                        </Button>
+                                    <Link to="/Faqs" className="btn btn-warning btn-icon text-white">
+                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/FAQs.png')}></img>
+                                        <br></br>
+                                        <span className="nav-link-inner--text ml-1">FAQs</span>
+                                    </Link>
                                 </NavItem>
                             </Nav>
                         </UncontrolledCollapse>
-                    </Container>
+                    </div>
                 </Navbar>
             </header> 
             </>

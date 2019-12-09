@@ -1,6 +1,7 @@
 import React from "react";
+import Header from "../components/header";
 import Footer from "../components/footer";
-import { Container, 
+import { 
         Row, 
         Col,
         Card, 
@@ -9,10 +10,12 @@ import { Container,
         CardImg
 } from "reactstrap";
 
+
 class About extends React.Component {
     render(){
         return(
             <>
+            <Header></Header>
                 <main>
                 <div className="container-fluid pl-5 pr-5">
                     <Row className="pl-5 pr-5">

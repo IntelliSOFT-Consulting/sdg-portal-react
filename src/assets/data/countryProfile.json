@@ -1,0 +1,542 @@
+[
+  {
+    "id": 1,
+    "name": "Algeria",
+    "capital":"Algiers",
+    "region":"Northern Africa",
+    "flagURL":"algeria-flag-medium",
+    "size":2381741,
+    "capitalPopulation":123456,
+    "totalPopulation":42679018
+  },
+  {
+    "id": 2,
+    "name": "Angola",
+    "capital":"Luanda",
+    "region":"Central Africa",
+    "flagURL":"angola-flag-medium",
+    "size":1246700,
+    "capitalPopulation":678945,
+    "totalPopulation":31787566
+  },
+  {
+    "id": 3,
+    "name": "Benin",
+    "capital":"Porto-Novo",
+    "region":"Western Africa",
+    "flagURL":"benin-flag-medium",
+    "size":112622,
+    "capitalPopulation":123456,
+    "totalPopulation":11801595
+  },
+  {
+    "id": 4,
+    "name": "Botswana",
+    "capital":"Gaborone",
+    "region":"Southern Africa",
+    "flagURL":"botswana-flag-medium",
+    "size":581730,
+    "capitalPopulation":678945,
+    "totalPopulation":2374636
+  },
+  {
+    "id": 5,
+    "name": "Burkina Faso",
+    "capital":"Ouagadougou",
+    "region":"Western Africa",
+    "flagURL":"burkina-faso-flag-medium",
+    "size":274200,
+    "capitalPopulation":123456,
+    "totalPopulation":20321560
+  },
+  {
+    "id": 6,
+    "name": "Burundi",
+    "capital":"Bujumbura",
+    "region":"Eastern Africa",
+    "flagURL":"burundi-flag-medium",
+    "size":27830,
+    "capitalPopulation":678945,
+    "totalPopulation":11575964
+  },
+  {
+    "id": 7,
+    "name": "Cameroon",
+    "capital":"Yaounde",
+    "region":"Central Africa",
+    "flagURL":"cameroon-flag-medium",
+    "size":475440,
+    "capitalPopulation":123456,
+    "totalPopulation":25312993
+  },
+  {
+    "id": 8,
+    "name": "Cabo Verde",
+    "capital":"Praia",
+    "region":"Western Africa",
+    "flagURL":"cape-verde-flag-medium",
+    "size":4033,
+    "capitalPopulation":678945,
+    "totalPopulation":560349
+  },
+  {
+    "id": 9,
+    "name": "Central African Republic",
+    "capital":"Bangui",
+    "region":"Central Africa",
+    "flagURL":"central-african-republic-flag-medium",
+    "size":622984,
+    "capitalPopulation":123456,
+    "totalPopulation":4825711
+  },
+  {
+    "id": 10,
+    "name": "Chad",
+    "capital":"N'Djamena",
+    "region":"Central Africa",
+    "flagURL":"chad-flag-medium",
+    "size":1284000,
+    "capitalPopulation":678945,
+    "totalPopulation":15814345
+  },
+  {
+    "id": 11,
+    "name": "Comoros",
+    "capital":"Moroni",
+    "region":"Eastern Africa",
+    "flagURL":"comoros-flag-medium",
+    "size":2235,
+    "capitalPopulation":123456,
+    "totalPopulation":850910
+  },
+  {
+    "id": 12,
+    "name": "Congo",
+    "capital":"Brazzaville",
+    "region":"Central Africa",
+    "flagURL":"congo-republic-of-the-flag-medium",
+    "size":342000,
+    "capitalPopulation":678945,
+    "totalPopulation":5542197
+  },
+  {
+    "id": 13,
+    "name": "Democratic Republic of the Congo",
+    "capital":"Kinshasa",
+    "region":"Central Africa",
+    "flagURL":"congo-democratic-republic-of-the-flag-medium",
+    "size":2344858,
+    "capitalPopulation":123456,
+    "totalPopulation":86727573
+  },
+  {
+    "id": 14,
+    "name": "Cote d'Ivoire",
+    "capital":"Yamoussoukro",
+    "region":"Western Africa",
+    "flagURL":"cote-d-ivoire-flag-medium",
+    "size":322463,
+    "capitalPopulation":678945,
+    "totalPopulation":25531083
+  },
+  {
+    "id": 15,
+    "name": "Djibouti",
+    "capital":"Djibouti",
+    "region":"Eastern Africa",
+    "flagURL":"djibouti-flag-medium",
+    "size":23200,
+    "capitalPopulation":123456,
+    "totalPopulation":985690
+  },
+  {
+    "id": 16,
+    "name": "Egypt",
+    "capital":"Cairo",
+    "region":"Northern Africa",
+    "flagURL":"egypt-flag-medium",
+    "size":1001450,
+    "capitalPopulation":678945,
+    "totalPopulation":101168745
+  },
+  {
+    "id": 17,
+    "name": "Equatorial Guinea",
+    "capital":"Malabo",
+    "region":"Central Africa",
+    "flagURL":"equatorial-guinea-flag-medium",
+    "size":28051,
+    "capitalPopulation":123456,
+    "totalPopulation":1360104
+  },
+  {
+    "id": 18,
+    "name": "Eritrea",
+    "capital":"Asmara",
+    "region":"Eastern Africa",
+    "flagURL":"eritrea-flag-medium",
+    "size":117600,
+    "capitalPopulation":678945,
+    "totalPopulation":5309659
+  },
+  {
+    "id": 19,
+    "name": "Ethiopia",
+    "capital":"Addis Ababa",
+    "region":"Eastern Africa",
+    "flagURL":"ethiopia-flag-medium",
+    "size":1104300,
+    "capitalPopulation":123456,
+    "totalPopulation":110135635
+  },
+  {
+    "id": 20,
+    "name": "Gabon",
+    "capital":"Libreville",
+    "region":"Central Africa",
+    "flagURL":"gabon-flag-medium",
+    "size":267667,
+    "capitalPopulation":678945,
+    "totalPopulation":2109099
+  },
+  {
+    "id": 21,
+    "name": "Gambia",
+    "capital":"Banjul",
+    "region":"Western Africa",
+    "flagURL":"gambia-flag-medium",
+    "size":11295,
+    "capitalPopulation":123456,
+    "totalPopulation":2228075
+  },
+  {
+    "id": 22,
+    "name": "Ghana",
+    "capital":"Accra",
+    "region":"Western Africa",
+    "flagURL":"ghana-flag-medium",
+    "size":238533,
+    "capitalPopulation":678945,
+    "totalPopulation":30096970
+  },
+  {
+    "id": 23,
+    "name": "Guinea",
+    "capital":"Conakry",
+    "region":"Western Africa",
+    "flagURL":"guinea-flag-medium",
+    "size":245857,
+    "capitalPopulation":123456,
+    "totalPopulation":13398180
+  },
+  {
+    "id": 24,
+    "name": "Guinea Bissau",
+    "capital":"Bissau",
+    "region":"Western Africa",
+    "flagURL":"guinea-bissau-flag-medium",
+    "size":36125,
+    "capitalPopulation":678945,
+    "totalPopulation":1953723
+  },
+  {
+    "id": 25,
+    "name": "Kenya",
+    "capital":"Nairobi",
+    "region":"Eastern Africa",
+    "flagURL":"kenya-flag-medium",
+    "size":580367,
+    "capitalPopulation":123456,
+    "totalPopulation":52214791
+  },
+  {
+    "id": 26,
+    "name": "Lesotho",
+    "capital":"Maseru",
+    "region":"Southern Africa",
+    "flagURL":"lesotho-flag-medium",
+    "size":30355,
+    "capitalPopulation":678945,
+    "totalPopulation":2292682
+  },
+  {
+    "id": 27,
+    "name": "Liberia",
+    "capital":"Monrovia",
+    "region":"Western Africa",
+    "flagURL":"liberia-flag-medium",
+    "size":111369,
+    "capitalPopulation":123456,
+    "totalPopulation":4977720
+  },
+  {
+    "id": 28,
+    "name": "Libya",
+    "capital":"Tripoli",
+    "region":"Northern Africa",
+    "flagURL":"libya-flag-medium",
+    "size":1759540,
+    "capitalPopulation":678945,
+    "totalPopulation":6569864
+  },
+  {
+    "id": 29,
+    "name": "Madagascar",
+    "capital":"Antananarivo",
+    "region":"Central Africa",
+    "flagURL":"madagascar-flag-medium",
+    "size":587041,
+    "capitalPopulation":123456,
+    "totalPopulation":26969642
+  },
+  {
+    "id": 30,
+    "name": "Malawi",
+    "capital":"Lilongwe",
+    "region":"Southern Africa",
+    "flagURL":"malawi-flag-medium",
+    "size":118484,
+    "capitalPopulation":678945,
+    "totalPopulation":19718743
+  },
+  {
+    "id": 31,
+    "name": "Mali",
+    "capital":"Bamako",
+    "region":"Western Africa",
+    "flagURL":"mali-flag-medium",
+    "size":1240192,
+    "capitalPopulation":123456,
+    "totalPopulation":19689140
+  },
+  {
+    "id": 32,
+    "name": "Mauritania",
+    "capital":"Nouakchott",
+    "region":"Northern Africa",
+    "flagURL":"mauritania-flag-medium",
+    "size":1030700,
+    "capitalPopulation":678945,
+    "totalPopulation":4661149
+  },
+  {
+    "id": 33,
+    "name": "Mauritius",
+    "capital":"Port Louis",
+    "region":"Southern Africa",
+    "flagURL":"mauritius-flag-medium",
+    "size":2040,
+    "capitalPopulation":123456,
+    "totalPopulation":1271368
+  },
+  {
+    "id": 34,
+    "name": "Morocco",
+    "capital":"Rabat",
+    "region":"Northern Africa",
+    "flagURL":"morocco-flag-medium",
+    "size":446550,
+    "capitalPopulation":678945,
+    "totalPopulation":36635156
+  },
+  {
+    "id": 35,
+    "name": "Mozambique",
+    "capital":"Maputo",
+    "region":"Southern Africa",
+    "flagURL":"mozambique-flag-medium",
+    "size":799380,
+    "capitalPopulation":123456,
+    "totalPopulation":31408823
+  },
+  {
+    "id": 36,
+    "name": "Namibia",
+    "capital":"Windhoek",
+    "region":"Southern Africa",
+    "flagURL":"namibia-flag-medium",
+    "size":824292,
+    "capitalPopulation":678945,
+    "totalPopulation":2641996
+  },
+  {
+    "id": 37,
+    "name": "Niger",
+    "capital":"Niamey",
+    "region":"Western Africa",
+    "flagURL":"niger-flag-medium",
+    "size":1267000,
+    "capitalPopulation":123456,
+    "totalPopulation":23176691
+  },
+  {
+    "id": 38,
+    "name": "Nigeria",
+    "capital":"Abuja",
+    "region":"Western Africa",
+    "flagURL":"nigeria-flag-medium",
+    "size":923768,
+    "capitalPopulation":678945,
+    "totalPopulation":200962417
+  },
+  {
+    "id": 39,
+    "name": "Rwanda",
+    "capital":"Kigali",
+    "region":"Eastern Africa",
+    "flagURL":"rwanda-flag-medium",
+    "size":26338,
+    "capitalPopulation":123456,
+    "totalPopulation":12794412
+  },
+  {
+    "id": 40,
+    "name": "Sao Tome and Principe",
+    "capital":"Sao Tome",
+    "region":"Southern Africa",
+    "flagURL":"sao-tome-and-principe-flag-medium",
+    "size":964,
+    "capitalPopulation":678945,
+    "totalPopulation":213379
+  },
+  {
+    "id": 41,
+    "name": "Senegal",
+    "capital":"Dakar",
+    "region":"Western Africa",
+    "flagURL":"senegal-flag-medium",
+    "size":196722,
+    "capitalPopulation":123456,
+    "totalPopulation":16743859
+  },
+  {
+    "id": 42,
+    "name": "Seychelles",
+    "capital":"Victoria",
+    "region":"Eastern Africa",
+    "flagURL":"seychelles-flag-medium",
+    "size":455,
+    "capitalPopulation":678945,
+    "totalPopulation":95702
+  },
+  {
+    "id": 43,
+    "name": "Sierra Leone",
+    "capital":"Freetown",
+    "region":"Western Africa",
+    "flagURL":"sierra-leone-flag-medium",
+    "size":71740,
+    "capitalPopulation":123456,
+    "totalPopulation":7883123
+  },
+  {
+    "id": 44,
+    "name": "Somalia",
+    "capital":"Mogadishu",
+    "region":"Eastern Africa",
+    "flagURL":"somalia-flag-medium",
+    "size":637657,
+    "capitalPopulation":678945,
+    "totalPopulation":15636171
+  },
+  {
+    "id": 45,
+    "name": "South Africa",
+    "capital":"Pretoria",
+    "region":"Southern Africa",
+    "flagURL":"south-africa-flag-medium",
+    "size":1219090,
+    "capitalPopulation":123456,
+    "totalPopulation":58065097
+  },
+  {
+    "id": 46,
+    "name": "South Sudan",
+    "capital":"Juba",
+    "region":"Eastern Africa",
+    "flagURL":"south-sudan-flag-medium",
+    "size":644329,
+    "capitalPopulation":678945,
+    "totalPopulation":13263184
+  },
+  {
+    "id": 47,
+    "name": "Sudan",
+    "capital":"Khartoum",
+    "region":"Eastern Africa",
+    "flagURL":"sudan-flag-medium",
+    "size":1861484,
+    "capitalPopulation":123456,
+    "totalPopulation":42514094
+  },
+  {
+    "id": 48,
+    "name": "eSwatini",
+    "capital":"Lobamba",
+    "region":"Southern Africa",
+    "flagURL":"swaziland-flag-medium",
+    "size":17364,
+    "capitalPopulation":678945,
+    "totalPopulation":1415414
+  },
+  {
+    "id": 49,
+    "name": "Tanzania",
+    "capital":"Dar es Salaam",
+    "region":"Eastern Africa",
+    "flagURL":"tanzania-flag-medium",
+    "size":947300,
+    "capitalPopulation":123456,
+    "totalPopulation":60913557
+  },
+  {
+    "id": 50,
+    "name": "Togo",
+    "capital":"Lome",
+    "region":"Western Africa",
+    "flagURL":"togo-flag-medium",
+    "size":56785,
+    "capitalPopulation":678945,
+    "totalPopulation":8186384
+  },
+  {
+    "id": 51,
+    "name": "Tunisia",
+    "capital":"Tunis",
+    "region":"Northern Africa",
+    "flagURL":"kenya-flag-medium",
+    "size":163610,
+    "capitalPopulation":123456,
+    "totalPopulation":11783168
+  },
+  {
+    "id": 52,
+    "name": "Uganda",
+    "capital":"Kampala",
+    "region":"Eastern Africa",
+    "flagURL":"uganda-flag-medium",
+    "size":241038,
+    "capitalPopulation":678945,
+    "totalPopulation":45711874
+  },
+  {
+    "id": 53,
+    "name": "Zambia",
+    "capital":"Lusaka",
+    "region":"Southern Africa",
+    "flagURL":"zambia-flag-medium",
+    "size":752618,
+    "capitalPopulation":123456,
+    "totalPopulation":18137369
+  },
+  {
+    "id": 54,
+    "name": "Zimbabwe",
+    "capital":"Harare",
+    "region":"Southern Africa",
+    "flagURL":"zimbabwe-flag-medium",
+    "size":390757,
+    "capitalPopulation":678945,
+    "totalPopulation":17297495
+  }
+]

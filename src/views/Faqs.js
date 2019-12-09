@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../components/header";
 import Footer from "../components/footer";
 import {
     Container,
@@ -20,10 +21,11 @@ class Faqs extends React.Component {
       }
 
     render(){
-        const {cards, collapse} = this.state;
+        const {collapse} = this.state;
 
         return(
             <>
+            <Header></Header>
              <main>
                 <Container className="faqs">
                 <h3 className="display-3 mb-4 mt-2 text-center text-uppercase">Frequently Asked Questions</h3>
