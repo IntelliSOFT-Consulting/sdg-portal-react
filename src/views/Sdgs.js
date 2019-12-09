@@ -14,7 +14,7 @@ import {
 
 class Sdgs extends React.Component {
     render(){
-        var images = require.context('../assets/img/sdg_icons', true);
+        const images = require.context('../assets/img/sdg_icons', true);
         const sdgs = [
             {
                 id :1,

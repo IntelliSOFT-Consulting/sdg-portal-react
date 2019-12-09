@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import classnames from "classnames";
 
-var data = require('../assets/data/scorecardData.json');
+const data = require('../assets/data/scorecardData.json');
 
 class Dashboard extends React.Component {
   
