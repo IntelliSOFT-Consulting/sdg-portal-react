@@ -59,22 +59,22 @@ class Header extends React.Component{
                                     <Link to="/" className="btn btn-warning btn-icon text-white">Home</Link>    
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Sdgs" className="btn btn-warning text-white">SDGS</Link>
+                                    <Link to="/Sdgs" className="btn btn-warning text-white">SDGs</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Dashboard" className="btn btn-warning text-white">Dashboard</Link>
+                                    <Link to="/Dashboard" className="btn btn-warning text-white">DASHBAORD</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/CountryProfile" className="btn btn-warning text-white">Country Profile</Link>
+                                    <Link to="/CountryProfile" className="btn btn-warning text-white">COUNTRY PROFILE</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Agenda2063" className="btn btn-warning text-white">Agenda 2063</Link>
+                                    <Link to="/Agenda2063" className="btn btn-warning text-white">AGENDA 2063</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/About" className="btn btn-warning text-white">About us</Link>
+                                    <Link to="/About" className="btn btn-warning text-white">ABOUT US</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Faqs" className="btn btn-warning text-white">FAQS</Link>
+                                    <Link to="/Faqs" className="btn btn-warning text-white">FAQs</Link>
                                 </NavItem>
                             </Nav>
                           

@@ -60,49 +60,49 @@ class HomeHeader extends React.Component{
                                             <img className="icon" alt=".." src={require('../assets/img/home_icons/Home.png')}></img>
                                         </span>
                                         <br></br>
-                                        <span className="nav-link-inner--text ml-1">Home</span>
+                                        <span className="nav-link-inner--text ml-1">HOME</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
                                     <Link to="/Sdgs" className="btn btn-warning btn-icon text-white">
                                         <img className="icon" alt=".." src={require('../assets/img/home_icons/Sdg.png')}></img>
                                         <br></br>
-                                        <span className="nav-link-inner--text ml-1">SDGS</span>
+                                        <span className="nav-link-inner--text ml-1">SDGs</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
                                     <Link to="/Dashboard" className="btn btn-warning btn-icon text-white">
                                         <img className="icon" alt=".." src={require('../assets/img/home_icons/Dashboard.png')}></img>
                                         <br></br>
-                                        <span className="nav-link-inner--text ml-1">Dashboard</span>
+                                        <span className="nav-link-inner--text ml-1">DASHBOARD</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
                                     <Link to="/CountryProfile" className="btn btn-warning btn-icon text-white">
                                         <img className="icon" alt=".." src={require('../assets/img/home_icons/CountryProfile.png')}></img>
                                             <br></br>
-                                            <span className="nav-link-inner--text ml-1">Country <br></br> Profiles</span>
+                                            <span className="nav-link-inner--text ml-1">COUNTRY <br></br> PROFILE</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
                                     <Link to="/Agenda2063" className="btn btn-warning btn-icon text-white">
                                         <img className="icon" alt=".." src={require('../assets/img/home_icons/A2063.png')}></img>
                                         <br></br>
-                                        <span className="nav-link-inner--text ml-1">Agenda <br></br> 2063</span>
+                                        <span className="nav-link-inner--text ml-1">AGENDA <br></br> 2063</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
                                     <Link to="/About" className="btn btn-warning btn-icon text-white">
                                         <img className="icon" alt=".." src={require('../assets/img/home_icons/AboutUs.png')}></img>
                                         <br></br>
-                                        <span className="nav-link-inner--text ml-1">About us</span>
+                                        <span className="nav-link-inner--text ml-1">ABOUT US</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
                                     <Link to="/Faqs" className="btn btn-warning btn-icon text-white">
                                         <img className="icon" alt=".." src={require('../assets/img/home_icons/FAQs.png')}></img>
                                         <br></br>
-                                        <span className="nav-link-inner--text ml-1">FAQS</span>
+                                        <span className="nav-link-inner--text ml-1">FAQs</span>
                                     </Link>
                                 </NavItem>
                             </Nav>
