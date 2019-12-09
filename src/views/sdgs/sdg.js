@@ -9,15 +9,16 @@ import SdgMap from "../../visualizations/sdgMap";
 function Sdg(){
     const data = require('../../assets/data/sdgs.json');
     
+    
     //console.log(data);
     const image = require.context('../../assets/img/sdg_icons', true);
     const sdg = data[0];
     const  imgSrc = image(`./${sdg.image}.jpg`);
     const targets = sdg.targets;
     var csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
+    var sdgCompiled = require("../../assets/data/sdg/sdgDataCompiled.csv")
     var Papa = require("papaparse/papaparse.min.js");
 
-    var sdgData = [];
     const period = "2017";
     
     const [sdgMapData, setSdgMapData] = useState([]);
@@ -35,6 +36,15 @@ function Sdg(){
         loadSdgMapData(parseData);
     }, []);
 
+    Papa.parse(sdgCompiled, {
+        download: true,
+        header: true,
+        complete: function(results){
+            console.log("Compiled data");
+            console.log(results.data);
+        }
+    })
+
     function parseData(data){
         const newCountryData = [];
         for (var i = 0; i < data.length; i++) {
@@ -48,8 +58,6 @@ function Sdg(){
         }
         setSdgMapData(newCountryData);
     }
-
-   // loadSdgMapData(parseData);
 
     return(
         <>

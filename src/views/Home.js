@@ -1,26 +1,45 @@
 import React from "react";
 import Header from "../components/homeHeader";
 import Footer from "../components/footer";
-import { BrowserRouter, Link} from 'react-router-dom'
+import { BrowserRouter, Link, Redirect} from 'react-router-dom'
 import { Container, Col, Row, Input, InputGroupAddon, InputGroupText, InputGroup} from "reactstrap";
 import Select from 'react-select';
 
 
 class Home extends React.Component {
+    state = {
+        selectedOption: null,
+        redirect: false
+    };
+
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+
+    renderRedirect = selectedCountry => {
+        if(this.state.redirect){
+            return <Redirect to= {{pathname:"/CountryProfile",
+                                    state: selectedCountry
+                                }}>
+                                </Redirect>
+        }
+    }
+    
+    handleChange = selectedOption => {
+        this.setState({ selectedOption });
+        this.setRedirect();
+        console.log(`Option selected:`, selectedOption);
+        
+    };
     
     render(){
         const countriesJson = require('../assets/data/trial.json');
-        const countries = countriesJson.map(country => ({ label: country.name, value: country.value }))
+        const countries = countriesJson.map(country => ({ label: country.name, value: country.value }));
 
+        const { selectedOption } = this.state;
 
-        const scaryAnimals = [
-            { label: "Alligators", value: 1 },
-            { label: "Crocodiles", value: 2 },
-            { label: "Sharks", value: 3 },
-            { label: "Small crocodiles", value: 4 },
-            { label: "Smallest crocodiles", value: 5 },
-            { label: "Snakes", value: 6 },
-          ];  
 
         return(
             <>
@@ -41,15 +60,12 @@ class Home extends React.Component {
                                 <Link to="/Sdgs/Sdg_1" className="btn btn-warning text-white">Explore Development Data</Link>
                             </Col>
                             <Col md="3">
-                                {/* <InputGroup className="mb-4">
-                                    <InputGroupAddon addonType="prepend">
-                                        <InputGroupText>
-                                        <i className="ni ni-zoom-split-in" />
-                                        </InputGroupText>
-                                    </InputGroupAddon>
-                                     
-                                </InputGroup> */}
-                                <Select options={countries} placeholder="Search by country"/>
+                            
+                                <Select options={countries} 
+                                        placeholder="Search by country" 
+                                        value={selectedOption}
+                                        onChange={this.handleChange}/>
+                               {this.renderRedirect(selectedOption)}
                             </Col>
                         </Row>
                     

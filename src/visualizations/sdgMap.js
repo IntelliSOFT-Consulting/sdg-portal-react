@@ -36,7 +36,7 @@ function SdgMap({ mySdgData }) {
                 
             }
         })
-        console.log(newCountryData);
+       // console.log(newCountryData);
        
         const geoj = Highcharts.maps["custom/africa"] = {
             "title": "Africa",

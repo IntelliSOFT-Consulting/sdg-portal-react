@@ -30,14 +30,44 @@ var data = require('../assets/data/trial.json');
 highchartsMap(Highcharts);
 
 
-function CountryProfile () {
+function CountryProfile (props) {
     var flagImages = require.context('../assets/img/country_flags', true);
     const sdgsData = require('../assets/data/sdgs.json');
     var sdgsImages = require.context('../assets/img/sdg_icons', true);
+    const countriesData = require('../assets/data/countryProfile.json');
+
+    let country = 0;
+    let countryName = '';
+    let countryCapital = '';
+    let countryFlag = '';
+    let countryPoverty = '';
+    let countryGDP = '';
+    
+
+    if (props.location.state != null){
+        country = props.location.state;
+        for(var key in countriesData){
+            var newKey = parseInt(key, 10);
+            if((newKey+1) === country.value){
+                let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
+                countryCapital = countriesData[key].capital;
+                countryFlag = imgSrc;
+            }
+        }
+    }
 
     // Modal operations
-    const [toggleModal, setOpenModal] = useState(false);
-    const [countryData, setCountryData] = useState({
+    const [toggleModal, setOpenModal] = useState(country ? true: false);
+    const [countryData, setCountryData] = useState(country ? {
+        "id": 0,
+        "name": country.label,
+        "capital":countryCapital,
+        "region":"",
+        "flagURL":countryFlag,
+        "size":0,
+        "capitalPopulation":0,
+        "totalPopulation":0
+        } : {
         "id": 0,
         "name": "",
         "capital":"",
@@ -46,15 +76,15 @@ function CountryProfile () {
         "size":0,
         "capitalPopulation":0,
         "totalPopulation":0
-      });
+    });
 
     const openModal = (countryId) => {
         setOpenModal(true);
-        const countriesData = require('../assets/data/countryProfile.json');
+        
         for(var key in countriesData){
             var newKey = parseInt(key, 10);
             if((newKey+1) === countryId){
-                let  imgSrc = flagImages(`./${countriesData[key].flagURL}.png`)
+                let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
                 setCountryData({
                     "id": countriesData[key].id,
                     "name": countriesData[key].name,
@@ -64,35 +94,13 @@ function CountryProfile () {
                     "size":countriesData[key].size,
                     "capitalPopulation":countriesData[key].capitalPopulation,
                     "totalPopulation":countriesData[key].totalPopulation
-                  });
-                  
+                  }); 
             }
         }
     }
 
     const closeModal = () => {
         setOpenModal(false);
-    }
-
-    //Load country data
-    const handleCountryData = (countryId) => {
-        const countriesData = require('../assets/data/countryProfile.json');
-        for(var key in countriesData){
-            var newKey = parseInt(key, 10);
-            if((newKey+1) === countryId){
-                setCountryData({
-                    "id": key.id,
-                    "name": "Algeria",
-                    "capital":"Algiers",
-                    "region":"Northern Africa",
-                    "flagURL":"assets/img/country_flags/algeria-flag-medium.png",
-                    "size":2381741,
-                    "capitalPopulation":123456,
-                    "totalPopulation":42679018
-                  });
-            }
-        }
-        
     }
 
     const mapOptions = {
@@ -155,7 +163,10 @@ function CountryProfile () {
         }]
       }
 
+   
+
     return(
+        
         <>
         <Header></Header>
             <main className="countryProfile">
@@ -175,7 +186,7 @@ function CountryProfile () {
                                 <span aria-hidden={true}>×</span>
                             </button>
                         </div>
-                        <div className="modal-body" onLoad={handleCountryData()}>
+                        <div className="modal-body" >
                             <Row className="countryDemographics">
                                 <Col md="2">
                                     <img className="countryFlags" alt=".." src={countryData.flagURL}></img>
