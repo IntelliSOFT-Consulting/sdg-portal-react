@@ -1,15 +1,15 @@
 import React from 'react';
 import { 
-    Container, Row
+    Container
     } from "reactstrap";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
-import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
+// import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 function SdgMap({ mySdgData }) {
-        let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
+        // let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
         highchartsMap(Highcharts);
 
         let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
@@ -1412,12 +1412,7 @@ function SdgMap({ mySdgData }) {
                     fontSize: '16px'
                 }
             },
-            legend: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
+            
             plotOptions: {
                 series: {
                     point: {

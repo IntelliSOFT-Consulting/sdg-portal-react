@@ -5,10 +5,8 @@ import {
     Link
 } from 'react-router-dom';
 
-import {
-    CardImg,
-    Row,
-    Col
+import { 
+    CardImg, Row, Col
 } from "reactstrap";
 
 

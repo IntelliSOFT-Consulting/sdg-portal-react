@@ -7,8 +7,30 @@
   padding: 0.6rem 18px;
 }
 
+.btn-header{
+  background-color: #fb6340;
+  color: #fff;
+}
+
+.btn-header:hover{
+  background-color: #ff4014;
+  border-color: #ff4014;
+}
+
+.btn-primary{
+  background-color: #34b5b8;
+  border-color: #34b5b8;
+  color: #fff;
+}
+
+.btn-primary:hover, 
+.btn-primary.active{
+  background-color: #229699;
+  border-color: #229699;
+}
+
 .home-header .btn{
-  height: 60px;
+  height: 63px;
   line-height: 11px;
   font-size: 0.84rem;
   text-transform: capitalize;
@@ -26,6 +48,7 @@
 }
 .homeText{
   margin-top: 15%;
+  margin-bottom: 2%;
 }
 .navbar{
   padding: 0.5rem 1rem;
@@ -46,13 +69,37 @@
   color: #fff;
 }
 
+.yearSelect:active{
+  background: #229699;
+}
+
+.selectButtons .btn:not(:disabled):not(.disabled){
+  background-color: #34b5b8;
+  border-color: #34b5b8;
+  color: #fff;
+}
+
 .targetButtons{
   display: inherit !important;
   background-color: #a9a9a9;
 }
 
+.targetButtons .btn{
+  font-size: 0.8rem;
+  border-radius: 0px;
+  background: #e5233d;
+}
+
 .targetButtons h5{
   color: #fff;
+}
+
+.selectButtons .btn{
+  font-size: 0.775rem;
+}
+
+.selectButtons .form-control{
+  height: 44.2px;
 }
 
 
@@ -119,6 +166,7 @@ text-align: center;
   padding: 0.6rem 1rem;
   border-radius: 0px;
   font-weight: 600;
+  width: 120px;
 }
 /* Country profile page */
  .modal-body{

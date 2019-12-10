@@ -1,8 +1,7 @@
 import React from "react";
 import Header from "../components/homeHeader";
-import Footer from "../components/footer";
-import { BrowserRouter, Link, Redirect} from 'react-router-dom'
-import { Container, Col, Row, Input, InputGroupAddon, InputGroupText, InputGroup} from "reactstrap";
+import { Link, Redirect} from 'react-router-dom'
+import { Container, Col, Row} from "reactstrap";
 import Select from 'react-select';
 
 
@@ -57,7 +56,7 @@ class Home extends React.Component {
                         <Row>
                             <Col md="4"></Col>
                             <Col md="4">
-                                <Link to="/Sdgs/Sdg_1" className="btn btn-warning text-white">Explore Development Data</Link>
+                                <Link to="/Sdgs" className="btn btn-warning text-white">Explore Development Data</Link>
                             </Col>
                             <Col md="3">
                             
