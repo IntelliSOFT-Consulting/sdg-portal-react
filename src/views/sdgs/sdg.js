@@ -10,18 +10,14 @@ import SdgChart from "../../visualizations/sdgChart";
 import classnames from "classnames";
 
 function Sdg(){
-    const data = require('../../assets/data/sdgs.json');
-    
+    const data = require('../../assets/data/globalDatabase.json');
+    const sdg = data[0];
+    const targets = sdg.targets;
+    let indicators = [];
     
     //console.log(data);
     const image = require.context('../../assets/img/sdg_icons', true);
-    const sdg = data[0];
-    const  imgSrc = image(`./${sdg.image}.jpg`);
-    const targets = sdg.targets;
-   
-    const sdgCompiled = require("../../assets/data/sdg/sdgDataCompiled.csv")
-    const Papa = require("papaparse/papaparse.min.js");
-
+    const imgSrc = image(`./${sdg.image}.jpg`);
     const period = "2017";
     
     const [sdgMapData, setSdgMapData] = useState([]);
@@ -30,6 +26,8 @@ function Sdg(){
      useEffect(() => {
         const Papa = require("papaparse/papaparse.min.js");
         const csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
+        const sdgCompiled = require("../../assets/data/sdg/sdgDataCompiled.csv");
+
         const loadSdgMapData = (callback) => {
             Papa.parse(csvFile, {
                 download: true,
@@ -39,17 +37,31 @@ function Sdg(){
                 }
             })  
         }
+
+        const loadCompiledData = (callback) =>{
+            Papa.parse(sdgCompiled, {
+                download: true,
+                header: true,
+                complete: function(results){
+                    callback(results.data);
+                }
+            })
+        }
+        
         loadSdgMapData(parseData);
+        loadCompiledData(parseCompiledData);
+
     }, []);
 
-    Papa.parse(sdgCompiled, {
-        download: true,
-        header: true,
-        complete: function(results){
-            console.log("Compiled data");
-            console.log(results.data);
+    
+    function parseCompiledData(data){
+        console.log(data);
+        const targetData = [];
+        for(let j=0; j<data.length; j++){
+            
+
         }
-    })
+    }
 
     function parseData(data){
         const newCountryData = [];
@@ -100,6 +112,7 @@ function Sdg(){
                         <TabContent activeTab={activeTab}>
                             {
                                 targets.map((target, index) =>{
+                                    indicators = target.indicators;
                                     return <TabPane tabId={index} key={index}>
                                         <p className="p-3"> Target {target.code}: {target.title} </p>
                                         <Row className="text-center selectButtons"> 
@@ -109,11 +122,13 @@ function Sdg(){
                                                 
                                             </Col>
                                             <Col md="3">
-                                                <Input type="select" name="yearSelect" className="btn btn-primary"> 
+                                                <Input type="select" name="yearSelect" className="btn btn-primary">
                                                     <option>Select indicator</option>
-                                                    <option>1.1</option>
-                                                    <option>1.1</option>
-                                                    <option>1.1</option>
+                                                    {
+                                                        indicators.map((indicator, index) => {
+                                                         return <option key={index}>{indicator.title}</option>
+                                                        })
+                                                    }
                                                 </Input>
                                             </Col>
                                             <Col md="3">

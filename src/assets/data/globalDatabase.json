@@ -13,6 +13,19 @@
                         "indicators": [
                             {
                                 "code": "1.1.1",
+                                "title" : "1.1 Number of people not in extreme poverty (people)",
+                                "description": "Proportion of population below the international poverty line, by sex, age, employment status and geographical location (urban/rural)",
+                                "tier": "1"
+                            }, 
+                            {
+                                "code": "1.1.1",
+                                "title": "1.1 Number of people living in extreme poverty (people)",
+                                "description": "Proportion of population below the international poverty line, by sex, age, employment status and geographical location (urban/rural)",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.1.1",
+                                "title": "1.1 Poverty headcount ratio at national poverty lines (% of population)",
                                 "description": "Proportion of population below the international poverty line, by sex, age, employment status and geographical location (urban/rural)",
                                 "tier": "1"
                             }
