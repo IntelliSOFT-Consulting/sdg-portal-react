@@ -25,8 +25,8 @@
 
 .btn-primary:hover, 
 .btn-primary.active{
-  background-color: #229699;
-  border-color: #229699;
+  background-color: #227d80;
+  border-color: #227d80;
 }
 
 .home-header .btn{
@@ -77,6 +77,11 @@
   background-color: #34b5b8;
   border-color: #34b5b8;
   color: #fff;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle{
+  background-color: #227d80;
+  border-color: #227d80;
 }
 
 .targetButtons{

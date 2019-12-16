@@ -14,14 +14,19 @@ function Sdg(){
     const sdg = data[0];
     const targets = sdg.targets;
     let indicators = [];
+    const code = '1.1';
+    const period = "2006";
+    const selectedIndicator = "3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)";
     
     //console.log(data);
     const image = require.context('../../assets/img/sdg_icons', true);
     const imgSrc = image(`./${sdg.image}.jpg`);
-    const period = "2017";
     
+    
+    const [years, setYears] = useState("2018");
     const [sdgMapData, setSdgMapData] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
+    const [dataSource, setDataSource] = useState('pan');
 
      useEffect(() => {
         const Papa = require("papaparse/papaparse.min.js");
@@ -37,7 +42,6 @@ function Sdg(){
                 }
             })  
         }
-
         const loadCompiledData = (callback) =>{
             Papa.parse(sdgCompiled, {
                 download: true,
@@ -47,21 +51,10 @@ function Sdg(){
                 }
             })
         }
-        
         loadSdgMapData(parseData);
         loadCompiledData(parseCompiledData);
-
+        loadGDBIndicators(targets);
     }, []);
-
-    
-    function parseCompiledData(data){
-        console.log(data);
-        const targetData = [];
-        for(let j=0; j<data.length; j++){
-            
-
-        }
-    }
 
     function parseData(data){
         const newCountryData = [];
@@ -74,7 +67,50 @@ function Sdg(){
                     "country":dataPoint.country
                 });        
         }
-        setSdgMapData(newCountryData);
+        //setSdgMapData(newCountryData);
+    }
+
+    function parseCompiledData(data){
+        const indicators = [];
+        const keys = [];
+        let singleData = data[0];
+
+        for (let s in singleData) keys.push(s);
+        
+        keys.forEach(function(key){
+            if(key.startsWith(code)){
+                indicators.push(key);
+            }
+        })
+        const indicatorData = [];
+            data.forEach(function(d){
+                if(d.Year == period ){
+                    indicatorData.push({
+                        "code": d.Code,
+                        "drilldown" : d.Code,
+                        "value": d[selectedIndicator],
+                        "country": d.Entity
+                    })  
+                }
+            })
+            setSdgMapData(indicatorData);
+    }
+
+   
+    const setGDBData = () => {
+         setDataSource('gdb');
+    }
+    const setPanAfricanData = () =>{
+        setDataSource('pan');
+        const Papa = require("papaparse/papaparse.min.js");
+        const csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
+    }
+
+    function loadGDBIndicators(targets){
+        for(let k=0; k<targets.length; k++){
+            let indicators = targets[k].indicators;
+            //console.log(indicators);
+        }
     }
 
     return(
@@ -117,8 +153,8 @@ function Sdg(){
                                         <p className="p-3"> Target {target.code}: {target.title} </p>
                                         <Row className="text-center selectButtons"> 
                                             <Col md="6">
-                                                <Button color="primary">PanAfrican MRS</Button>
-                                                <Button color="primary" >Global Database</Button>
+                                                <Button color="primary" onClick={setPanAfricanData} className={ dataSource === 'pan' ? 'active': '' } >PanAfrican MRS</Button>
+                                                <Button color="primary" onClick={setGDBData} className={ dataSource === 'gdb' ? 'active': '' }  >Global Database</Button>
                                                 
                                             </Col>
                                             <Col md="3">
@@ -145,15 +181,13 @@ function Sdg(){
                                         </div>
             
                                         <div>
-                                            {/* <SdgChart></SdgChart> */}
+                                            <SdgChart></SdgChart>
                                         </div>
                                     </TabPane>
                                 })
                             }
-                        
                         </TabContent>  
-                        </Card>
-                    
+                    </Card>
                 </Container>
             </div>
             <Footer></Footer>
