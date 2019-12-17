@@ -2,6 +2,8 @@ import React, { useState , useEffect} from "react";
 import {
     Container, Row, Col, Card, CardImg, Button, Input, Nav, NavItem, NavLink, TabContent, TabPane
 } from "reactstrap";
+import { css } from '@emotion/core';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import Header from "../../components/header";
 import SdgMap from "../../visualizations/sdgMap";
@@ -10,6 +12,10 @@ import SdgChart from "../../visualizations/sdgChart";
 import classnames from "classnames";
 
 function Sdg(){
+    const override = css`
+        display: block;
+        margin: 0 auto;
+        border-color: red;`;
     const data = require('../../assets/data/globalDatabase.json');
     const sdg = data[0];
     const targets = sdg.targets;
@@ -23,40 +29,48 @@ function Sdg(){
     const imgSrc = image(`./${sdg.image}.jpg`);
     
     
-    const [years, setYears] = useState("2018");
+    const [years, setYears] = useState([]);
     const [sdgMapData, setSdgMapData] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
     const [dataSource, setDataSource] = useState('pan');
 
-     useEffect(() => {
-        const Papa = require("papaparse/papaparse.min.js");
-        const csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
-        const sdgCompiled = require("../../assets/data/sdg/sdgDataCompiled.csv");
+    const Papa = require("papaparse/papaparse.min.js");
+    const csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
+    const sdgCompiled = require("../../assets/data/sdg/sdgDataCompiled.csv");
 
-        const loadSdgMapData = (callback) => {
-            Papa.parse(csvFile, {
-                download: true,
-                header: true,
-                complete: function(results){
-                    callback(results.data);
-                }
-            })  
-        }
-        const loadCompiledData = (callback) =>{
-            Papa.parse(sdgCompiled, {
-                download: true,
-                header: true,
-                complete: function(results){
-                    callback(results.data);
-                }
-            })
-        }
+    const [isLoading, setIsLoading] = useState(false);
+
+    const loadSdgMapData = (callback) => {
+        Papa.parse(csvFile, {
+            download: true,
+            header: true,
+            complete: function(results){
+                callback(results.data);
+                // setIsLoading(false);
+            }
+        })  
+    }
+
+    const loadSdgData = (callback) =>{
+        setIsLoading(true);
+        Papa.parse(sdgCompiled, {
+            download: true,
+            header: true,
+            complete: function(results){
+                callback(results.data);
+                setIsLoading(false);
+            }
+        })
+    }
+
+    
+
+     useEffect(() => {
         loadSdgMapData(parseData);
-        loadCompiledData(parseCompiledData);
-        loadGDBIndicators(targets);
+        loadSdgData(parseSdgData);
     }, []);
 
-    function parseData(data){
+    const parseData = (data) => {
         const newCountryData = [];
         for (let i = 0; i < data.length; i++) {
             let dataPoint = data[i];
@@ -70,32 +84,27 @@ function Sdg(){
         //setSdgMapData(newCountryData);
     }
 
-    function parseCompiledData(data){
-        const indicators = [];
-        const keys = [];
-        let singleData = data[0];
+    const parseSdgData = (data) => {
+        const years = [];
+        const indicatorData = [];
 
-        for (let s in singleData) keys.push(s);
-        
-        keys.forEach(function(key){
-            if(key.startsWith(code)){
-                indicators.push(key);
+        data.forEach(function(d){
+            if(d.Year == period ){
+                indicatorData.push({
+                    "code": d.Code,
+                    "drilldown" : d.Code,
+                    "value": d[selectedIndicator],
+                    "country": d.Entity
+                })  
+            }
+            if(d.Entity == "Mauritius"){
+                years.push(d.Year);
+                years.sort((a, b) => b - a);
             }
         })
-        const indicatorData = [];
-            data.forEach(function(d){
-                if(d.Year == period ){
-                    indicatorData.push({
-                        "code": d.Code,
-                        "drilldown" : d.Code,
-                        "value": d[selectedIndicator],
-                        "country": d.Entity
-                    })  
-                }
-            })
-            setSdgMapData(indicatorData);
+        setYears(years);
+        setSdgMapData(indicatorData);
     }
-
    
     const setGDBData = () => {
          setDataSource('gdb');
@@ -104,13 +113,6 @@ function Sdg(){
         setDataSource('pan');
         const Papa = require("papaparse/papaparse.min.js");
         const csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
-    }
-
-    function loadGDBIndicators(targets){
-        for(let k=0; k<targets.length; k++){
-            let indicators = targets[k].indicators;
-            //console.log(indicators);
-        }
     }
 
     return(
@@ -169,19 +171,31 @@ function Sdg(){
                                             </Col>
                                             <Col md="3">
                                                 <Input type="select" name="yearSelect" className="btn btn-primary"> 
-                                                    <option>Select year</option>
-                                                    <option>2019</option>
-                                                    <option>2018</option>
-                                                    <option>2017</option>
+                                                <option>Select year</option>
+                                                    {
+                                                        years.map((year, index) => {
+                                                        return <option key={index}> {year} </option>
+                                                    })
+                                                    }
+                                                   
+                                                   
                                                 </Input>
                                             </Col>
                                         </Row>
-                                        <div className="mt-3">
-                                            <SdgMap mySdgData ={sdgMapData}></SdgMap>
-                                        </div>
+
+                                        { isLoading ? (
+                                            <div className='sweet-loading mt-4'>
+                                                <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                                color={'#123abc'} loading={isLoading} />
+                                            </div> 
+                                        ) : (
+                                            <div className="mt-3 ">
+                                                <SdgMap mySdgData ={sdgMapData}></SdgMap>
+                                            </div>
+                                        )}
             
                                         <div>
-                                            <SdgChart></SdgChart>
+                                            {/* <SdgChart></SdgChart> */}
                                         </div>
                                     </TabPane>
                                 })
