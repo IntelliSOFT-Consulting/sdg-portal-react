@@ -16,84 +16,60 @@ function Sdg(){
         display: block;
         margin: 0 auto;
         border-color: red;`;
+
+    const Papa = require("papaparse/papaparse.min.js");
     const data = require('../../assets/data/globalDatabase.json');
     const sdg = data[0];
     const targets = sdg.targets;
     let indicators = [];
-    const code = '1.1';
+
     const period = "2006";
     const selectedIndicator = "3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)";
-    
-    //console.log(data);
+
     const image = require.context('../../assets/img/sdg_icons', true);
     const imgSrc = image(`./${sdg.image}.jpg`);
-    
-    
+
     const [years, setYears] = useState([]);
     const [sdgMapData, setSdgMapData] = useState([]);
-    const [activeTab, setActiveTab] = useState(0);
     const [dataSource, setDataSource] = useState('pan');
-
-    const Papa = require("papaparse/papaparse.min.js");
-    const csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
-    const sdgCompiled = require("../../assets/data/sdg/sdgDataCompiled.csv");
-
+    const [activeTab, setActiveTab] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+    const [year, setYear] = useState('2006');
+    const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
 
-    const loadSdgMapData = (callback) => {
-        Papa.parse(csvFile, {
-            download: true,
-            header: true,
-            complete: function(results){
-                callback(results.data);
-                // setIsLoading(false);
-            }
-        })  
-    }
 
-    const loadSdgData = (callback) =>{
-        setIsLoading(true);
-        Papa.parse(sdgCompiled, {
-            download: true,
-            header: true,
-            complete: function(results){
-                callback(results.data);
-                setIsLoading(false);
-            }
-        })
-    }
+    let csvDataSourceData = '';
 
-    
-
-     useEffect(() => {
-        loadSdgMapData(parseData);
-        loadSdgData(parseSdgData);
-    }, []);
-
-    const parseData = (data) => {
-        const newCountryData = [];
-        for (let i = 0; i < data.length; i++) {
-            let dataPoint = data[i];
-            newCountryData.push({
-                    "code": dataPoint.code,
-                    "drilldown": dataPoint.drilldown,
-                    "value": dataPoint[period],
-                    "country":dataPoint.country
-                });        
+    useEffect(() => {
+        if(dataSource == 'pan'){
+            csvDataSourceData = require("../../assets/data/sdg/pan.csv");
+        }else if (dataSource == 'gdb'){
+            csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
         }
-        //setSdgMapData(newCountryData);
-    }
+        console.log(dataSource);
+        
+        const loadSdgData = (sdgCsvFile, callback) =>{
+            setIsLoading(true);
+            Papa.parse(sdgCsvFile, {
+                download: true,
+                header: true,
+                complete: function(results){
+                    callback(results.data);
+                    setIsLoading(false);
+                }
+            })
+        }
+        loadSdgData(csvDataSourceData, parseSdgData);
+    }, [dataSource]);
 
     const parseSdgData = (data) => {
-        const years = [];
         const indicatorData = [];
-
         data.forEach(function(d){
-            if(d.Year == period ){
+            if(d.Year == year ){
                 indicatorData.push({
                     "code": d.Code,
                     "drilldown" : d.Code,
-                    "value": d[selectedIndicator],
+                    "value": d[indicator],
                     "country": d.Entity
                 })  
             }
@@ -111,8 +87,6 @@ function Sdg(){
     }
     const setPanAfricanData = () =>{
         setDataSource('pan');
-        const Papa = require("papaparse/papaparse.min.js");
-        const csvFile = require("../../assets/data/sdg/sdgTarget_11_mrs.csv");
     }
 
     return(
