@@ -21,33 +21,43 @@ function Sdg(){
     const data = require('../../assets/data/globalDatabase.json');
     const sdg = data[0];
     const targets = sdg.targets;
-    let indicators = [];
-
-    const period = "2006";
-    const selectedIndicator = "3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)";
 
     const image = require.context('../../assets/img/sdg_icons', true);
     const imgSrc = image(`./${sdg.image}.jpg`);
 
     const [years, setYears] = useState([]);
+    const [indicators, setIndicators] = useState([]);
+
     const [sdgMapData, setSdgMapData] = useState([]);
     const [dataSource, setDataSource] = useState('pan');
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
-
-
+    
     let csvDataSourceData = '';
+    let sdgData = '';
+    let ind = [];
 
     useEffect(() => {
         if(dataSource == 'pan'){
             csvDataSourceData = require("../../assets/data/sdg/pan.csv");
+            sdgData = require('../../assets/data/globalDatabase.json');
         }else if (dataSource == 'gdb'){
             csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
+            sdgData = require('../../assets/data/globalDatabase.json');
         }
-        console.log(dataSource);
-        
+
+        const targetData = sdgData[0].targets;
+        targetData.forEach(function(data){
+            if(data.code == activeTab){
+                ind = data.indicators;
+                console.log(ind);
+            }
+        })
+       // console.log(ind);
+        setIndicators(ind);
+
         const loadSdgData = (sdgCsvFile, callback) =>{
             setIsLoading(true);
             Papa.parse(sdgCsvFile, {
@@ -59,10 +69,12 @@ function Sdg(){
                 }
             })
         }
+        console.log(activeTab);
         loadSdgData(csvDataSourceData, parseSdgData);
-    }, [dataSource]);
+    }, [dataSource, indicator, year, activeTab]);
 
     const parseSdgData = (data) => {
+        const years = [];
         const indicatorData = [];
         data.forEach(function(d){
             if(d.Year == year ){
@@ -83,10 +95,19 @@ function Sdg(){
     }
    
     const setGDBData = () => {
-         setDataSource('gdb');
+        setDataSource('gdb');
     }
     const setPanAfricanData = () =>{
         setDataSource('pan');
+    }
+    const handleIndicatorChange = (e) =>{
+        setIndicator(e.target.value);
+    }
+    const handleYearChange = (e) =>{
+        setYear(e.target.value);
+    }
+    const targetClick = (e) =>{
+        setActiveTab(e.target.value);
     }
 
     return(
@@ -107,14 +128,17 @@ function Sdg(){
                     <Nav className="justify-content-center">
                         {
                             targets.map((target, index) =>{
-                                return <NavItem key={index}>
-                                            <NavLink 
-                                                className={classnames("ml-4 mr-4 text-white btn btn-warning", 
-                                                { active: activeTab === index })} 
-                                                onClick={() => setActiveTab(index)} >
-                                                Target {target.code}
-                                            </NavLink>
-                                        </NavItem>          
+                                // return <NavItem key={index}>
+                                //             <NavLink 
+                                //                 className={classnames("ml-4 mr-4 text-white btn btn-warning", 
+                                //                 { active: activeTab === index })} 
+                                //                 onClick={() => setActiveTab(index)} >
+                                //                 Target {target.code}
+                                //             </NavLink>
+                                //         </NavItem>    
+                                return <Button key={index} onClick={targetClick} value={target.code}> 
+                                            Target {target.code}
+                                        </Button>
                             })
                         }  
                         </Nav>
@@ -124,8 +148,7 @@ function Sdg(){
                         <TabContent activeTab={activeTab}>
                             {
                                 targets.map((target, index) =>{
-                                    indicators = target.indicators;
-                                    return <TabPane tabId={index} key={index}>
+                                    return <TabPane tabId={target.code} key={index}>
                                         <p className="p-3"> Target {target.code}: {target.title} </p>
                                         <Row className="text-center selectButtons"> 
                                             <Col md="6">
@@ -134,7 +157,7 @@ function Sdg(){
                                                 
                                             </Col>
                                             <Col md="3">
-                                                <Input type="select" name="yearSelect" className="btn btn-primary">
+                                                <Input type="select" name="yearSelect" className="btn btn-primary" onChange={handleIndicatorChange} value={indicator}>
                                                     <option>Select indicator</option>
                                                     {
                                                         indicators.map((indicator, index) => {
@@ -144,7 +167,7 @@ function Sdg(){
                                                 </Input>
                                             </Col>
                                             <Col md="3">
-                                                <Input type="select" name="yearSelect" className="btn btn-primary"> 
+                                                <Input type="select" name="yearSelect" className="btn btn-primary" onChange={handleYearChange} value={year}> 
                                                 <option>Select year</option>
                                                     {
                                                         years.map((year, index) => {

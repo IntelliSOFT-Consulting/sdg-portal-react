@@ -39,7 +39,13 @@
                         "indicators": [
                             {
                                 "code": "1.2.1",
-                                "description": "Proportion of population living below the national poverty line, by sex and age",
+                                
+                                "title": "Proportion of population living below the national poverty line, by sex and age",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.2.1",
+                                "title": "Proportion of population living below the national poverty line, by sex and age",
                                 "tier": "1"
                             }
                         ]
