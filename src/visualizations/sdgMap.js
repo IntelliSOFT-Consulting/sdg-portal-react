@@ -2,6 +2,7 @@ import React from 'react';
 import { 
     Container
     } from "reactstrap";
+import $ from "jquery";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -1377,6 +1378,50 @@ function SdgMap({ mySdgData }) {
                 backgroundColor: 'transparent',
                 width: 800,
                 height: 400,
+                events: {
+                    drilldown: function (e) {
+                        
+                        var chart = this,
+                            mapKey = e.point.drilldown,
+                            chartName = e.point.name;
+                            $.getScript('https://code.highcharts.com/mapdata/' + mapKey + '.js', 
+                                function () {
+                                    var data = [],
+                                        drillPath,
+                                        regionMap = Highcharts.maps[mapKey],
+                                        regionMapGeoJson = Highcharts.geojson(regionMap);
+
+                                $.each(regionMapGeoJson, function (index, elem) {
+                                    drillPath = 'countries/' + elem.properties['hc-key'].slice(0, 2) + '/' + elem.properties['hc-key'] + '-all';
+                                    data.push({
+                                        code: elem.properties['hc-key'],
+                                        value: mySdgData.value,
+                                        // drilldown: drillPath
+                                    })
+                                });
+                           
+                            chart.addSingleSeriesAsDrilldown(e.point, {
+                                name: e.point.name,
+                                data: data,
+                                mapData: regionMap,
+                                joinBy: ['hc-key', 'code'],
+                            });
+
+                            chart.applyDrilldown();
+
+                            chart.setTitle(null, {
+                                text: chartName
+                            });
+                        }).fail(function (jqxhr, settings, exception) {
+                            console.log('Couldn\'t find JS file!');
+                        });
+                    },
+                    drillup: function () {
+                        this.setTitle(null, {
+                            text: ''
+                        });
+                    }
+                }
             },
             series: [{
                 data: mySdgData,
@@ -1482,7 +1527,6 @@ function SdgMap({ mySdgData }) {
                 
             },
 
-            
             drilldown: {
                 activeDataLabelStyle: {
                     color: '#FFFFFF',

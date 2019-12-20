@@ -52,10 +52,10 @@ function Sdg(){
         targetData.forEach(function(data){
             if(data.code == activeTab){
                 ind = data.indicators;
-                console.log(ind);
+                //console.log(ind);
             }
         })
-       // console.log(ind);
+        
         setIndicators(ind);
 
         const loadSdgData = (sdgCsvFile, callback) =>{
@@ -69,7 +69,9 @@ function Sdg(){
                 }
             })
         }
-        console.log(activeTab);
+
+        
+        //console.log(activeTab);
         loadSdgData(csvDataSourceData, parseSdgData);
     }, [dataSource, indicator, year, activeTab]);
 
@@ -92,6 +94,7 @@ function Sdg(){
         })
         setYears(years);
         setSdgMapData(indicatorData);
+        //console.log(data);
     }
    
     const setGDBData = () => {
@@ -180,7 +183,16 @@ function Sdg(){
                                             </Col>
                                         </Row>
 
-                                        { isLoading ? (
+                                        
+            
+                                        <div>
+                                            {/* <SdgChart></SdgChart> */}
+                                        </div>
+                                    </TabPane>
+                                })
+                            }
+                        </TabContent>  
+                        { isLoading ? (
                                             <div className='sweet-loading mt-4'>
                                                 <ClipLoader css={override} sizeUnit={"px"} size={50}
                                                 color={'#123abc'} loading={isLoading} />
@@ -190,14 +202,6 @@ function Sdg(){
                                                 <SdgMap mySdgData ={sdgMapData}></SdgMap>
                                             </div>
                                         )}
-            
-                                        <div>
-                                            {/* <SdgChart></SdgChart> */}
-                                        </div>
-                                    </TabPane>
-                                })
-                            }
-                        </TabContent>  
                     </Card>
                 </Container>
             </div>
