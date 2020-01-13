@@ -25,10 +25,12 @@ function Sdg(){
     const image = require.context('../../assets/img/sdg_icons', true);
     const imgSrc = image(`./${sdg.image}.jpg`);
 
+    const countries = require("../../assets/data/countries.json");
     const [years, setYears] = useState([]);
     const [indicators, setIndicators] = useState([]);
 
     const [sdgMapData, setSdgMapData] = useState([]);
+    const [sdgChartData, setSdgChartData] = useState([]);
     const [dataSource, setDataSource] = useState('pan');
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
@@ -69,10 +71,8 @@ function Sdg(){
                 }
             })
         }
-
-        
-        //console.log(activeTab);
         loadSdgData(csvDataSourceData, parseSdgData);
+        loadSdgData(csvDataSourceData, parseChartData);
     }, [dataSource, indicator, year, activeTab]);
 
     const parseSdgData = (data) => {
@@ -92,9 +92,40 @@ function Sdg(){
                 years.sort((a, b) => b - a);
             }
         })
-        setYears(years);
-        setSdgMapData(indicatorData);
-        //console.log(data);
+        //setYears(years);
+        //setSdgMapData(indicatorData);
+        //console.log(years);
+    }
+
+    const arrayToObject = (array, keyField) =>
+            array.reduce((obj, item) => {
+                obj[item[keyField]] = item
+                return obj
+            }, {})
+
+    const parseChartData = (sdgData) =>{
+        var arr = []
+        
+        Object.defineProperty(Array.prototype, 'group', {
+            enumerable: false,
+            value: function (key) {
+                let map = {};
+                this.map(e => ({k: key(e), d: e})).forEach(e => {
+                map[e.k] = map[e.k] || [];
+                map[e.k].push(e.d);
+                });
+                return Object.keys(map).map(k => ({country: k, data: map[k]}));
+            }
+        });
+        
+        let newArray = sdgData.group(item => item.Entity)
+        console.log(newArray)
+        setSdgChartData(newArray)
+       
+
+
+       // setSdgChartData(groupedByCountry);
+       // console.log(chartData);
     }
    
     const setGDBData = () => {
@@ -147,7 +178,7 @@ function Sdg(){
                         </Nav>
                 </div>
                 <Container>
-                    <Card>
+                    <Card className="mapChartCard">
                         <TabContent activeTab={activeTab}>
                             {
                                 targets.map((target, index) =>{
@@ -182,9 +213,6 @@ function Sdg(){
                                                 </Input>
                                             </Col>
                                         </Row>
-
-                                        
-            
                                         <div>
                                             {/* <SdgChart></SdgChart> */}
                                         </div>
@@ -193,16 +221,32 @@ function Sdg(){
                             }
                         </TabContent>  
                         { isLoading ? (
-                                            <div className='sweet-loading mt-4'>
-                                                <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                                color={'#123abc'} loading={isLoading} />
-                                            </div> 
-                                        ) : (
-                                            <div className="mt-3 ">
-                                                <SdgMap mySdgData ={sdgMapData}></SdgMap>
-                                            </div>
-                                        )}
-                    </Card>
+                            <div className='sweet-loading mt-4'>
+                                <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                color={'#123abc'} loading={isLoading} />
+                            </div> 
+                        ) : (
+                            
+                            <div className="mt-3 ">
+                                <SdgChart myChartData = {sdgChartData} indicator = {indicator}></SdgChart>
+
+                                <SdgMap mySdgData ={sdgMapData}></SdgMap>
+                                
+                                <Button className="btn-icon" color="primary" type="button">
+                                    <span className="btn-inner--icon">
+                                        <i className="fa fa-globe" />
+                                    </span>
+                                    <span className="btn-inner--text">MAP</span>
+                                </Button>
+                                <Button className="btn-icon" color="primary" type="button">
+                                    <span className="btn-inner--icon">
+                                    <i className="fa fa-chart-bar"></i>
+                                    </span>
+                                    <span className="btn-inner--text">CHART</span>
+                                </Button>
+                            </div>
+                        )}
+    </Card>
                 </Container>
             </div>
             <Footer></Footer>
