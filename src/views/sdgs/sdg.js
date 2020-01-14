@@ -71,8 +71,21 @@ function Sdg(){
                 }
             })
         }
+
+        const loadChartData = (sdgCsvFile, callback) => {
+            //setIsLoading(true);
+            Papa.parse(sdgCsvFile, {
+                download: true,
+                header: true,
+                complete: function(results){
+                    callback(results.data);
+                    //setIsLoading(false);
+                }
+            })
+        }
+
         loadSdgData(csvDataSourceData, parseSdgData);
-        loadSdgData(csvDataSourceData, parseChartData);
+        loadChartData(csvDataSourceData, parseChartData);
     }, [dataSource, indicator, year, activeTab]);
 
     const parseSdgData = (data) => {
@@ -92,20 +105,11 @@ function Sdg(){
                 years.sort((a, b) => b - a);
             }
         })
-        //setYears(years);
-        //setSdgMapData(indicatorData);
-        //console.log(years);
+        setYears(years);
+        setSdgMapData(indicatorData);
     }
 
-    const arrayToObject = (array, keyField) =>
-            array.reduce((obj, item) => {
-                obj[item[keyField]] = item
-                return obj
-            }, {})
-
     const parseChartData = (sdgData) =>{
-        var arr = []
-        
         Object.defineProperty(Array.prototype, 'group', {
             enumerable: false,
             value: function (key) {
@@ -121,11 +125,6 @@ function Sdg(){
         let newArray = sdgData.group(item => item.Entity)
         console.log(newArray)
         setSdgChartData(newArray)
-       
-
-
-       // setSdgChartData(groupedByCountry);
-       // console.log(chartData);
     }
    
     const setGDBData = () => {
@@ -213,9 +212,6 @@ function Sdg(){
                                                 </Input>
                                             </Col>
                                         </Row>
-                                        <div>
-                                            {/* <SdgChart></SdgChart> */}
-                                        </div>
                                     </TabPane>
                                 })
                             }
