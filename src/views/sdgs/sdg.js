@@ -228,7 +228,7 @@ function Sdg(){
                         ) : (
                             
                             <div className="mt-3 ">
-                                <SdgChart myChartData = {sdgChartData} indicator = {indicator}></SdgChart>
+                                <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
 
                                 <SdgMap mySdgData ={sdgMapData}></SdgMap>
                                 

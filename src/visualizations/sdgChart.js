@@ -3,7 +3,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
-function SdgChart( {myChartData, indicator} ) {
+function SdgChart( {myChartData, indicator, years} ) {
   const indicator2 = 'indicator';
   const countriesData = [
     {
@@ -47,7 +47,11 @@ function SdgChart( {myChartData, indicator} ) {
             top: 5, right: 30, left: 20, bottom: 5,
           }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="Year" type="Year" allowDuplicatedCategory={false} />
+          <XAxis dataKey="Year" 
+                  type="number" 
+                  ticks={years}
+                  domain={[1800, 2020]} 
+                  allowDuplicatedCategory={false} />
           <YAxis dataKey={indicator}/>
           <Tooltip />
           <Legend />
