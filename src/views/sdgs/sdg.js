@@ -1,6 +1,6 @@
-import React, { useState , useEffect} from "react";
+import React, { useState , useEffect, useCallback} from "react";
 import {
-    Container, Row, Col, Card, CardImg, Button, Input, Nav, NavItem, NavLink, TabContent, TabPane
+    Container, Row, Col, Card, CardImg, Button, Input, Nav, TabContent, TabPane
 } from "reactstrap";
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -25,7 +25,7 @@ function Sdg(){
     const image = require.context('../../assets/img/sdg_icons', true);
     const imgSrc = image(`./${sdg.image}.jpg`);
 
-    const countries = require("../../assets/data/countries.json");
+    //const countries = require("../../assets/data/countries.json");
     const [years, setYears] = useState([]);
     const [indicators, setIndicators] = useState([]);
 
@@ -34,6 +34,8 @@ function Sdg(){
     const [dataSource, setDataSource] = useState('pan');
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
+    const [isChartLoading, setIsChartLoading] = useState(false);
+    const [mapChartType, setMapChartType] = useState('map');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
     
@@ -41,58 +43,77 @@ function Sdg(){
     let sdgData = '';
     let ind = [];
 
-    useEffect(() => {
-        if(dataSource == 'pan'){
-            csvDataSourceData = require("../../assets/data/sdg/pan.csv");
-            sdgData = require('../../assets/data/globalDatabase.json');
-        }else if (dataSource == 'gdb'){
-            csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
-            sdgData = require('../../assets/data/globalDatabase.json');
-        }
-
+    const getIndicators = useCallback(() => {
         const targetData = sdgData[0].targets;
         targetData.forEach(function(data){
-            if(data.code == activeTab){
+            if(data.code === activeTab){
                 ind = data.indicators;
-                //console.log(ind);
+            }
+        })
+        return ind;
+    }, [indicator]);
+
+    const loadData = useCallback((sdgCsvFile) => {
+        setIsLoading(true);
+        let dat = []
+        Papa.parse(sdgCsvFile, {
+            download: true,
+            header: true,
+            complete: function(results){
+               dat  = parseSdgData(results.data)
+                console.log(results.data)
+                return dat
             }
         })
         
-        setIndicators(ind);
+    }, [dataSource])
+    
 
-        const loadSdgData = (sdgCsvFile, callback) =>{
+    useEffect(() => {
+        if(dataSource === 'pan'){
+            csvDataSourceData = require("../../assets/data/sdg/pan.csv");
+            sdgData = require('../../assets/data/globalDatabase.json');
+        }else if (dataSource === 'gdb'){
+            csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
+            sdgData = require('../../assets/data/globalDatabase.json');
+        }
+        const indicators = getIndicators();
+        setIndicators(indicators);
+
+        const loadSdgData = (sdgCsvFile, callback, callback2) => {
             setIsLoading(true);
             Papa.parse(sdgCsvFile, {
                 download: true,
                 header: true,
                 complete: function(results){
                     callback(results.data);
+                    callback2(results.data)
                     setIsLoading(false);
                 }
             })
         }
 
         const loadChartData = (sdgCsvFile, callback) => {
-            //setIsLoading(true);
+            setIsChartLoading(true);
             Papa.parse(sdgCsvFile, {
                 download: true,
                 header: true,
                 complete: function(results){
                     callback(results.data);
-                    //setIsLoading(false);
+                    setIsChartLoading(false);
                 }
             })
         }
+        loadSdgData(csvDataSourceData, parseSdgData, parseChartData);
+        //loadChartData(csvDataSourceData, parseChartData);
 
-        loadSdgData(csvDataSourceData, parseSdgData);
-        loadChartData(csvDataSourceData, parseChartData);
     }, [dataSource, indicator, year, activeTab]);
 
     const parseSdgData = (data) => {
         const years = [];
         const indicatorData = [];
         data.forEach(function(d){
-            if(d.Year == year ){
+            if(d.Year === year ){
                 indicatorData.push({
                     "code": d.Code,
                     "drilldown" : d.Code,
@@ -100,16 +121,18 @@ function Sdg(){
                     "country": d.Entity
                 })  
             }
-            if(d.Entity == "Mauritius"){
+            if(d.Entity === "Mauritius"){
                 years.push(d.Year);
                 years.sort((a, b) => b - a);
             }
         })
         setYears(years);
-        setSdgMapData(indicatorData);
+       setSdgMapData(indicatorData);
+       return indicatorData;
     }
 
     const parseChartData = (sdgData) =>{
+        console.log(sdgData) 
         Object.defineProperty(Array.prototype, 'group', {
             enumerable: false,
             value: function (key) {
@@ -124,7 +147,8 @@ function Sdg(){
         
         let newArray = sdgData.group(item => item.Entity)
         console.log(newArray)
-        setSdgChartData(newArray)
+       setSdgChartData(newArray)
+       return newArray;
     }
    
     const setGDBData = () => {
@@ -141,6 +165,13 @@ function Sdg(){
     }
     const targetClick = (e) =>{
         setActiveTab(e.target.value);
+    }
+
+    const setMapType = () =>{
+        setMapChartType('map')
+    }
+    const setChartType = () =>{
+        setMapChartType('chart')
     }
 
     return(
@@ -160,15 +191,7 @@ function Sdg(){
                     <h5 className="display-4"> SDG {sdg.id} Targets  </h5>
                     <Nav className="justify-content-center">
                         {
-                            targets.map((target, index) =>{
-                                // return <NavItem key={index}>
-                                //             <NavLink 
-                                //                 className={classnames("ml-4 mr-4 text-white btn btn-warning", 
-                                //                 { active: activeTab === index })} 
-                                //                 onClick={() => setActiveTab(index)} >
-                                //                 Target {target.code}
-                                //             </NavLink>
-                                //         </NavItem>    
+                            targets.map((target, index) =>{  
                                 return <Button key={index} onClick={targetClick} value={target.code}> 
                                             Target {target.code}
                                         </Button>
@@ -216,32 +239,49 @@ function Sdg(){
                                 })
                             }
                         </TabContent>  
-                        { isLoading ? (
-                            <div className='sweet-loading mt-4'>
-                                <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                color={'#123abc'} loading={isLoading} />
-                            </div> 
-                        ) : (
-                            
-                            <div className="mt-3 ">
-                                <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
 
-                                <SdgMap mySdgData ={sdgMapData}></SdgMap>
-                                
-                                <Button className="btn-icon" color="primary" type="button">
-                                    <span className="btn-inner--icon">
-                                        <i className="fa fa-globe" />
-                                    </span>
-                                    <span className="btn-inner--text">MAP</span>
-                                </Button>
-                                <Button className="btn-icon" color="primary" type="button">
-                                    <span className="btn-inner--icon">
-                                    <i className="fa fa-chart-bar"></i>
-                                    </span>
-                                    <span className="btn-inner--text">CHART</span>
-                                </Button>
-                            </div>
-                        )}
+                        {
+                            mapChartType === 'map' ? (
+                                 isLoading ? (
+                                    <div className='sweet-loading mt-4'>
+                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                        color={'#123abc'} loading={isLoading} />
+                                    </div> 
+                                ) : (
+                                    <div className="mt-3 ">
+                                        <SdgMap mySdgData ={sdgMapData}></SdgMap>
+                                    </div>
+                                )
+                            ):(
+                                isChartLoading ? (
+                                    <div className='sweet-loading mt-4'>
+                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                        color={'#123abc'} loading={isChartLoading} />
+                                    </div> 
+                                ) : (
+                                    <div className="mt-3 ">
+                                        <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
+                                    </div>
+                                )
+                            )
+                        }
+
+                        
+
+                        <div>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
+                                <span className="btn-inner--icon">
+                                    <i className="fa fa-globe" />
+                                </span>
+                                <span className="btn-inner--text">MAP</span>
+                            </Button>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
+                                <span className="btn-inner--icon">
+                                <i className="fa fa-chart-bar"></i>
+                                </span>
+                                <span className="btn-inner--text">CHART</span>
+                            </Button>
+                        </div>
     </Card>
                 </Container>
             </div>

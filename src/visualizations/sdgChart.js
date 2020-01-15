@@ -4,35 +4,35 @@ import {
 } from 'recharts';
 
 function SdgChart( {myChartData, indicator, years} ) {
-  const indicator2 = 'indicator';
-  const countriesData = [
-    {
-      country: "Kenya",
-      data: [
-        {
-          Year: "2010",
-          indicator: 12
-        },
-        {
-          Year: "2011",
-          indicator: 12
-        }
-      ]
-    }, 
-    {
-      country: "Uganda",
-      data: [
-        {
-          Year: "2010",
-          indicator: 15
-        },
-        {
-          Year: "2011",
-          indicator: 16
-        }
-      ]
-    }
-  ];
+  // const indicator2 = 'indicator';
+  // const countriesData = [
+  //   {
+  //     country: "Kenya",
+  //     data: [
+  //       {
+  //         Year: "2010",
+  //         indicator: 12
+  //       },
+  //       {
+  //         Year: "2011",
+  //         indicator: 12
+  //       }
+  //     ]
+  //   }, 
+  //   {
+  //     country: "Uganda",
+  //     data: [
+  //       {
+  //         Year: "2010",
+  //         indicator: 15
+  //       },
+  //       {
+  //         Year: "2011",
+  //         indicator: 16
+  //       }
+  //     ]
+  //   }
+  // ];
    
     return(
       <>
@@ -42,7 +42,7 @@ function SdgChart( {myChartData, indicator, years} ) {
       }
         <LineChart
           width={1000}
-          height={800}
+          height={500}
           margin={{
             top: 5, right: 30, left: 20, bottom: 5,
           }}>
@@ -51,10 +51,11 @@ function SdgChart( {myChartData, indicator, years} ) {
                   type="number" 
                   ticks={years}
                   domain={[1800, 2020]} 
+                  
                   allowDuplicatedCategory={false} />
           <YAxis dataKey={indicator}/>
           <Tooltip />
-          <Legend />
+          <Legend layout="vertical" verticalAlign="top" align="right"/>
 
           {myChartData.map(s=>(
              <Line type="monotone" dataKey={indicator} data={s.data} name={s.country} key={s.country} stroke="#8884d8" activeDot={{ r: 8 }} />

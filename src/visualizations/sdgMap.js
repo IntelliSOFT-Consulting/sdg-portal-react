@@ -1396,7 +1396,7 @@ function SdgMap({ mySdgData }) {
                                     data.push({
                                         code: elem.properties['hc-key'],
                                         value: mySdgData.value,
-                                        // drilldown: drillPath
+                                         drilldown: drillPath
                                     })
                                 });
                            
