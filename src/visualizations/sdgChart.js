@@ -4,40 +4,10 @@ import {
 } from 'recharts';
 
 function SdgChart( {myChartData, indicator, years} ) {
-  // const indicator2 = 'indicator';
-  // const countriesData = [
-  //   {
-  //     country: "Kenya",
-  //     data: [
-  //       {
-  //         Year: "2010",
-  //         indicator: 12
-  //       },
-  //       {
-  //         Year: "2011",
-  //         indicator: 12
-  //       }
-  //     ]
-  //   }, 
-  //   {
-  //     country: "Uganda",
-  //     data: [
-  //       {
-  //         Year: "2010",
-  //         indicator: 15
-  //       },
-  //       {
-  //         Year: "2011",
-  //         indicator: 16
-  //       }
-  //     ]
-  //   }
-  // ];
-   
     return(
       <>
       { 
-        
+        console.log(myChartData)
         
       }
         <LineChart
@@ -55,7 +25,7 @@ function SdgChart( {myChartData, indicator, years} ) {
                   allowDuplicatedCategory={false} />
           <YAxis dataKey={indicator}/>
           <Tooltip />
-          <Legend layout="vertical" verticalAlign="top" align="right"/>
+          <Legend verticalAlign="middle" layout="vertical" align="right" height={400}/>
 
           {myChartData.map(s=>(
              <Line type="monotone" dataKey={indicator} data={s.data} name={s.country} key={s.country} stroke="#8884d8" activeDot={{ r: 8 }} />

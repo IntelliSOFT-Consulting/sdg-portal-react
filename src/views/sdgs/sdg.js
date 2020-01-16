@@ -9,6 +9,7 @@ import Header from "../../components/header";
 import SdgMap from "../../visualizations/sdgMap";
 import Footer from "../../components/footer";
 import SdgChart from "../../visualizations/sdgChart";
+import SdgHighChart from "../../visualizations/sdgHighChart";
 import classnames from "classnames";
 
 function Sdg(){
@@ -35,7 +36,7 @@ function Sdg(){
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
     const [isChartLoading, setIsChartLoading] = useState(false);
-    const [mapChartType, setMapChartType] = useState('map');
+    const [mapChartType, setMapChartType] = useState('chart');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
     
@@ -86,8 +87,8 @@ function Sdg(){
                 download: true,
                 header: true,
                 complete: function(results){
-                    callback(results.data);
-                    callback2(results.data)
+                    //callback(results.data);
+                    //callback2(results.data)
                     setIsLoading(false);
                 }
             })
@@ -132,7 +133,7 @@ function Sdg(){
     }
 
     const parseChartData = (sdgData) =>{
-        console.log(sdgData) 
+       // console.log(sdgData) 
         Object.defineProperty(Array.prototype, 'group', {
             enumerable: false,
             value: function (key) {
@@ -146,7 +147,7 @@ function Sdg(){
         });
         
         let newArray = sdgData.group(item => item.Entity)
-        console.log(newArray)
+       // console.log(newArray)
        setSdgChartData(newArray)
        return newArray;
     }
@@ -253,15 +254,21 @@ function Sdg(){
                                     </div>
                                 )
                             ):(
+                                
                                 isChartLoading ? (
+                                    
                                     <div className='sweet-loading mt-4'>
                                         <ClipLoader css={override} sizeUnit={"px"} size={50}
                                         color={'#123abc'} loading={isChartLoading} />
                                     </div> 
                                 ) : (
-                                    <div className="mt-3 ">
-                                        <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
+                                    <div>
+                                        <SdgHighChart></SdgHighChart>
+                                        {/* <div className="mt-3 ">
+                                            <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
+                                        </div> */}
                                     </div>
+                                    
                                 )
                             )
                         }
