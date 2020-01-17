@@ -44,6 +44,8 @@ function Sdg(){
     let sdgData = '';
     let ind = [];
 
+
+   //Function to load my indicators
     const getIndicators = useCallback(() => {
         const targetData = sdgData[0].targets;
         targetData.forEach(function(data){
@@ -54,23 +56,8 @@ function Sdg(){
         return ind;
     }, [indicator]);
 
-    const loadData = useCallback((sdgCsvFile) => {
-        setIsLoading(true);
-        let dat = []
-        Papa.parse(sdgCsvFile, {
-            download: true,
-            header: true,
-            complete: function(results){
-               dat  = parseSdgData(results.data)
-                console.log(results.data)
-                return dat
-            }
-        })
-        
-    }, [dataSource])
-    
-
     useEffect(() => {
+        //Choosing the data source
         if(dataSource === 'pan'){
             csvDataSourceData = require("../../assets/data/sdg/pan.csv");
             sdgData = require('../../assets/data/globalDatabase.json');
@@ -81,35 +68,23 @@ function Sdg(){
         const indicators = getIndicators();
         setIndicators(indicators);
 
+        //Function to fetch data from csv file
         const loadSdgData = (sdgCsvFile, callback, callback2) => {
             setIsLoading(true);
             Papa.parse(sdgCsvFile, {
                 download: true,
                 header: true,
                 complete: function(results){
-                    //callback(results.data);
-                    //callback2(results.data)
+                    callback(results.data);
+                    callback2(results.data)
                     setIsLoading(false);
                 }
             })
         }
-
-        const loadChartData = (sdgCsvFile, callback) => {
-            setIsChartLoading(true);
-            Papa.parse(sdgCsvFile, {
-                download: true,
-                header: true,
-                complete: function(results){
-                    callback(results.data);
-                    setIsChartLoading(false);
-                }
-            })
-        }
         loadSdgData(csvDataSourceData, parseSdgData, parseChartData);
-        //loadChartData(csvDataSourceData, parseChartData);
-
     }, [dataSource, indicator, year, activeTab]);
 
+    //Formatting the map data
     const parseSdgData = (data) => {
         const years = [];
         const indicatorData = [];
@@ -132,8 +107,8 @@ function Sdg(){
        return indicatorData;
     }
 
+    // Formatting the chart data
     const parseChartData = (sdgData) =>{
-       // console.log(sdgData) 
         Object.defineProperty(Array.prototype, 'group', {
             enumerable: false,
             value: function (key) {
@@ -147,9 +122,14 @@ function Sdg(){
         });
         
         let newArray = sdgData.group(item => item.Entity)
-       // console.log(newArray)
-       setSdgChartData(newArray)
-       return newArray;
+        setSdgChartData(newArray)
+
+        newArray.forEach(function (a) {
+            a.data.forEach(function(d){
+                console.log(d)
+            })
+        })
+        return newArray;
     }
    
     const setGDBData = () => {
@@ -242,6 +222,7 @@ function Sdg(){
                         </TabContent>  
 
                         {
+                            //Loading the map if the type is map
                             mapChartType === 'map' ? (
                                  isLoading ? (
                                     <div className='sweet-loading mt-4'>
@@ -254,19 +235,19 @@ function Sdg(){
                                     </div>
                                 )
                             ):(
-                                
-                                isChartLoading ? (
+                                //Loading the chart if the type is chart
+                                isLoading ? (
                                     
                                     <div className='sweet-loading mt-4'>
                                         <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                        color={'#123abc'} loading={isChartLoading} />
+                                        color={'#123abc'} loading={isLoading} />
                                     </div> 
                                 ) : (
                                     <div>
-                                        <SdgHighChart></SdgHighChart>
-                                        {/* <div className="mt-3 ">
+                                     
+                                        <div className="mt-3 ">
                                             <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
-                                        </div> */}
+                                        </div>
                                     </div>
                                     
                                 )

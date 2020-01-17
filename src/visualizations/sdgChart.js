@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,LabelList,
 } from 'recharts';
 
 function SdgChart( {myChartData, indicator, years} ) {
@@ -11,7 +11,7 @@ function SdgChart( {myChartData, indicator, years} ) {
         
       }
         <LineChart
-          width={1000}
+          width={1100}
           height={500}
           margin={{
             top: 5, right: 30, left: 20, bottom: 5,
@@ -25,10 +25,12 @@ function SdgChart( {myChartData, indicator, years} ) {
                   allowDuplicatedCategory={false} />
           <YAxis dataKey={indicator}/>
           <Tooltip />
-          <Legend verticalAlign="middle" layout="vertical" align="right" height={400}/>
+          <Legend verticalAlign="middle" layout="vertical" align="right" height={400} width={150}/>
 
           {myChartData.map(s=>(
-             <Line type="monotone" dataKey={indicator} data={s.data} name={s.country} key={s.country} stroke="#8884d8" activeDot={{ r: 8 }} />
+             <Line type="monotone" dataKey={indicator} data={s.data} name={s.country} key={s.country} stroke="#8884d8" activeDot={{ r: 8 }} >
+             <LabelList dataKey={s.country} position="right" />
+             </Line>
           ))}
            
            {/* {countriesData.map(s=>(
