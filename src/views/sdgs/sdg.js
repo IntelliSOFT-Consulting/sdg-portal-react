@@ -12,6 +12,7 @@ import SdgChart from "../../visualizations/sdgChart";
 import SdgHighChart from "../../visualizations/sdgHighChart";
 import classnames from "classnames";
 
+
 function Sdg(){
     const override = css`
         display: block;
@@ -36,7 +37,7 @@ function Sdg(){
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
     const [isChartLoading, setIsChartLoading] = useState(false);
-    const [mapChartType, setMapChartType] = useState('chart');
+    const [mapChartType, setMapChartType] = useState('map');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
     
@@ -44,8 +45,6 @@ function Sdg(){
     let sdgData = '';
     let ind = [];
 
-
-   //Function to load my indicators
     const getIndicators = useCallback(() => {
         const targetData = sdgData[0].targets;
         targetData.forEach(function(data){
@@ -54,10 +53,10 @@ function Sdg(){
             }
         })
         return ind;
-    }, [indicator]);
+    }, [indicator]);    
 
     useEffect(() => {
-        //Choosing the data source
+        const abortController = new AbortController()
         if(dataSource === 'pan'){
             csvDataSourceData = require("../../assets/data/sdg/pan.csv");
             sdgData = require('../../assets/data/globalDatabase.json');
@@ -68,24 +67,29 @@ function Sdg(){
         const indicators = getIndicators();
         setIndicators(indicators);
 
-        //Function to fetch data from csv file
-        const loadSdgData = (sdgCsvFile, callback, callback2) => {
+        const loadSdgData = (sdgCsvFile) => {
             setIsLoading(true);
             Papa.parse(sdgCsvFile, {
                 download: true,
                 header: true,
                 complete: function(results){
-                    callback(results.data);
-                    callback2(results.data)
+                    if(mapChartType === 'map'){
+                        parseMapData(results.data);
+                    }else if(mapChartType === 'chart'){
+                        parseChartData(results.data)
+                    }
                     setIsLoading(false);
                 }
             })
         }
-        loadSdgData(csvDataSourceData, parseSdgData, parseChartData);
-    }, [dataSource, indicator, year, activeTab]);
+        loadSdgData(csvDataSourceData);
 
-    //Formatting the map data
-    const parseSdgData = (data) => {
+        return function cleanup(){
+            abortController.abort()
+        }
+    }, [dataSource, indicator, year, activeTab, mapChartType]);
+
+    const parseMapData = (data) => {
         const years = [];
         const indicatorData = [];
         data.forEach(function(d){
@@ -104,10 +108,8 @@ function Sdg(){
         })
         setYears(years);
        setSdgMapData(indicatorData);
-       return indicatorData;
     }
 
-    // Formatting the chart data
     const parseChartData = (sdgData) =>{
         Object.defineProperty(Array.prototype, 'group', {
             enumerable: false,
@@ -122,14 +124,8 @@ function Sdg(){
         });
         
         let newArray = sdgData.group(item => item.Entity)
-        setSdgChartData(newArray)
-
-        newArray.forEach(function (a) {
-            a.data.forEach(function(d){
-                console.log(d)
-            })
-        })
-        return newArray;
+       console.log(newArray)
+       setSdgChartData(newArray)
     }
    
     const setGDBData = () => {
@@ -209,10 +205,8 @@ function Sdg(){
                                                     {
                                                         years.map((year, index) => {
                                                         return <option key={index}> {year} </option>
-                                                    })
+                                                        })
                                                     }
-                                                   
-                                                   
                                                 </Input>
                                             </Col>
                                         </Row>
@@ -220,9 +214,7 @@ function Sdg(){
                                 })
                             }
                         </TabContent>  
-
                         {
-                            //Loading the map if the type is map
                             mapChartType === 'map' ? (
                                  isLoading ? (
                                     <div className='sweet-loading mt-4'>
@@ -234,8 +226,7 @@ function Sdg(){
                                         <SdgMap mySdgData ={sdgMapData}></SdgMap>
                                     </div>
                                 )
-                            ):(
-                                //Loading the chart if the type is chart
+                            ):( 
                                 isLoading ? (
                                     
                                     <div className='sweet-loading mt-4'>
@@ -244,18 +235,14 @@ function Sdg(){
                                     </div> 
                                 ) : (
                                     <div>
-                                     
+                                        <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
                                         <div className="mt-3 ">
-                                            <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
+                                            {/* <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart> */}
                                         </div>
-                                    </div>
-                                    
+                                    </div> 
                                 )
                             )
                         }
-
-                        
-
                         <div>
                             <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
                                 <span className="btn-inner--icon">
@@ -270,14 +257,11 @@ function Sdg(){
                                 <span className="btn-inner--text">CHART</span>
                             </Button>
                         </div>
-    </Card>
+                    </Card>
                 </Container>
             </div>
             <Footer></Footer>
         </>
     )
 }
-
-
-
 export default Sdg;
