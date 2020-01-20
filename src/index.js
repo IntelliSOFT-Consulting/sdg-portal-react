@@ -21,6 +21,7 @@ import CountryProfile from "./views/CountryProfile";
 import Agenda2063 from "./views/Agenda2063";
 import About from "./views/About";
 import Faqs from "./views/Faqs";
+import a2063 from "./views/a2063";
 
 const routing = (
     <Router>
@@ -30,7 +31,7 @@ const routing = (
             <Route exact path="/Sdgs/Sdg_1" component={Sdg}></Route>
             <Route path="/Dashboard" component={Dashboard}></Route>
             <Route path="/CountryProfile" component={CountryProfile}></Route>
-            <Route path="/Agenda2063" component={Agenda2063}></Route>
+            <Route path="/Agenda2063" component={a2063}></Route>
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
             <Route exact path="/" component={Home}></Route>

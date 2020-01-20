@@ -56,7 +56,7 @@ function Sdg(){
     }, [indicator]);    
 
     useEffect(() => {
-        const abortController = new AbortController()
+        let isSubscribed = true;
         if(dataSource === 'pan'){
             csvDataSourceData = require("../../assets/data/sdg/pan.csv");
             sdgData = require('../../assets/data/globalDatabase.json');
@@ -73,21 +73,20 @@ function Sdg(){
                 download: true,
                 header: true,
                 complete: function(results){
-                    if(mapChartType === 'map'){
-                        parseMapData(results.data);
-                    }else if(mapChartType === 'chart'){
+
+                    if(isSubscribed){
+                        parseMapData(results.data)
                         parseChartData(results.data)
+                        setIsLoading(false);
                     }
-                    setIsLoading(false);
+                    
                 }
             })
         }
         loadSdgData(csvDataSourceData);
 
-        return function cleanup(){
-            abortController.abort()
-        }
-    }, [dataSource, indicator, year, activeTab, mapChartType]);
+        return () => isSubscribed = false
+    }, [dataSource, indicator, year, activeTab]);
 
     const parseMapData = (data) => {
         const years = [];
@@ -188,6 +187,7 @@ function Sdg(){
                                                 <Button color="primary" onClick={setPanAfricanData} className={ dataSource === 'pan' ? 'active': '' } >PanAfrican MRS</Button>
                                                 <Button color="primary" onClick={setGDBData} className={ dataSource === 'gdb' ? 'active': '' }  >Global Database</Button>
                                                 
+
                                             </Col>
                                             <Col md="3">
                                                 <Input type="select" name="yearSelect" className="btn btn-primary" onChange={handleIndicatorChange} value={indicator}>
@@ -235,9 +235,9 @@ function Sdg(){
                                     </div> 
                                 ) : (
                                     <div>
-                                        <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
+                                        {/* <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart> */}
                                         <div className="mt-3 ">
-                                            {/* <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart> */}
+                                            <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
                                         </div>
                                     </div> 
                                 )
