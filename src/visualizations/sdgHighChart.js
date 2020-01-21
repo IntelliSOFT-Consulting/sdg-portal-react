@@ -4,6 +4,9 @@ import HighchartsReact from "highcharts-react-official";
 import {
     Container
 } from "reactstrap";
+import HC_exporting from 'highcharts/modules/exporting';
+
+HC_exporting(Highcharts)
 
 function sdgHighChart (  {myChartData, indicator, years} ){
     console.log(years)
@@ -85,7 +88,7 @@ function sdgHighChart (  {myChartData, indicator, years} ){
         },
         yAxis: {
             title: {
-                text: 'Indicators'
+                text: 'Indicators value'
             },
             labels: {
             }
@@ -104,8 +107,9 @@ function sdgHighChart (  {myChartData, indicator, years} ){
             }
         },
         series : [{
-            name: "Indicators",
-            data : myChartData
+            name: indicator,
+            data : myChartData,
+            
         }]
         
     }
