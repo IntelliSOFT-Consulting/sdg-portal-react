@@ -64,6 +64,7 @@ function A2063(){
     }
 
     useEffect(() => {
+        let isSubscribed = true;
         const fetchA2063Data = (csvFile) => {
             Papa.parse(csvFile, {
                 download: true,
@@ -72,12 +73,23 @@ function A2063(){
                     console.log(results.data);
                     const formattedData = formatData(results.data);
                     console.log(formattedData);
-                    setMapData(formattedData);
+
+                    if(isSubscribed){
+                        setMapData(formattedData);
+                    }else{
+                        console.log("Not subbie")
+                    }
+                    
                 }
             })
         }
         fetchA2063Data(a2063DataSource);
+        return () => isSubscribed = false;
     }, [indicator, source, year, type])
+
+    useEffect(() => {
+        
+    })
 
     return (
         <>

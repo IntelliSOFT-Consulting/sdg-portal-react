@@ -39,7 +39,7 @@ class Agenda2063 extends React.Component {
             <Header></Header>
              <main className="container-fluid agenda2063">
             
-                 <Row>
+                <Row>
                     <Col md="2" className="agenda2063Side">
                         <div className="nav-wrapper">
                             <Nav className="flex-column " id="tabs-icons-text" pills role="tablist">

@@ -2,15 +2,23 @@ import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 
 function SdgChart( {myChartData, indicator, years} ) {
     return(
       <>
-      { 
-        console.log(myChartData)
-        
-      }
-        <LineChart
+
+
+    <VictoryChart theme={VictoryTheme.material} domainPadding={20} padding={75} height={900} width={1200}>
+      <VictoryAxis
+        fixLabelOverlap
+        style={{ tickLabels: { padding: 5, fontSize: 10 } }}
+      />
+      <VictoryAxis dependentAxis />
+      <VictoryBar data={myChartData} x="code" y="value" />
+    </VictoryChart>
+
+      {/* <LineChart
           width={1000}
           height={500}
           margin={{
@@ -29,13 +37,8 @@ function SdgChart( {myChartData, indicator, years} ) {
 
           {myChartData.map(s=>(
              <Line type="monotone" dataKey={indicator} data={s.data} name={s.country} key={s.country} stroke="#8884d8" activeDot={{ r: 8 }} />
-          ))}
-           
-           {/* {countriesData.map(s=>(
-             <Line type="monotone" dataKey={indicator2} data={s.data} name={s.country} key={s.country} stroke="#8884d8" activeDot={{ r: 8 }} />
-          ))} */}
-         
-      </LineChart>
+          ))}         
+      </LineChart> */}
       
       </>
     );

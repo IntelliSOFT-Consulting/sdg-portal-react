@@ -37,7 +37,7 @@ function Sdg(){
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
     const [isChartLoading, setIsChartLoading] = useState(false);
-    const [mapChartType, setMapChartType] = useState('map');
+    const [mapChartType, setMapChartType] = useState('chart');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
     
@@ -105,26 +105,20 @@ function Sdg(){
                 years.sort((a, b) => b - a);
             }
         })
+        //console.log(indicatorData);
         setYears(years);
-       setSdgMapData(indicatorData);
+        setSdgMapData(indicatorData);
     }
 
-    const parseChartData = (sdgData) =>{
-        Object.defineProperty(Array.prototype, 'group', {
-            enumerable: false,
-            value: function (key) {
-                let map = {};
-                this.map(e => ({k: key(e), d: e})).forEach(e => {
-                map[e.k] = map[e.k] || [];
-                map[e.k].push(e.d);
-                });
-                return Object.keys(map).map(k => ({country: k, data: map[k]}));
+    const parseChartData = (data) =>{
+        const indicatorData = [];
+        data.forEach(function(d){
+            if(d.Year === year ){
+                indicatorData.push([d.Entity, parseInt(d[indicator])])  
             }
-        });
-        
-        let newArray = sdgData.group(item => item.Entity)
-       console.log(newArray)
-       setSdgChartData(newArray)
+        })
+        console.log(indicatorData)
+       setSdgChartData(indicatorData)
     }
    
     const setGDBData = () => {
@@ -235,10 +229,10 @@ function Sdg(){
                                     </div> 
                                 ) : (
                                     <div>
-                                        {/* <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart> */}
-                                        <div className="mt-3 ">
-                                            <SdgChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgChart>
-                                        </div>
+                                        <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
+                                        {/* <div className="mt-3 ">
+                                            <SdgChart myChartData = {sdgMapData} indicator = {indicator} years = {years}></SdgChart>
+                                        </div> */}
                                     </div> 
                                 )
                             )

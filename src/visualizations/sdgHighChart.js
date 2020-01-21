@@ -40,9 +40,32 @@ function sdgHighChart (  {myChartData, indicator, years} ){
             ]
         }
     ]
+
+    const myData = [
+        ['Shanghai', 24.2],
+        ['Beijing', 20.8],
+        ['Karachi', 14.9],
+        ['Shenzhen', 13.7],
+        ['Guangzhou', 13.1],
+        ['Istanbul', 12.7],
+        ['Mumbai', 12.4],
+        ['Moscow', 12.2],
+        ['São Paulo', 12.0],
+        ['Delhi', 11.7],
+        ['Kinshasa', 11.5],
+        ['Tianjin', 11.2],
+        ['Lahore', 11.1],
+        ['Jakarta', 10.6],
+        ['Dongguan', 10.6],
+        ['Lagos', 10.6],
+        ['Bengaluru', 10.3],
+        ['Seoul', 9.8],
+        ['Foshan', 9.3],
+        ['Tokyo', 9.3]
+    ]
     const chartOptions = {
         chart: {
-            type: 'spline'
+            type: 'column'
         },
         title: {
             text: ''
@@ -51,21 +74,20 @@ function sdgHighChart (  {myChartData, indicator, years} ){
             text: ''
         },
         xAxis: {
-            categories: years2,
-            align: "left",
-            startOnTick: false,
-            endOnTick: false,
-            minPadding: 0,
-            maxPadding: 0,
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
         },
         yAxis: {
             title: {
                 text: 'Indicators'
             },
             labels: {
-                // formatter: function () {
-                //     return this.value + '°';
-                // }
             }
         },
         tooltip: {
@@ -81,15 +103,11 @@ function sdgHighChart (  {myChartData, indicator, years} ){
                 }
             }
         },
-        series : data2
-        // series: [{
-        //     name: 'Tokyo',
-        //     data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 23.3, 18.3, 13.9, 9.6]
-    
-        // }, {
-        //     name: 'London',
-        //     data: [ 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-        // }]
+        series : [{
+            name: "Indicators",
+            data : myChartData
+        }]
+        
     }
     return(
         <>
