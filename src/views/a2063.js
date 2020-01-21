@@ -2,6 +2,8 @@ import React, {useState, useEffect, useCallback} from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Map from "../visualizations/map";
+import SdgMap from "../visualizations/sdgMap";
+import SdgHighChart from "../visualizations/sdgHighChart";
 
 import classnames from "classnames";
 import {
@@ -16,80 +18,105 @@ function A2063(){
 
     const [activeTab, setActiveTab] = useState(1);
     const [innerTab, setInnerTab] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const [indicator, setIndicator] = useState(1);
-    const [source, setSource] = useState('gdb');
+    const [years, setYears] = useState([]);
+    const [indicators, setIndicators] = useState([]);
+
+    const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
+   //const [indicator, setIndicator] = useState(1);
+    const [dataSource, setSource] = useState('gdb');
     const [year, setYear] = useState('2006');
-    const [type, setType] = useState('map');
+    const [mapChartType, setMapChartType] = useState('chart');
     const [mapData, setMapData] = useState([]);
-    const years = [];
+    const [chartData, setChartData] = useState([]);
 
+    let csvDataSourceData = '';
+    let sdgData = '';
+    let ind = [];
 
-    const formatData = (data) => {
-        let formattedData = [];
-        if(type == 'map'){
-            data.forEach(function(d){
-                if(d.Year === year){
-                    formattedData.push({
-                        "code": d.Code,
-                        "drilldown": d.Code,
-                        "value": d[indicator],
-                        "country": d.Entity
-                    })
-                }
-            })
-        }else if (type == 'chart'){
-            Object.defineProperty(Array.prototype, 'group', {
-                enumerable: false,
-                value: function (key) {
-                    let map = {};
-                    this.map(e => ({k: key(e), d: e})).forEach(e => {
-                    map[e.k] = map[e.k] || [];
-                    map[e.k].push(e.d);
-                    });
-                    return Object.keys(map).map(k => ({country: k, data: map[k]}));
-                }
-            });
-
-            formattedData = data.group(item => item.Entity)
-        }
-        return formattedData;
-    }
+    const getIndicators = useCallback(() => {
+        const targetData = sdgData[0].targets;
+        targetData.forEach(function(data){
+            if(data.code === activeTab){
+                ind = data.indicators;
+            }
+        })
+        return ind;
+    }, [indicator]); 
 
     const setChartType = () => {
-        setType('chart');
+        setMapChartType('chart');
     }
     const setMapType = () => {
-        setType('map');
+        setMapChartType('map');
+    }
+
+    const parseMapData = (data) => {
+        const years = [];
+        const indicatorData = [];
+        data.forEach(function(d){
+            if(d.Year === year ){
+                indicatorData.push({
+                    "code": d.Code,
+                    "drilldown" : d.Code,
+                    "value": d[indicator],
+                    "country": d.Entity
+                })  
+            }
+            if(d.Entity === "Mauritius"){
+                years.push(d.Year);
+                years.sort((a, b) => b - a);
+            }
+        })
+        setYears(years);
+        setMapData(indicatorData);
+    }
+
+    const parseChartData = (data) =>{
+        const indicatorData = [];
+        data.forEach(function(d){
+            if(d.Year === year ){
+                indicatorData.push([d.Entity, parseInt(d[indicator])])  
+            }
+        })
+        console.log(indicatorData)
+       setChartData(indicatorData)
     }
 
     useEffect(() => {
         let isSubscribed = true;
-        const fetchA2063Data = (csvFile) => {
-            Papa.parse(csvFile, {
+        if(dataSource === 'pan'){
+            csvDataSourceData = require("../assets/data/sdg/pan.csv");
+            sdgData = require('../assets/data/globalDatabase.json');
+        }else if (dataSource === 'gdb'){
+            csvDataSourceData = require("../assets/data/sdg/gdb.csv");
+            sdgData = require('../assets/data/globalDatabase.json');
+        }
+        const indicators = getIndicators();
+        setIndicators(indicators);
+
+        const loadSdgData = (sdgCsvFile) => {
+            setIsLoading(true);
+            Papa.parse(sdgCsvFile, {
                 download: true,
                 header: true,
                 complete: function(results){
-                    console.log(results.data);
-                    const formattedData = formatData(results.data);
-                    console.log(formattedData);
 
                     if(isSubscribed){
-                        setMapData(formattedData);
-                    }else{
-                        console.log("Not subbie")
+                        parseMapData(results.data)
+                        parseChartData(results.data)
+                        setIsLoading(false);
                     }
                     
                 }
             })
         }
-        fetchA2063Data(a2063DataSource);
-        return () => isSubscribed = false;
-    }, [indicator, source, year, type])
+        loadSdgData(csvDataSourceData);
 
-    useEffect(() => {
-        
-    })
+        return () => isSubscribed = false
+    }, [dataSource, indicator, year, activeTab]);
+
 
     return (
         <>
@@ -187,15 +214,23 @@ function A2063(){
                                     }
                         </TabContent>
                         <Card>
-                                 <Map mapData={mapData}></Map>
+                            {
+                                mapChartType === 'map' ? (
+                                    <SdgMap mySdgData ={mapData}></SdgMap>
+                                ) : (
+                                    <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
+                                )
+                            }
+
+                            
                                  <div>
-                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: type === 'map' })} onClick={setMapType}>
+                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
                                         <span className="btn-inner--icon">
                                             <i className="fa fa-globe" />
                                         </span>
                                         <span className="btn-inner--text">MAP</span>
                                     </Button>
-                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: type === 'chart' })}  onClick={setChartType}> 
+                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
                                         <span className="btn-inner--icon">
                                         <i className="fa fa-chart-bar"></i>
                                         </span>
