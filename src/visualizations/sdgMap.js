@@ -5,12 +5,14 @@ import {
 import $ from "jquery";
 
 import Highcharts from "highcharts";
+import drilldown from "highcharts/modules/drilldown";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 // import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 function SdgMap({ mySdgData }) {
         // let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
+        drilldown(Highcharts);
         highchartsMap(Highcharts);
 
         let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
@@ -1372,6 +1374,12 @@ function SdgMap({ mySdgData }) {
             }]
         }
 
+        // Set drilldown pointers
+        // geoj.forEach(function(el, i) {
+        //     el.drilldown = el.properties["hc-key"];
+        //     el.value = i; // Non-random bogus data
+        // });
+
         const mapOptions = {
             chart: {
                 map: 'custom/africa',
@@ -1427,7 +1435,7 @@ function SdgMap({ mySdgData }) {
                 data: mySdgData,
                 mapData: geoj,
                 joinBy: ['hc-key', 'code'],
-                name: 'Country Profile',
+                name: 'Indicator data',
                 cursor: 'pointer',
                 borderColor: 'white', //changes color of the country borders
                 borderWidth: 0.5,

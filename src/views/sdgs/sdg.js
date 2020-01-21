@@ -37,7 +37,7 @@ function Sdg(){
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
     const [isChartLoading, setIsChartLoading] = useState(false);
-    const [mapChartType, setMapChartType] = useState('chart');
+    const [mapChartType, setMapChartType] = useState('map');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
     
@@ -105,7 +105,6 @@ function Sdg(){
                 years.sort((a, b) => b - a);
             }
         })
-        //console.log(indicatorData);
         setYears(years);
         setSdgMapData(indicatorData);
     }

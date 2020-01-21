@@ -1399,7 +1399,7 @@ function Map({ mapData }) {
                 data: mapData,
                 mapData: geoj,
                 joinBy: ['hc-key', 'code'],
-                name: 'Country Profile',
+                name: "Indicator data",
                 cursor: 'pointer',
                 borderColor: 'white', //changes color of the country borders
                 borderWidth: 0.5,
