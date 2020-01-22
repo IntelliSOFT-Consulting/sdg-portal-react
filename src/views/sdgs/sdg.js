@@ -95,7 +95,7 @@ function Sdg(){
             if(d.Year === year ){
                 indicatorData.push({
                     "code": d.Code,
-                    "drilldown" : d.Code,
+                    "drilldown" : d.Code + "/" + d.Code + "-all",
                     "value": d[indicator],
                     "country": d.Entity
                 })  
