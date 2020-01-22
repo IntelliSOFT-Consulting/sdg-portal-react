@@ -1,0 +1,16 @@
+version: '2.0'
+
+services:
+
+  sample:
+    container_name: sdg-react_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
