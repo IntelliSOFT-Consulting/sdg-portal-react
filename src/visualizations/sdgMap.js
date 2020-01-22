@@ -38,9 +38,8 @@ function SdgMap({ mySdgData }) {
                 }
                 
             }
-        })
-       // console.log(newCountryData);
-       
+        })     
+  
         const geoj = Highcharts.maps["custom/africa"] = {
             "title": "Africa",
             "version": "1.1.2",
@@ -1374,12 +1373,18 @@ function SdgMap({ mySdgData }) {
             }]
         }
 
-        // Set drilldown pointers
-        // geoj.forEach(function(el, i) {
+        // var data = Highcharts.geojson(Highcharts.maps["countries/us/us-all"]),
+        //     separators = Highcharts.geojson(
+        //         Highcharts.maps["countries/us/us-all"],
+        //         "mapline"
+        //     );
+
+        // // Set drilldown pointers
+        // data.forEach(function(el, i) {
         //     el.drilldown = el.properties["hc-key"];
         //     el.value = i; // Non-random bogus data
         // });
-
+  
         const mapOptions = {
             chart: {
                 map: 'custom/africa',
