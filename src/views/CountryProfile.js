@@ -50,6 +50,7 @@ function CountryProfile (props) {
             let newKey = parseInt(key, 10);
             if((newKey+1) === country.value){
                 let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
+                countryName = countriesData[key].name;
                 countryCapital = countriesData[key].capital;
                 countryFlag = imgSrc;
             }

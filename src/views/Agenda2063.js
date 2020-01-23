@@ -16,7 +16,8 @@ import {
     Button
 } from "reactstrap";
 import classnames from "classnames";
-const agenda2063Data = require('../assets/data/agenda2063.json');
+
+const agenda2063 = require('../assets/data/agenda2063.json');
 //console.log(agenda2063Data)
 
 class Agenda2063 extends React.Component {
@@ -38,12 +39,12 @@ class Agenda2063 extends React.Component {
             <Header></Header>
              <main className="container-fluid agenda2063">
             
-                 <Row>
+                <Row>
                     <Col md="2" className="agenda2063Side">
                         <div className="nav-wrapper">
                             <Nav className="flex-column " id="tabs-icons-text" pills role="tablist">
                                 { 
-                                    agenda2063Data.map((data, index) =>{
+                                    agenda2063.map((data, index) =>{
                                     return <NavItem key={index}>
                                                 <NavLink aria-selected={this.state.plainTabs === index+1 } 
                                                     className={classnames("mb-sm-3 mb-md-0", { active: this.state.plainTabs === index+1 })}
@@ -59,7 +60,7 @@ class Agenda2063 extends React.Component {
                     <Col md="10">
                      <TabContent activeTab={"plainTabs" + this.state.plainTabs}>
                         { 
-                            agenda2063Data.map((data, index) =>{
+                            agenda2063.map((data, index) =>{
                                 let newID = index + 1
                                 let tabId = "plainTabs"+newID
                                 let goals = []
@@ -72,7 +73,7 @@ class Agenda2063 extends React.Component {
                                                     Aspiration {data.agenda} : {data.title}
                                                     </h5>
                                                     <div className="nav-wrapper goalButtons">
-                                                        <Nav className="nav-fill flex-column flex-md-row" id="tabs-icons-text" pills role="tablist">
+                                                        <Nav className="flex-column flex-md-row" id="tabs-icons-text" pills role="tablist">
                                                             { 
                                                                 goals.map((goalData, index) =>{
                                                                 return <NavItem key={index}>
@@ -92,7 +93,8 @@ class Agenda2063 extends React.Component {
                                             <TabContent activeTab={"innerTabs" + this.state.innerTabs}>
                                                 { 
                                                     goals.map((goalData, index) =>{
-                                                        //console.log(agenda2063Data);
+                                                        console.log(goalData.indicators);
+                                                        let indicators = goalData.indicators;
                                                         let newID = index + 1
                                                         let tabId = "innerTabs"+newID
                                                         return <TabPane key={index} tabId={tabId}> 
@@ -100,9 +102,10 @@ class Agenda2063 extends React.Component {
                                                                         <Row className="selectButtons mt-2 mb-2">
                                                                             <Col md="3">
                                                                                 <Input type="select" name="indicatorSelect" id="indicatorSelect" className="btn btn-primary">
-                                                                                    <option>1</option>
-                                                                                    <option>1</option>
-                                                                                    <option>1</option>
+                                                                                   { indicators.map((indicator, index) => {
+                                                                                        return <option key={index}>{indicator}</option>
+                                                                                    })
+                                                                                }
                                                                                 </Input>
                                                                             </Col>
                                                                             <Col md="6">
@@ -117,7 +120,7 @@ class Agenda2063 extends React.Component {
                                                                                 </Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Map></Map>
+                                                                        {/* <Map></Map> */}
 
                                                                     </Card>
                                                                 </TabPane>
@@ -132,21 +135,6 @@ class Agenda2063 extends React.Component {
                     </TabContent>
                     </Col>
                 </Row> 
-              
-                    {/* <Col md="10">
-                        <div className="nav-wrapper">
-                            <Nav className="nav-fill flex-column flex-md-row" id="tabs-icons-text" pills role="tablist">
-                                <NavItem>
-                                    <NavLink
-                                        aria-selected={this.state.plainTabs === 1} className={classnames("mb-sm-3 mb-md-0", {
-                                        active: this.state.plainTabs === 1 })}
-                                        onClick={e => this.toggleNavs(e, "plainTabs", 1)} href="#pablo" role="tab">
-                                        Africa
-                                    </NavLink>
-                                </NavItem>
-                            </Nav>
-                            </div> 
-                    </Col> */}
                  
             </main>
             <Footer></Footer>

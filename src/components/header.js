@@ -56,25 +56,25 @@ class Header extends React.Component{
                           
                             <Nav className="ml-lg-auto" navbar>
                                 <NavItem>
-                                    <Link to="/" className="btn btn-warning btn-icon text-white">Home</Link>    
+                                    <Link to="/" className="btn btn-header btn-icon text-white">Home</Link>    
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Sdgs" className="btn btn-warning text-white">SDGs</Link>
+                                    <Link to="/Sdgs" className="btn btn-header text-white">SDGs</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Dashboard" className="btn btn-warning text-white">DASHBAORD</Link>
+                                    <Link to="/Dashboard" className="btn btn-header text-white">DASHBOARD</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/CountryProfile" className="btn btn-warning text-white">COUNTRY PROFILE</Link>
+                                    <Link to="/CountryProfile" className="btn btn-header text-white">COUNTRY PROFILE</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Agenda2063" className="btn btn-warning text-white">AGENDA 2063</Link>
+                                    <Link to="/Agenda2063" className="btn btn-header text-white">AGENDA 2063</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/About" className="btn btn-warning text-white">ABOUT US</Link>
+                                    <Link to="/About" className="btn btn-header text-white">ABOUT US</Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Faqs" className="btn btn-warning text-white">FAQs</Link>
+                                    <Link to="/Faqs" className="btn btn-header text-white">FAQs</Link>
                                 </NavItem>
                             </Nav>
                           

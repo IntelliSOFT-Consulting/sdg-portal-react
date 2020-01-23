@@ -1,15 +1,20 @@
 import React from 'react';
 import { 
-    Container, Row
+    Container
     } from "reactstrap";
+import $ from "jquery";
 
 import Highcharts from "highcharts";
+import drilldown from "highcharts/modules/drilldown";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
-import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
+import dataModule from "highcharts/modules/data";
+// import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 function SdgMap({ mySdgData }) {
-        let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
+        // let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
+        drilldown(Highcharts);
+        dataModule(Highcharts);
         highchartsMap(Highcharts);
 
         let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
@@ -35,9 +40,8 @@ function SdgMap({ mySdgData }) {
                 }
                 
             }
-        })
-       // console.log(newCountryData);
-       
+        })     
+  
         const geoj = Highcharts.maps["custom/africa"] = {
             "title": "Africa",
             "version": "1.1.2",
@@ -1371,18 +1375,113 @@ function SdgMap({ mySdgData }) {
             }]
         }
 
+        var data = Highcharts.geojson(Highcharts.maps["custom/africa"]),
+            separators = Highcharts.geojson(
+                Highcharts.maps["custom/africa"],
+                "mapline"
+            );
+
+        // Set drilldown pointers
+        data.forEach(function(el, i) {
+            el.drilldown = el.properties["hc-key"];
+            el.value = i; // Non-random bogus data
+        });
+
+        window.Highcharts = Highcharts;
+
+        
+  
         const mapOptions = {
             chart: {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
                 width: 800,
                 height: 400,
+                events: {
+                    drilldown: function (e) {
+                    //    if(!e.seriesOptions){
+                    //         var chart = this,
+                    //         mapKey = 'countries/' + e.point.drilldown,
+                    //         fail = setTimeout(function(){
+                    //             if(!Highcharts.maps[mapKey]){
+                    //                 chart.showLoading(
+                    //                     '<i class="icon-frown"></i> Failed loading ' + e.point.name
+                    //                 );
+                    //                 fail = setTimeout(function(){
+                    //                     chart.hideLoading();
+                    //                 }, 1000)
+                    //             }
+                    //         }, 3000)
+
+                    //         chart.showLoading('<i class="icon-spinner icon-spin icon-3x"></i>');
+                    //         $.getScript('https://code.highcharts.com/mapdata/' + mapKey + '.js', 
+                    //         function(){
+                    //             data = Highcharts.geojson(Highcharts.maps[mapKey]);
+                    //             $.each(data, function(i){
+                    //                 this.value = i
+                    //             });
+
+                    //             chart.hideLoading();
+                    //             clearTimeout(fail);
+                    //             chart.addSingleSeriesAsDrilldown(e.point, {
+                    //                 name : e.point.name,
+                    //                 data : data,
+                    //                 dataLabels: {
+                    //                     enabled: true,
+                    //                     format: "{point.name"
+                    //                 }
+                    //             })
+                    //         }
+
+                    //    }
+                        
+                        var chart = this,
+                            mapKey = 'countries/' + e.point.drilldown,
+                            chartName = e.point.name;
+                            $.getScript('https://code.highcharts.com/mapdata/' + mapKey + '.js', 
+                                function () {
+                                    var data = [],
+                                        drillPath,
+                                        regionMap = Highcharts.maps[mapKey],
+                                        regionMapGeoJson = Highcharts.geojson(regionMap);
+
+                                $.each(regionMapGeoJson, function (index, elem) {
+                                    drillPath = 'countries/' + elem.properties['hc-key'].slice(0, 2) + '/' + elem.properties['hc-key'] + '-all';
+                                    data.push({
+                                        code: elem.properties['hc-key'],
+                                        value: mySdgData.value,
+                                         drilldown: drillPath
+                                    })
+                                });
+                           
+                            chart.addSingleSeriesAsDrilldown(e.point, {
+                                name: e.point.name,
+                                data: data,
+                                mapData: regionMap,
+                                joinBy: ['hc-key', 'code'],
+                            });
+
+                            chart.applyDrilldown();
+
+                            chart.setTitle(null, {
+                                text: chartName
+                            });
+                        }).fail(function (jqxhr, settings, exception) {
+                            console.log('Couldn\'t find JS file!');
+                        });
+                    },
+                    drillup: function () {
+                        this.setTitle(null, {
+                            text: ''
+                        });
+                    }
+                }
             },
             series: [{
                 data: mySdgData,
                 mapData: geoj,
                 joinBy: ['hc-key', 'code'],
-                name: 'Country Profile',
+                name: 'Indicator data',
                 cursor: 'pointer',
                 borderColor: 'white', //changes color of the country borders
                 borderWidth: 0.5,
@@ -1412,12 +1511,7 @@ function SdgMap({ mySdgData }) {
                     fontSize: '16px'
                 }
             },
-            legend: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
+            
             plotOptions: {
                 series: {
                     point: {
@@ -1487,7 +1581,6 @@ function SdgMap({ mySdgData }) {
                 
             },
 
-            
             drilldown: {
                 activeDataLabelStyle: {
                     color: '#FFFFFF',

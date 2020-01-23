@@ -13,6 +13,19 @@
                         "indicators": [
                             {
                                 "code": "1.1.1",
+                                "title" : "1.1 Number of people not in extreme poverty (people)",
+                                "description": "Proportion of population below the international poverty line, by sex, age, employment status and geographical location (urban/rural)",
+                                "tier": "1"
+                            }, 
+                            {
+                                "code": "1.1.1",
+                                "title": "1.1 Number of people living in extreme poverty (people)",
+                                "description": "Proportion of population below the international poverty line, by sex, age, employment status and geographical location (urban/rural)",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.1.1",
+                                "title": "1.1 Poverty headcount ratio at national poverty lines (% of population)",
                                 "description": "Proportion of population below the international poverty line, by sex, age, employment status and geographical location (urban/rural)",
                                 "tier": "1"
                             }
@@ -26,7 +39,29 @@
                         "indicators": [
                             {
                                 "code": "1.2.1",
-                                "description": "Proportion of population living below the national poverty line, by sex and age",
+                                "title": "1.2 Poverty headcount ratio at $1.90 a day (2011 PPP) (% of population)",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.2.1",
+                                "title": "1.2 Urban poverty headcount ratio at national poverty lines (% of urban population)",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.2.1",
+                                "title": "1.2 Rural poverty headcount ratio at national poverty lines (% of rural population)",
+                                "tier": "1"
+                            }, {
+                                "code": "1.2.1",
+                                "title": "1.2 % of urban population below national poverty line",
+                                "tier": "1"
+                            }, {
+                                "code": "1.2.1",
+                                "title": "1.2 % of rural population below national poverty line",
+                                "tier": "1"
+                            }, {
+                                "code": "1.2.1",
+                                "title": "1.2 % of total population below national poverty line",
                                 "tier": "1"
                             }
                         ]
@@ -39,7 +74,19 @@
                         "indicators": [
                             {
                                 "code": "1.3.1",
-                                "description": "Proportion of population covered by social protection floors/systems, by sex, distinguishing children, unemployed persons, older persons, persons with disabilities, pregnant women, newborns, work-injury victims and the poor and the vulnerable",
+                                "title": "1.3 Coverage of social insurance programs (% of population)",
+                                "tier": "1"
+                            },{
+                                "code": "1.3.1",
+                                "title": "1.3 Adequacy of social insurance programs (% of total welfare of beneficiary households)",
+                                "tier": "1"
+                            }, {
+                                "code": "1.3.1",
+                                "title": "1.3 Adequacy of unemployment benefits and ALMP (% of total welfare of beneficiary households)",
+                                "tier": "1"
+                            }, {
+                                "code": "1.3.1",
+                                "title": "1.3 Adequacy of social safety net programs (% of total welfare of beneficiary households)",
                                 "tier": "1"
                             }
                         ]
@@ -52,7 +99,19 @@
                         "indicators": [
                             {
                                 "code": "1.4.1",
-                                "description": "Proportion of population living in households with access to basic services",
+                                "title": "1.4 Clean cooking fuels and technologies (% of population)",
+                                "tier": "2"
+                            }, {
+                                "code": "1.4.1",
+                                "title": "1.4 Access to electricity (% of population)",
+                                "tier": "2"
+                            },{
+                                "code": "1.4.1",
+                                "title": "1.4 Improved water source (% of population)",
+                                "tier": "2"
+                            }, {
+                                "code": "1.4.1",
+                                "title": "1.4 Improved sanitation facilities (% of population)",
                                 "tier": "2"
                             }
                         ]
@@ -65,23 +124,18 @@
                         "indicators": [
                             {
                                 "code": "1.5.1",
-                                "description": "Number of deaths, missing persons and directly affected persons attributed to disasters per 100,000 population",
+                                "title": "1.5 Deaths - Exposure to forces of nature - Sex: Both - Age: All Ages (Rate)",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.5.1",
+                                "title": "1.5 Internally displaced persons new displacement associated with disasters (number of cases)",
                                 "tier": "1"
                             },
                             {
                                 "code": "1.5.2",
-                                "description": "Direct economic loss attributed to disasters in relation to global gross domestic product (GDP)",
+                                "title": "1.5.2 - Direct economic loss attributed to disasters (USD)",
                                 "tier": "1"
-                            },
-                            {
-                                "code": "1.5.3",
-                                "description": "Number of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015-2030",
-                                "tier": "1"
-                            },
-                            {
-                                "code": "1.5.4",
-                                "description": "Proportion of local governments that adopt and implement local disaster risk reduction strategies in line with national disaster risk reduction strategies",
-                                "tier": "2"
                             }
                         ]
                     },
@@ -92,8 +146,16 @@
                         "uri": "/v1/Target/1.a",
                         "indicators": [
                             {
-                                "code": "1.a.2",
-                                "description": "Proportion of total government spending on essential services (education, health and social protection)",
+                                "code": "1.A",
+                                "title": "1.A Health expenditure  public (% of government expenditure) (% of government expenditure) ",
+                                "tier": "2"
+                            }, {
+                                "code": "1.A",
+                                "title": "1.A Government expenditure on education  total (% of government expenditure)",
+                                "tier": "2"
+                            }, {
+                                "code": "1.A",
+                                "title": "1.A Net ODA received  (% of central government expense)",
                                 "tier": "2"
                             }
                         ]
@@ -103,7 +165,9 @@
                         "title": "Create sound policy frameworks at the national, regional and international levels, based on pro-poor and gender-sensitive development strategies, to support accelerated investment in poverty eradication actions",
                         "description": "Create sound policy frameworks at the national, regional and international levels, based on pro-poor and gender-sensitive development strategies, to support accelerated investment in poverty eradication actions",
                         "uri": "/v1/Target/1.b",
-                        "indicators": []
+                        "indicators": [
+                           
+                        ]
                     }
                 ]
             },{

@@ -7,12 +7,9 @@ import {
     NavbarBrand,
     Navbar,
     NavItem,
-    NavLink,
     Nav,
-    Container,
     Row,
-    Col,
-    Button
+    Col
   } from "reactstrap";
 
 class HomeHeader extends React.Component{
@@ -55,52 +52,52 @@ class HomeHeader extends React.Component{
                             </div>
                             <Nav className="ml-lg-auto" navbar>
                                 <NavItem>
-                                    <Link to="/" className="btn btn-warning btn-icon text-white">
+                                    <Link to="/" className="btn btn-header btn-icon text-white">
                                         <span className="btn-inner--icon">
-                                            <img className="icon" alt=".." src={require('../assets/img/home_icons/Home.png')}></img>
+                                            <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/Home.png')}></img>
                                         </span>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">HOME</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Sdgs" className="btn btn-warning btn-icon text-white">
-                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/Sdg.png')}></img>
+                                    <Link to="/Sdgs" className="btn btn-header btn-icon text-white">
+                                        <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/Sdg.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">SDGs</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Dashboard" className="btn btn-warning btn-icon text-white">
-                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/Dashboard.png')}></img>
+                                    <Link to="/Dashboard" className="btn btn-header btn-icon text-white">
+                                        <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/Dashboard.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">DASHBOARD</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/CountryProfile" className="btn btn-warning btn-icon text-white">
-                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/CountryProfile.png')}></img>
+                                    <Link to="/CountryProfile" className="btn btn-header btn-icon text-white">
+                                        <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/CountryProfile.png')}></img>
                                             <br></br>
                                             <span className="nav-link-inner--text ml-1">COUNTRY <br></br> PROFILE</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Agenda2063" className="btn btn-warning btn-icon text-white">
-                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/A2063.png')}></img>
+                                    <Link to="/Agenda2063" className="btn btn-header btn-icon text-white">
+                                        <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/A2063.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">AGENDA <br></br> 2063</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/About" className="btn btn-warning btn-icon text-white">
-                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/AboutUs.png')}></img>
+                                    <Link to="/About" className="btn btn-header btn-icon text-white">
+                                        <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/AboutUs.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">ABOUT US</span>
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Faqs" className="btn btn-warning btn-icon text-white">
-                                        <img className="icon" alt=".." src={require('../assets/img/home_icons/FAQs.png')}></img>
+                                    <Link to="/Faqs" className="btn btn-header btn-icon text-white">
+                                        <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/FAQs.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">FAQs</span>
                                     </Link>

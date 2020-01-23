@@ -5,21 +5,27 @@
   "homepage": "https://test.sdgca.intellisoftkenya.com/build",
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.10",
+    "@emotion/core": "^10.0.22",
     "@highcharts/map-collection": "^1.1.2",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "highcharts": "^7.2.1",
     "highcharts-react-official": "^2.2.2",
+    "jquery": "^3.4.1",
     "node-sass": "^4.13.0",
     "papaparse": "^5.1.0",
     "react": "^16.12.0",
+    "react-charts": "^2.0.0-beta.6",
     "react-dom": "^16.12.0",
     "react-gauge-chart": "^0.2.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
     "react-select": "^2.0.0-beta.7",
     "react-select-search": "^0.10.1",
-    "reactstrap": "^8.1.1"
+    "react-spinners": "^0.6.1",
+    "reactstrap": "^8.1.1",
+    "recharts": "^2.0.0-beta.1",
+    "victory": "^34.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0"
   }
 }
