@@ -42,7 +42,7 @@ class Home extends React.Component {
 
         return(
             <>
-            <Header></Header>
+            {/* <Header></Header> */}
                 <main className="home">
                     <div className="homeOverLay">
                    

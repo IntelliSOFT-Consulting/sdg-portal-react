@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Home from "./views/Home";
 import * as serviceWorker from './serviceWorker';
 
 import {
@@ -11,7 +12,7 @@ import {
 
 ReactDOM.render(
     <BrowserRouter>
-    <App></App>
+        <App></App>
     </BrowserRouter>
     , document.getElementById('root'));
 

@@ -52,6 +52,8 @@ function CountryProfile (props) {
                 let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
                 countryName = countriesData[key].name;
                 countryCapital = countriesData[key].capital;
+                countryPoverty = countriesData[key].povertyLine
+                countryGDP = countriesData[key].gdpPerCapita
                 countryFlag = imgSrc;
             }
         }
@@ -66,8 +68,8 @@ function CountryProfile (props) {
         "region":"",
         "flagURL":countryFlag,
         "size":0,
-        "capitalPopulation":0,
-        "totalPopulation":0
+        "povertyLine":0,
+        "gdpPerCapita":0
         } : {
         "id": 0,
         "name": "",
@@ -75,8 +77,8 @@ function CountryProfile (props) {
         "region":"",
         "flagURL":"",
         "size":0,
-        "capitalPopulation":0,
-        "totalPopulation":0
+        "povertyLine":0,
+        "gdpPerCapita":0
     });
 
     const openModal = (countryId) => {
@@ -93,8 +95,8 @@ function CountryProfile (props) {
                     "region":countriesData[key].region,
                     "flagURL":imgSrc,
                     "size":countriesData[key].size,
-                    "capitalPopulation":countriesData[key].capitalPopulation,
-                    "totalPopulation":countriesData[key].totalPopulation
+                    "povertyLine":countriesData[key].povertyLine,
+                    "gdpPerCapita":countriesData[key].gdpPerCapita
                   }); 
             }
         }
@@ -198,8 +200,8 @@ function CountryProfile (props) {
                                 <Col></Col>
                                 <Col>
                                     <label> Capital: {countryData.capital}</label> <br></br>
-                                    <label>Poverty line: </label> <br></br>
-                                    <label>GDP Per Capita: </label>
+                                    <label>Poverty line: {countryData.povertyLine} </label> <br></br>
+                                    <label>GDP Per Capita: {countryData.gdpPerCapita} </label>
                                 </Col>
                             </Row>
                             <Row>
