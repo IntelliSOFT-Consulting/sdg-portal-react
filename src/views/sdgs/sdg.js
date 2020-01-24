@@ -47,17 +47,28 @@ function Sdg(){
     
     let csvDataSourceData = '';
     let sdgData = '';
-    let ind = [];
+    let ind = [];  
 
-    const getIndicators = useCallback(() => {
+    useEffect(() => {
+        if(dataSource == 'pan'){
+            csvDataSourceData = require("../../assets/data/sdg/pan.csv");
+            sdgData = require('../../assets/data/globalDatabase.json');
+        }else if (dataSource == 'gdb'){
+            csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
+            sdgData = require('../../assets/data/globalDatabase.json');
+        }
+
         const targetData = sdgData[0].targets;
         targetData.forEach(function(data){
-            if(data.code === activeTab){
+            if(data.code == activeTab){
                 ind = data.indicators;
+                //console.log(ind);
             }
         })
-        return ind;
-    }, [indicator]);    
+        console.log(ind);
+        
+        setIndicators(ind);
+    }, [activeTab])
 
     useEffect(() => {
         let isSubscribed = true;
@@ -68,8 +79,6 @@ function Sdg(){
             csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
             sdgData = require('../../assets/data/globalDatabase.json');
         }
-        const indicators = getIndicators();
-        setIndicators(indicators);
 
         const loadSdgData = (sdgCsvFile) => {
             setIsLoading(true);
@@ -166,7 +175,7 @@ function Sdg(){
         countriesData.forEach(function(countryData){
             let data = countryData.data;
             let filteredData = data.slice(0, 5);
-            countryData.data = filteredData;
+            countryData.data = filteredData
 
         })
         let filteredData = countriesData.slice(0, 5);
