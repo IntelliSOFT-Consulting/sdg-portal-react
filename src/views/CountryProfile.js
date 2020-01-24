@@ -30,7 +30,7 @@ const data = require('../assets/data/trial.json');
 highchartsMap(Highcharts);
 
 
-function CountryProfile (props) {
+function CountryProfile (props, {match}) {
     const flagImages = require.context('../assets/img/country_flags', true);
     const sdgsData = require('../assets/data/sdgs.json');
     const sdgsImages = require.context('../assets/img/sdg_icons', true);
@@ -42,6 +42,8 @@ function CountryProfile (props) {
     let countryFlag = '';
     let countryPoverty = '';
     let countryGDP = '';
+
+    console.log(props.location.pathname)
     
 
     if (props.location.state != null){
@@ -171,6 +173,7 @@ function CountryProfile (props) {
     return(
         
         <>
+        <Header></Header>
             <main className="countryProfile">
                 <Container>
                     <HighchartsReact

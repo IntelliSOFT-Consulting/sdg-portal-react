@@ -31,6 +31,7 @@ class Dashboard extends React.Component {
     render(){
         return(
             <>
+            <Header></Header>
              <main className="container-fluid dashboard">
                 <div className="nav-wrapper">
                     <Nav

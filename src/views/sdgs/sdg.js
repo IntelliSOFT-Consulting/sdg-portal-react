@@ -194,7 +194,7 @@ function Sdg(){
 
     return(
         <>
-        {/* <Header></Header> */}
+        <Header></Header>
             <div className="container-fluid">
                 <Row className="sdgBackground">
                     <Col md="2">
