@@ -122,7 +122,8 @@ function Sdg(){
             }
         })
         //console.log(indicatorData)
-       setSdgChartData(indicatorData)
+        let filteredData = indicatorData.slice(0, 5);
+       setSdgChartData(filteredData)
     }
 
     const indexOf = (country, countriesData) => {
@@ -160,6 +161,13 @@ function Sdg(){
             }
            
              
+        })
+
+        countriesData.forEach(function(countryData){
+            let data = countryData.data;
+            let filteredData = data.slice(0, 5);
+            countryData.data = filteredData;
+
         })
         let filteredData = countriesData.slice(0, 5);
         setLineChartData(filteredData);

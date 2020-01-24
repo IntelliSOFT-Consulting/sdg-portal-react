@@ -20,7 +20,7 @@ function lineChart({lineChartData, years, indicator}){
         },
         xAxis: {
             // tickInterval: 10,
-            categories: years,
+            categories: ["2012", "2013", "2014", "2015", "2017" ],
             align: "left",
             startOnTick: false,
             endOnTick: false,
@@ -44,7 +44,7 @@ function lineChart({lineChartData, years, indicator}){
                 },
                 // pointStart: 1900,
                 animation: {
-                    duration: 10000
+                    duration: 5000
                 }
             }
         },
