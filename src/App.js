@@ -44,17 +44,6 @@ function App() {
   console.log()
   return (
     <Router basename={'/build'}>
-
-      {
-        console.log("")
-      }
-      {/* {
-        path === '/build/' ? (
-          <HomeHeader></HomeHeader>
-        ):
-        <Header></Header>
-      } */}
-       {/* <Header></Header> */}
       <Switch>
             <Route exact path="/Sdgs" component={Sdgs}></Route>
             <Route exact path="/Sdgs/Sdg_1" component={Sdg}></Route>
