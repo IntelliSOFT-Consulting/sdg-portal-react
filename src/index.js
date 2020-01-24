@@ -10,10 +10,13 @@ import {
 
 
 ReactDOM.render(
+
     <BrowserRouter>
         <App></App>
     </BrowserRouter>
     , document.getElementById('root'));
+
+    console.log("")
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
