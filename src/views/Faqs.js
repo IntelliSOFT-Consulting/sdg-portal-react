@@ -25,7 +25,7 @@ class Faqs extends React.Component {
 
         return(
             <>
-            <Header></Header>
+            {/* <Header></Header> */}
              <main>
                 <Container className="faqs">
                 <h3 className="display-3 mb-4 mt-2 text-center text-uppercase">Frequently Asked Questions</h3>
