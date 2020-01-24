@@ -171,7 +171,6 @@ function CountryProfile (props) {
     return(
         
         <>
-        {/* <Header></Header> */}
             <main className="countryProfile">
                 <Container>
                     <HighchartsReact
