@@ -74,7 +74,6 @@ class Sdgs extends React.Component {
 
         return(
             <>
-            <Header></Header>
              <main className="sdg">
                  <div className="container">
                  <Row>
