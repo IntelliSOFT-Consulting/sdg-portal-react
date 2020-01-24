@@ -6,8 +6,8 @@
     "region":"Northern Africa",
     "flagURL":"algeria-flag-medium",
     "size":2381741,
-    "capitalPopulation":123456,
-    "totalPopulation":42679018
+    "povertyLine":123456,
+    "gdpPerCapita":42679018
   },
   {
     "id": 2,
@@ -16,8 +16,8 @@
     "region":"Central Africa",
     "flagURL":"angola-flag-medium",
     "size":1246700,
-    "capitalPopulation":678945,
-    "totalPopulation":31787566
+    "povertyLine":678945,
+    "gdpPerCapita":31787566
   },
   {
     "id": 3,
@@ -26,8 +26,8 @@
     "region":"Western Africa",
     "flagURL":"benin-flag-medium",
     "size":112622,
-    "capitalPopulation":123456,
-    "totalPopulation":11801595
+    "povertyLine":123456,
+    "gdpPerCapita":11801595
   },
   {
     "id": 4,
@@ -36,8 +36,8 @@
     "region":"Southern Africa",
     "flagURL":"botswana-flag-medium",
     "size":581730,
-    "capitalPopulation":678945,
-    "totalPopulation":2374636
+    "povertyLine":678945,
+    "gdpPerCapita":2374636
   },
   {
     "id": 5,
@@ -46,8 +46,8 @@
     "region":"Western Africa",
     "flagURL":"burkina-faso-flag-medium",
     "size":274200,
-    "capitalPopulation":123456,
-    "totalPopulation":20321560
+    "povertyLine":123456,
+    "gdpPerCapita":20321560
   },
   {
     "id": 6,
@@ -56,8 +56,8 @@
     "region":"Eastern Africa",
     "flagURL":"burundi-flag-medium",
     "size":27830,
-    "capitalPopulation":678945,
-    "totalPopulation":11575964
+    "povertyLine":678945,
+    "gdpPerCapita":11575964
   },
   {
     "id": 7,
@@ -66,8 +66,8 @@
     "region":"Central Africa",
     "flagURL":"cameroon-flag-medium",
     "size":475440,
-    "capitalPopulation":123456,
-    "totalPopulation":25312993
+    "povertyLine":123456,
+    "gdpPerCapita":25312993
   },
   {
     "id": 8,
@@ -76,8 +76,8 @@
     "region":"Western Africa",
     "flagURL":"cape-verde-flag-medium",
     "size":4033,
-    "capitalPopulation":678945,
-    "totalPopulation":560349
+    "povertyLine":678945,
+    "gdpPerCapita":560349
   },
   {
     "id": 9,
@@ -86,8 +86,8 @@
     "region":"Central Africa",
     "flagURL":"central-african-republic-flag-medium",
     "size":622984,
-    "capitalPopulation":123456,
-    "totalPopulation":4825711
+    "povertyLine":123456,
+    "gdpPerCapita":4825711
   },
   {
     "id": 10,
@@ -96,8 +96,8 @@
     "region":"Central Africa",
     "flagURL":"chad-flag-medium",
     "size":1284000,
-    "capitalPopulation":678945,
-    "totalPopulation":15814345
+    "povertyLine":678945,
+    "gdpPerCapita":15814345
   },
   {
     "id": 11,
@@ -106,8 +106,8 @@
     "region":"Eastern Africa",
     "flagURL":"comoros-flag-medium",
     "size":2235,
-    "capitalPopulation":123456,
-    "totalPopulation":850910
+    "povertyLine":123456,
+    "gdpPerCapita":850910
   },
   {
     "id": 12,
@@ -116,8 +116,8 @@
     "region":"Central Africa",
     "flagURL":"congo-republic-of-the-flag-medium",
     "size":342000,
-    "capitalPopulation":678945,
-    "totalPopulation":5542197
+    "povertyLine":678945,
+    "gdpPerCapita":5542197
   },
   {
     "id": 13,
@@ -126,8 +126,8 @@
     "region":"Central Africa",
     "flagURL":"congo-democratic-republic-of-the-flag-medium",
     "size":2344858,
-    "capitalPopulation":123456,
-    "totalPopulation":86727573
+    "povertyLine":123456,
+    "gdpPerCapita":86727573
   },
   {
     "id": 14,
@@ -136,8 +136,8 @@
     "region":"Western Africa",
     "flagURL":"cote-d-ivoire-flag-medium",
     "size":322463,
-    "capitalPopulation":678945,
-    "totalPopulation":25531083
+    "povertyLine":678945,
+    "gdpPerCapita":25531083
   },
   {
     "id": 15,
@@ -146,8 +146,8 @@
     "region":"Eastern Africa",
     "flagURL":"djibouti-flag-medium",
     "size":23200,
-    "capitalPopulation":123456,
-    "totalPopulation":985690
+    "povertyLine":123456,
+    "gdpPerCapita":985690
   },
   {
     "id": 16,
@@ -156,8 +156,8 @@
     "region":"Northern Africa",
     "flagURL":"egypt-flag-medium",
     "size":1001450,
-    "capitalPopulation":678945,
-    "totalPopulation":101168745
+    "povertyLine":678945,
+    "gdpPerCapita":101168745
   },
   {
     "id": 17,
@@ -166,8 +166,8 @@
     "region":"Central Africa",
     "flagURL":"equatorial-guinea-flag-medium",
     "size":28051,
-    "capitalPopulation":123456,
-    "totalPopulation":1360104
+    "povertyLine":123456,
+    "gdpPerCapita":1360104
   },
   {
     "id": 18,
@@ -176,8 +176,8 @@
     "region":"Eastern Africa",
     "flagURL":"eritrea-flag-medium",
     "size":117600,
-    "capitalPopulation":678945,
-    "totalPopulation":5309659
+    "povertyLine":678945,
+    "gdpPerCapita":5309659
   },
   {
     "id": 19,
@@ -186,8 +186,8 @@
     "region":"Eastern Africa",
     "flagURL":"ethiopia-flag-medium",
     "size":1104300,
-    "capitalPopulation":123456,
-    "totalPopulation":110135635
+    "povertyLine":123456,
+    "gdpPerCapita":110135635
   },
   {
     "id": 20,
@@ -196,8 +196,8 @@
     "region":"Central Africa",
     "flagURL":"gabon-flag-medium",
     "size":267667,
-    "capitalPopulation":678945,
-    "totalPopulation":2109099
+    "povertyLine":678945,
+    "gdpPerCapita":2109099
   },
   {
     "id": 21,
@@ -206,8 +206,8 @@
     "region":"Western Africa",
     "flagURL":"gambia-flag-medium",
     "size":11295,
-    "capitalPopulation":123456,
-    "totalPopulation":2228075
+    "povertyLine":123456,
+    "gdpPerCapita":2228075
   },
   {
     "id": 22,
@@ -216,8 +216,8 @@
     "region":"Western Africa",
     "flagURL":"ghana-flag-medium",
     "size":238533,
-    "capitalPopulation":678945,
-    "totalPopulation":30096970
+    "povertyLine":678945,
+    "gdpPerCapita":30096970
   },
   {
     "id": 23,
@@ -226,8 +226,8 @@
     "region":"Western Africa",
     "flagURL":"guinea-flag-medium",
     "size":245857,
-    "capitalPopulation":123456,
-    "totalPopulation":13398180
+    "povertyLine":123456,
+    "gdpPerCapita":13398180
   },
   {
     "id": 24,
@@ -236,8 +236,8 @@
     "region":"Western Africa",
     "flagURL":"guinea-bissau-flag-medium",
     "size":36125,
-    "capitalPopulation":678945,
-    "totalPopulation":1953723
+    "povertyLine":678945,
+    "gdpPerCapita":1953723
   },
   {
     "id": 25,
@@ -246,8 +246,8 @@
     "region":"Eastern Africa",
     "flagURL":"kenya-flag-medium",
     "size":580367,
-    "capitalPopulation":123456,
-    "totalPopulation":52214791
+    "povertyLine":123456,
+    "gdpPerCapita":52214791
   },
   {
     "id": 26,
@@ -256,8 +256,8 @@
     "region":"Southern Africa",
     "flagURL":"lesotho-flag-medium",
     "size":30355,
-    "capitalPopulation":678945,
-    "totalPopulation":2292682
+    "povertyLine":678945,
+    "gdpPerCapita":2292682
   },
   {
     "id": 27,
@@ -266,8 +266,8 @@
     "region":"Western Africa",
     "flagURL":"liberia-flag-medium",
     "size":111369,
-    "capitalPopulation":123456,
-    "totalPopulation":4977720
+    "povertyLine":123456,
+    "gdpPerCapita":4977720
   },
   {
     "id": 28,
@@ -276,8 +276,8 @@
     "region":"Northern Africa",
     "flagURL":"libya-flag-medium",
     "size":1759540,
-    "capitalPopulation":678945,
-    "totalPopulation":6569864
+    "povertyLine":678945,
+    "gdpPerCapita":6569864
   },
   {
     "id": 29,
@@ -286,8 +286,8 @@
     "region":"Central Africa",
     "flagURL":"madagascar-flag-medium",
     "size":587041,
-    "capitalPopulation":123456,
-    "totalPopulation":26969642
+    "povertyLine":123456,
+    "gdpPerCapita":26969642
   },
   {
     "id": 30,
@@ -296,8 +296,8 @@
     "region":"Southern Africa",
     "flagURL":"malawi-flag-medium",
     "size":118484,
-    "capitalPopulation":678945,
-    "totalPopulation":19718743
+    "povertyLine":678945,
+    "gdpPerCapita":19718743
   },
   {
     "id": 31,
@@ -306,8 +306,8 @@
     "region":"Western Africa",
     "flagURL":"mali-flag-medium",
     "size":1240192,
-    "capitalPopulation":123456,
-    "totalPopulation":19689140
+    "povertyLine":123456,
+    "gdpPerCapita":19689140
   },
   {
     "id": 32,
@@ -316,8 +316,8 @@
     "region":"Northern Africa",
     "flagURL":"mauritania-flag-medium",
     "size":1030700,
-    "capitalPopulation":678945,
-    "totalPopulation":4661149
+    "povertyLine":678945,
+    "gdpPerCapita":4661149
   },
   {
     "id": 33,
@@ -326,8 +326,8 @@
     "region":"Southern Africa",
     "flagURL":"mauritius-flag-medium",
     "size":2040,
-    "capitalPopulation":123456,
-    "totalPopulation":1271368
+    "povertyLine":123456,
+    "gdpPerCapita":1271368
   },
   {
     "id": 34,
@@ -336,8 +336,8 @@
     "region":"Northern Africa",
     "flagURL":"morocco-flag-medium",
     "size":446550,
-    "capitalPopulation":678945,
-    "totalPopulation":36635156
+    "povertyLine":678945,
+    "gdpPerCapita":36635156
   },
   {
     "id": 35,
@@ -346,8 +346,8 @@
     "region":"Southern Africa",
     "flagURL":"mozambique-flag-medium",
     "size":799380,
-    "capitalPopulation":123456,
-    "totalPopulation":31408823
+    "povertyLine":123456,
+    "gdpPerCapita":31408823
   },
   {
     "id": 36,
@@ -356,8 +356,8 @@
     "region":"Southern Africa",
     "flagURL":"namibia-flag-medium",
     "size":824292,
-    "capitalPopulation":678945,
-    "totalPopulation":2641996
+    "povertyLine":678945,
+    "gdpPerCapita":2641996
   },
   {
     "id": 37,
@@ -366,8 +366,8 @@
     "region":"Western Africa",
     "flagURL":"niger-flag-medium",
     "size":1267000,
-    "capitalPopulation":123456,
-    "totalPopulation":23176691
+    "povertyLine":123456,
+    "gdpPerCapita":23176691
   },
   {
     "id": 38,
@@ -376,8 +376,8 @@
     "region":"Western Africa",
     "flagURL":"nigeria-flag-medium",
     "size":923768,
-    "capitalPopulation":678945,
-    "totalPopulation":200962417
+    "povertyLine":678945,
+    "gdpPerCapita":200962417
   },
   {
     "id": 39,
@@ -386,8 +386,8 @@
     "region":"Eastern Africa",
     "flagURL":"rwanda-flag-medium",
     "size":26338,
-    "capitalPopulation":123456,
-    "totalPopulation":12794412
+    "povertyLine":123456,
+    "gdpPerCapita":12794412
   },
   {
     "id": 40,
@@ -396,8 +396,8 @@
     "region":"Southern Africa",
     "flagURL":"sao-tome-and-principe-flag-medium",
     "size":964,
-    "capitalPopulation":678945,
-    "totalPopulation":213379
+    "povertyLine":678945,
+    "gdpPerCapita":213379
   },
   {
     "id": 41,
@@ -406,8 +406,8 @@
     "region":"Western Africa",
     "flagURL":"senegal-flag-medium",
     "size":196722,
-    "capitalPopulation":123456,
-    "totalPopulation":16743859
+    "povertyLine":123456,
+    "gdpPerCapita":16743859
   },
   {
     "id": 42,
@@ -416,8 +416,8 @@
     "region":"Eastern Africa",
     "flagURL":"seychelles-flag-medium",
     "size":455,
-    "capitalPopulation":678945,
-    "totalPopulation":95702
+    "povertyLine":678945,
+    "gdpPerCapita":95702
   },
   {
     "id": 43,
@@ -426,8 +426,8 @@
     "region":"Western Africa",
     "flagURL":"sierra-leone-flag-medium",
     "size":71740,
-    "capitalPopulation":123456,
-    "totalPopulation":7883123
+    "povertyLine":123456,
+    "gdpPerCapita":7883123
   },
   {
     "id": 44,
@@ -436,8 +436,8 @@
     "region":"Eastern Africa",
     "flagURL":"somalia-flag-medium",
     "size":637657,
-    "capitalPopulation":678945,
-    "totalPopulation":15636171
+    "povertyLine":678945,
+    "gdpPerCapita":15636171
   },
   {
     "id": 45,
@@ -446,8 +446,8 @@
     "region":"Southern Africa",
     "flagURL":"south-africa-flag-medium",
     "size":1219090,
-    "capitalPopulation":123456,
-    "totalPopulation":58065097
+    "povertyLine":123456,
+    "gdpPerCapita":58065097
   },
   {
     "id": 46,
@@ -456,8 +456,8 @@
     "region":"Eastern Africa",
     "flagURL":"south-sudan-flag-medium",
     "size":644329,
-    "capitalPopulation":678945,
-    "totalPopulation":13263184
+    "povertyLine":678945,
+    "gdpPerCapita":13263184
   },
   {
     "id": 47,
@@ -466,8 +466,8 @@
     "region":"Eastern Africa",
     "flagURL":"sudan-flag-medium",
     "size":1861484,
-    "capitalPopulation":123456,
-    "totalPopulation":42514094
+    "povertyLine":123456,
+    "gdpPerCapita":42514094
   },
   {
     "id": 48,
@@ -476,8 +476,8 @@
     "region":"Southern Africa",
     "flagURL":"swaziland-flag-medium",
     "size":17364,
-    "capitalPopulation":678945,
-    "totalPopulation":1415414
+    "povertyLine":678945,
+    "gdpPerCapita":1415414
   },
   {
     "id": 49,
@@ -486,8 +486,8 @@
     "region":"Eastern Africa",
     "flagURL":"tanzania-flag-medium",
     "size":947300,
-    "capitalPopulation":123456,
-    "totalPopulation":60913557
+    "povertyLine":123456,
+    "gdpPerCapita":60913557
   },
   {
     "id": 50,
@@ -496,8 +496,8 @@
     "region":"Western Africa",
     "flagURL":"togo-flag-medium",
     "size":56785,
-    "capitalPopulation":678945,
-    "totalPopulation":8186384
+    "povertyLine":678945,
+    "gdpPerCapita":8186384
   },
   {
     "id": 51,
@@ -506,8 +506,8 @@
     "region":"Northern Africa",
     "flagURL":"kenya-flag-medium",
     "size":163610,
-    "capitalPopulation":123456,
-    "totalPopulation":11783168
+    "povertyLine":123456,
+    "gdpPerCapita":11783168
   },
   {
     "id": 52,
@@ -516,8 +516,8 @@
     "region":"Eastern Africa",
     "flagURL":"uganda-flag-medium",
     "size":241038,
-    "capitalPopulation":678945,
-    "totalPopulation":45711874
+    "povertyLine":678945,
+    "gdpPerCapita":45711874
   },
   {
     "id": 53,
@@ -526,8 +526,8 @@
     "region":"Southern Africa",
     "flagURL":"zambia-flag-medium",
     "size":752618,
-    "capitalPopulation":123456,
-    "totalPopulation":18137369
+    "povertyLine":123456,
+    "gdpPerCapita":18137369
   },
   {
     "id": 54,
@@ -536,7 +536,7 @@
     "region":"Southern Africa",
     "flagURL":"zimbabwe-flag-medium",
     "size":390757,
-    "capitalPopulation":678945,
-    "totalPopulation":17297495
+    "povertyLine":678945,
+    "gdpPerCapita":17297495
   }
 ]

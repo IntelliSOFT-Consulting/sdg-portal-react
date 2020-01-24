@@ -4,14 +4,17 @@ import {
 } from "reactstrap";
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Select from 'react-select';
 
 import Header from "../../components/header";
 import SdgMap from "../../visualizations/sdgMap";
 import Footer from "../../components/footer";
 import SdgChart from "../../visualizations/sdgChart";
 import SdgHighChart from "../../visualizations/sdgHighChart";
+import LineChart from "../../visualizations/lineChart";
 import classnames from "classnames";
-
+import { indexOf } from "@amcharts/amcharts4/.internal/core/utils/Array";
 
 function Sdg(){
     const override = css`
@@ -33,6 +36,7 @@ function Sdg(){
 
     const [sdgMapData, setSdgMapData] = useState([]);
     const [sdgChartData, setSdgChartData] = useState([]);
+    const [lineChartData, setLineChartData] = useState([]);
     const [dataSource, setDataSource] = useState('pan');
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
@@ -77,6 +81,7 @@ function Sdg(){
                     if(isSubscribed){
                         parseMapData(results.data)
                         parseChartData(results.data)
+                        parseLineData(results.data)
                         setIsLoading(false);
                     }
                     
@@ -109,15 +114,56 @@ function Sdg(){
         setSdgMapData(indicatorData);
     }
 
-    const parseChartData = (data) =>{
+    const parseChartData = (data) => {
         const indicatorData = [];
         data.forEach(function(d){
             if(d.Year === year ){
                 indicatorData.push([d.Entity, parseInt(d[indicator])])  
             }
         })
-        console.log(indicatorData)
+        //console.log(indicatorData)
        setSdgChartData(indicatorData)
+    }
+
+    const indexOf = (country, countriesData) => {
+        let i = 0;
+        for(i = 0; i < countriesData.length; i++){
+            if(country == countriesData[i].name){
+                return i;
+            }  
+        }
+        return -1;
+    }
+
+    const parseLineData = (data) => {
+        let countriesData = []
+        let countryData = {}
+       
+        data.forEach(function(d){
+            let indicatorData = []
+                indicatorData.push( parseInt(d[indicator]))
+                countryData = {
+                    "name": d.Entity,
+                    "data": indicatorData
+                }
+            if(countriesData.length === 0){
+                countriesData.push(countryData)  
+            } else{
+                if(indexOf(d.Entity, countriesData, countriesData) === -1){
+                    countriesData.push(countryData)
+                }else{
+                    let index = indexOf(d.Entity, countriesData, countriesData);
+                    let oldData = countriesData[index].data;
+                    oldData.push(parseInt(d[indicator]))
+                    countriesData[index].data = oldData
+                }
+            }
+           
+             
+        })
+        let filteredData = countriesData.slice(0, 5);
+        setLineChartData(filteredData);
+        console.log(filteredData)
     }
    
     const setGDBData = () => {
@@ -142,10 +188,13 @@ function Sdg(){
     const setChartType = () =>{
         setMapChartType('chart')
     }
+    const setLineChartType = () => {
+        setMapChartType('line')
+    }
 
     return(
         <>
-        <Header></Header>
+        {/* <Header></Header> */}
             <div className="container-fluid">
                 <Row className="sdgBackground">
                     <Col md="2">
@@ -183,11 +232,12 @@ function Sdg(){
 
                                             </Col>
                                             <Col md="3">
-                                                <Input type="select" name="yearSelect" className="btn btn-primary" onChange={handleIndicatorChange} value={indicator}>
+                                               
+                                                <Input type="select" name="indicatorSelect" className="btn btn-primary" onChange={handleIndicatorChange} value={indicator}>
                                                     <option>Select indicator</option>
                                                     {
                                                         indicators.map((indicator, index) => {
-                                                         return <option key={index}>{indicator.title}</option>
+                                                         return <option key={index} value={indicator.title}>{indicator.title}</option>
                                                         })
                                                     }
                                                 </Input>
@@ -197,11 +247,21 @@ function Sdg(){
                                                 <option>Select year</option>
                                                     {
                                                         years.map((year, index) => {
-                                                        return <option key={index}> {year} </option>
+                                                        return <option key={index} value={year}> {year} </option>
                                                         })
                                                     }
                                                 </Input>
                                             </Col>
+                                            {/* <Col md="3">
+                                                <Input type="select" name="countrySelect" className="btn btn-primary" onChange={handleYearChange} value={year}> 
+                                                    <option>Select country</option>
+                                                    {
+                                                        years.map((year, index) => {
+                                                        return <option key={index} value={year}> {year} </option>
+                                                        })
+                                                    }
+                                                </Input>
+                                            </Col> */}
                                         </Row>
                                     </TabPane>
                                 })
@@ -219,35 +279,51 @@ function Sdg(){
                                         <SdgMap mySdgData ={sdgMapData}></SdgMap>
                                     </div>
                                 )
-                            ):( 
-                                isLoading ? (
-                                    
+                            ): null
+                        }
+
+                        {
+                            mapChartType === 'chart' ? (
+                                 isLoading ? (
                                     <div className='sweet-loading mt-4'>
                                         <ClipLoader css={override} sizeUnit={"px"} size={50}
                                         color={'#123abc'} loading={isLoading} />
                                     </div> 
                                 ) : (
-                                    <div>
+                                    <div className="mt-3 ">
                                         <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
-                                        {/* <div className="mt-3 ">
-                                            <SdgChart myChartData = {sdgMapData} indicator = {indicator} years = {years}></SdgChart>
-                                        </div> */}
-                                    </div> 
+                                    </div>
                                 )
-                            )
+                            ): null
                         }
+
+                        {
+                            mapChartType === 'line' ? (
+                                 isLoading ? (
+                                    <div className='sweet-loading mt-4'>
+                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                        color={'#123abc'} loading={isLoading} />
+                                    </div> 
+                                ) : (
+                                    <div className="mt-3 ">
+                                        <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
+                                    </div>
+                                )
+                            ): null
+                        }
+
                         <div>
                             <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
-                                <span className="btn-inner--icon">
-                                    <i className="fa fa-globe" />
-                                </span>
-                                <span className="btn-inner--text">MAP</span>
+                            <FontAwesomeIcon icon="globe-africa" />
+                               
                             </Button>
                             <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
-                                <span className="btn-inner--icon">
-                                <i className="fa fa-chart-bar"></i>
-                                </span>
-                                <span className="btn-inner--text">CHART</span>
+                            <FontAwesomeIcon icon="chart-bar" />
+                            
+                            </Button>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'line' })}  onClick={setLineChartType}> 
+                            <FontAwesomeIcon icon="chart-line" />
+                             
                             </Button>
                         </div>
                     </Card>

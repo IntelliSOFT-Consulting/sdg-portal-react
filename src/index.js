@@ -11,7 +11,7 @@ import {
 
 ReactDOM.render(
     <BrowserRouter>
-    <App></App>
+        <App></App>
     </BrowserRouter>
     , document.getElementById('root'));
 
