@@ -187,9 +187,10 @@ text-align: center;
   .modal-xl {
     max-width: 1200px; } }
 
-.countryDemographics{
-  background-color: #008fe5;
-  color: #fff;
+.countryDemographics {
+    background-color: rgba(156, 156, 158, 0.37);
+    color: #32325c;
+    font-weight: 600;
 }
 .countryName{
   text-transform: uppercase;
