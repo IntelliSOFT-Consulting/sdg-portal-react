@@ -194,13 +194,30 @@ text-align: center;
 .countryName{
   text-transform: uppercase;
   font-size: 2rem;
-  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
 }
 
  .sdgImages .card-img{
   padding-right: 0px;
   padding-left: 0px;
   border-radius: 0px;
+}
+
+.modal-header .close {
+  padding: 0;
+  margin: 0;
+}
+
+.modal-header{
+  padding-bottom: 0;
+  padding-top: 10px;
+}
+
+.modal-dialog{
+  width: 1150px;
+  padding-top: 50px;
 }
 
 

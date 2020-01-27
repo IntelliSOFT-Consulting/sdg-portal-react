@@ -15,6 +15,8 @@ class Demographics extends Component{
         mainContainer.height = am4core.percent(100);
         mainContainer.layout = "horizontal";
 
+       // chart.creditsPosition = "top-right";
+
         //Male chart
         let maleChart = mainContainer.createChild(am4charts.XYChart);
         maleChart.paddingRight = 0;
@@ -48,7 +50,7 @@ class Demographics extends Component{
         maleSeries.interpolationDuration = 1000;
         maleSeries.columns.template.tooltipText = "Males, age {categoryY}: {valueX} ({valueX.percent.formatNumber('#.0')}%)";
         //maleSeries.sequencedInterpolation = true;
-        maleSeries.fill = am4core.color("#4f94bf");  
+        maleSeries.fill = am4core.color("#2097d4");  
 
         let maleRange = maleValueAxis.axisRanges.create();
         maleRange.value = 0;
@@ -83,7 +85,7 @@ class Demographics extends Component{
         femaleSeries.dataFields.valueX = "female";
         femaleSeries.dataFields.valueXShow = "percent";
         femaleSeries.calculatePercent = true;
-        femaleSeries.fill = am4core.color("#d795a9");   
+        femaleSeries.fill = am4core.color("#df4767");   
         femaleSeries.stroke = femaleSeries.fill;
         //femaleSeries.sequencedInterpolation = true;
         femaleSeries.columns.template.tooltipText = "Females, age {categoryY}: {valueX} ({valueX.percent.formatNumber('#.0')}%)";

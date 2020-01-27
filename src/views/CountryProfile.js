@@ -184,12 +184,14 @@ function CountryProfile (props, {match}) {
                 </Container>
                 <Container>
                     <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
-                        toggle={toggleModal} >
+                        toggle={toggleModal}  >
                         <div className="modal-header">
+                        <h5 className="countryName" cssModule={{'modal-title': 'w-100 text-center'}}>{countryData.name}</h5>
                             <button aria-label="Close" className="close" data-dismiss="modal" type="button"
                                 onClick={closeModal} >
                                 <span aria-hidden={true}>×</span>
                             </button>
+                          
                         </div>
                         <div className="modal-body" >
                             <Row className="countryDemographics">
@@ -197,7 +199,7 @@ function CountryProfile (props, {match}) {
                                     <img className="countryFlags" alt=".." src={countryData.flagURL}></img>
                                 </Col>
                                 <Col>
-                                    <label className="countryName">{countryData.name}</label>
+                                    {/* <label className="countryName">{countryData.name}</label> */}
                                 </Col>
                                 <Col></Col>
                                 <Col>

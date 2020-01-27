@@ -6,6 +6,7 @@ import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Select from 'react-select';
+import ReactMultiSelectCheckboxes, { components } from 'react-multiselect-checkboxes';
 
 import Header from "../../components/header";
 import SdgMap from "../../visualizations/sdgMap";
@@ -30,7 +31,7 @@ function Sdg(){
     const image = require.context('../../assets/img/sdg_icons', true);
     const imgSrc = image(`./${sdg.image}.jpg`);
 
-    //const countries = require("../../assets/data/countries.json");
+    const countries = require("../../assets/data/countries.json");
     const [years, setYears] = useState([]);
     const [indicators, setIndicators] = useState([]);
 
@@ -48,6 +49,30 @@ function Sdg(){
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];  
+
+    const countriesSelect = countries.map(country => ({label: country.name, value: country.alpha2Code}))
+    console.log(countriesSelect);
+
+    const SelectContainer = ({ children, ...props }) => {
+        return (
+            <components.SelectContainer {...props}>
+              {children}
+            </components.SelectContainer>
+        );
+      };
+
+    const customStyles = {
+        // control: () => ({
+        //     backgroundColor: "#34b5b8",
+        //     borderColor: "#34b5b8",
+        //     color: "#fff",
+        //     width: 200
+        // }),
+        container : base => ({
+            ...base,
+            width: 200
+        })
+    }
 
     useEffect(() => {
         if(dataSource == 'pan'){
@@ -242,7 +267,7 @@ function Sdg(){
                                     return <TabPane tabId={target.code} key={index}>
                                         <p className="p-3"> Target {target.code}: {target.title} </p>
                                         <Row className="text-center selectButtons"> 
-                                            <Col md="6">
+                                            <Col md="4">
                                                 <Button color="primary" onClick={setPanAfricanData} className={ dataSource === 'pan' ? 'active': '' } >PanAfrican MRS</Button>
                                                 <Button color="primary" onClick={setGDBData} className={ dataSource === 'gdb' ? 'active': '' }  >Global Database</Button>
                                                 
@@ -259,9 +284,9 @@ function Sdg(){
                                                     }
                                                 </Input>
                                             </Col>
-                                            <Col md="3">
+                                            <Col md="2">
                                                 <Input type="select" name="yearSelect" className="btn btn-primary" onChange={handleYearChange} value={year}> 
-                                                <option>Select year</option>
+                                                {/* <option>Year</option> */}
                                                     {
                                                         years.map((year, index) => {
                                                         return <option key={index} value={year}> {year} </option>
@@ -269,16 +294,21 @@ function Sdg(){
                                                     }
                                                 </Input>
                                             </Col>
-                                            {/* <Col md="3">
-                                                <Input type="select" name="countrySelect" className="btn btn-primary" onChange={handleYearChange} value={year}> 
-                                                    <option>Select country</option>
+                                            <Col md="3">
+                                                {/* <Input type="select" name="yearSelect" multiple className="btn btn-primary" value={year}> 
                                                     {
-                                                        years.map((year, index) => {
-                                                        return <option key={index} value={year}> {year} </option>
+                                                        countries.map((country, index) => {
+                                                        return <option key={index} value={country.alpha2Code}> {country.name} </option>
                                                         })
                                                     }
-                                                </Input>
-                                            </Col> */}
+                                                </Input> */}
+                                               <Select options={countriesSelect} 
+                                                                            placeholder={'Select country'}
+                                                                            components={SelectContainer }
+                                                                            styles={customStyles}>
+
+                                                </Select>
+                                            </Col>
                                         </Row>
                                     </TabPane>
                                 })
