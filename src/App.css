@@ -107,6 +107,19 @@
   height: 44.2px;
 }
 
+.add-country-btn{
+  text-transform: initial;
+  color: #555;
+}
+
+.add-country-btn:not(:disabled):not(.disabled):active, .add-country-btn:not(:disabled):not(.disabled).active, .show > .add-country-btn.dropdown-toggle,
+.add-country-btn:hover,
+.add-country-btn:active{
+  background-color: #fff;
+  color: #34b5b8;
+
+}
+
 
 /* Agenda 2063 */
 .agenda2063Side .nav-link{

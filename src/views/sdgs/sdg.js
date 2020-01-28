@@ -1,10 +1,12 @@
 import React, { useState , useEffect, useCallback} from "react";
 import {
-    Container, Row, Col, Card, CardImg, Button, Input, Nav, TabContent, TabPane
+    Container, Row, Col, Card, CardImg, Button, Input, Nav, TabContent, TabPane,  Modal, Label, FormGroup
 } from "reactstrap";
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classnames from "classnames";
+import { indexOf } from "@amcharts/amcharts4/.internal/core/utils/Array";
 import Select from 'react-select';
 import ReactMultiSelectCheckboxes, { components } from 'react-multiselect-checkboxes';
 
@@ -14,8 +16,9 @@ import Footer from "../../components/footer";
 import SdgChart from "../../visualizations/sdgChart";
 import SdgHighChart from "../../visualizations/sdgHighChart";
 import LineChart from "../../visualizations/lineChart";
-import classnames from "classnames";
-import { indexOf } from "@amcharts/amcharts4/.internal/core/utils/Array";
+import Countries from "../../components/countriesModal";
+import countriesModal from "../../components/countriesModal";
+
 
 function Sdg(){
     const override = css`
@@ -42,37 +45,74 @@ function Sdg(){
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
     const [isChartLoading, setIsChartLoading] = useState(false);
-    const [mapChartType, setMapChartType] = useState('map');
+    const [mapChartType, setMapChartType] = useState('chart');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
+
+    const [checkedItems, setCheckedItems] = useState({});
+    const [selectedCountries, setSelectedCountries] = useState(new Set());
     
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];  
+    let selectedCountriesSet = new Set();
 
     const countriesSelect = countries.map(country => ({label: country.name, value: country.alpha2Code}))
-    console.log(countriesSelect);
-
-    const SelectContainer = ({ children, ...props }) => {
-        return (
-            <components.SelectContainer {...props}>
-              {children}
-            </components.SelectContainer>
-        );
-      };
 
     const customStyles = {
-        // control: () => ({
-        //     backgroundColor: "#34b5b8",
-        //     borderColor: "#34b5b8",
-        //     color: "#fff",
-        //     width: 200
-        // }),
-        container : base => ({
+        container: base => ({
             ...base,
-            width: 200
-        })
+            borderRadius: 0,
+            backgroundColor : "#fff"
+          }),
+          DropdownButton : base => ({
+              ...base,
+            backgroundColor : "#34b5b8",
+            borderColor : "#34b5b8",
+          }),
+          control : base => ({
+            ...base,
+            padding: 2,
+            borderRadius: 0,
+            backgroundColor : "#34b5b8",
+            borderColor : "#34b5b8",
+          }),
+          menu : base => ({
+              ...base,
+            backgroundColor : "#34b5b8",
+            borderColor : "#34b5b8",
+            color: "#fff"
+          }),
+          option : base => ({
+              ...base,
+              textAlign : "left",
+          })
     }
+
+    const [toggleModal, setOpenModal] = useState(false);
+
+    const openModal = (countryId) => {
+        setOpenModal(true);
+    }
+    const closeModal = () => {
+        setOpenModal(false);
+    }
+
+    const handleChange = (event) => {
+        setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
+        if(event.target.checked === true){
+            selectedCountriesSet.add(event.target.name);
+        }else {
+            selectedCountriesSet.delete(event.target.name);
+        }
+        setSelectedCountries(selectedCountriesSet)
+    }
+
+    useEffect(() => {
+      sdgChartData.includes();
+      
+    })
+
 
     useEffect(() => {
         if(dataSource == 'pan'){
@@ -90,7 +130,7 @@ function Sdg(){
                 //console.log(ind);
             }
         })
-        console.log(ind);
+       // console.log(ind);
         
         setIndicators(ind);
     }, [activeTab])
@@ -105,6 +145,23 @@ function Sdg(){
             sdgData = require('../../assets/data/globalDatabase.json');
         }
 
+        const filterChartData = (myChartData) =>{
+            let filteredChartData = []
+            const keys = Object.keys(checkedItems);
+            
+            for (const key of keys){
+                for(const data of myChartData){
+                    console.log(data, checkedItems[key], key)
+                    if(data.includes(key.toLowerCase()) && checkedItems[key] == true){
+                        
+                        filteredChartData.push(data)
+                    }
+                }
+            }
+            console.log(filteredChartData);
+            setSdgChartData(filteredChartData);
+        }
+
         const loadSdgData = (sdgCsvFile) => {
             setIsLoading(true);
             Papa.parse(sdgCsvFile, {
@@ -114,7 +171,11 @@ function Sdg(){
 
                     if(isSubscribed){
                         parseMapData(results.data)
-                        parseChartData(results.data)
+
+                        const chartData = parseChartData(results.data)
+                        filterChartData(chartData);
+
+                        // parseChartData(results.data)
                         parseLineData(results.data)
                         setIsLoading(false);
                     }
@@ -125,7 +186,7 @@ function Sdg(){
         loadSdgData(csvDataSourceData);
 
         return () => isSubscribed = false
-    }, [dataSource, indicator, year, activeTab]);
+    }, [dataSource, indicator, year, activeTab, checkedItems]);
 
     const parseMapData = (data) => {
         const years = [];
@@ -152,12 +213,13 @@ function Sdg(){
         const indicatorData = [];
         data.forEach(function(d){
             if(d.Year === year ){
-                indicatorData.push([d.Entity, parseInt(d[indicator])])  
+                indicatorData.push([ d.Code, parseInt(d[indicator])])  
             }
         })
-        //console.log(indicatorData)
-        let filteredData = indicatorData.slice(0, 5);
-       setSdgChartData(filteredData)
+       // console.log(checkedItems)
+      //  let filteredData = indicatorData.slice(0, 5);
+      // setSdgChartData(indicatorData)
+       return indicatorData
     }
 
     const indexOf = (country, countriesData) => {
@@ -205,7 +267,7 @@ function Sdg(){
         })
         let filteredData = countriesData.slice(0, 5);
         setLineChartData(filteredData);
-        console.log(filteredData)
+       // console.log(filteredData)
     }
    
     const setGDBData = () => {
@@ -267,13 +329,13 @@ function Sdg(){
                                     return <TabPane tabId={target.code} key={index}>
                                         <p className="p-3"> Target {target.code}: {target.title} </p>
                                         <Row className="text-center selectButtons"> 
-                                            <Col md="4">
+                                            <Col md="5">
                                                 <Button color="primary" onClick={setPanAfricanData} className={ dataSource === 'pan' ? 'active': '' } >PanAfrican MRS</Button>
                                                 <Button color="primary" onClick={setGDBData} className={ dataSource === 'gdb' ? 'active': '' }  >Global Database</Button>
                                                 
 
                                             </Col>
-                                            <Col md="3">
+                                            <Col md="4">
                                                
                                                 <Input type="select" name="indicatorSelect" className="btn btn-primary" onChange={handleIndicatorChange} value={indicator}>
                                                     <option>Select indicator</option>
@@ -284,7 +346,7 @@ function Sdg(){
                                                     }
                                                 </Input>
                                             </Col>
-                                            <Col md="2">
+                                            <Col md="3">
                                                 <Input type="select" name="yearSelect" className="btn btn-primary" onChange={handleYearChange} value={year}> 
                                                 {/* <option>Year</option> */}
                                                     {
@@ -302,12 +364,12 @@ function Sdg(){
                                                         })
                                                     }
                                                 </Input> */}
-                                               <Select options={countriesSelect} 
-                                                                            placeholder={'Select country'}
-                                                                            components={SelectContainer }
-                                                                            styles={customStyles}>
+                                               {/* <Select options={countriesSelect} 
+                                                                            placeholderButtonLabel={'Select country'}
+                                                                            isMulti = "true"  width={300} height={44}
+                                                                            styles={customStyles} /> */}
 
-                                                </Select>
+                                                
                                             </Col>
                                         </Row>
                                     </TabPane>
@@ -322,9 +384,15 @@ function Sdg(){
                                         color={'#123abc'} loading={isLoading} />
                                     </div> 
                                 ) : (
-                                    <div className="mt-3 ">
+                                    <Row>
+                                    <Col md="11" className="mt-3 ">
                                         <SdgMap mySdgData ={sdgMapData}></SdgMap>
-                                    </div>
+                                    </Col>
+                                    <Col md="1">
+
+                                    </Col>
+                                    </Row>
+                                   
                                 )
                             ): null
                         }
@@ -337,9 +405,51 @@ function Sdg(){
                                         color={'#123abc'} loading={isLoading} />
                                     </div> 
                                 ) : (
-                                    <div className="mt-3 ">
-                                        <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
-                                    </div>
+                                    <Row>
+                                        <Col md="11" className="mt-3 ">
+                                            <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
+                                        </Col>
+                                        <Col md="1">
+                                            <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                <i className="fa fa-plus-circle mr-1" />
+                                                Add a country
+                                            </Button>
+                                            <Container>
+                                                <Modal size="lg" className="modal-dialog-centered" isOpen={toggleModal}
+                                                    toggle={toggleModal}  >
+                                                    <div className="modal-header">
+                                                    <h6 className="">Choose data to show</h6>
+                                                        <button aria-label="Close" className="close" data-dismiss="modal" type="button"
+                                                            onClick={closeModal} >
+                                                            <span aria-hidden={true}>×</span>
+                                                        </button>
+                                                        
+                                                    </div>
+                                                    <div className="modal-body" >
+                                                        <Container>
+                                                            <Row>
+                                                                {
+                                                                    countries.map((country, index) => {
+                                                                    return <Col md="4">
+                                                                    <Label key={index} check>
+                                                                                <Input type="checkbox" name={country.alpha2Code} value={country.alpha2Code} checked={!!checkedItems[country.alpha2Code]} onChange={handleChange}/>{' '}
+                                                                            {country.name}
+                                                                            </Label>
+                                                                            </Col>    
+                                                                    })
+                                                                }
+                                                        </Row>
+                                                        </Container>
+                                                       
+                                                           
+                                                            
+                                                    </div>
+                                                </Modal>
+                                            </Container>
+                                        </Col>
+                                    </Row>
+                                    
+                                   
                                 )
                             ): null
                         }
