@@ -13,7 +13,7 @@ function sdgHighChart (  {myChartData, indicator, years} ){
     const chartOptions = {
         chart: {
             type: 'column',
-            height: 550
+            height: 450
         },
         title: {
             text: ''

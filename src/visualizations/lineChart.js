@@ -12,6 +12,9 @@ function lineChart({lineChartData, years, indicator}){
     console.log(lineChartData)
 
     const chartOptions = {
+        chart: {
+            height: 450
+        },
         title: {
             text: 'SDG values over time'
         },

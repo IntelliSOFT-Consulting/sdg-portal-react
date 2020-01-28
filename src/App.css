@@ -107,6 +107,10 @@
   height: 44.2px;
 }
 
+.add-country-div{
+  display: flex; justify-content: center;
+}
+
 .add-country-btn{
   text-transform: initial;
   color: #555;
