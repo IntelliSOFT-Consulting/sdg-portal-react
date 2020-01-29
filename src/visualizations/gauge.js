@@ -13,6 +13,7 @@ class Gauge extends Component {
 
         let chart = am4core.create("chartdiv", am4charts.GaugeChart);
         chart.innerRadius = am4core.percent(82);
+        chart.creditsPosition = "bottom-right";
 
         let axis = chart.xAxes.push(new am4charts.ValueAxis());
         axis.min = 0;

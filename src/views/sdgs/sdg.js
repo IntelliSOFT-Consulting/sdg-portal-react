@@ -1,11 +1,14 @@
 import React, { useState , useEffect, useCallback} from "react";
 import {
-    Container, Row, Col, Card, CardImg, Button, Input, Nav, TabContent, TabPane
+    Container, Row, Col, Card, CardImg, Button, Input, Nav, TabContent, TabPane,  Modal, Label, FormGroup
 } from "reactstrap";
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classnames from "classnames";
+import { indexOf } from "@amcharts/amcharts4/.internal/core/utils/Array";
 import Select from 'react-select';
+import ReactMultiSelectCheckboxes, { components } from 'react-multiselect-checkboxes';
 
 import Header from "../../components/header";
 import SdgMap from "../../visualizations/sdgMap";
@@ -13,8 +16,9 @@ import Footer from "../../components/footer";
 import SdgChart from "../../visualizations/sdgChart";
 import SdgHighChart from "../../visualizations/sdgHighChart";
 import LineChart from "../../visualizations/lineChart";
-import classnames from "classnames";
-import { indexOf } from "@amcharts/amcharts4/.internal/core/utils/Array";
+import Countries from "../../components/countriesModal";
+import countriesModal from "../../components/countriesModal";
+
 
 function Sdg(){
     const override = css`
@@ -30,7 +34,7 @@ function Sdg(){
     const image = require.context('../../assets/img/sdg_icons', true);
     const imgSrc = image(`./${sdg.image}.jpg`);
 
-    //const countries = require("../../assets/data/countries.json");
+    const countries = require("../../assets/data/countries.json");
     const [years, setYears] = useState([]);
     const [indicators, setIndicators] = useState([]);
 
@@ -41,23 +45,95 @@ function Sdg(){
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
     const [isChartLoading, setIsChartLoading] = useState(false);
-    const [mapChartType, setMapChartType] = useState('map');
+    const [mapChartType, setMapChartType] = useState('chart');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
+
+    const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true});
+    const [selectedCountries, setSelectedCountries] = useState(new Set());
     
     let csvDataSourceData = '';
     let sdgData = '';
-    let ind = [];
+    let ind = [];  
+    let selectedCountriesSet = new Set();
 
-    const getIndicators = useCallback(() => {
+    const countriesSelect = countries.map(country => ({label: country.name, value: country.alpha2Code}))
+
+    const customStyles = {
+        container: base => ({
+            ...base,
+            borderRadius: 0,
+            backgroundColor : "#fff"
+          }),
+          DropdownButton : base => ({
+              ...base,
+            backgroundColor : "#34b5b8",
+            borderColor : "#34b5b8",
+          }),
+          control : base => ({
+            ...base,
+            padding: 2,
+            borderRadius: 0,
+            backgroundColor : "#34b5b8",
+            borderColor : "#34b5b8",
+          }),
+          menu : base => ({
+              ...base,
+            backgroundColor : "#34b5b8",
+            borderColor : "#34b5b8",
+            color: "#fff"
+          }),
+          option : base => ({
+              ...base,
+              textAlign : "left",
+          })
+    }
+
+    const [toggleModal, setOpenModal] = useState(false);
+
+    const openModal = (countryId) => {
+        setOpenModal(true);
+    }
+    const closeModal = () => {
+        setOpenModal(false);
+    }
+
+    const handleChange = (event) => {
+        setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
+        if(event.target.checked === true){
+            selectedCountriesSet.add(event.target.name);
+        }else {
+            selectedCountriesSet.delete(event.target.name);
+        }
+        setSelectedCountries(selectedCountriesSet)
+    }
+
+    useEffect(() => {
+      sdgChartData.includes();
+      console.log(checkedItems);
+    })
+
+
+    useEffect(() => {
+        if(dataSource == 'pan'){
+            csvDataSourceData = require("../../assets/data/sdg/pan.csv");
+            sdgData = require('../../assets/data/globalDatabase.json');
+        }else if (dataSource == 'gdb'){
+            csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
+            sdgData = require('../../assets/data/globalDatabase.json');
+        }
+
         const targetData = sdgData[0].targets;
         targetData.forEach(function(data){
-            if(data.code === activeTab){
+            if(data.code == activeTab){
                 ind = data.indicators;
+                //console.log(ind);
             }
         })
-        return ind;
-    }, [indicator]);    
+       // console.log(ind);
+        
+        setIndicators(ind);
+    }, [activeTab])
 
     useEffect(() => {
         let isSubscribed = true;
@@ -68,30 +144,52 @@ function Sdg(){
             csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
             sdgData = require('../../assets/data/globalDatabase.json');
         }
-        const indicators = getIndicators();
-        setIndicators(indicators);
+
+        const filterChartData = (myChartData) =>{
+            let filteredChartData = []
+            const keys = Object.keys(checkedItems);
+            
+            for (const key of keys){
+                for(const data of myChartData){
+                    console.log(data, checkedItems[key], key)
+                    if(data.includes(key.toLowerCase()) && checkedItems[key] == true){
+                        for(const country of countries){
+                            if (country.alpha2Code == key){
+                                data[0] = country.name
+                            }
+                        }
+                        
+                        filteredChartData.push(data)
+                    }
+                }
+            }
+            console.log(filteredChartData);
+
+            setSdgChartData(filteredChartData);
+        }
 
         const loadSdgData = (sdgCsvFile) => {
-            setIsLoading(true);
+            //setIsLoading(true);
             Papa.parse(sdgCsvFile, {
                 download: true,
                 header: true,
                 complete: function(results){
 
                     if(isSubscribed){
-                        parseMapData(results.data)
-                        parseChartData(results.data)
+                        parseMapData(results.data);
+                        const chartData = parseChartData(results.data)
+                        filterChartData(chartData);
+
                         parseLineData(results.data)
-                        setIsLoading(false);
+                       // setIsLoading(false);
                     }
-                    
                 }
             })
         }
         loadSdgData(csvDataSourceData);
 
         return () => isSubscribed = false
-    }, [dataSource, indicator, year, activeTab]);
+    }, [dataSource, indicator, year, activeTab, checkedItems]);
 
     const parseMapData = (data) => {
         const years = [];
@@ -118,11 +216,10 @@ function Sdg(){
         const indicatorData = [];
         data.forEach(function(d){
             if(d.Year === year ){
-                indicatorData.push([d.Entity, parseInt(d[indicator])])  
+                indicatorData.push([ d.Code, parseInt(d[indicator])])  
             }
         })
-        //console.log(indicatorData)
-       setSdgChartData(indicatorData)
+       return indicatorData
     }
 
     const indexOf = (country, countriesData) => {
@@ -161,9 +258,16 @@ function Sdg(){
            
              
         })
+
+        countriesData.forEach(function(countryData){
+            let data = countryData.data;
+            let filteredData = data.slice(0, 5);
+            countryData.data = filteredData
+
+        })
         let filteredData = countriesData.slice(0, 5);
         setLineChartData(filteredData);
-        console.log(filteredData)
+       // console.log(filteredData)
     }
    
     const setGDBData = () => {
@@ -225,13 +329,13 @@ function Sdg(){
                                     return <TabPane tabId={target.code} key={index}>
                                         <p className="p-3"> Target {target.code}: {target.title} </p>
                                         <Row className="text-center selectButtons"> 
-                                            <Col md="6">
+                                            <Col md="5">
                                                 <Button color="primary" onClick={setPanAfricanData} className={ dataSource === 'pan' ? 'active': '' } >PanAfrican MRS</Button>
                                                 <Button color="primary" onClick={setGDBData} className={ dataSource === 'gdb' ? 'active': '' }  >Global Database</Button>
                                                 
 
                                             </Col>
-                                            <Col md="3">
+                                            <Col md="4">
                                                
                                                 <Input type="select" name="indicatorSelect" className="btn btn-primary" onChange={handleIndicatorChange} value={indicator}>
                                                     <option>Select indicator</option>
@@ -244,7 +348,7 @@ function Sdg(){
                                             </Col>
                                             <Col md="3">
                                                 <Input type="select" name="yearSelect" className="btn btn-primary" onChange={handleYearChange} value={year}> 
-                                                <option>Select year</option>
+                                                {/* <option>Year</option> */}
                                                     {
                                                         years.map((year, index) => {
                                                         return <option key={index} value={year}> {year} </option>
@@ -252,81 +356,129 @@ function Sdg(){
                                                     }
                                                 </Input>
                                             </Col>
-                                            {/* <Col md="3">
-                                                <Input type="select" name="countrySelect" className="btn btn-primary" onChange={handleYearChange} value={year}> 
-                                                    <option>Select country</option>
-                                                    {
-                                                        years.map((year, index) => {
-                                                        return <option key={index} value={year}> {year} </option>
-                                                        })
-                                                    }
-                                                </Input>
-                                            </Col> */}
                                         </Row>
                                     </TabPane>
                                 })
                             }
                         </TabContent>  
-                        {
-                            mapChartType === 'map' ? (
-                                 isLoading ? (
-                                    <div className='sweet-loading mt-4'>
-                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                        color={'#123abc'} loading={isLoading} />
-                                    </div> 
-                                ) : (
-                                    <div className="mt-3 ">
-                                        <SdgMap mySdgData ={sdgMapData}></SdgMap>
-                                    </div>
-                                )
-                            ): null
-                        }
 
-                        {
-                            mapChartType === 'chart' ? (
-                                 isLoading ? (
-                                    <div className='sweet-loading mt-4'>
-                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                        color={'#123abc'} loading={isLoading} />
-                                    </div> 
-                                ) : (
-                                    <div className="mt-3 ">
-                                        <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
-                                    </div>
-                                )
-                            ): null
-                        }
+                        <Row>
+                            <Col md="11">
+                                {
+                                    mapChartType === 'map' ? (
+                                        isLoading ? (
+                                            <div className='sweet-loading mt-4'>
+                                                <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                                color={'#123abc'} loading={isLoading} />
+                                            </div> 
+                                        ) : (
+                                            <Row>
+                                            <Col md="11" className="mt-3 ">
+                                                <SdgMap mySdgData ={sdgMapData}></SdgMap>
+                                            </Col>
+                                            <Col md="1">
 
-                        {
-                            mapChartType === 'line' ? (
-                                 isLoading ? (
-                                    <div className='sweet-loading mt-4'>
-                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                        color={'#123abc'} loading={isLoading} />
-                                    </div> 
-                                ) : (
-                                    <div className="mt-3 ">
-                                        <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
-                                    </div>
-                                )
-                            ): null
-                        }
+                                            </Col>
+                                            </Row>
+                                        
+                                        )
+                                    ): null
+                                }
 
-                        <div>
-                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
-                            <FontAwesomeIcon icon="globe-africa" />
-                               
-                            </Button>
-                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
-                            <FontAwesomeIcon icon="chart-bar" />
-                            
-                            </Button>
-                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'line' })}  onClick={setLineChartType}> 
-                            <FontAwesomeIcon icon="chart-line" />
-                             
-                            </Button>
+                                {
+                                    mapChartType === 'chart' ? (
+                                        isLoading ? (
+                                            <div className='sweet-loading mt-4'>
+                                                <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                                color={'#123abc'} loading={isLoading} />
+                                            </div> 
+                                        ) : (
+                                            <div>
+                                                <div className="add-country-div">
+                                                    <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                            <i className="fa fa-plus-circle mr-1" />
+                                                            Add a country
+                                                    </Button>
+                                                </div>
+                                                
+                                                <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
+                                            </div>        
+                                        )
+                                    ): null
+                                }
+
+                                {
+                                    mapChartType === 'line' ? (
+                                        isLoading ? (
+                                            <div className='sweet-loading mt-4'>
+                                                <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                                color={'#123abc'} loading={isLoading} />
+                                            </div> 
+                                        ) : (
+                                            <div>
+                                            <div className="add-country-div">
+                                                <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                        <i className="fa fa-plus-circle mr-1" />
+                                                        Add a country
+                                                </Button>
+                                            </div>
+                                         
+                                                <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
+                                            </div>
+                                        )
+                                    ): null
+                                }  
+                            </Col>
+
+                            <Col md="1">
+                            <div>
+                                <br></br><br></br>
+                                <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
+                                <FontAwesomeIcon icon="globe-africa" />
+                                
+                                </Button>
+                                <br></br><br></br>
+                                <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
+                                <FontAwesomeIcon icon="chart-bar" />
+                                
+                                </Button>
+                                <br></br><br></br>
+                                <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'line' })}  onClick={setLineChartType}> 
+                                <FontAwesomeIcon icon="chart-line" />
+                                
+                                </Button>
                         </div>
+                            </Col>
+                        </Row>
                     </Card>
+                </Container>
+                <Container>
+                    <Modal size="lg" className="modal-dialog-centered" isOpen={toggleModal}
+                        toggle={toggleModal}  >
+                        <div className="modal-header">
+                        <h6 className="">Choose data to show</h6>
+                            <button aria-label="Close" className="close" data-dismiss="modal" type="button"
+                                onClick={closeModal} >
+                                <span aria-hidden={true}>×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body" >
+                            <Container>
+                                <Row>
+                                    {
+                                        countries.map((country, index) => {
+                                        return <Col md="4">
+                                        <Label key={index} check>
+                                                    <Input type="checkbox" name={country.alpha2Code} value={country.alpha2Code} checked={!!checkedItems[country.alpha2Code]} onChange={handleChange}/>{' '}
+                                                {country.name}
+                                                </Label>
+                                                </Col>    
+                                        })
+                                    }
+                            </Row>
+                            </Container>   
+                        </div>
+                    </Modal>
                 </Container>
             </div>
             <Footer></Footer>

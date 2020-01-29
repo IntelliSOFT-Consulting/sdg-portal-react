@@ -12,15 +12,18 @@ function lineChart({lineChartData, years, indicator}){
     console.log(lineChartData)
 
     const chartOptions = {
+        chart: {
+            height: 450
+        },
         title: {
-            text: 'SDG values over time'
+            text: ''
         },
         subtitle: {
-            text: 'Source: sdg.org'
+            text: ''
         },
         xAxis: {
             // tickInterval: 10,
-            categories: years,
+            categories: ["2012", "2013", "2014", "2015", "2017" ],
             align: "left",
             startOnTick: false,
             endOnTick: false,
@@ -44,7 +47,7 @@ function lineChart({lineChartData, years, indicator}){
                 },
                 // pointStart: 1900,
                 animation: {
-                    duration: 10000
+                    duration: 5000
                 }
             }
         },

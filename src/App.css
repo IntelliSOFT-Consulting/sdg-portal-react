@@ -107,6 +107,23 @@
   height: 44.2px;
 }
 
+.add-country-div{
+  display: flex; justify-content: center;
+}
+
+.add-country-btn{
+  text-transform: initial;
+  color: #555;
+}
+
+.add-country-btn:not(:disabled):not(.disabled):active, .add-country-btn:not(:disabled):not(.disabled).active, .show > .add-country-btn.dropdown-toggle,
+.add-country-btn:hover,
+.add-country-btn:active{
+  background-color: #fff;
+  color: #34b5b8;
+
+}
+
 
 /* Agenda 2063 */
 .agenda2063Side .nav-link{
@@ -187,20 +204,38 @@ text-align: center;
   .modal-xl {
     max-width: 1200px; } }
 
-.countryDemographics{
-  background-color: #008fe5;
-  color: #fff;
+.countryDemographics {
+    background-color: rgba(156, 156, 158, 0.37);
+    color: #32325c;
+    font-weight: 600;
 }
 .countryName{
   text-transform: uppercase;
   font-size: 2rem;
-  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
 }
 
  .sdgImages .card-img{
   padding-right: 0px;
   padding-left: 0px;
   border-radius: 0px;
+}
+
+.modal-header .close {
+  padding: 0;
+  margin: 0;
+}
+
+.modal-header{
+  padding-bottom: 0;
+  padding-top: 10px;
+}
+
+.modal-dialog{
+  width: 1150px;
+  padding-top: 50px;
 }
 
 

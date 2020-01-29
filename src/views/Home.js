@@ -3,6 +3,13 @@ import Header from "../components/homeHeader";
 import { Link, Redirect} from 'react-router-dom'
 import { Container, Col, Row} from "reactstrap";
 import Select from 'react-select';
+import styled, { keyframes } from "styled-components";
+import HeadShake from "@bit/formidablelabs.react-animations.head-shake";
+const HeadShakeAnimation = keyframes`${HeadShake}`;
+const HeadShakeDiv = styled.div`
+  animation: infinite 4s ${HeadShakeAnimation};
+`;
+
 
 
 class Home extends React.Component {
@@ -33,11 +40,14 @@ class Home extends React.Component {
         
     };
     
+    
     render(){
         const countriesJson = require('../assets/data/trial.json');
         const countries = countriesJson.map(country => ({ label: country.name, value: country.value }));
 
         const { selectedOption } = this.state;
+
+        
 
 
         return(
@@ -56,7 +66,12 @@ class Home extends React.Component {
                         <Row>
                             <Col md="4"></Col>
                             <Col md="4">
+                            
+                                <HeadShakeDiv>
                                 <Link to="/Sdgs" className="btn btn-warning text-white">Explore Development Data</Link>
+                                
+                                </HeadShakeDiv>
+                               
                             </Col>
                             <Col md="3">
                             

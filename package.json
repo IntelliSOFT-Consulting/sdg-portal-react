@@ -5,6 +5,8 @@
   "homepage": "https://test.sdgca.intellisoftkenya.com/build",
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.10",
+    "@bit/formidablelabs.react-animations.head-shake": "^1.0.0",
+    "@bit/formidablelabs.react-animations.shake": "^1.0.0",
     "@emotion/core": "^10.0.22",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-brands-svg-icons": "^5.12.0",
@@ -18,10 +20,14 @@
     "jquery": "^3.4.1",
     "node-sass": "^4.13.0",
     "papaparse": "^5.1.0",
+    "radium": "^0.26.0",
     "react": "^16.12.0",
+    "react-animated-css": "^1.2.1",
+    "react-animations": "^1.0.0",
     "react-charts": "^2.0.0-beta.6",
     "react-dom": "^16.12.0",
     "react-gauge-chart": "^0.2.4",
+    "react-multiselect-checkboxes": "^0.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
     "react-select": "^2.0.0-beta.7",
@@ -29,6 +35,7 @@
     "react-spinners": "^0.6.1",
     "reactstrap": "^8.1.1",
     "recharts": "^2.0.0-beta.1",
+    "styled-components": "^5.0.0",
     "victory": "^34.0.0"
   },
   "scripts": {
