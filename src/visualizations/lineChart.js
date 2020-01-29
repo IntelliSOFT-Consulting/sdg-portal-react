@@ -16,10 +16,10 @@ function lineChart({lineChartData, years, indicator}){
             height: 450
         },
         title: {
-            text: 'SDG values over time'
+            text: ''
         },
         subtitle: {
-            text: 'Source: sdg.org'
+            text: ''
         },
         xAxis: {
             // tickInterval: 10,

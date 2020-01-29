@@ -153,12 +153,18 @@ function Sdg(){
                 for(const data of myChartData){
                     console.log(data, checkedItems[key], key)
                     if(data.includes(key.toLowerCase()) && checkedItems[key] == true){
+                        for(const country of countries){
+                            if (country.alpha2Code == key){
+                                data[0] = country.name
+                            }
+                        }
                         
                         filteredChartData.push(data)
                     }
                 }
             }
             console.log(filteredChartData);
+
             setSdgChartData(filteredChartData);
         }
 
@@ -213,9 +219,6 @@ function Sdg(){
                 indicatorData.push([ d.Code, parseInt(d[indicator])])  
             }
         })
-       // console.log(checkedItems)
-      //  let filteredData = indicatorData.slice(0, 5);
-      // setSdgChartData(indicatorData)
        return indicatorData
     }
 
@@ -353,21 +356,6 @@ function Sdg(){
                                                     }
                                                 </Input>
                                             </Col>
-                                            <Col md="3">
-                                                {/* <Input type="select" name="yearSelect" multiple className="btn btn-primary" value={year}> 
-                                                    {
-                                                        countries.map((country, index) => {
-                                                        return <option key={index} value={country.alpha2Code}> {country.name} </option>
-                                                        })
-                                                    }
-                                                </Input> */}
-                                               {/* <Select options={countriesSelect} 
-                                                                            placeholderButtonLabel={'Select country'}
-                                                                            isMulti = "true"  width={300} height={44}
-                                                                            styles={customStyles} /> */}
-
-                                                
-                                            </Col>
                                         </Row>
                                     </TabPane>
                                 })
@@ -427,7 +415,14 @@ function Sdg(){
                                                 color={'#123abc'} loading={isLoading} />
                                             </div> 
                                         ) : (
-                                            <div className="mt-3 ">
+                                            <div>
+                                            <div className="add-country-div">
+                                                <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                        <i className="fa fa-plus-circle mr-1" />
+                                                        Add a country
+                                                </Button>
+                                            </div>
+                                         
                                                 <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
                                             </div>
                                         )
