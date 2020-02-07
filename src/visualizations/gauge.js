@@ -5,7 +5,7 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 am4core.useTheme(am4themes_animated);
 
-function Gauge( {barometerData, country}) {
+function Gauge( {barometerData, country, sdg}) {
   useEffect(() => {
 
     let gaugeData = require('../assets/data/1BarometerChartData.json');
@@ -84,7 +84,15 @@ function Gauge( {barometerData, country}) {
 
     barometerData.forEach(function(countryBarometerData){
       if(countryBarometerData.code == country ){
-        let score = countryBarometerData.Score;
+        let score = 0;
+        let sdgCode = ''
+        if(sdg == 18){
+          score = countryBarometerData.Score;
+        }else{
+            sdgCode = 'goal' + sdg;
+            score = countryBarometerData[sdgCode]
+        }
+        
         // Animate
         setInterval(() => {
           let value = parseInt(score);

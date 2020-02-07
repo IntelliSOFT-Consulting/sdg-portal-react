@@ -9,7 +9,8 @@ import {
     Modal,
     Row,
     Col,
-    CardImg
+    CardImg,
+    Button
 } from "reactstrap";
 
 import {
@@ -47,6 +48,7 @@ function CountryProfile (props, ) {
 
     const [countryProfileMapData, setCountryProfileMapData] = useState([]);
     const [countryProfileData, setCountryProfileData] = useState([]);
+    const [activeSdg, setActiveSdg] = useState(18);
 
     // Modal operations
     const [toggleModal, setOpenModal] = useState(country ? true: false);
@@ -138,6 +140,13 @@ function CountryProfile (props, ) {
     const closeModal = () => {
         setOpenModal(false);
     }
+
+    const handleSdgChange = (e) => {
+        setActiveSdg(e.currentTarget.value);
+        //console.log(e.currentTarget.value);
+    }
+
+
 
     let code = "hc-a2";
 
@@ -245,17 +254,18 @@ function CountryProfile (props, ) {
                                     <Row className="no-gutters sdgImages" >
                                         {sdgsData.map(function(sdg, index){
                                             let  imgSrc = sdgsImages(`./${sdg.image}.jpg`)
-                                            return <Col md="2" sm="4" key={index}>
-                                                        <Link to="">
-                                                            <CardImg className="countryProfileSdgsImg" key={index} alt="..." src={ imgSrc }></CardImg>  
-                                                        </Link>   
+                                            let sdgIndex = index+1;
+                                            return <Col md="2" sm="4" key={sdgIndex}>
+                                                        <Button onClick={handleSdgChange} value={sdgIndex}>
+                                                            <CardImg className="countryProfileSdgsImg" alt={index} src={ imgSrc }></CardImg>  
+                                                        </Button>   
                                                     </Col>
                                         })}
                                     </Row>
                                 </Col>
                                 <Col>
                                     <h5 className="display-4 mt-2 mb-4 text-center">Perfomance by Goal </h5>
-                                    <Gauge barometerData={countryProfileData} country={countryData.code}></Gauge>
+                                    <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge>
                                 </Col>
                             </Row>
                             <Row>

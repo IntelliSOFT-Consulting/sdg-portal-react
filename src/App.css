@@ -321,6 +321,10 @@ text-align: center;
   border-radius: 0px;
 }
 
+.sdgImages .btn{
+  padding: 0px;
+}
+
 .modal-header .close {
   padding: 0;
   margin: 0;
