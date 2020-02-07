@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Gauge from "../visualizations/gauge";
@@ -21,6 +21,8 @@ import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
+import CountryProfileMap from "../visualizations/sdgMap";
+
 import * as am4core from "@amcharts/amcharts4/core";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
@@ -29,12 +31,12 @@ am4core.useTheme(am4themes_animated);
 const data = require('../assets/data/trial.json');
 highchartsMap(Highcharts);
 
-
-function CountryProfile (props, {match}) {
+function CountryProfile (props, ) {
     const flagImages = require.context('../assets/img/country_flags', true);
     const sdgsData = require('../assets/data/sdgs.json');
     const sdgsImages = require.context('../assets/img/sdg_icons', true);
     const countriesData = require('../assets/data/countryProfile.json');
+    const Papa = require("papaparse/papaparse.min.js");
 
     let country = 0;
     let countryName = '';
@@ -43,23 +45,8 @@ function CountryProfile (props, {match}) {
     let countryPoverty = '';
     let countryGDP = '';
 
-    console.log(props.location.pathname)
-    
-
-    if (props.location.state != null){
-        country = props.location.state;
-        for(let key in countriesData){
-            let newKey = parseInt(key, 10);
-            if((newKey+1) === country.value){
-                let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
-                countryName = countriesData[key].name;
-                countryCapital = countriesData[key].capital;
-                countryPoverty = countriesData[key].povertyLine
-                countryGDP = countriesData[key].gdpPerCapita
-                countryFlag = imgSrc;
-            }
-        }
-    }
+    const [countryProfileMapData, setCountryProfileMapData] = useState([]);
+    const [countryProfileData, setCountryProfileData] = useState([]);
 
     // Modal operations
     const [toggleModal, setOpenModal] = useState(country ? true: false);
@@ -83,30 +70,76 @@ function CountryProfile (props, {match}) {
         "gdpPerCapita":0
     });
 
-    const openModal = (countryId) => {
-        setOpenModal(true);
-        
+    if (props.location.state != null){
+        country = props.location.state;
         for(let key in countriesData){
             let newKey = parseInt(key, 10);
-            if((newKey+1) === countryId){
+            if((newKey+1) === country.value){
                 let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
-                setCountryData({
-                    "id": countriesData[key].id,
-                    "name": countriesData[key].name,
-                    "capital":countriesData[key].capital,
-                    "region":countriesData[key].region,
-                    "flagURL":imgSrc,
-                    "size":countriesData[key].size,
-                    "povertyLine":countriesData[key].povertyLine,
-                    "gdpPerCapita":countriesData[key].gdpPerCapita
-                  }); 
+                countryName = countriesData[key].name;
+                countryCapital = countriesData[key].capital;
+                countryPoverty = countriesData[key].povertyLine
+                countryGDP = countriesData[key].gdpPerCapita
+                countryFlag = imgSrc;
             }
         }
+    }
+
+    const parseNormalizedData = (data) => {
+        const normalizedData = [];
+        data.forEach(function(d){
+            normalizedData.push({
+                "code": (d.id),
+                "value": parseFloat(d.Score),
+                "name": d.Country
+            })
+        })
+        console.log(normalizedData);
+        setCountryProfileMapData(normalizedData);
+    }
+
+    useEffect(() => {
+        const normalizedData = require('../assets/data/normalizedGoalValues.csv')
+        const loadNormalizedData = (normalizedDataFile) => {
+            Papa.parse(normalizedDataFile, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results){
+                    console.log(results.data);
+                    parseNormalizedData(results.data);
+                    setCountryProfileData(results.data);
+                }
+            })
+        }
+        loadNormalizedData(normalizedData);
+    }, []);
+
+    const openModal = (countryCode) => {
+        setOpenModal(true);
+
+        countriesData.forEach(function(countryData){
+            if(countryData.code == countryCode){
+                let imgSrc = flagImages(`./${countryData.flagURL}.png`);
+                setCountryData({
+                    "id": countryData.id,
+                    "name": countryData.name,
+                    "capital":countryData.capital,
+                    "region":countryData.region,
+                    "flagURL":imgSrc,
+                    "size":countryData.size,
+                    "povertyLine":countryData.povertyLine,
+                    "gdpPerCapita":countryData.gdpPerCapita
+                  });
+            }
+        })
     }
 
     const closeModal = () => {
         setOpenModal(false);
     }
+
+    let code = "hc-a2";
 
     const mapOptions = {
         chart: {
@@ -132,8 +165,7 @@ function CountryProfile (props, {match}) {
                 point: {
                     events: {
                         click: function () {
-                        //loadCountryData(this.value);
-                        openModal(this.value);
+                        openModal(this.properties[code]);
                         }
                     }
                 }
@@ -149,7 +181,7 @@ function CountryProfile (props, {match}) {
         },
     
         series: [{
-            data: data,
+            data: countryProfileMapData,
             mapData: africaMapData,
             joinBy: ['iso-a2', 'code'],
             name: 'Country Profile',
@@ -168,8 +200,6 @@ function CountryProfile (props, {match}) {
         }]
       }
 
-   
-
     return(
         
         <>
@@ -181,6 +211,7 @@ function CountryProfile (props, {match}) {
                         highcharts={Highcharts}
                         options={mapOptions}
                         />
+                        
                 </Container>
                 <Container>
                     <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
@@ -224,7 +255,7 @@ function CountryProfile (props, {match}) {
                                 </Col>
                                 <Col>
                                     <h5 className="display-4 mt-2 mb-4 text-center">Perfomance by Goal </h5>
-                                    <Gauge></Gauge>
+                                    <Gauge barometerData={countryProfileData} country={countryData.code}></Gauge>
                                 </Col>
                             </Row>
                             <Row>
