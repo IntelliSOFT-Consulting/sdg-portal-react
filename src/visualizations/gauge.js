@@ -87,8 +87,8 @@ function Gauge( {barometerData, country}) {
         let score = countryBarometerData.Score;
         // Animate
         setInterval(() => {
-          let value = score;
-          label.text = value;
+          let value = parseInt(score);
+          label.text = Math.round(score *100)/100 + "%";
           let animation = new am4core.Animation(hand, {
             property: "value",
             to: value
