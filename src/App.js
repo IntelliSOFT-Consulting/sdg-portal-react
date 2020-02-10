@@ -33,7 +33,7 @@ function App() {
     <Router basename={'/build'}>
       <Switch>
             {/* <Route exact path="/Sdgs" component={Sdgs}></Route> */}
-            <Route exact path="/Sdgs1" component={Sdgs1}></Route>
+            <Route exact path="/Sdgs" component={Sdgs1}></Route>
             <Route exact path="/Sdgs/Sdg_1" component={Sdg}></Route>
             <Route path="/Dashboard" component={Dashboard}></Route>
             <Route path="/CountryProfile" component={CountryProfile}></Route>

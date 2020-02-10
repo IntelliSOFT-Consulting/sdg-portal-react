@@ -101,7 +101,7 @@ function Gauge( {barometerData, country, sdg}) {
             property: "value",
             to: value
           }, 1000, am4core.ease.cubicOut).start();
-        }, 2000);
+        }, 1000);
       }
     })
 
@@ -116,7 +116,11 @@ function Gauge( {barometerData, country, sdg}) {
     createGrid(50);
     createGrid(75);
     createGrid(100);
-  })
+
+    return function cleanUp(){
+      chart.dispose();
+    }
+  }, [sdg])
 
     return (
       <>
