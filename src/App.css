@@ -325,6 +325,22 @@ text-align: center;
   padding: 0px;
 }
 
+.sdgsHeader .navbar{
+  width: 90%;
+}
+
+.sdgsHeader .navbar-brand{
+   width: 10%;
+}
+
+.sdgsHeader .nav{
+  width: 85%;
+}
+
+.sdgsHeader .sdg-icon-padding img{
+  padding-right: 0px;
+  padding-left: 0px;
+}
 .modal-header .close {
   padding: 0;
   margin: 0;

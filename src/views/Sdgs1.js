@@ -7,15 +7,19 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from "classnames";
 
-import Header from "../components/header";
+import Header from "../components/sdgsHeader";
 import SdgMap from "../visualizations/sdgMap";
 import Footer from "../components/footer";
 import SdgHighChart from "../visualizations/sdgHighChart";
 import LineChart from "../visualizations/lineChart";
 
 function Sdgs1() {
-    const images = require.context('../assets/img/sdg_icons', true);
+    const images = require.context('../assets/img/sdgs_icons', true);
     const sdgs = [
+        {
+           id:0,
+            image: "E_SDG_Icons-00"
+        },
         {
             id :1,
             image : "E_SDG_Icons-01"
@@ -67,9 +71,6 @@ function Sdgs1() {
             } ,{
             id:17,
             image: "E_SDG_Icons-17"
-        },{
-            id:18,
-            image: "E_SDG_Icons-18"
         }
         
     ];
@@ -84,7 +85,7 @@ function Sdgs1() {
     const sdg = data[0];
     const targets = sdg.targets;
 
-    const image = require.context('../assets/img/sdg_icons', true);
+    const image = require.context('../assets/img/sdgs_icons', true);
     const imgSrc = image(`./${sdg.image}.jpg`);
 
     const countries = require("../assets/data/countries.json");
@@ -323,7 +324,7 @@ function Sdgs1() {
         <Header></Header>
             <main className="sdg">
             <div className="container">  
-                <Row className="sdg-icon-padding">
+                {/* <Row className="sdg-icon-padding">
                     {sdgs.map(function(sdg, index){
                         let  imgSrc = images(`./${sdg.image}.jpg`);
                         let sdgNumber = index + 1;
@@ -334,7 +335,7 @@ function Sdgs1() {
                                     </Link>   
                                 </Col>
                     })}
-                </Row>
+                </Row> */}
                 <Row className="mt-4 optionButtons ">
                     <Col>
                         <Input type="select" name="targetSelect" onChange={handleTargetClick} value={target}>
