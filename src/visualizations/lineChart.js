@@ -9,7 +9,6 @@ import HC_exporting from 'highcharts/modules/exporting';
 HC_exporting(Highcharts)
 
 function lineChart({lineChartData, years, indicator}){
-    console.log(lineChartData)
 
     const chartOptions = {
         chart: {

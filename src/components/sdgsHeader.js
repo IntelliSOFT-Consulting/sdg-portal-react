@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
      BrowserRouter as Router, 
      Link
@@ -14,17 +14,15 @@ import {
     Nav,
     Row,
     Col,
-    CardImg
+    CardImg,
+    Button
   } from "reactstrap";
 
-function Header(){
+function Header( {onActiveSdgChanged} ){
 
     const images = require.context('../assets/img/sdgs_icons', true);
     const sdgs = [
-        {
-           id:0,
-            image: "E_SDG_Icons-00"
-        },
+        
         {
             id :1,
             image : "E_SDG_Icons-01"
@@ -80,6 +78,13 @@ function Header(){
         
     ];
 
+    const [activeSdg, setActiveSdg] = useState(0);
+
+    const handleSdgChange = (e) => {
+        setActiveSdg(e.currentTarget.value);
+        onActiveSdgChanged(e.currentTarget.value);
+    }
+
         return (
             <> 
             <header className="header-global sdgsHeader">
@@ -95,8 +100,10 @@ function Header(){
                                 let sdgNumber = index + 1;
                                 let url = "Sdgs/Sdg_" + sdgNumber;
                                 return <Col key={index}>
-                                                <CardImg  alt="..." src={ imgSrc }></CardImg>  
-                                        </Col>
+                                            <Button onClick={handleSdgChange} value={index}>
+                                                <CardImg  alt="..." src={ imgSrc }></CardImg>
+                                            </Button>
+                                </Col>
                         })}
                     </Nav>
                 </Navbar>

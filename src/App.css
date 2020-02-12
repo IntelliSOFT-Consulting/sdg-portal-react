@@ -341,6 +341,10 @@ text-align: center;
   padding-right: 0px;
   padding-left: 0px;
 }
+
+.sdgsHeader .sdg-icon-padding .btn{
+  padding: 0px;
+}
 .modal-header .close {
   padding: 0;
   margin: 0;

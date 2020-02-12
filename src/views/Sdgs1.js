@@ -1,11 +1,5 @@
 import React, { useState , useEffect} from "react";
-import {Link} from 'react-router-dom';
-
-import { Container, Row, Col, Card, CardImg, Button, Input, Nav, TabContent, TabPane,  Modal, Label, CustomInput } from "reactstrap";
-import { css } from '@emotion/core';
-import ClipLoader from 'react-spinners/ClipLoader';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import classnames from "classnames";
+import { Row, Col, Input } from "reactstrap";
 
 import Header from "../components/sdgsHeader";
 import SdgMap from "../visualizations/sdgMap";
@@ -14,92 +8,23 @@ import SdgHighChart from "../visualizations/sdgHighChart";
 import LineChart from "../visualizations/lineChart";
 
 function Sdgs1() {
-    const images = require.context('../assets/img/sdgs_icons', true);
-    const sdgs = [
-        {
-           id:0,
-            image: "E_SDG_Icons-00"
-        },
-        {
-            id :1,
-            image : "E_SDG_Icons-01"
-        },{
-            id:2,
-            image : "E_SDG_Icons-02"
-        },{
-            id:3,
-            image: "E_SDG_Icons-03"
-        },{
-            id:4,
-            image: "E_SDG_Icons-04"
-        },{
-            id:5,
-            image: "E_SDG_Icons-05"
-        },{
-            id:6,
-            image: "E_SDG_Icons-06"
-        },{
-            id:7,
-            image: "E_SDG_Icons-07"
-        },{
-            id:8,
-            image: "E_SDG_Icons-08"
-        },{
-            id:9,
-            image: "E_SDG_Icons-09"
-        },{
-            id:10,
-            image: "E_SDG_Icons-10"
-        },{
-            id:11,
-            image: "E_SDG_Icons-11"
-        },{
-            id:12,
-            image: "E_SDG_Icons-12"
-        },{
-            id:13,
-            image: "E_SDG_Icons-13"
-        },{
-            id:14,
-            image: "E_SDG_Icons-14"
-        },{
-            id:15,
-            image: "E_SDG_Icons-15"
-        },{
-            id:16,
-            image: "E_SDG_Icons-16"
-            } ,{
-            id:17,
-            image: "E_SDG_Icons-17"
-        }
-        
-    ];
-
-    const override = css`
-        display: block;
-        margin: 0 auto;
-        border-color: red;`;
-
     const Papa = require("papaparse/papaparse.min.js");
     const data = require('../assets/data/globalDatabase.json');
-    const sdg = data[0];
-    const targets = sdg.targets;
-
-    const image = require.context('../assets/img/sdgs_icons', true);
-    const imgSrc = image(`./${sdg.image}.jpg`);
+    const [activSdg, setActiveSdg] = useState(1);
+    const activeSdgData = data[activSdg];
+    const targets = activeSdgData.targets;
 
     const countries = require("../assets/data/countries.json");
-    const [years, setYears] = useState([]);
+   
+    const [target, setTarget] = useState('2.1');
     const [indicators, setIndicators] = useState([]);
-    const [target, setTarget] = useState(targets[0].code);
+    const [years, setYears] = useState([]);
 
     const [sdgMapData, setSdgMapData] = useState([]);
     const [sdgChartData, setSdgChartData] = useState([]);
     const [lineChartData, setLineChartData] = useState([]);
+
     const [dataSource, setDataSource] = useState('pan');
-    const [activeTab, setActiveTab] = useState('1.2');
-    const [isLoading, setIsLoading] = useState(false);
-    const [mapChartType, setMapChartType] = useState('map');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
     const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true});
@@ -108,17 +33,6 @@ function Sdgs1() {
     let normalizedData = '';
     let sdgData = '';
     let ind = [];  
-    const [toggleModal, setOpenModal] = useState(false);
-
-    const openModal = (countryId) => {
-        setOpenModal(true);
-    }
-    const closeModal = () => {
-        setOpenModal(false);
-    }
-    const handleChange = (event) => {
-        setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
-    }
 
     useEffect(() => {
         if(dataSource === 'pan'){
@@ -129,14 +43,15 @@ function Sdgs1() {
             sdgData = require('../assets/data/globalDatabase.json');
         }
 
-        const targetData = sdgData[0].targets;
+        const targetData = sdgData[activSdg].targets;
         targetData.forEach(function(data){
-            if(data.code === activeTab){
+            if(data.code === target){
                 ind = data.indicators;
             }
         })
         setIndicators(ind);
-    }, [activeTab])
+        console.log(sdgData);
+    }, [activSdg, target])
 
     useEffect(() => {
         let isSubscribed = true;
@@ -166,6 +81,7 @@ function Sdgs1() {
                 }
             }
             setSdgChartData(filteredChartData);
+
         }
 
         const loadSdgData = (sdgCsvFile) => {
@@ -182,25 +98,14 @@ function Sdgs1() {
                 }
             })
         }
-
-        const loadNormalizedData = (normalizedDataFile) => {
-            Papa.parse(normalizedDataFile, {
-                download: true,
-                header: true,
-                skipEmptyLines: false,
-                complete: function(results){
-                    console.log(results.data);
-                    parseNormalizedData(results.data);
-                }
-            })
-        }
         loadSdgData(csvDataSourceData);
-        loadNormalizedData(normalizedData);
+        console.log(activSdg)
+
         return () => isSubscribed = false
-    }, [dataSource, indicator, year, activeTab, checkedItems]);
+    }, [dataSource, indicator, year, target, checkedItems, activSdg]);
 
     const parseMapData = (data) => {
-        const years = [];
+        const years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
         const indicatorData = [];
         data.forEach(function(d){
             if(d.Year === year ){
@@ -211,14 +116,9 @@ function Sdgs1() {
                     "country": d.Entity
                 })  
             }
-            if(d.Entity === "Mauritius"){
-                years.push(d.Year);
-                years.sort((a, b) => b - a);
-            }
         })
         setYears(years);
-        //setSdgMapData(indicatorData);
-        console.log(indicatorData);
+        setSdgMapData(indicatorData);
     }
     const parseChartData = (data) => {
         const indicatorData = [];
@@ -229,19 +129,7 @@ function Sdgs1() {
         })
        return indicatorData
     }
-    const parseNormalizedData = (data) => {
-        const normalizedData = [];
-        data.forEach(function(d){
-            normalizedData.push({
-                "code": d.id,
-                "drilldown": (d.id) +"/" + (d.id) + "-all",
-                "value": d.Score,
-                "country": d.Country
-            })
-        })
-        console.log(normalizedData);
-        setSdgMapData(normalizedData);
-    }
+
     const indexOf = (country, countriesData) => {
         let i = 0;
         for(i = 0; i < countriesData.length; i++){
@@ -283,6 +171,27 @@ function Sdgs1() {
         setLineChartData(filteredData);
     }
 
+    //Choose SDG
+    const handleSdgChange = (sdg) => {
+        setActiveSdg(sdg);
+    }
+
+    //Choose target
+    const handleTargetChange = (e) => {
+        setTarget(e.target.value);
+        console.log(e.target.value);
+    }
+
+    //Choose indicator
+    const handleIndicatorChange = (e) => {
+        setIndicator(e.target.value);
+    }
+
+     //Choose year
+     const handleYearChange = (e) => {
+        setYear(e.target.value);
+    }
+
     // Choose datasource
     const setGDBData = () => {
         setDataSource('gdb');
@@ -290,55 +199,19 @@ function Sdgs1() {
     const setPanAfricanData = () => {
         setDataSource('pan');
     }
-    //Choose indicator
-    const handleIndicatorChange = (e) => {
-        setIndicator(e.target.value);
-    }
-    //Choose year
-    const handleYearChange = (e) => {
-        setYear(e.target.value);
-    }
-    const handleTargetClick = (e) => {
-        setTarget(e.target.value);
-    }
+    
     const handleDataSourceChange = (e) => {
         setDataSource(e.target.value);
-    }
-    //Choose target
-    const targetClick = (e) =>{
-        setActiveTab(e.target.value);
-    }
-    // Set charts data
-    const setMapType = () =>{
-        setMapChartType('map')
-    }
-    const setChartType = () =>{
-        setMapChartType('chart')
-    }
-    const setLineChartType = () => {
-        setMapChartType('line')
     }
 
     return(
         <>
-        <Header></Header>
+        <Header onActiveSdgChanged={handleSdgChange}></Header>
             <main className="sdg">
             <div className="container">  
-                {/* <Row className="sdg-icon-padding">
-                    {sdgs.map(function(sdg, index){
-                        let  imgSrc = images(`./${sdg.image}.jpg`);
-                        let sdgNumber = index + 1;
-                        let url = "Sdgs/Sdg_" + sdgNumber;
-                        return <Col key={index}>
-                                    <Link>
-                                        <CardImg  alt="..." src={ imgSrc }></CardImg>  
-                                    </Link>   
-                                </Col>
-                    })}
-                </Row> */}
                 <Row className="mt-4 optionButtons ">
                     <Col>
-                        <Input type="select" name="targetSelect" onChange={handleTargetClick} value={target}>
+                        <Input type="select" name="targetSelect" onChange={handleTargetChange} value={target}>
                                 {
                                 targets.map((target, index) =>{
                                 return <option key={index} value={target.code}>{target.code}</option>
@@ -348,7 +221,7 @@ function Sdgs1() {
                     </Col>
                     <Col>
                         <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                            <option>Select indicator</option>
+                            
                             {
                                 indicators.map((indicator, index) => {
                                     return <option key={index} value={indicator.title}>{indicator.title}</option>
