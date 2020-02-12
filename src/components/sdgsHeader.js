@@ -80,6 +80,10 @@ function Header( {onActiveSdgChanged} ){
 
     const [activeSdg, setActiveSdg] = useState(0);
 
+    useEffect(() =>{
+       // console.log(activeSdg);
+    })
+
     const handleSdgChange = (e) => {
         setActiveSdg(e.currentTarget.value);
         onActiveSdgChanged(e.currentTarget.value);
@@ -95,12 +99,13 @@ function Header( {onActiveSdgChanged} ){
                         </Link>   
                     </NavbarBrand>
                     <Nav className="sdg-icon-padding ">
-                        {sdgs.map(function(sdg, index){
+                        { 
+                        sdgs.map(function(sdg, index){
                                 let  imgSrc = images(`./${sdg.image}.jpg`);
                                 let sdgNumber = index + 1;
                                 let url = "Sdgs/Sdg_" + sdgNumber;
                                 return <Col key={index}>
-                                            <Button onClick={handleSdgChange} value={index}>
+                                            <Button onClick={handleSdgChange} value={index} className={ activeSdg == index ? 'active': '' }>
                                                 <CardImg  alt="..." src={ imgSrc }></CardImg>
                                             </Button>
                                 </Col>

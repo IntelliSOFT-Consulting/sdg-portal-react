@@ -345,6 +345,17 @@ text-align: center;
 .sdgsHeader .sdg-icon-padding .btn{
   padding: 0px;
 }
+
+.sdgsHeader .sdg-icon-padding{
+  transition: active 2s;
+}
+
+.sdgsHeader .sdg-icon-padding .btn-secondary:not(:disabled):not(.disabled):active, 
+.sdgsHeader .sdg-icon-padding .btn-secondary:not(:disabled):not(.disabled).active, 
+.sdgsHeader .sdg-icon-padding .show > .btn-secondary.dropdown-toggle {
+  transform: scale(1, 1.3);
+}
+
 .modal-header .close {
   padding: 0;
   margin: 0;

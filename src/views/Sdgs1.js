@@ -1,5 +1,9 @@
 import React, { useState , useEffect} from "react";
-import { Row, Col, Input } from "reactstrap";
+import { Row, Col, Input, Button, Container, Modal, Label, CustomInput } from "reactstrap";
+import ClipLoader from 'react-spinners/ClipLoader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classnames from "classnames";
+import { css } from '@emotion/core';
 
 import Header from "../components/sdgsHeader";
 import SdgMap from "../visualizations/sdgMap";
@@ -8,15 +12,19 @@ import SdgHighChart from "../visualizations/sdgHighChart";
 import LineChart from "../visualizations/lineChart";
 
 function Sdgs1() {
+    const override = css`
+        display: block;
+        margin: 0 auto;
+        border-color: red;`;
     const Papa = require("papaparse/papaparse.min.js");
     const data = require('../assets/data/globalDatabase.json');
-    const [activSdg, setActiveSdg] = useState(1);
+    const [activSdg, setActiveSdg] = useState(0);
     const activeSdgData = data[activSdg];
     const targets = activeSdgData.targets;
 
     const countries = require("../assets/data/countries.json");
    
-    const [target, setTarget] = useState('2.1');
+    const [target, setTarget] = useState('1.1');
     const [indicators, setIndicators] = useState([]);
     const [years, setYears] = useState([]);
 
@@ -27,8 +35,11 @@ function Sdgs1() {
     const [dataSource, setDataSource] = useState('pan');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
+    const [mapChartType, setMapChartType] = useState('map');
     const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true});
     
+    const [isLoading, setIsLoading] = useState(false);
+    const [toggleModal, setOpenModal] = useState(false);
     let csvDataSourceData = '';
     let normalizedData = '';
     let sdgData = '';
@@ -49,8 +60,8 @@ function Sdgs1() {
                 ind = data.indicators;
             }
         })
+        console.log(ind)
         setIndicators(ind);
-        console.log(sdgData);
     }, [activSdg, target])
 
     useEffect(() => {
@@ -99,8 +110,6 @@ function Sdgs1() {
             })
         }
         loadSdgData(csvDataSourceData);
-        console.log(activSdg)
-
         return () => isSubscribed = false
     }, [dataSource, indicator, year, target, checkedItems, activSdg]);
 
@@ -179,7 +188,6 @@ function Sdgs1() {
     //Choose target
     const handleTargetChange = (e) => {
         setTarget(e.target.value);
-        console.log(e.target.value);
     }
 
     //Choose indicator
@@ -202,6 +210,27 @@ function Sdgs1() {
     
     const handleDataSourceChange = (e) => {
         setDataSource(e.target.value);
+    }
+
+    const setMapType = () =>{
+        setMapChartType('map')
+    }
+    const setChartType = () =>{
+        setMapChartType('chart')
+    }
+    const setLineChartType = () => {
+        setMapChartType('line')
+    }
+
+    const openModal = (countryId) => {
+        setOpenModal(true);
+    }
+    const closeModal = () => {
+        setOpenModal(false);
+    }
+
+    const handleChange = (event) => {
+        setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
     }
 
     return(
@@ -246,16 +275,126 @@ function Sdgs1() {
                     </Col>      
                 </Row>
                 <Row className="mt-5">
-                    <Col md="12">
-                        <SdgMap mySdgData ={sdgMapData}></SdgMap>
+                    <Col md="11">
+                        {
+                            mapChartType === 'map' ? (
+                                isLoading ? (
+                                    <div className='sweet-loading mt-4'>
+                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                        color={'#123abc'} loading={isLoading} />
+                                    </div> 
+                                ) : (
+                                    <div>
+                                        
+                                        <SdgMap mySdgData ={sdgMapData}></SdgMap>
+                                        
+                                        <Container className="play-controls">
+                                            <Button id="play-pause-button" type="button" className="btn-icon" title="play">
+                                                <i className="fa fa-play"></i>
+                                            </Button>
+                                            <CustomInput type="range" id="play-range" name="customRange" />
+                                            <Label id="play-output" htmlFor="play-range" name="year">2009</Label>
+                                        </Container>
+                                    </div>
+                                
+                                )
+                            ): null
+                        }
+
+                        {
+                            mapChartType === 'chart' ? (
+                                isLoading ? (
+                                    <div className='sweet-loading mt-4'>
+                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                        color={'#123abc'} loading={isLoading} />
+                                    </div> 
+                                ) : (
+                                    <div>
+                                        <div className="add-country-div">
+                                            <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                    <i className="fa fa-plus-circle mr-1" />
+                                                    Add a country
+                                            </Button>
+                                        </div>
+                                        
+                                        <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
+                                    </div>        
+                                )
+                            ): null
+                        }
+
+                        {
+                            mapChartType === 'line' ? (
+                                isLoading ? (
+                                    <div className='sweet-loading mt-4'>
+                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
+                                        color={'#123abc'} loading={isLoading} />
+                                    </div> 
+                                ) : (
+                                    <div>
+                                    <div className="add-country-div">
+                                        <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                <i className="fa fa-plus-circle mr-1" />
+                                                Add a country
+                                        </Button>
+                                    </div>
+                                    
+                                        <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
+                                    </div>
+                                )
+                            ): null
+                        }  
                     </Col>
-                    <Col md="12">
-                        <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
-                    </Col>
-                    <Col md="12">
-                        <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
+
+                    <Col md="1">
+                        <div>
+                            <br></br><br></br>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
+                            <FontAwesomeIcon icon="globe-africa" />
+                            
+                            </Button>
+                            <br></br><br></br>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
+                            <FontAwesomeIcon icon="chart-bar" />
+                            
+                            </Button>
+                            <br></br><br></br>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'line' })}  onClick={setLineChartType}> 
+                            <FontAwesomeIcon icon="chart-line" />
+                            
+                            </Button>
+                        </div>
                     </Col>
                 </Row>
+
+                <Container>
+                    <Modal size="lg" className="modal-dialog-centered" isOpen={toggleModal}
+                        toggle={toggleModal}  >
+                        <div className="modal-header">
+                        <h6 className="">Choose data to show</h6>
+                            <button aria-label="Close" className="close" data-dismiss="modal" type="button"
+                                onClick={closeModal} >
+                                <span aria-hidden={true}>×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body" >
+                            <Container>
+                                <Row>
+                                    {
+                                        countries.map((country, index) => {
+                                        return <Col md="4">
+                                        <Label key={index} check>
+                                                    <Input type="checkbox" name={country.alpha2Code} value={country.alpha2Code} checked={!!checkedItems[country.alpha2Code]} onChange={handleChange}/>{' '}
+                                                {country.name}
+                                                </Label>
+                                                </Col>    
+                                        })
+                                    }
+                                </Row>
+                            </Container>   
+                        </div>
+                    </Modal>
+                </Container>
             </div>
         </main>
         <Footer></Footer>
