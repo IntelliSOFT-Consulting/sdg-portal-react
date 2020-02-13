@@ -5,14 +5,16 @@ import {
     Container
 } from "reactstrap";
 import HC_exporting from 'highcharts/modules/exporting';
+import HC_exporting2 from 'highcharts/modules/export-data';
 
-HC_exporting(Highcharts)
+HC_exporting(Highcharts);
+HC_exporting2(Highcharts);
 
 function lineChart({lineChartData, years, indicator}){
 
     const chartOptions = {
         chart: {
-            height: 450
+            height: 400
         },
         title: {
             text: ''

@@ -10,6 +10,7 @@ import SdgMap from "../visualizations/sdgMap";
 import Footer from "../components/footer";
 import SdgHighChart from "../visualizations/sdgHighChart";
 import LineChart from "../visualizations/lineChart";
+import Spinner from "../visualizations/spinner";
 
 function Sdgs1() {
     const override = css`
@@ -36,7 +37,7 @@ function Sdgs1() {
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
     const [mapChartType, setMapChartType] = useState('map');
-    const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true});
+    const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true, CM:true, BI:true});
     
     const [isLoading, setIsLoading] = useState(false);
     const [toggleModal, setOpenModal] = useState(false);
@@ -96,6 +97,7 @@ function Sdgs1() {
         }
 
         const loadSdgData = (sdgCsvFile) => {
+            setIsLoading(true);
             Papa.parse(sdgCsvFile, {
                 download: true,
                 header: true,
@@ -105,6 +107,7 @@ function Sdgs1() {
                         const chartData = parseChartData(results.data)
                         filterChartData(chartData);
                         parseLineData(results.data);
+                        setIsLoading(false)
                     }
                 }
             })
@@ -279,10 +282,7 @@ function Sdgs1() {
                         {
                             mapChartType === 'map' ? (
                                 isLoading ? (
-                                    <div className='sweet-loading mt-4'>
-                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                        color={'#123abc'} loading={isLoading} />
-                                    </div> 
+                                    <Spinner></Spinner>
                                 ) : (
                                     <div>
                                         
@@ -304,10 +304,7 @@ function Sdgs1() {
                         {
                             mapChartType === 'chart' ? (
                                 isLoading ? (
-                                    <div className='sweet-loading mt-4'>
-                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                        color={'#123abc'} loading={isLoading} />
-                                    </div> 
+                                    <Spinner></Spinner> 
                                 ) : (
                                     <div>
                                         <div className="add-country-div">
@@ -326,10 +323,7 @@ function Sdgs1() {
                         {
                             mapChartType === 'line' ? (
                                 isLoading ? (
-                                    <div className='sweet-loading mt-4'>
-                                        <ClipLoader css={override} sizeUnit={"px"} size={50}
-                                        color={'#123abc'} loading={isLoading} />
-                                    </div> 
+                                    <Spinner></Spinner> 
                                 ) : (
                                     <div>
                                     <div className="add-country-div">

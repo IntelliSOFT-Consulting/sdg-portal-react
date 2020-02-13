@@ -10,7 +10,11 @@ import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import dataModule from "highcharts/modules/data";
 // import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
+import HC_exporting from 'highcharts/modules/exporting';
+import HC_exporting2 from 'highcharts/modules/export-data';
 
+HC_exporting(Highcharts);
+HC_exporting2(Highcharts);
 function SdgMap({ mySdgData }) {
         // let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
         drilldown(Highcharts);
@@ -1396,7 +1400,7 @@ function SdgMap({ mySdgData }) {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
                 width: 800,
-                height: 450,
+                height: 400,
                 events: {
                     drilldown: function (e) {
                     //    if(!e.seriesOptions){
