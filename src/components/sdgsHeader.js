@@ -24,6 +24,9 @@ function Header( {onActiveSdgChanged} ){
     const sdgs = [
         
         {
+            id :0,
+            image : "E_SDG_Icons-00"
+        },{
             id :1,
             image : "E_SDG_Icons-01"
         },{

@@ -68,6 +68,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .bm-item-list a {
   padding: 0.8em;
+  font-weight: 600;
 }
 
 
@@ -302,7 +303,6 @@ text-align: center;
     max-width: 1200px; } }
 
 .countryDemographics {
-    background-color: rgba(156, 156, 158, 0.37);
     color: #32325c;
     font-weight: 700;
     text-transform: uppercase;
@@ -359,6 +359,7 @@ text-align: center;
 .modal-header .close {
   padding: 0;
   margin: 0;
+  border-bottom: 0px solid #e9ecef; 
 }
 
 .modal-header{
@@ -460,8 +461,11 @@ text-align: center;
 .green{
   background-color: rgb(0, 128, 0);
 }
-.grey{
+.gray{
   background-color: grey;
+}
+.yellow{
+  background-color: rgb(239, 197, 0);
 }
 
 .dashboard tr{
@@ -474,7 +478,7 @@ text-align: center;
 }
 
 .dashboard #tabs-icons-text{
-  margin-left: 10%;
+  margin-left: 5%;
   text-transform: uppercase;
 }
 
@@ -549,3 +553,52 @@ font-weight: 600;
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
+.modal-backdrop.show {
+  opacity: 0.16;
+  background: #ffffff;
+}
+
+.modal-content{
+  /* background: #e2e2e2; */
+}
+
+.countryProfile{
+  background-image: url("../src/assets/img/bg/countryprofilebg.png");
+  /* background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+.footer{
+  padding: 0.5rem 0;
+}
+
+.dashboard .card-img{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.dashboard .btn{
+  padding: 0px;
+  width: 100%;
+}
+.regions-header .btn{
+  padding: 1.1rem 1rem;
+  background-color: #34b5b8;
+  border-radius: 0;
+  color: #fff;
+}
+
+.regions-header .btn:hover,
+.regions-header .btn:active{
+  background-color: #229699;
+  border-color: #229699;
+}
+.regions-header .btn-secondary:not(:disabled):not(.disabled):active, 
+.regions-header .btn-secondary:not(:disabled):not(.disabled).active, 
+.regions-header .show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #229699;
+  border-color: #229699;
+}

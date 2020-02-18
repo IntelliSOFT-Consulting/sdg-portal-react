@@ -74,6 +74,7 @@ function CountryProfile (props, ) {
 
     if (props.location.state != null){
         country = props.location.state;
+        console.log(countriesData)
         for(let key in countriesData){
             let newKey = parseInt(key, 10);
             if((newKey+1) === country.value){

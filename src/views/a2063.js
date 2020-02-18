@@ -36,7 +36,7 @@ function A2063(){
     let ind = [];
 
     const getIndicators = useCallback(() => {
-        const targetData = sdgData[0].targets;
+        const targetData = sdgData[1].targets;
         targetData.forEach(function(data){
             if(data.code === activeTab){
                 ind = data.indicators;

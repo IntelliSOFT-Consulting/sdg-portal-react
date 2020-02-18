@@ -1,0 +1,55 @@
+Country,code,region,sdg1,sdg2,sdg3,sdg4,sdg5,sdg6,sdg7,sdg8,sdg9,sdg10,sdg11,sdg12,sdg13,sdg14,sdg15,sdg16,sdg17
+Algeria,dz,Southern,yellow,orange,orange,yellow,red,orange,orange,orange,orange,yellow,orange,orange,yellow,red,yellow,orange,orange
+Angola,ao,North,red,red,red,orange,orange,red,orange,red,red,gray,red,orange,orange,red,orange,red,red
+Benin,bj,North,red,orange,red,red,red,orange,red,orange,red,orange,red,orange,yellow,red,orange,red,orange
+Botswana,bw,North,orange,red,red,yellow,red,orange,red,orange,orange,red,yellow,red,orange,gray,orange,red,orange
+Burkina Faso,bf,West,red,red,red,red,red,orange,red,orange,red,yellow,orange,orange,yellow,gray,yellow,orange,orange
+Burundi,bi,North,red,red,red,orange,orange,orange,red,red,red,yellow,red,orange,yellow,gray,green,red,red
+Cabo Verde,cm,Southern,orange,orange,red,orange,orange,yellow,orange,orange,red,orange,orange,yellow,yellow,red,orange,orange,orange
+Cameroon,cv,Southern,red,orange,red,orange,orange,orange,red,orange,red,orange,orange,orange,yellow,red,orange,red,orange
+Central African Republic,cf,West,red,red,red,red,red,orange,red,red,red,orange,red,orange,yellow,gray,yellow,red,red
+Chad,td,Southern,red,red,red,red,red,red,red,red,red,yellow,red,orange,yellow,gray,yellow,red,red
+Comoros,km,Central,red,orange,red,orange,red,orange,orange,red,red,yellow,orange,orange,green,red,orange,red,orange
+"Congo, Dem. Rep.",cg,East,red,red,red,orange,red,red,red,red,red,yellow,red,orange,green,red,orange,red,red
+"Congo, Rep.",cd,Southern,red,red,red,orange,orange,yellow,red,red,red,orange,orange,orange,yellow,red,yellow,red,orange
+Cote d'Ivoire,dj,West,orange,orange,red,red,red,orange,red,orange,orange,orange,orange,orange,yellow,red,yellow,red,orange
+Djibouti,eg,East,orange,red,red,red,red,orange,red,orange,red,gray,orange,orange,orange,red,orange,red,orange
+"Egypt, Arab Rep.",gq,East,yellow,red,red,yellow,red,orange,yellow,orange,orange,orange,orange,orange,yellow,orange,yellow,red,orange
+Equatorial Guinea,er,West,gray,yellow,red,red,red,orange,red,red,red,gray,red,red,gray,orange,orange,red,red
+Eritrea,et,East,red,red,red,red,red,red,red,orange,red,gray,orange,red,yellow,red,orange,red,red
+Ethiopia,tf,Southern,orange,red,red,red,red,orange,red,orange,red,gray,red,orange,yellow,gray,yellow,red,red
+Gabon,gm,West,yellow,orange,red,yellow,orange,orange,yellow,orange,orange,orange,red,red,yellow,orange,green,red,red
+"Gambia, The",gh,East,red,red,red,red,red,orange,red,orange,red,orange,orange,green,yellow,red,yellow,red,orange
+Ghana,gn,Southern,yellow,orange,red,orange,orange,orange,orange,yellow,red,yellow,orange,orange,yellow,red,yellow,orange,orange
+Guinea,gw,West,red,red,red,red,red,orange,red,orange,red,yellow,orange,orange,green,red,orange,red,orange
+Guinea-Bissau,ci,Southern,red,red,red,red,red,orange,red,red,red,orange,red,orange,yellow,red,orange,red,orange
+Kenya,ke,Southern,orange,red,red,orange,orange,orange,red,yellow,red,orange,orange,orange,yellow,red,yellow,red,orange
+Lesotho,ls,West,red,red,red,orange,orange,orange,red,orange,red,red,orange,orange,orange,gray,yellow,red,orange
+Liberia,lr,West,red,red,red,red,red,orange,red,red,red,yellow,red,orange,yellow,red,orange,red,orange
+Libya,ly,Central,orange,red,orange,gray,orange,orange,orange,orange,red,gray,orange,red,orange,red,orange,red,red
+Madagascar,mg,West,red,red,red,orange,orange,orange,red,red,red,orange,orange,red,yellow,orange,yellow,red,red
+Malawi,mw,Southern,red,red,red,orange,orange,orange,red,red,red,orange,orange,orange,orange,gray,orange,red,orange
+Mali,ml,North,red,red,red,red,red,orange,red,orange,red,yellow,orange,orange,yellow,gray,orange,red,orange
+Mauritania,mr,Southern,orange,orange,red,red,red,orange,red,red,red,yellow,red,orange,yellow,red,yellow,red,orange
+Mauritius,mu,West,yellow,yellow,yellow,yellow,red,orange,orange,yellow,orange,orange,yellow,red,orange,red,red,yellow,yellow
+Morocco,ma,East,yellow,orange,orange,orange,red,yellow,orange,orange,orange,yellow,orange,orange,yellow,orange,yellow,orange,orange
+Mozambique,mz,West,red,red,red,red,red,red,red,orange,red,yellow,orange,orange,orange,orange,orange,red,yellow
+Namibia,na,East,red,red,red,orange,yellow,orange,red,orange,red,red,orange,red,orange,red,orange,orange,orange
+Niger,ne,West,red,red,red,red,red,orange,red,orange,red,yellow,red,orange,orange,gray,yellow,red,orange
+Nigeria,ng,Southern,red,red,red,orange,red,yellow,red,red,red,orange,red,orange,yellow,red,orange,red,red
+Rwanda,rw,Central,orange,red,red,orange,yellow,orange,red,orange,red,orange,orange,orange,yellow,gray,yellow,red,orange
+Sao Tome and Principe,st,West,red,orange,red,orange,orange,orange,orange,orange,orange,gray,orange,green,yellow,red,orange,orange,orange
+Senegal,sn,East,red,orange,red,red,red,yellow,red,orange,red,yellow,orange,orange,yellow,red,orange,red,yellow
+Seychelles,sc,East,yellow,yellow,orange,yellow,gray,orange,orange,gray,red,gray,gray,red,red,orange,red,yellow,orange
+Sierra Leone,sl,West,red,red,red,red,red,orange,red,orange,red,yellow,red,orange,yellow,red,green,red,red
+Somalia,so,Central,red,red,red,gray,red,red,red,red,red,gray,orange,gray,yellow,red,red,red,gray
+South Africa,za,West,red,orange,red,yellow,yellow,yellow,orange,red,orange,red,orange,orange,orange,orange,yellow,red,orange
+South Sudan,ss,Central,red,red,red,red,red,orange,red,red,red,orange,red,gray,green,gray,yellow,red,red
+Sudan,sd,East,red,red,red,red,red,red,red,red,red,yellow,red,red,orange,red,orange,red,red
+Swaziland,sz,Central,red,red,red,orange,orange,orange,orange,red,red,red,yellow,orange,red,gray,yellow,red,orange
+Tanzania,tz,East,red,red,red,orange,orange,orange,red,orange,red,yellow,orange,orange,yellow,orange,orange,red,orange
+Togo,tg,Central,red,red,red,orange,red,orange,red,orange,red,orange,red,orange,yellow,red,orange,red,orange
+Tunisia,tn,Central,yellow,orange,orange,yellow,orange,orange,yellow,orange,orange,yellow,orange,orange,yellow,orange,yellow,orange,orange
+Uganda,ug,East,orange,red,red,orange,orange,orange,red,orange,red,yellow,red,orange,green,gray,orange,red,orange
+Zambia,zm,North,red,red,red,orange,orange,orange,red,orange,red,gray,orange,orange,yellow,gray,orange,red,orange
+Zimbabwe,zw,East,red,red,red,orange,orange,orange,red,orange,red,yellow,orange,orange,yellow,gray,orange,red,red

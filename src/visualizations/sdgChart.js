@@ -2,20 +2,26 @@ import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryLine } from "victory";
 
 function SdgChart( {myChartData, indicator, years} ) {
+  // const myChartData = [
+
+  // ]
     return(
       <>
 
 
-    <VictoryChart theme={VictoryTheme.material} domainPadding={20} padding={75} height={900} width={1200}>
-      <VictoryAxis
+    <VictoryChart theme={VictoryTheme.material} domainPadding={20} height={280} width={600} 
+                  animate={{duration: 500}}>
+    <VictoryAxis
         fixLabelOverlap
-        style={{ tickLabels: { padding: 5, fontSize: 10 } }}
+        style={{ tickLabels: { padding: 16, fontSize: 8 } }}
       />
       <VictoryAxis dependentAxis />
-      <VictoryBar data={myChartData} x="code" y="value" />
+      <VictoryLine 
+          
+          data={myChartData}  />
     </VictoryChart>
 
       {/* <LineChart
