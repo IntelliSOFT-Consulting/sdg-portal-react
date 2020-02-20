@@ -12,6 +12,8 @@ import {
     CardImg,
     Button
 } from "reactstrap";
+import Select from 'react-select';
+
 
 import {
     Link
@@ -49,6 +51,10 @@ function CountryProfile (props, ) {
     const [countryProfileMapData, setCountryProfileMapData] = useState([]);
     const [countryProfileData, setCountryProfileData] = useState([]);
     const [activeSdg, setActiveSdg] = useState(18);
+
+    const countriesJson = require('../assets/data/trial.json');
+    const countries = countriesJson.map(country => ({ label: country.name, value: country.value }));
+    const [selectedCountry, setSelectedCountry] = useState('');
 
     // Modal operations
     const [toggleModal, setOpenModal] = useState(country ? true: false);
@@ -147,6 +153,12 @@ function CountryProfile (props, ) {
         //console.log(e.currentTarget.value);
     }
 
+    const handleChange = selectedOption => {
+       setSelectedCountry(selectedOption)
+        console.log(`Option selected:`, selectedOption);
+        
+    };
+
 
 
     let code = "hc-a2";
@@ -155,8 +167,7 @@ function CountryProfile (props, ) {
         chart: {
             map: 'custom/africa',
             backgroundColor: 'transparent',
-            width: 1000,
-            height: 500,
+            height: 550
         },
         credits: {
             enabled: false
@@ -216,11 +227,25 @@ function CountryProfile (props, ) {
         <Header></Header>
             <main className="countryProfile">
                 <Container>
-                    <HighchartsReact
-                        constructorType ={'mapChart'}
-                        highcharts={Highcharts}
-                        options={mapOptions}
-                        />
+                    <Row>
+                        <Col className="pt-2">
+
+                        <Select options={countries} 
+                                        placeholder="Search country or click on the map" 
+                                        value={selectedCountry}
+                                        onChange={handleChange}/>
+
+                            <HighchartsReact
+                            constructorType ={'mapChart'}
+                            highcharts={Highcharts}
+                            options={mapOptions}
+                            />
+                        </Col>
+                        <Col>
+                            <h5> African Countries Profile </h5>
+                        </Col>
+                    </Row>
+                   
                         
                 </Container>
                 <Container>

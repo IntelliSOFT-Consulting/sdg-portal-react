@@ -475,6 +475,7 @@ text-align: center;
 .dashboard td{
   border-radius: 8px;
   /* border-top: 3px solid #fff; */
+  cursor: pointer;
 }
 
 .dashboard #tabs-icons-text{
@@ -566,8 +567,9 @@ font-weight: 600;
 
 .countryProfile{
   background-image: url("../src/assets/img/bg/countryprofilebg.png");
-  /* background-repeat: no-repeat;
-    background-size: cover; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .footer{
@@ -601,4 +603,49 @@ font-weight: 600;
   color: #fff;
   background-color: #229699;
   border-color: #229699;
+}
+.modal-title{
+  width: 100%;
+}
+
+.dashboardCountryName{
+  width: 100%;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.dashboardDetailsTable th{
+  font-size: 0.85rem;
+}
+
+.dashboardDetailsTable td{
+  font-size: 0.79rem;
+}
+
+.dashboardDetailsTable{
+  width: 100%;
+}
+.indicatorCol{
+  width: 60%;
+}
+.valueCol, .ratingCol, .valueData, .ratingData{
+  text-align: center;
+}
+.dashboard-modal{
+  padding-top: 125px;
+}
+
+.dashboardDetailsTable tr{
+  border-top: 1px solid #525f7f1f;
+    border-bottom: 1px solid #525f7f1f;
+}
+
+.dashboardDetailsTable td, .dashboardDetailsTable th{
+  padding: 0.65rem;
+}
+
+.dashboard-modal .modal-backdrop.show {
+  opacity: 0.4;
+  background: #000000;
 }
