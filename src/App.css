@@ -562,14 +562,27 @@ font-weight: 600;
 }
 
 .modal-content{
-  /* background: #e2e2e2; */
+  background: #f9f9f9;
 }
 
 .countryProfile{
-  background-image: url("../src/assets/img/bg/countryprofilebg.png");
+  /* background-image: url("../src/assets/img/bg/countryprofilebg.png"); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.country-profile-title{
+  text-align: center;
+  font-weight: 700;
+  font-size: 2.0rem;  
+}
+.country-profile-modal .display-4{
+  font-size: 1.1rem;
+  color: white;
+}
+.country-profile-modal .card-header {
+  background: #14496a;
 }
 
 .footer{

@@ -3,6 +3,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Gauge from "../visualizations/gauge";
 import Demographics from "../visualizations/demographics";
+import Barometer from "../visualizations/barometer";
 
 import {
     Container,
@@ -10,7 +11,7 @@ import {
     Row,
     Col,
     CardImg,
-    Button
+    Button, Card, CardBody, CardHeader
 } from "reactstrap";
 import Select from 'react-select';
 
@@ -53,8 +54,26 @@ function CountryProfile (props, ) {
     const [activeSdg, setActiveSdg] = useState(18);
 
     const countriesJson = require('../assets/data/trial.json');
-    const countries = countriesJson.map(country => ({ label: country.name, value: country.value }));
+    const countries = countriesJson.map(country => ({ label: country.name, value: country.code }));
     const [selectedCountry, setSelectedCountry] = useState('');
+
+    if (props.location.state != null){
+        country = props.location.state;
+        console.log(country)
+       // openModal(selectedCountry.value)
+        countriesData.forEach(function(data){
+            if(data.code == country.value){
+                let imgSrc = flagImages(`./${data.flagURL}.png`);
+                countryName = data.name;
+                countryCapital = data.capital;
+                countryPoverty = data.povertyLine
+                countryGDP = data.gdpPerCapita
+                countryFlag = imgSrc;
+                console.log(countryGDP)
+
+            }
+        })
+        }
 
     // Modal operations
     const [toggleModal, setOpenModal] = useState(country ? true: false);
@@ -65,8 +84,8 @@ function CountryProfile (props, ) {
         "region":"",
         "flagURL":countryFlag,
         "size":0,
-        "povertyLine":0,
-        "gdpPerCapita":0
+        "povertyLine":countryPoverty,
+        "gdpPerCapita":countryGDP
         } : {
         "id": 0,
         "name": "",
@@ -78,21 +97,8 @@ function CountryProfile (props, ) {
         "gdpPerCapita":0
     });
 
-    if (props.location.state != null){
-        country = props.location.state;
-        console.log(countriesData)
-        for(let key in countriesData){
-            let newKey = parseInt(key, 10);
-            if((newKey+1) === country.value){
-                let imgSrc = flagImages(`./${countriesData[key].flagURL}.png`);
-                countryName = countriesData[key].name;
-                countryCapital = countriesData[key].capital;
-                countryPoverty = countriesData[key].povertyLine
-                countryGDP = countriesData[key].gdpPerCapita
-                countryFlag = imgSrc;
-            }
-        }
-    }
+    
+    
 
     const parseNormalizedData = (data) => {
         const normalizedData = [];
@@ -155,7 +161,8 @@ function CountryProfile (props, ) {
 
     const handleChange = selectedOption => {
        setSelectedCountry(selectedOption)
-        console.log(`Option selected:`, selectedOption);
+        //console.log(`Option selected:`, selectedOption);
+        openModal(selectedOption.value)
         
     };
 
@@ -167,7 +174,7 @@ function CountryProfile (props, ) {
         chart: {
             map: 'custom/africa',
             backgroundColor: 'transparent',
-            height: 550
+
         },
         credits: {
             enabled: false
@@ -186,7 +193,8 @@ function CountryProfile (props, ) {
                 point: {
                     events: {
                         click: function () {
-                        openModal(this.properties[code]);
+                       openModal(this.properties[code]);
+                        //console.log(this.properties[code]);
                         }
                     }
                 }
@@ -228,12 +236,15 @@ function CountryProfile (props, ) {
             <main className="countryProfile">
                 <Container>
                     <Row>
-                        <Col className="pt-2">
+                        <Col md="12">
+                            <h5 className="country-profile-title"> African Countries Profile </h5>
+                        </Col>
+                        <Col md="7" >
 
                         <Select options={countries} 
-                                        placeholder="Search country or click on the map" 
+                                        placeholder="Search Country or Click on the Map" 
                                         value={selectedCountry}
-                                        onChange={handleChange}/>
+                                        onChange={handleChange} className="p-5"/>
 
                             <HighchartsReact
                             constructorType ={'mapChart'}
@@ -241,15 +252,15 @@ function CountryProfile (props, ) {
                             options={mapOptions}
                             />
                         </Col>
-                        <Col>
-                            <h5> African Countries Profile </h5>
+                        <Col md="5">
+                            <h5 className="pt-5 pl-5"> African Countries Profile </h5>
                         </Col>
                     </Row>
                    
                         
                 </Container>
                 <Container>
-                    <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
+                    <Modal size="xl" className="modal-dialog-centered country-profile-modal" isOpen={toggleModal}
                         toggle={toggleModal}  >
                         <div className="modal-header">
                         <h5 className="countryName" cssModule={{'modal-title': 'w-100 text-center'}}>{countryData.name}</h5>
@@ -274,34 +285,55 @@ function CountryProfile (props, ) {
                                     <label>GDP Per Capita: {countryData.gdpPerCapita} </label>
                                 </Col>
                             </Row>
-                            <Row>
+                            <Row className="pt-2">
                                 <Col>
-                                    <h5 className="display-4 mt-2 mb-4 text-center">SDGs </h5>
-                                    <Row className="no-gutters sdgImages" >
-                                        {sdgsData.map(function(sdg, index){
-                                            let  imgSrc = sdgsImages(`./${sdg.image}.jpg`)
-                                            let sdgIndex = index+1;
-                                            return <Col md="2" sm="4" key={sdgIndex}>
-                                                        <Button onClick={handleSdgChange} value={sdgIndex}>
-                                                            <CardImg className="countryProfileSdgsImg" alt={index} src={ imgSrc }></CardImg>  
-                                                        </Button>   
-                                                    </Col>
-                                        })}
-                                    </Row>
+                                    <Card>
+                                        <CardHeader> 
+                                            <h5 className="display-4 text-center">SDGs </h5>
+                                        </CardHeader>
+                                        <CardBody>
+                                            <Row className="no-gutters sdgImages" >
+                                                {sdgsData.map(function(sdg, index){
+                                                    let  imgSrc = sdgsImages(`./${sdg.image}.jpg`)
+                                                    let sdgIndex = index+1;
+                                                    return <Col md="2" sm="4" key={sdgIndex}>
+                                                                <Button onClick={handleSdgChange} value={sdgIndex}>
+                                                                    <CardImg className="countryProfileSdgsImg" alt={index} src={ imgSrc }></CardImg>  
+                                                                </Button>   
+                                                            </Col>
+                                                })}
+                                            </Row>
+                                        </CardBody>
+                                    
+                                    </Card>
                                 </Col>
                                 <Col>
-                                    <h5 className="display-4 mt-2 mb-4 text-center">Perfomance by Goal </h5>
-                                    <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge>
+                                    <Card>
+                                        <CardHeader> 
+                                            <h5 className="display-4 text-center">Perfomance by Goal </h5> 
+                                        </CardHeader>
+                                        <CardBody>
+                                            <Barometer></Barometer>
+                                        </CardBody>
+                                    
+                                        {/* <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge> */}
+                                    </Card>
                                 </Col>
                             </Row>
-                            <Row>
-                                <Col md="2"></Col>
-                                <Col className="mt-4">
-                                <h5 className="display-4 mt-2 mb-4 text-center">Country Demographics </h5>
-                                    <Demographics></Demographics>
-                                </Col>
-                                <Col md="2"></Col>
+                            <Row className="mb-2">
                                
+                                <Col className="mt-4"> 
+                                    <Card>
+                                        <CardHeader>
+                                        <h5 className="display-4 text-center">Country Demographics </h5>
+                                        </CardHeader>
+                                        <CardBody>
+                                            <Demographics></Demographics>
+                                        </CardBody>
+                                        
+                                    </Card>   
+                                </Col>
+                              
                             </Row>
                         </div>
                     </Modal>

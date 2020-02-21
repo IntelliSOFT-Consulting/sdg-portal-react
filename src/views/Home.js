@@ -43,7 +43,7 @@ class Home extends React.Component {
     
     render(){
         const countriesJson = require('../assets/data/trial.json');
-        const countries = countriesJson.map(country => ({ label: country.name, value: country.value }));
+        const countries = countriesJson.map(country => ({ label: country.name, value: country.code }));
 
         const { selectedOption } = this.state;
 
