@@ -59,7 +59,7 @@ function CountryProfile (props, ) {
 
     if (props.location.state != null){
         country = props.location.state;
-        console.log(country)
+    //    console.log(country)
        // openModal(selectedCountry.value)
         countriesData.forEach(function(data){
             if(data.code == country.value){
@@ -69,7 +69,7 @@ function CountryProfile (props, ) {
                 countryPoverty = data.povertyLine
                 countryGDP = data.gdpPerCapita
                 countryFlag = imgSrc;
-                console.log(countryGDP)
+               // console.log(countryGDP)
 
             }
         })
@@ -121,7 +121,7 @@ function CountryProfile (props, ) {
                 header: true,
                 skipEmptyLines: true,
                 complete: function(results){
-                    console.log(results.data);
+                   // console.log(results.data);
                     parseNormalizedData(results.data);
                     setCountryProfileData(results.data);
                 }
@@ -313,10 +313,12 @@ function CountryProfile (props, ) {
                                             <h5 className="display-4 text-center">Perfomance by Goal </h5> 
                                         </CardHeader>
                                         <CardBody>
-                                            <Barometer></Barometer>
+                                        { console.log("Selected"+ selectedCountry)}
+                                            {/* <Barometer barometerData={countryProfileData} country={countryProfileData.id} sdg={activeSdg}></Barometer> */}
+                                            <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge>
                                         </CardBody>
                                     
-                                        {/* <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge> */}
+                                        
                                     </Card>
                                 </Col>
                             </Row>

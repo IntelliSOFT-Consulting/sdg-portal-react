@@ -12,16 +12,17 @@ function Gauge( {barometerData, country, sdg}) {
     let sdgID = 1;
 
     let chart = am4core.create("chartdiv", am4charts.GaugeChart);
-    chart.innerRadius = am4core.percent(82);
+    chart.innerRadius = am4core.percent(80);
     chart.creditsPosition = "bottom-right";
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
     axis.min = 0;
     axis.max = 100;
     axis.strictMinMax = true;
-    axis.renderer.radius = am4core.percent(70);
+    axis.renderer.radius = am4core.percent(75);
     axis.renderer.inside = true;
     axis.renderer.line.strokeOpacity = 1;
+    axis.renderer.ticks.template.color = '#666';
     axis.renderer.ticks.template.strokeOpacity = 1;
     axis.renderer.ticks.template.length = 10;
     axis.renderer.labels.template.disabled = true;

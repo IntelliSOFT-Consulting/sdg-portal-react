@@ -662,3 +662,9 @@ font-weight: 600;
   opacity: 0.4;
   background: #000000;
 }
+
+.highcharts-figure .chart-container {
+	width: 300px;
+	height: 200px;
+	float: left;
+}
