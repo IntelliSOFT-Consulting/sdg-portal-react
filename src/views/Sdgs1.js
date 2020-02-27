@@ -38,7 +38,7 @@ function Sdgs1() {
     const [lineChartData, setLineChartData] = useState([]);
     const [victoryChartData, setVictoryChartData] = useState([]);
 
-    const [country, setCountry] = useState();
+    const [country, setCountry] = useState('DZ');
     const [dataSource, setDataSource] = useState('pan');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
@@ -71,14 +71,14 @@ function Sdgs1() {
                 header: true,
                 skipEmptyLines: true,
                 complete: function(results){
-                    console.log(results.data);
+                  //  console.log(results.data);
                     parseNormalizedData(results.data);
                     //setCountryProfileData(results.data);
                 }
             })
         }
         loadNormalizedData(normalizedData);
-    }, []);
+    }, [country]);
 
     useEffect(() => {
         if(dataSource === 'pan'){
@@ -168,13 +168,18 @@ function Sdgs1() {
             })
         })
 
+        console.log(country);
+        console.log(data);
+
         goals.forEach(function(goal) {
             data.forEach(function(d){
+                if(country == d.id){
                     goalsData.push({
                         "category": goal,
-                        "code": d.id,
-                        [d.Country] : d[goal],
+                        value1 : d[goal],
                     })
+                }
+                    
             
             })
         })
@@ -183,6 +188,7 @@ function Sdgs1() {
         console.log(goalsData);
        // console.log(radarData);
         setIndexMapData(mapData);
+        setIndexRadarChartData(goalsData);
     }
 
     const parseMapData = (data) => {
@@ -498,7 +504,7 @@ function Sdgs1() {
                                 <IndexMap mySdgData ={indexMapData}></IndexMap>
                             </Col>
                             <Col>
-                                <RadarChart></RadarChart>
+                                <RadarChart radarData={indexRadarChartData}></RadarChart>
                             </Col>
                         </Row>
                     </div>

@@ -6,69 +6,47 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 
-function Radar(){
+function Radar( {radarData} ){
     useEffect(() => {
         let chart = am4core.create("chartdiv", am4charts.RadarChart);
             chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
-            chart.data = [
-            {
-                category: "One",
-                value1: 8,
-                value2: 2,
-                value3: 4,
-                value4: 3
-            },
-            {
-                category: "Two",
-                value1: 11,
-                value2: 4,
-                value3: 2,
-                value4: 4
-            },
-            {
-                category: "Three",
-                value1: 7,
-                value2: 6,
-                value3: 6,
-                value4: 2
-            },
-            {
-                category: "Four",
-                value1: 13,
-                value2: 8,
-                value3: 3,
-                value4: 2
-            },
-            {
-                category: "Five",
-                value1: 12,
-                value2: 10,
-                value3: 5,
-                value4: 1
-            },
-            {
-                category: "Six",
-                value1: 15,
-                value2: 12,
-                value3: 4,
-                value4: 4
-            },
-            {
-                category: "Seven",
-                value1: 9,
-                value2: 14,
-                value3: 6,
-                value4: 2
-            },
-            {
-                category: "Eight",
-                value1: 6,
-                value2: 16,
-                value3: 5,
-                value4: 1
-            }
-            ];
+            chart.data = radarData;
+
+            // chart.data = [
+            // {
+            //     category: "One",
+            //     value1: 8,
+            // },
+            // {
+            //     category: "Two",
+            //     value1: 11,
+            // },
+            // {
+            //     category: "Three",
+            //     value1: 7,
+            // },
+            // {
+            //     category: "Four",
+            //     value1: 13,
+            // },
+            // {
+            //     category: "Five",
+            //     value1: 12,
+            // },
+            // {
+            //     category: "Six",
+            //     value1: 15,
+            // },
+            // {
+            //     category: "Seven",
+            //     value1: 9,
+            // },
+            // {
+            //     category: "Eight",
+            //     value1: 6,
+            // }
+            // ];
 
             chart.padding(20, 20, 20, 20);
 
@@ -90,36 +68,7 @@ function Radar(){
             series1.dataFields.valueY = "value1";
             series1.stacked = true;
 
-            // let series2 = chart.series.push(new am4charts.RadarColumnSeries());
-            // series2.columns.template.width = am4core.percent(80);
-            // series2.columns.template.tooltipText = "{name}: {valueY.value}";
-            // series2.name = "Series 2";
-            // series2.dataFields.categoryX = "category";
-            // series2.dataFields.valueY = "value2";
-            // series2.stacked = true;
-
-            // let series3 = chart.series.push(new am4charts.RadarColumnSeries());
-            // series3.columns.template.width = am4core.percent(80);
-            // series3.columns.template.tooltipText = "{name}: {valueY.value}";
-            // series3.name = "Series 3";
-            // series3.dataFields.categoryX = "category";
-            // series3.dataFields.valueY = "value3";
-            // series3.stacked = true;
-
-            // let series4 = chart.series.push(new am4charts.RadarColumnSeries());
-            // series4.columns.template.width = am4core.percent(80);
-            // series4.columns.template.tooltipText = "{name}: {valueY.value}";
-            // series4.name = "Series 4";
-            // series4.dataFields.categoryX = "category";
-            // series4.dataFields.valueY = "value4";
-            // series4.stacked = true;
-
             chart.seriesContainer.zIndex = -1;
-
-            // chart.scrollbarX = new am4core.Scrollbar();
-            // chart.scrollbarX.exportable = false;
-            // chart.scrollbarY = new am4core.Scrollbar();
-            // chart.scrollbarY.exportable = false;
 
             chart.cursor = new am4charts.RadarCursor();
             chart.cursor.xAxis = categoryAxis;

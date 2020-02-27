@@ -68,6 +68,7 @@ function Gauge( {barometerData, country, sdg}) {
 
     // Add hand
     let hand = chart.hands.push(new am4charts.ClockHand());
+    
     hand.startWidth = 10;
     hand.radius = am4core.percent(95);
     hand.innerRadius = am4core.percent(20);
@@ -81,7 +82,7 @@ function Gauge( {barometerData, country, sdg}) {
     label.y = am4core.percent(100);
     label.horizontalCenter = "middle";
     label.verticalCenter = "bottom";
-    label.text = "0";
+    label.text = "10";
 
     barometerData.forEach(function(countryBarometerData){
       if(countryBarometerData.code == country ){
@@ -102,7 +103,7 @@ function Gauge( {barometerData, country, sdg}) {
             property: "value",
             to: value
           }, 1000, am4core.ease.cubicOut).start();
-        }, 1000);
+        }, 500);
       }
     })
 

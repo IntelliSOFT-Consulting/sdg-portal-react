@@ -62,7 +62,7 @@ function IndexMap({ mySdgData }) {
                     point: {
                         events: {
                             click: function () {
-                           console.log("")
+                                console.log(this.properties[code])
                             }
                         }
                     }
