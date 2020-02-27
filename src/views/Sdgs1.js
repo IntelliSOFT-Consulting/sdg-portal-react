@@ -16,6 +16,8 @@ import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
 
 function Sdgs1() {
+
+    
     const override = css`
         display: block;
         margin: 0 auto;
@@ -54,6 +56,10 @@ function Sdgs1() {
 
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
+
+    function handleIndexChildClick(country){
+        setCountry(country);
+    }
 
     useEffect(() => {
         const indexMapData = require('../assets/data/sdg/emptyCountriesMapData.json');
@@ -486,7 +492,7 @@ function Sdgs1() {
                     
                         <Row className="mt-3">
                             <Col>
-                                <IndexMap mySdgData ={indexMapData}></IndexMap>
+                                <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
                             </Col>
                             <Col>
                                 <RadarChart radarData={indexRadarChartData}></RadarChart>

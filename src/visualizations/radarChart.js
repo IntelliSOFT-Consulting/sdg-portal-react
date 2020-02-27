@@ -10,16 +10,16 @@ function Radar( {radarData} ){
     useEffect(() => {
         let chart = am4core.create("chartdiv", am4charts.RadarChart);
             chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
-
-            
-
             chart.data = radarData;
-            chart.padding(20, 20, 20, 20);
+            chart.padding(10, 10, 10, 10);
+            chart.fontSize = 12;
 
             let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
             categoryAxis.dataFields.category = "category";
             categoryAxis.renderer.labels.template.location = 0.5;
             categoryAxis.renderer.tooltipLocation = 0.5;
+            categoryAxis.renderer.grid.template.disabled = true;
+            categoryAxis.tooltip.disabled = true;
 
             let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
             valueAxis.tooltip.disabled = true;
@@ -27,12 +27,14 @@ function Radar( {radarData} ){
             valueAxis.min = 0;
 
             let series1 = chart.series.push(new am4charts.RadarColumnSeries());
-            series1.columns.template.tooltipText = "{name}: {valueY.value}";
+            series1.columns.template.tooltipText = "{name} {category} : {valueY.value}";
             series1.columns.template.width = am4core.percent(80);
-            series1.name = "Series 1";
+            series1.name = "Goal";
             series1.dataFields.categoryX = "category";
             series1.dataFields.valueY = "value1";
             series1.stacked = true;
+            series1.columns.template.tooltipY = 0;
+            series1.columns.template.strokeOpacity = 0;
 
             chart.colors.list = [
                 am4core.color("#E5243B"),
@@ -55,9 +57,13 @@ function Radar( {radarData} ){
 
               ];
 
-            series1.columns.template.events.once("inited", function(event){
-                event.target.fill = chart.colors.getIndex(event.target.dataItem.index);
-              });
+            // series1.columns.template.events.once("inited", function(event){
+            //     event.target.fill = chart.colors.getIndex(event.target.dataItem.index);
+            //   });
+            
+            series1.columns.template.adapter.add("fill", function(fill, target) {
+              return chart.colors.getIndex(target.dataItem.index);
+            });
 
             chart.seriesContainer.zIndex = -1;
 

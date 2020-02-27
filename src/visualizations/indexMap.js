@@ -9,7 +9,7 @@ import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
-function IndexMap({ mySdgData }) {
+function IndexMap({ mySdgData, onCountryClick }) {
         highchartsMap(Highcharts);
 
         let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
@@ -37,9 +37,11 @@ function IndexMap({ mySdgData }) {
             }
         })     
   
-        
+        const handleCountryClick =  (country) =>{
+            onCountryClick(country)
+            //console.log(country)
+        }
         let code = "hc-a2";
-  
         const mapOptions = {
             chart: {
                 map: 'custom/africa',
@@ -62,7 +64,7 @@ function IndexMap({ mySdgData }) {
                     point: {
                         events: {
                             click: function () {
-                                console.log(this.properties[code])
+                                handleCountryClick(this.properties[code])
                             }
                         }
                     }
