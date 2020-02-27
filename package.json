@@ -31,6 +31,7 @@
     "react-dom": "^16.12.0",
     "react-gauge-chart": "^0.2.4",
     "react-multiselect-checkboxes": "^0.1.1",
+    "react-pie-menu": "^0.2.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
     "react-select": "^2.0.0-beta.7",
@@ -38,7 +39,7 @@
     "react-spinners": "^0.6.1",
     "reactstrap": "^8.1.1",
     "recharts": "^2.0.0-beta.1",
-    "styled-components": "^5.0.0",
+    "styled-components": "^5.0.1",
     "victory": "^34.0.0",
     "wheelnav": "^1.7.1"
   },

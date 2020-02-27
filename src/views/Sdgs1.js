@@ -461,7 +461,7 @@ function Sdgs1() {
                     <div>
                         <Row className="mt-4 optionButtons ">
                             <Col>
-                                <Label>ALL SDGs </Label>
+                                <Label className="all-sdgs-label">ALL SDGs </Label>
                             </Col>
                             <Col>
                                 <Input type="select" name="countrySelect" onChange={handleCountryChange} value={country}>

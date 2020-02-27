@@ -147,6 +147,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
   border-radius: 0px;
   border-right: 1px solid #cad1d7;
   border-bottom: 1px solid #cad1d7;
+  text-transform: uppercase;  
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  height: calc(2rem + 2px);
 }
 
 .optionButtons  .lastChild .form-control{
@@ -667,4 +671,21 @@ font-weight: 600;
 	width: 300px;
 	height: 200px;
 	float: left;
+}
+
+.all-sdgs-label{
+  border: 0px solid #cad1d7;
+    border-radius: 0px;
+    border-right: 1px solid #cad1d7;
+    border-bottom: 1px solid #cad1d7;
+    width: 100%;
+    height: calc(2rem + 2px);
+    padding: 0.25rem 0.75rem;
+    line-height: 1.5;
+    color: #8898aa;
+    text-align: center;
+    font-weight: 600;
+}
+.header-global{
+  padding: 0.5rem 1rem;
 }

@@ -18,6 +18,7 @@ import Agenda2063 from "./views/Agenda2063";
 import About from "./views/About";
 import Faqs from "./views/Faqs";
 import a2063 from "./views/a2063";
+import SdgIndex from "./views/SdgIndex";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -41,6 +42,7 @@ function App() {
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
             <Route exact path="/" component={Home}></Route>
+            <Route exact path="/Sdgs/Index" component={SdgIndex}></Route>
       </Switch>
     </Router>
   );
