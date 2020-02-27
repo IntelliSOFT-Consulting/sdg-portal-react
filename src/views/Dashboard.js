@@ -14,10 +14,6 @@ import {
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-
-
-
 function Dashboard (){
   const Papa = require("papaparse/papaparse.min.js");
   const data = require('../assets/data/scorecardData.json');

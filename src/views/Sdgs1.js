@@ -54,13 +54,9 @@ function Sdgs1() {
 
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
-    // console.log(indexMapData);
-
 
     useEffect(() => {
         const indexMapData = require('../assets/data/sdg/emptyCountriesMapData.json');
-        //setIndexMapData(indexMapData);
-        //console.log(indexMapData);
     })
 
     useEffect(() => {
@@ -154,11 +150,9 @@ function Sdgs1() {
     }, [dataSource, indicator, year, target, checkedItems, activSdg]);
 
     const parseNormalizedData = (data) => {
-        const goals = ['goal1', 'goal2', 'goal3', 'goal4', 'goal5', 'goal6', 'goal7', 'goal8', 'goal9', 'goal10', 'goal11', 'goal12', 'goal13', 'goal14', 'goal15', 'goal16', 'goal17'];
+        const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
         const mapData = [];
         const radarData = [];
-        const goalsData = [];
-        const radarObj = {};
 
         data.forEach(function(d){
             mapData.push({
@@ -167,28 +161,19 @@ function Sdgs1() {
                 "name": d.Country
             })
         })
-
-        console.log(country);
-        console.log(data);
-
         goals.forEach(function(goal) {
             data.forEach(function(d){
                 if(country == d.id){
-                    goalsData.push({
+                    radarData.push({
                         "category": goal,
-                        value1 : d[goal],
+                        value1 : d["goal"+goal],
                     })
                 }
-                    
-            
             })
         })
-
-
-        console.log(goalsData);
-       // console.log(radarData);
+        
         setIndexMapData(mapData);
-        setIndexRadarChartData(goalsData);
+        setIndexRadarChartData(radarData);
     }
 
     const parseMapData = (data) => {

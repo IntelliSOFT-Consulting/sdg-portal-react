@@ -11,43 +11,9 @@ function Radar( {radarData} ){
         let chart = am4core.create("chartdiv", am4charts.RadarChart);
             chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
+            
+
             chart.data = radarData;
-
-            // chart.data = [
-            // {
-            //     category: "One",
-            //     value1: 8,
-            // },
-            // {
-            //     category: "Two",
-            //     value1: 11,
-            // },
-            // {
-            //     category: "Three",
-            //     value1: 7,
-            // },
-            // {
-            //     category: "Four",
-            //     value1: 13,
-            // },
-            // {
-            //     category: "Five",
-            //     value1: 12,
-            // },
-            // {
-            //     category: "Six",
-            //     value1: 15,
-            // },
-            // {
-            //     category: "Seven",
-            //     value1: 9,
-            // },
-            // {
-            //     category: "Eight",
-            //     value1: 6,
-            // }
-            // ];
-
             chart.padding(20, 20, 20, 20);
 
             let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -67,6 +33,31 @@ function Radar( {radarData} ){
             series1.dataFields.categoryX = "category";
             series1.dataFields.valueY = "value1";
             series1.stacked = true;
+
+            chart.colors.list = [
+                am4core.color("#E5243B"),
+                am4core.color("#DDA63A"),
+                am4core.color("#4C9F38"),
+                am4core.color("#C5192D"),
+                am4core.color("#FF3A21"),
+                am4core.color("#26BDE2"),
+                am4core.color("#FCC30B"),
+                am4core.color("#A21942"),
+                am4core.color("#FD6925"),
+                am4core.color("#DD1367"),
+                am4core.color("#FD9D24"),
+                am4core.color("#BF8B2E"),
+                am4core.color("#3F7E44"),
+                am4core.color("#0A97D9"),
+                am4core.color("#56C02B"),
+                am4core.color("#00689D"),
+                am4core.color("#19486A")
+
+              ];
+
+            series1.columns.template.events.once("inited", function(event){
+                event.target.fill = chart.colors.getIndex(event.target.dataItem.index);
+              });
 
             chart.seriesContainer.zIndex = -1;
 

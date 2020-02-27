@@ -59,8 +59,6 @@ function CountryProfile (props, ) {
 
     if (props.location.state != null){
         country = props.location.state;
-    //    console.log(country)
-       // openModal(selectedCountry.value)
         countriesData.forEach(function(data){
             if(data.code == country.value){
                 let imgSrc = flagImages(`./${data.flagURL}.png`);
@@ -69,8 +67,6 @@ function CountryProfile (props, ) {
                 countryPoverty = data.povertyLine
                 countryGDP = data.gdpPerCapita
                 countryFlag = imgSrc;
-               // console.log(countryGDP)
-
             }
         })
         }
@@ -156,12 +152,10 @@ function CountryProfile (props, ) {
 
     const handleSdgChange = (e) => {
         setActiveSdg(e.currentTarget.value);
-        //console.log(e.currentTarget.value);
     }
 
     const handleChange = selectedOption => {
-       setSelectedCountry(selectedOption)
-        //console.log(`Option selected:`, selectedOption);
+        setSelectedCountry(selectedOption)
         openModal(selectedOption.value)
         
     };
@@ -193,8 +187,7 @@ function CountryProfile (props, ) {
                 point: {
                     events: {
                         click: function () {
-                       openModal(this.properties[code]);
-                        //console.log(this.properties[code]);
+                            openModal(this.properties[code]);
                         }
                     }
                 }

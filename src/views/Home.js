@@ -36,19 +36,14 @@ class Home extends React.Component {
     handleChange = selectedOption => {
         this.setState({ selectedOption });
         this.setRedirect();
-        console.log(`Option selected:`, selectedOption);
-        
+        //console.log(`Option selected:`, selectedOption);
     };
     
     
     render(){
         const countriesJson = require('../assets/data/trial.json');
         const countries = countriesJson.map(country => ({ label: country.name, value: country.code }));
-
         const { selectedOption } = this.state;
-
-        
-
 
         return(
             <>
