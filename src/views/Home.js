@@ -4,11 +4,11 @@ import { Link, Redirect} from 'react-router-dom'
 import { Container, Col, Row} from "reactstrap";
 import Select from 'react-select';
 import styled, { keyframes } from "styled-components";
-import HeadShake from "@bit/formidablelabs.react-animations.head-shake";
-const HeadShakeAnimation = keyframes`${HeadShake}`;
-const HeadShakeDiv = styled.div`
-  animation: infinite 4s ${HeadShakeAnimation};
-`;
+// import HeadShake from "@bit/formidablelabs.react-animations.head-shake";
+// const HeadShakeAnimation = keyframes`${HeadShake}`;
+// const HeadShakeDiv = styled.div`
+//   animation: infinite 4s ${HeadShakeAnimation};
+// `;
 
 
 
@@ -62,10 +62,10 @@ class Home extends React.Component {
                             <Col md="4"></Col>
                             <Col md="4">
                             
-                                <HeadShakeDiv>
+                                {/* <HeadShakeDiv> */}
                                 <Link to="/Sdgs" className="btn btn-warning text-white">Explore Development Data</Link>
                                 
-                                </HeadShakeDiv>
+                                {/* </HeadShakeDiv> */}
                                
                             </Col>
                             <Col md="3">

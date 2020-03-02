@@ -46,6 +46,7 @@ function IndexMap({ mySdgData, onCountryClick }) {
             chart: {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
+                height: '150%'
             },
             credits: {
                 enabled: false
@@ -124,12 +125,15 @@ function IndexMap({ mySdgData, onCountryClick }) {
 
 
         return (
-            <Container>
-                <HighchartsReact
-                    constructorType ={'mapChart'}
-                    highcharts={Highcharts}
-                    options={mapOptions}
-                    />
+            <Container className="chart-wrapper">
+                <Container className="chart-inner">
+                    <HighchartsReact
+                        constructorType ={'mapChart'}
+                        highcharts={Highcharts}
+                        options={mapOptions}
+                        />
+                </Container>
+                
             </Container>
         );
       
