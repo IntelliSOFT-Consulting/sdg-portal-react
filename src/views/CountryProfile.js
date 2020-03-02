@@ -234,7 +234,7 @@ function CountryProfile (props, ) {
                             <Select options={countries} 
                                         placeholder="Search Country or Click on the Map" 
                                         value={selectedCountry}
-                                        onChange={handleChange} className="pl-5 pr-5 pb-3 pt-3"/>
+                                        onChange={handleChange} className="country-profile-search" />
                         </Col>
                         <Col md="8" >
 

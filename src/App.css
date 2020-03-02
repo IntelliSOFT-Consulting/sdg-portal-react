@@ -731,3 +731,9 @@ font-weight: 600;
 .country-profile-text{
   margin-top: 10%;
 }
+.country-profile-search{
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
