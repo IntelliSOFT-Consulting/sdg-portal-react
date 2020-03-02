@@ -737,3 +737,8 @@ font-weight: 600;
   padding-bottom: 10px;
   padding-top: 10px;
 }
+
+.demographics-card .card-body{
+  padding-left: 12%;
+  padding-right: 12%;
+}

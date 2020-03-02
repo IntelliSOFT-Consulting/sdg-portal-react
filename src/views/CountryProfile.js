@@ -323,7 +323,7 @@ function CountryProfile (props, ) {
                             <Row className="mb-2">
                                
                                 <Col className="mt-4"> 
-                                    <Card>
+                                    <Card className="demographics-card">
                                         <CardHeader>
                                         <h5 className="display-4 text-center">Country Demographics </h5>
                                         </CardHeader>
