@@ -40,7 +40,7 @@ class About extends React.Component {
                                     time trends</p>
                                 </Col>
                                 <Col md="4">
-                                    <CardImg alt="..." src={require("../assets/img/bg/sdg7.jpg")}></CardImg>
+                                    <CardImg alt="..." src={require("../assets/img/bg/sdgs2.png")}></CardImg>
                                 </Col>
                             </Row> 
                         </Col>
@@ -48,7 +48,7 @@ class About extends React.Component {
                         <Col md="6">
                             <Row>
                                 <Col md="4" className="text-right">
-                                    <CardImg alt="..." src={require("../assets/img/bg/dashboard1.jpg")}></CardImg>
+                                    <CardImg alt="..." src={require("../assets/img/bg/dashboard4.png")}></CardImg>
                                 </Col>
                                 <Col md="8">
                                     <h5>Dashboard</h5>
@@ -67,7 +67,7 @@ class About extends React.Component {
                                     the SDGs</p>
                                 </Col>
                                 <Col md="4">
-                                <CardImg alt="..." src={require("../assets/img/bg/country profile 4.png")}>
+                                <CardImg alt="..." src={require("../assets/img/bg/dashboard3.png")}>
                                 </CardImg>
                                 </Col>
                             </Row> 
@@ -76,7 +76,7 @@ class About extends React.Component {
                         <Col md="6" className="mt-4">
                             <Row>
                                 <Col md="4"  className="text-right">
-                                <CardImg alt="..." src={require("../assets/img/bg/Agenda-2063 image II.png")}>
+                                <CardImg alt="..." src={require("../assets/img/bg/agenda20632.png")}>
                                 </CardImg>
                                 </Col>
                                 <Col md="8">
