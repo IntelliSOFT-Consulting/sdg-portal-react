@@ -120,11 +120,13 @@ function Dashboard (){
 
     setOpenModal(true);
 
-   
-
     dashboardData.forEach(function(data){
       if(data.code == countryCode){
         console.log(getShortHand(sdgNumber))
+
+        
+
+
         setModalPopupData({
           "country": data.Country,
           "color": data['sdg'+sdgNumber],

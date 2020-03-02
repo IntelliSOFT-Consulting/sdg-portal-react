@@ -46,6 +46,7 @@ function IndexMap({ mySdgData, onCountryClick }) {
             chart: {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
+                height: '100%'
             },
             credits: {
                 enabled: false

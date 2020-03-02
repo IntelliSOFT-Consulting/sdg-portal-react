@@ -1,3 +1,23 @@
+:root{
+  /* --red:#E5243B;
+  --mustard:#DDA63A;
+  --kelly-green: #4C9F38;
+  --dark-red: #C5192D;
+  --red-orange: #FF3A21;
+  --bright-blue: #26BDE2;
+  --yellow: #FCC30B;
+  --burgundy-red: #A21942;
+  --orange: #FD6925;
+  --magenta: #DD1367;
+  --golden-yellow: #FD9D24;
+  --dark-mustard: #BF8B2E;
+  --dark-green: #3F7E44;
+  --blue: #0A97D9;
+  --lime-green: #56C02B;
+  --royal-blue: #00689D;
+  --navy-blue: #19486A; */
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -689,3 +709,11 @@ font-weight: 600;
 .header-global{
   padding: 0.5rem 1rem;
 }
+.index-menu img{
+  /* vertical-align: 4.125em; */
+    height: 1em;
+    width: 1em;
+}
+
+
+
