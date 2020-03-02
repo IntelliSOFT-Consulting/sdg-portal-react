@@ -18,8 +18,9 @@ class About extends React.Component {
             <Header></Header>
                 <main>
                 <div className="container-fluid pl-5 pr-5 pb-5">
+                     <h5 className="display-3 mb-4 mt-2 text-center">The SDG and Agenda 2063 Data Portal for Africa</h5>
                     <Row className="pl-5 pr-5">
-                    <h5 className="display-3 mb-4 mt-2">The SDG and Agenda 2063 Data Portal for Africa</h5>
+                   
                     <p className="text-center mb-5">
                     The Portal aims to serve as a unique access point to timely and reliable information about SDG and 
                     Agenda 2063 data for Africa. The site is designed to help policy makers and enable the general public
@@ -46,7 +47,7 @@ class About extends React.Component {
 
                         <Col md="6">
                             <Row>
-                                <Col md="4">
+                                <Col md="4" className="text-right">
                                     <CardImg alt="..." src={require("../assets/img/bg/dashboard1.jpg")}></CardImg>
                                 </Col>
                                 <Col md="8">
@@ -74,7 +75,7 @@ class About extends React.Component {
 
                         <Col md="6" className="mt-4">
                             <Row>
-                                <Col md="4">
+                                <Col md="4"  className="text-right">
                                 <CardImg alt="..." src={require("../assets/img/bg/Agenda-2063 image II.png")}>
                                 </CardImg>
                                 </Col>
