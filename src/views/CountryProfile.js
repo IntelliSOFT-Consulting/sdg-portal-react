@@ -232,7 +232,7 @@ function CountryProfile (props, ) {
                         <Col md="12">
                             <h5 className="country-profile-title"> African Countries Profile </h5>
                         </Col>
-                        <Col md="7" >
+                        <Col md="8" >
 
                         <Select options={countries} 
                                         placeholder="Search Country or Click on the Map" 
@@ -245,8 +245,12 @@ function CountryProfile (props, ) {
                             options={mapOptions}
                             />
                         </Col>
-                        <Col md="5">
-                            <h5 className="pt-5 pl-5"> African Countries Profile </h5>
+                        <Col md="4" className="country-profile-text">
+                            <h5 className="pt-5 pl-5" > AFRICAN COUNTRIES PROFILE </h5>
+                            <p>
+                            Africa SDG Watch is a public platform to visualize and explore data, benchmark progress 
+                            towards the SDGs and track performance of development indicators.
+                            </p>
                         </Col>
                     </Row>
                    

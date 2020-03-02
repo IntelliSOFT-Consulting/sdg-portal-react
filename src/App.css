@@ -721,8 +721,10 @@ font-weight: 600;
 }
 
 
-.sdg{
+.sdg, .countryProfile{
   height: 80vh;
 }
 
-
+.country-profile-text{
+  margin-top: 20%;
+}
