@@ -231,13 +231,14 @@ function CountryProfile (props, ) {
                     <Row>
                         <Col md="12">
                             <h5 className="country-profile-title"> African Countries Profile </h5>
-                        </Col>
-                        <Col md="8" >
-
-                        <Select options={countries} 
+                            <Select options={countries} 
                                         placeholder="Search Country or Click on the Map" 
                                         value={selectedCountry}
                                         onChange={handleChange} className="p-5"/>
+                        </Col>
+                        <Col md="8" >
+
+                        
 
                             <HighchartsReact
                             constructorType ={'mapChart'}
@@ -246,7 +247,7 @@ function CountryProfile (props, ) {
                             />
                         </Col>
                         <Col md="4" className="country-profile-text">
-                            <h5 className="pt-5 pl-5" > AFRICAN COUNTRIES PROFILE </h5>
+                            <h5 className="" > AFRICAN COUNTRIES PROFILE </h5>
                             <p>
                             Africa SDG Watch is a public platform to visualize and explore data, benchmark progress 
                             towards the SDGs and track performance of development indicators.
