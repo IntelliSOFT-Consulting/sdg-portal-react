@@ -1,3 +1,23 @@
+:root{
+  /* --red:#E5243B;
+  --mustard:#DDA63A;
+  --kelly-green: #4C9F38;
+  --dark-red: #C5192D;
+  --red-orange: #FF3A21;
+  --bright-blue: #26BDE2;
+  --yellow: #FCC30B;
+  --burgundy-red: #A21942;
+  --orange: #FD6925;
+  --magenta: #DD1367;
+  --golden-yellow: #FD9D24;
+  --dark-mustard: #BF8B2E;
+  --dark-green: #3F7E44;
+  --blue: #0A97D9;
+  --lime-green: #56C02B;
+  --royal-blue: #00689D;
+  --navy-blue: #19486A; */
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -147,6 +167,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
   border-radius: 0px;
   border-right: 1px solid #cad1d7;
   border-bottom: 1px solid #cad1d7;
+  text-transform: uppercase;  
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  height: calc(2rem + 2px);
 }
 
 .optionButtons  .lastChild .form-control{
@@ -391,8 +415,13 @@ text-align: center;
 .card-img {
   width: 100%;
   border-radius: calc(0.25rem - 0.0625rem);
-  padding-right: 15px;
-  padding-left: 15px;
+}
+
+.aboutCards .card-img{
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  border: 2px solid #d0d0d0;
 }
 
 .mapChartCard{
@@ -668,16 +697,32 @@ font-weight: 600;
 	height: 200px;
 	float: left;
 }
+
+.all-sdgs-label{
+  border: 0px solid #cad1d7;
+    border-radius: 0px;
+    border-right: 1px solid #cad1d7;
+    border-bottom: 1px solid #cad1d7;
+    width: 100%;
+    height: calc(2rem + 2px);
+    padding: 0.25rem 0.75rem;
+    line-height: 1.5;
+    color: #8898aa;
+    text-align: center;
+    font-weight: 600;
+}
+.header-global{
+  padding: 0.5rem 1rem;
+}
+.index-menu img{
+  /* vertical-align: 4.125em; */
+    height: 1em;
+    width: 1em;
+}
+
+
 .sdg{
   height: 80vh;
 }
 
-/* .chart-wrapper{
-  position: relative;
-  padding-bottom: 40%;
-}
-.chart-inner{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-} */
+

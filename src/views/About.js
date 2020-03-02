@@ -17,12 +17,10 @@ class About extends React.Component {
             <>
             <Header></Header>
                 <main>
-                <div className="container-fluid pl-5 pr-5">
+                <div className="container-fluid pl-5 pr-5 pb-5">
                     <Row className="pl-5 pr-5">
-                    <h5 className="display-3 mb-4 mt-2 text-center">
-                    Welcome to the SDG and Agenda 2063 Data Portal for Africa
-                    </h5>
-                    <p>
+                    <h5 className="display-3 mb-4 mt-2">The SDG and Agenda 2063 Data Portal for Africa</h5>
+                    <p className="text-center mb-5">
                     The Portal aims to serve as a unique access point to timely and reliable information about SDG and 
                     Agenda 2063 data for Africa. The site is designed to help policy makers and enable the general public
                      to reuse data. The Portal provides easy access to an ever wider range of data from governments
@@ -31,65 +29,60 @@ class About extends React.Component {
                       and the African Union 2063 Agenda, as well as which metrics might be useful to track progress. 
                     </p>
                     </Row>
-                   
-
-                    <h5 className="display-4 mb-4 mt-2 text-center">
-                    About the Data Portal
-                    </h5>
-                   
-                    
+                
                     <Row className="pl-5 pr-5 aboutCards">
-                        <Col >
-                            <Card className="sdgCard">
-                                <CardHeader>
-                                    SDGs
-                                </CardHeader>
-                                <CardImg alt="..." src={require("../assets/img/bg/sdg7.jpg")}>
-                                </CardImg>
-                                <CardBody>
-                                    Visualize data in maps, ranks , charts, benchmark countries performance and analyze 
-                                    time trends
-                                </CardBody>
-                            </Card>
+                        <Col md="6">
+                            <Row>
+                                <Col md="8" className="text-right">
+                                    <h5>SDGs</h5>
+                                    <p>Visualize data in maps, ranks , charts, benchmark countries performance and analyze 
+                                    time trends</p>
+                                </Col>
+                                <Col md="4">
+                                    <CardImg alt="..." src={require("../assets/img/bg/sdg7.jpg")}></CardImg>
+                                </Col>
+                            </Row> 
                         </Col>
-                        <Col >
-                            <Card className="dashboardCard">
-                                <CardHeader>
-                                    Dashboard
-                                </CardHeader>
-                                <CardImg alt="..." src={require("../assets/img/bg/dashboard1.jpg")}>
-                                </CardImg>
-                                <CardBody>
-                                    Analysis of African countries' current status towards achieving the SDGs 
-                                    and highlight those SDGs that require particular attention in each country using traffic light
-                                    from red (worst)  to green (best) performing goal.
-                                </CardBody>
-                            </Card>
+
+                        <Col md="6">
+                            <Row>
+                                <Col md="4">
+                                    <CardImg alt="..." src={require("../assets/img/bg/dashboard1.jpg")}></CardImg>
+                                </Col>
+                                <Col md="8">
+                                    <h5>Dashboard</h5>
+                                    <p>Analysis of African countries' current status towards achieving the SDGs 
+                                and highlight those SDGs that require particular attention in each country using traffic light
+                                from red (worst)  to green (best) performing goal.</p>
+                                </Col>
+                            </Row>
                         </Col>
-                        <Col >
-                            <Card className="countryProfileCard">
-                                <CardHeader>
-                                   Country Profile
-                                </CardHeader>
+
+                        <Col md="6" className="mt-4">
+                            <Row>
+                                <Col md="8" className="text-right">
+                                    <h5>Country Profile</h5>
+                                    <p>Snapshot of different performance metrics indicating progress towards the achievement of
+                                    the SDGs</p>
+                                </Col>
+                                <Col md="4">
                                 <CardImg alt="..." src={require("../assets/img/bg/country profile 4.png")}>
                                 </CardImg>
-                                <CardBody>
-                                    Snapshot of different performance metrics indicating progress towards the achievement of
-                                    the SDGs                                
-                             </CardBody>
-                            </Card>
+                                </Col>
+                            </Row> 
                         </Col>
-                        <Col >
-                            <Card className="agenda2063Card">
-                                <CardHeader>
-                                Agenda 2063
-                                </CardHeader>
+
+                        <Col md="6" className="mt-4">
+                            <Row>
+                                <Col md="4">
                                 <CardImg alt="..." src={require("../assets/img/bg/Agenda-2063 image II.png")}>
                                 </CardImg>
-                                <CardBody>
-                                    Track current status of A2063 indicators
-                                 </CardBody>
-                            </Card>
+                                </Col>
+                                <Col md="8">
+                                    <h5>Agenda 2063</h5>
+                                    <p>Track current status of A2063 indicators</p>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                     </div>
