@@ -35,7 +35,7 @@ class About extends React.Component {
                         <Col md="6">
                             <Row>
                                 <Col md="8" className="text-right">
-                                    <h5>SDGs</h5>
+                                    <h5>Sustainable Development Goals</h5>
                                     <p>Visualize data in maps, ranks , charts, benchmark countries performance and analyze 
                                     time trends</p>
                                 </Col>
