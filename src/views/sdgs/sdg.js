@@ -74,7 +74,7 @@ function Sdg(){
 
         const targetData = sdgData[0].targets;
         targetData.forEach(function(data){
-            if(data.code === activeTab){
+            if(data.code == activeTab){
                 ind = data.indicators;
                 //console.log(ind);
             }

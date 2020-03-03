@@ -1400,7 +1400,7 @@ function SdgMap({ mySdgData }) {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
                 width: 800,
-                height: 400,
+                height: 450,
                 events: {
                     drilldown: function (e) {
                     //    if(!e.seriesOptions){
