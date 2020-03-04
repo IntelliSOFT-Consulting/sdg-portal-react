@@ -1,0 +1,272 @@
+[
+    {
+      "name": "Algeria",
+      "code": "DZ",
+      "value": 1
+    },
+    {
+      "name": "Angola",
+      "code": "AO",
+      "value": 2
+    },
+    {
+      "name": "Benin",
+      "code": "BJ",
+      "value": 3
+    },
+    {
+      "name": "Botswana",
+      "code": "BW",
+      "value": 4
+    },
+    {
+      "name": "Burkina Faso",
+      "code": "BF",
+      "value": 5
+    },
+    {
+      "name": "Burundi",
+      "code": "BI",
+      "value": 6
+    },
+    {
+      "name": "Cabo Verde",
+      "code": "CM",
+      "value": 7
+    },
+    {
+      "name": "Cameroon",
+      "code": "CV",
+      "value": 8
+    },
+    {
+      "name": "Central African Republic",
+      "code": "CF",
+      "value": 9
+    },
+    {
+      "name": "Chad",
+      "code": "TD",
+      "value": 10
+    },
+    {
+      "name": "Comoros",
+      "code": "KM",
+      "value": 11
+    },
+    {
+      "name": "Congo",
+      "code": "CG",
+      "value": 12
+    },
+    {
+      "name": "Côte d'Ivoire",
+      "code": "CD",
+      "value": 13
+    },
+    {
+      "name": "Democratic Republic of Congo",
+      "code": "DJ",
+      "value": 14
+    },
+    {
+      "name": "Djibouti",
+      "code": "EG",
+      "value": 15
+    },
+    {
+      "name": "Egypt",
+      "code": "GQ",
+      "value": 16
+    },
+    {
+      "name": "Equatorial Guinea",
+      "code": "ER",
+      "value": 17
+    },
+    {
+      "name": "Eritrea",
+      "code": "ET",
+      "value": 18
+    },
+    {
+      "name": "Ethiopia",
+      "code": "TF",
+      "value": 19
+    },
+    {
+      "name": "Gabon",
+      "code": "GM",
+      "value": 20
+    },
+    {
+      "name": "Gambia",
+      "code": "GH",
+      "value": 21
+    },
+    {
+      "name": "Ghana",
+      "code": "GN",
+      "value": 22
+    },
+    {
+      "name": "Guinea",
+      "code": "GW",
+      "value": 23
+    },
+    {
+      "name": "Guinea-Bissau",
+      "code": "CI",
+      "value": 24
+    },
+    {
+      "name": "Kenya",
+      "code": "KE",
+      "value": 25
+    },
+    {
+      "name": "Lesotho",
+      "code": "LS",
+      "value": 26
+    },
+    {
+      "name": "Liberia",
+      "code": "LR",
+      "value": 27
+    },
+    {
+      "name": "Libya",
+      "code": "LY",
+      "value": 28
+    },
+    {
+      "name": "Madagascar",
+      "code": "MG",
+      "value": 29
+    },
+    {
+      "name": "Malawi",
+      "code": "MW",
+      "value": 30
+    },
+    {
+      "name": "Mali",
+      "code": "ML",
+      "value": 31
+    },
+    {
+      "name": "Mauritania",
+      "code": "MR",
+      "value": 32
+    },
+    {
+      "name": "Mauritius",
+      "code": "MU",
+      "value": 33
+    },
+    {
+      "name": "Morocco",
+      "code": "MA",
+      "value": 34
+    },
+    {
+      "name": "Mozambique",
+      "code": "MZ",
+      "value": 35
+    },
+    {
+      "name": "Namibia",
+      "code": "NA",
+      "value": 36
+    },
+    {
+      "name": "Niger",
+      "code": "NE",
+      "value": 37
+    },
+    {
+      "name": "Nigeria",
+      "code": "NG",
+      "value": 38
+    },
+    {
+      "name": "Rwanda",
+      "code": "RW",
+      "value": 39
+    },
+    {
+      "name": "Sao Tome and Principe",
+      "code": "ST",
+      "value": 40
+    },
+    {
+      "name": "Senegal",
+      "code": "SN",
+      "value": 41
+    },
+    {
+      "name": "Seychelles",
+      "code": "SC",
+      "value": 42
+    },
+    {
+      "name": "Sierra Leone",
+      "code": "SL",
+      "value": 43
+    },
+    {
+      "name": "Somalia",
+      "code": "SO",
+      "value": 44
+    },
+    {
+      "name": "South Africa",
+      "code": "ZA",
+      "value": 45
+    },
+    {
+      "name": "South Sudan",
+      "code": "SS",
+      "value": 46
+    },
+    {
+      "name": "Sudan",
+      "code": "SD",
+      "value": 47
+    },
+    {
+      "name": "Swaziland",
+      "code": "SZ",
+      "value": 48
+    },
+    {
+      "name": "Tanzania, United Republic of",
+      "code": "TZ",
+      "value": 49
+    },
+    {
+      "name": "Togo",
+      "code": "TG",
+      "value": 50
+    },
+    {
+      "name": "Tunisia",
+      "code": "TN",
+      "value": 51
+    },
+    {
+      "name": "Uganda",
+      "code": "UG",
+      "value": 52
+    },
+    {
+      "name": "Zambia",
+      "code": "ZM",
+      "value": 53
+    },
+    {
+      "name": "Zimbabwe",
+      "code": "ZW",
+      "value": 54
+    }
+  ]

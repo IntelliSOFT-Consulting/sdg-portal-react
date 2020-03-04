@@ -42,12 +42,29 @@ $blue:    #007bff !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
+// $red:     #dc3545 !default;
+// $orange:  #fd7e14 !default;
+// $yellow:  #ffc107 !default;
 $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
+$red:     #E5243B !default;
+$mustard: #DDA63A !default;
+$kelly-green: #4C9F38 !default;
+$dark-red: #C5192D !default;
+$red-orange: #FF3A21 !default;
+$bright-blue: #26BDE2 !default;
+$yellow: #FCC30B !default;
+$burgundy-red: #A21942 !default;
+$orange: #FD6925 !default;
+$magenta: #DD1367 !default;
+$golden-yellow: #FD9D24 !default;
+$dark-mustard: #BF8B2E !default;
+$dark-green: #3F7E44 !default;
+$blue: #0A97D9 !default;
+$lime-green: #56C02B !default;
+$royal-blue: #00689D !default;
+$navy-blue: #19486A !default;
 
 $colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -65,7 +82,21 @@ $colors: map-merge(
     "cyan":       $cyan,
     "white":      $white,
     "gray":       $gray-600,
-    "gray-dark":  $gray-800
+    "gray-dark":  $gray-800,
+    "mustard":    $mustard,
+    "kelly-green":   $kelly-green,
+    "dark-red" :     $dark-red,
+    "red-orange":    $red-orange,
+    "bright-blue":   $bright-blue,
+    "burgundy-red" : $burgundy-red,
+    "magenta":       $magenta,
+    "golden-yellow": $golden-yellow,
+    "dark-mustard":  $dark-mustard,
+    "dark-green":    $dark-green,
+    "lime-green":    $lime-green,
+    "royal-blue":    $royal-blue,
+    "navy-blue":     $navy-blue
+
   ),
   $colors
 );

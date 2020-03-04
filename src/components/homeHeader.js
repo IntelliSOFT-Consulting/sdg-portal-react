@@ -19,7 +19,7 @@ class HomeHeader extends React.Component{
     render(){
         return (
             <> 
-            <header className="header-global home-header">
+            <header className=" home-header">
                 <Navbar className="navbar-main navbar-transparent navbar-light headroom" expand="lg" id="navbar-main">
                     <div className="container-fluid">
                         <NavbarBrand>

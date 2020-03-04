@@ -1,4 +1,8 @@
 [
+    {
+        "id": 0,
+        "title": ""
+    },
             {
                 "id" :1,
                 "title": "End poverty in all its forms everywhere",
@@ -174,13 +178,211 @@
                 "id":2,
                 "image" : "E_SDG_Icons-02",
                 "title": "End hunger, achieve food security and improved nutrition and promote sustainable agriculture",
-                "description": "Goal 2 seeks to end hunger and all forms of malnutrition and to achieve sustainable food production by 2030. It is premised on the idea that everyone should have access to sufficient nutritious food, which will require widespread promotion of sustainable agriculture, a doubling of agricultural productivity, increased investments and properly functioning food markets."
-            },{
+                "description": "Goal 2 seeks to end hunger and all forms of malnutrition and to achieve sustainable food production by 2030. It is premised on the idea that everyone should have access to sufficient nutritious food, which will require widespread promotion of sustainable agriculture, a doubling of agricultural productivity, increased investments and properly functioning food markets.",
+                "targets": [
+                    {
+                        "code": "2.1",
+                        "title": "By 2030, end hunger and ensure access by all people, in particular the poor and people in vulnerable situations, including infants, to safe, nutritious and sufficient food all year round",
+                        "description": "By 2030, end hunger and ensure access by all people, in particular the poor and people in vulnerable situations, including infants, to safe, nutritious and sufficient food all year round",
+                        "uri": "/v1/Target/2.1",
+                        "indicators": [
+                            {
+                                "code": "2.1.1",
+                                "title": "2.1 Severely food insecure (number) (people)",
+                                "description": "Prevalence of undernourishment"
+                            },
+                            {
+                                "code": "2.1.1",
+                                "title": "2.1 Severely food insecure (prevalence) (%)",
+                                "description": "Prevalence of undernourishment"
+                            },
+                            {
+                                "code": "2.1.1",
+                                "title": "2.1 Moderately food insecure (prevalence) (%)",
+                                "description": "Prevalence of undernourishment"
+                            },{
+                                "code": "2.1.1",
+                                "title": "2.1 Prevalence of undernourishment (% of population)",
+                                "description": "Prevalence of undernourishment"
+                            }
+
+                        ]
+                    },
+                    {
+                        "code": "2.2",
+                        "title": "By 2030, end all forms of malnutrition, including achieving, by 2025, the internationally agreed targets on stunting and wasting in children under 5 years of age, and address the nutritional needs of adolescent girls, pregnant and lactating women and older persons",
+                        "description": "By 2030, end all forms of malnutrition, including achieving, by 2025, the internationally agreed targets on stunting and wasting in children under 5 years of age, and address the nutritional needs of adolescent girls, pregnant and lactating women and older persons",
+                        "uri": "/v1/Target/2.1",
+                        "indicators": [
+                            {
+                                "code": "2.2.1",
+                                "title": "2.2 Prevalence of stunting  height for age (% of children under 5)",
+                                "description": "Prevalence of undernourishment"
+                            },
+                            {
+                                "code": "2.2.1",
+                                "title": "2.2  Share of children with weight too low for their height (wasting) (% of children under 5)",
+                                "description": "Prevalence of undernourishment"
+                            },
+                            {
+                                "code": "2.2.2",
+                                "title": "2.2.2 - Proportion of overweight children (weight for height above plus two standard deviations from the median) under the age of 5 years - SN_STA_OVWGT - Percent (%)",
+                                "description": "Prevalence of undernourishment"
+                            },{
+                                "code": "2.2.1",
+                                "title": "2.2  Prevalence of anemia in pregnant women (1995-2011) (%)",
+                                "description": "Prevalence of undernourishment"
+                            },{
+                                "code": "2.2.1",
+                                "title": "2.2  Prevalence of anemia in women of reproductive age (% of women ages 15-49)",
+                                "description": "Prevalence of undernourishment"
+                            },{
+                                "code": "2.2.1",
+                                "title": "2.2 Prevalence of anemia in children (% of children under 5)",
+                                "description": "Prevalence of undernourishment"
+                            },{
+                                "code": "2.2.1",
+                                "title": "2.2 Prevalence of vitamin-A deficiency in children (WHO (2017)) (%)",
+                                "description": "Prevalence of undernourishment"
+                            },{
+                                "code": "2.2.1",
+                                "title": "2.2 Prevalence of night blindness in pregnant women (WHO (2009)) (%)",
+                                "description": "Prevalence of undernourishment"
+                            },{
+                                "code": "2.2.1",
+                                "title": "2.2  Prevalence of night blindness in pre school children (%)",
+                                "description": "Prevalence of undernourishment"
+                            }
+
+                        ]
+                    }, 
+                    {
+                        "code": "2.4",
+                        "title": "By 2030, ensure sustainable food production systems and implement resilient agricultural practices that increase productivity and production, that help maintain ecosystems, that strengthen capacity for adaptation to climate change, extreme weather, drought, flooding and other disasters and that progressively improve land and soil quality",
+                        "description": "By 2030, ensure sustainable food production systems and implement resilient agricultural practices that increase productivity and production, that help maintain ecosystems, that strengthen capacity for adaptation to climate change, extreme weather, drought, flooding and other disasters and that progressively improve land and soil quality",
+                        "indicators": [
+                            {
+                                "code": "2.4",
+                                "title": "2.4 Total agricultural area (hectares)"                            
+                            },
+                            {
+                                "code": "2.4",
+                                "title": "2.4 Organic agricultural area (hectares)"
+                            },
+                            {
+                                "code": "2.4",
+                                "title": "2.4 Organic arable area (hectares)"                            
+                            },{
+                                "code": "2.4",
+                                "title": "2.4 Total arable area (hectares)"
+                            },{
+                                "code": "2.4",
+                                "title": "2.4 Share of arable land which is organic (%)"
+                            }
+
+                        ]
+                    }, 
+                    {
+                        "code": "2.5",
+                        "title": "By 2020, maintain the genetic diversity of seeds, cultivated plants and farmed and domesticated animals and their related wild species, including through soundly managed and diversified seed and plant banks at the national, regional and international levels, and promote access to and fair and equitable sharing of benefits arising from the utilization of genetic resources and associated traditional knowledge, as internationally agreed",
+                        "description": "By 2020, maintain the genetic diversity of seeds, cultivated plants and farmed and domesticated animals and their related wild species, including through soundly managed and diversified seed and plant banks at the national, regional and international levels, and promote access to and fair and equitable sharing of benefits arising from the utilization of genetic resources and associated traditional knowledge, as internationally agreed",
+                        "indicators": [
+                            {
+                                "code": "2.5.1",
+                                "title": "2.5.1 - Number of accessions of plant genetic resources secured in conservation facilities under medium or long term conditions - ER_GRF_PLNTSTOR - Number (accessions in conservation facilities)"                            
+                            },
+                            {
+                                "code": "2.5.1",
+                                "title": "2.5.1 - Proportion of animal breeds for which sufficient genetic resources for food and agriculture are stored for reconstitution in either medium or long-term conservation facilities - ER_GRF_ANIMRCNT - Percent (%)"
+                            },
+                            {
+                                "code": "2.5.",
+                                "title": "2.5.2 - Proportion of local breeds classified as being at risk of extinction - ER_NRK_lrED - Percent (%)"                            
+                            }
+
+                        ]
+                    },
+                    {
+                        "code": "2.A",
+                        "title": "Adopt measures to ensure the proper functioning of food commodity markets and their derivatives and facilitate timely access to market information, including on food reserves, in order to help limit extreme food price volatility",
+                        "description": "Adopt measures to ensure the proper functioning of food commodity markets and their derivatives and facilitate timely access to market information, including on food reserves, in order to help limit extreme food price volatility",
+                        "indicators": [
+                            {
+                                "code": "2.A.",
+                                "title": "2.A.2 - Total official flows disbursements for agriculture  by recipient (constant 2015 US$)"                            
+                            }, {
+                                "code": "2.A.",
+                                "title": "2.A Credit to Agriculture: Credit to Agriculture  Forestry and Fishing - Agriculture orientation index (FAO (2017)) (index)"                            
+                            }
+                        ]
+                    },
+                    {
+                        "code": "2.C",
+                        "title": "Adopt measures to ensure the proper functioning of food commodity markets and their derivatives and facilitate timely access to market information, including on food reserves, in order to help limit extreme food price volatility",
+                        "description": "Adopt measures to ensure the proper functioning of food commodity markets and their derivatives and facilitate timely access to market information, including on food reserves, in order to help limit extreme food price volatility",
+                        "indicators": [
+                            {
+                                "code": "2.C.",
+                                "title": "2.C Suite of Food Security Indicators: Domestic food price volatility (index) - Value (FAO (2017)) (index)"                            
+                            }
+                        ]
+                    }
+                ]
+                        
+                },{
                 "id":3,
                 "image": "E_SDG_Icons-03",
                 "title": "Ensure healthy lives and promote well-being for all at all ages",
-                "description": "Goal 3 aims to ensure health and well-being for all at all ages by improving reproductive, maternal and child health; ending the epidemics of major communicable diseases; reducing non-communicable and environmental diseases; achieving universal health coverage; and ensuring access to safe, affordable and effective medicines and vaccines for all."
-            },{
+                "description": "Goal 3 aims to ensure health and well-being for all at all ages by improving reproductive, maternal and child health; ending the epidemics of major communicable diseases; reducing non-communicable and environmental diseases; achieving universal health coverage; and ensuring access to safe, affordable and effective medicines and vaccines for all.",
+                "targets": [
+                    {
+                        "code": "3.1",
+                        "title": "By 2030, reduce the global maternal mortality ratio to less than 70 per 100,000 live births",
+                        "description": "By 2030, reduce the global maternal mortality ratio to less than 70 per 100,000 live births",
+                        "indicators": [
+                            {
+                                "code": "3.1",
+                                "title": "3.1 Maternal Mortality Ratio (Gapminder (2010) and World Bank (2015)) (deaths per 100 000 live births)"                            
+                            }, {
+                                "code": "3.1",
+                                "title": "3.1 Number of maternal deaths"                            
+                            },
+                            {
+                                "code": "3.1",
+                                "title": "3.1 birth-attended-health-staff"                            
+                            }
+                        ]
+                    },{
+                        "code": "3.2",
+                        "title": "Adopt measures to ensure the proper functioning of food commodity markets and their derivatives and facilitate timely access to market information, including on food reserves, in order to help limit extreme food price volatility",
+                        "description": "Adopt measures to ensure the proper functioning of food commodity markets and their derivatives and facilitate timely access to market information, including on food reserves, in order to help limit extreme food price volatility",
+                        "indicators": [
+                            {
+                                "code": "3.2.",
+                                "title": "3.2 Mortality rate  neonatal (per 1 000 live births)"                            
+                            }, {
+                                "code": "3.2",
+                                "title": "3.2 Number of neonatal deaths"                            
+                            }, {
+                                "code": "3.2",
+                                "title": "3.2 Child mortality rate (per 1 000 live births)"                            
+                            }, {
+                                "code": "3.2",
+                                "title": "3.2 Child mortality rate of boys (per 1 000 live births) (per 1 000 live births)"                            
+                            }, {
+                                "code": "3.2",
+                                "title": "3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)"                            
+                            }, {
+                                "code": "3.2",
+                                "title": "3.2 Child mortality rate of total population (Gapminder)"                            
+                            }, {
+                                "code": "3.2",
+                                "title": "3.2 Number of under-five deaths"                            
+                            }
+                        ]
+                    }
+                ]           
+                 },{
                 "id":4,
                 "image": "E_SDG_Icons-04",
                 "title": "Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all",

@@ -1,24 +1,17 @@
-import React, { useState , useEffect, useCallback} from "react";
+import React, { useState , useEffect} from "react";
 import {
-    Container, Row, Col, Card, CardImg, Button, Input, Nav, TabContent, TabPane,  Modal, Label, FormGroup
+    Container, Row, Col, Card, CardImg, Button, Input, Nav, TabContent, TabPane,  Modal, Label, CustomInput
 } from "reactstrap";
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from "classnames";
-import { indexOf } from "@amcharts/amcharts4/.internal/core/utils/Array";
-import Select from 'react-select';
-import ReactMultiSelectCheckboxes, { components } from 'react-multiselect-checkboxes';
 
 import Header from "../../components/header";
 import SdgMap from "../../visualizations/sdgMap";
 import Footer from "../../components/footer";
-import SdgChart from "../../visualizations/sdgChart";
 import SdgHighChart from "../../visualizations/sdgHighChart";
 import LineChart from "../../visualizations/lineChart";
-import Countries from "../../components/countriesModal";
-import countriesModal from "../../components/countriesModal";
-
 
 function Sdg(){
     const override = css`
@@ -44,51 +37,14 @@ function Sdg(){
     const [dataSource, setDataSource] = useState('pan');
     const [activeTab, setActiveTab] = useState('1.2');
     const [isLoading, setIsLoading] = useState(false);
-    const [isChartLoading, setIsChartLoading] = useState(false);
-    const [mapChartType, setMapChartType] = useState('chart');
+    const [mapChartType, setMapChartType] = useState('map');
     const [year, setYear] = useState('2006');
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
-
     const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true});
-    const [selectedCountries, setSelectedCountries] = useState(new Set());
     
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];  
-    let selectedCountriesSet = new Set();
-
-    const countriesSelect = countries.map(country => ({label: country.name, value: country.alpha2Code}))
-
-    const customStyles = {
-        container: base => ({
-            ...base,
-            borderRadius: 0,
-            backgroundColor : "#fff"
-          }),
-          DropdownButton : base => ({
-              ...base,
-            backgroundColor : "#34b5b8",
-            borderColor : "#34b5b8",
-          }),
-          control : base => ({
-            ...base,
-            padding: 2,
-            borderRadius: 0,
-            backgroundColor : "#34b5b8",
-            borderColor : "#34b5b8",
-          }),
-          menu : base => ({
-              ...base,
-            backgroundColor : "#34b5b8",
-            borderColor : "#34b5b8",
-            color: "#fff"
-          }),
-          option : base => ({
-              ...base,
-              textAlign : "left",
-          })
-    }
-
     const [toggleModal, setOpenModal] = useState(false);
 
     const openModal = (countryId) => {
@@ -100,25 +56,18 @@ function Sdg(){
 
     const handleChange = (event) => {
         setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
-        if(event.target.checked === true){
-            selectedCountriesSet.add(event.target.name);
-        }else {
-            selectedCountriesSet.delete(event.target.name);
-        }
-        setSelectedCountries(selectedCountriesSet)
     }
 
     useEffect(() => {
       sdgChartData.includes();
-      console.log(checkedItems);
+     // console.log(checkedItems);
     })
 
-
     useEffect(() => {
-        if(dataSource == 'pan'){
+        if(dataSource === 'pan'){
             csvDataSourceData = require("../../assets/data/sdg/pan.csv");
             sdgData = require('../../assets/data/globalDatabase.json');
-        }else if (dataSource == 'gdb'){
+        }else if (dataSource === 'gdb'){
             csvDataSourceData = require("../../assets/data/sdg/gdb.csv");
             sdgData = require('../../assets/data/globalDatabase.json');
         }
@@ -151,10 +100,9 @@ function Sdg(){
             
             for (const key of keys){
                 for(const data of myChartData){
-                    console.log(data, checkedItems[key], key)
-                    if(data.includes(key.toLowerCase()) && checkedItems[key] == true){
+                    if(data.includes(key.toLowerCase()) && checkedItems[key] === true){
                         for(const country of countries){
-                            if (country.alpha2Code == key){
+                            if (country.alpha2Code === key){
                                 data[0] = country.name
                             }
                         }
@@ -163,7 +111,7 @@ function Sdg(){
                     }
                 }
             }
-            console.log(filteredChartData);
+            //console.log(filteredChartData);
 
             setSdgChartData(filteredChartData);
         }
@@ -225,7 +173,7 @@ function Sdg(){
     const indexOf = (country, countriesData) => {
         let i = 0;
         for(i = 0; i < countriesData.length; i++){
-            if(country == countriesData[i].name){
+            if(country === countriesData[i].name){
                 return i;
             }  
         }
@@ -372,14 +320,18 @@ function Sdg(){
                                                 color={'#123abc'} loading={isLoading} />
                                             </div> 
                                         ) : (
-                                            <Row>
-                                            <Col md="11" className="mt-3 ">
+                                            <div>
+                                               
                                                 <SdgMap mySdgData ={sdgMapData}></SdgMap>
-                                            </Col>
-                                            <Col md="1">
-
-                                            </Col>
-                                            </Row>
+                                               
+                                                <Container className="play-controls">
+                                                    <Button id="play-pause-button" type="button" className="btn-icon" title="play">
+                                                        <i className="fa fa-play"></i>
+                                                    </Button>
+                                                    <CustomInput type="range" id="play-range" name="customRange" />
+                                                    <Label id="play-output" htmlFor="play-range" name="year">2009</Label>
+                                                </Container>
+                                            </div>
                                         
                                         )
                                     ): null

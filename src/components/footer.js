@@ -4,7 +4,7 @@ class Footer extends React.Component{
     render(){
         return(
             <>
-                <footer className="footer text-center mt-2">
+                <footer className="footer text-center">
 
 			        <img alt="..." src={require("../assets/img/brand/banner.png")} className="img-fluid"></img>
                     <p className="text-center">

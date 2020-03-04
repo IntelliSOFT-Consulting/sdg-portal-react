@@ -1348,8 +1348,8 @@ function Map({ mapData }) {
             chart: {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
-                width: 800,
-                height: 400,
+                width: 500,
+                height: 300,
                 events: {
                     drilldown: function (e) {
                         
