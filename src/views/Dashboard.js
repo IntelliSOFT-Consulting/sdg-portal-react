@@ -17,12 +17,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Dashboard (){
   const Papa = require("papaparse/papaparse.min.js");
   const data = require('../assets/data/scorecardData.json');
+  const dashboardIndicators = require("../assets/data/dashboard.json");
   const [activeRegion, setActiveRegion] = useState('1');
   
   const [dashboardData, setDashboardData] = useState([]);
   const [toggleModal, setOpenModal] = useState(false);
   const [dashboardPopupData, setModalPopupData] = useState([]);
   const sdgsImages = require.context('../assets/img/sdg_icons', true);
+  const [dashboardPopupIndicators, setDashboardPopupIndicators] = useState([]);
+  const [dashboardPopupIndicatorsData, setDashboardPopupIndicatorsData] = useState([]);
+  const [activePopup, setActivePopup] = useState('');
 
   const sdgs = [
     {
@@ -107,35 +111,47 @@ function Dashboard (){
 
   const regionClick = (e) =>{
     setActiveRegion(e.target.value)
-    
   }
 
-  const openModal = (e) => {
-    console.log(e.target.id);
-    let countrySdg = e.target.id;
+  const parseDashboardData = (countrySdg) => {
+    const indicatorData = [];
     let n = countrySdg.length;
     let countryCode = countrySdg.slice(0,2);
     let sdgNumber = countrySdg.slice(2,n);
     let shortHandName = '';
+    dashboardIndicators.forEach(function(dashboardIndicator){
+      if(dashboardIndicator.id == sdgNumber){
+        setDashboardPopupIndicators(dashboardIndicator.indicators);
+      }
+    })
 
-    setOpenModal(true);
-
+    console.log(dashboardPopupIndicators);
     dashboardData.forEach(function(data){
       if(data.code == countryCode){
-        console.log(getShortHand(sdgNumber))
-
-        
-
+        dashboardPopupIndicators.forEach(function(ind){
+          setDashboardPopupIndicatorsData({
+            "title": ind.title,
+            "value": data[ind.indicator],
+            "color": ind.color
+          })
+        })
 
         setModalPopupData({
           "country": data.Country,
           "color": data['sdg'+sdgNumber],
           "indicator": sdgNumber,
-          "shorthand" : getShortHand( parseInt(sdgNumber))
+          "shorthand" : getShortHand( parseInt(sdgNumber)),
+          "indicators": dashboardPopupIndicators
         })
       }
-    })
+    }) 
   }
+  
+  const openModal = (e) => {
+    setActivePopup(e.target.id);
+    setOpenModal(true);
+  }
+
   const closeModal = () => {
     setOpenModal(false)
   }
@@ -148,14 +164,16 @@ function Dashboard (){
           header: true,
           skipEmptyLines: false,
           complete: function(results){
-              console.log(results.data)
               setDashboardData(results.data);
           }
         })
       } 
-
       loadData(dashboardDataSource);
   }, [activeRegion])
+
+  useEffect(() => {
+    parseDashboardData(activePopup);
+  }, [activePopup])
 
 
   const getShortHand = (goalNo) => {
@@ -543,11 +561,17 @@ function Dashboard (){
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr>
-                                      <td>{dashboardPopupData.indicator}</td>
-                                      <td className="valueData"></td>
-                                      <td className="ratingData">  <FontAwesomeIcon icon="circle" color={dashboardPopupData.color} /> </td>
-                                    </tr>
+                                  {
+                                      dashboardPopupIndicators.map(function(dashboardInd, index){
+                                        return <tr>
+                                          <td>{dashboardInd.title}</td>
+                                          <td className="valueData">{dashboardInd.value}</td>
+                                          <td className="ratingData">  <FontAwesomeIcon icon="circle" color={dashboardInd.color} /> </td>
+                                        </tr>
+                                      })
+                                    }
+
+                                   
                                   </tbody>
                                 </table>
                             </Row>
