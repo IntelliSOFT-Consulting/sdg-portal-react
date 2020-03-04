@@ -26,7 +26,7 @@ class Header extends React.Component{
             <header className="header-global">
             <NavbarBrand>
                 <Link to="/">
-                    <img alt="..." src={require("../assets/img/brand/logo_white.png")}></img>
+                    <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
                 </Link>   
             </NavbarBrand>
                
