@@ -9,6 +9,10 @@ import {
         CardHeader,
         CardImg
 } from "reactstrap";
+import {
+    BrowserRouter as Router, 
+    Link
+} from 'react-router-dom';
 
 
 class About extends React.Component {
@@ -35,12 +39,15 @@ class About extends React.Component {
                         <Col md="6">
                             <Row>
                                 <Col md="8" className="text-right">
-                                    <h5>Sustainable Development Goals</h5>
+                                <Link to="/Sdgs"><h5>Sustainable Development Goals</h5></Link>
                                     <p>Visualize data in maps, ranks , charts, benchmark countries performance and analyze 
                                     time trends</p>
                                 </Col>
                                 <Col md="4">
-                                    <CardImg alt="..." src={require("../assets/img/bg/sdgs2.png")}></CardImg>
+                                    <Link to="/Sdgs">
+                                        <CardImg alt="..." src={require("../assets/img/bg/sdgs2.png")}></CardImg>
+                                    </Link>
+                                    
                                 </Col>
                             </Row> 
                         </Col>
@@ -48,10 +55,12 @@ class About extends React.Component {
                         <Col md="6">
                             <Row>
                                 <Col md="4" className="text-right">
-                                    <CardImg alt="..." src={require("../assets/img/bg/dashboard4.png")}></CardImg>
+                                    <Link to="/Dashboard">
+                                        <CardImg alt="..." src={require("../assets/img/bg/dashboard4.png")}></CardImg>
+                                    </Link>
                                 </Col>
                                 <Col md="8">
-                                    <h5>Dashboard</h5>
+                                <Link to="/Dashboard"> <h5>Dashboard</h5></Link>
                                     <p>Analysis of African countries' current status towards achieving the SDGs 
                                 and highlight those SDGs that require particular attention in each country using traffic light
                                 from red (worst)  to green (best) performing goal.</p>
@@ -62,13 +71,14 @@ class About extends React.Component {
                         <Col md="6" className="mt-4">
                             <Row>
                                 <Col md="8" className="text-right">
-                                    <h5>Country Profile</h5>
+                                <Link to="/CountryProfile"><h5>Country Profile</h5></Link>
                                     <p>Snapshot of different performance metrics indicating progress towards the achievement of
                                     the SDGs</p>
                                 </Col>
                                 <Col md="4">
-                                <CardImg alt="..." src={require("../assets/img/bg/dashboard3.png")}>
-                                </CardImg>
+                                    <Link to="/CountryProfile">
+                                        <CardImg alt="..." src={require("../assets/img/bg/dashboard3.png")}></CardImg>
+                                    </Link>
                                 </Col>
                             </Row> 
                         </Col>
@@ -76,11 +86,12 @@ class About extends React.Component {
                         <Col md="6" className="mt-4">
                             <Row>
                                 <Col md="4"  className="text-right">
-                                <CardImg alt="..." src={require("../assets/img/bg/agenda20632.png")}>
-                                </CardImg>
+                                    <Link to="/Agenda2063">
+                                        <CardImg alt="..." src={require("../assets/img/bg/agenda20632.png")}></CardImg>
+                                    </Link>
                                 </Col>
                                 <Col md="8">
-                                    <h5>Agenda 2063</h5>
+                                <Link to="/Agenda2063"> <h5>Agenda 2063</h5></Link>
                                     <p>Track current status of A2063 indicators</p>
                                 </Col>
                             </Row>

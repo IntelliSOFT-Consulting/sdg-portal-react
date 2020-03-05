@@ -748,3 +748,8 @@ font-weight: 600;
   padding-left: 12%;
   padding-right: 12%;
 }
+
+.aboutCards a:hover{
+  text-decoration: underline;
+  text-decoration-color: #32325d
+}
