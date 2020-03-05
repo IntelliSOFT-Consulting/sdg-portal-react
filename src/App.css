@@ -753,3 +753,5 @@ font-weight: 600;
   text-decoration: underline;
   text-decoration-color: #32325d
 }
+.aboutCards img { transition: all .2s ease-in-out; }
+.aboutCards img:hover { transform: scale(1.1); }

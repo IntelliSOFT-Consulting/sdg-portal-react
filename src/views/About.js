@@ -23,7 +23,7 @@ class About extends React.Component {
                 <main>
                 <div className="container-fluid pl-5 pr-5 pb-5">
                     
-                    <Row className="pl-5 pr-5">
+                    <Row className="pl-5 pr-5 pt-3">
                    
                     <p className="text-center mb-5">
                     The Portal aims to serve as a unique access point to timely and reliable information about SDG and 
