@@ -380,13 +380,93 @@
                                 "title": "3.2 Number of under-five deaths"                            
                             }
                         ]
+                    },{
+                        "code": "3.3",
+                        "title": "Adopt measures to ensure the proper functioning of food commodity markets and their derivatives and facilitate timely access to market information, including on food reserves, in order to help limit extreme food price volatility",
+                        "description": "Adopt measures to ensure the proper functioning of food commodity markets and their derivatives and facilitate timely access to market information, including on food reserves, in order to help limit extreme food price volatility",
+                        "indicators": [
+                            {
+                                "code": "3.3",
+                                "title": "3.3 Incidence of HIV (% of uninfected population ages 15-49) (per 1,000 uninfected individuals aged 15-49)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 Under 5 years (deaths from HIV)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 70+ years (deaths from HIV)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 5-14 years (deaths from HIV)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 15-49 years (deaths from HIV)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 50-69 years (deaths from HIV)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 Incidence of tuberculosis (per 100,000 people)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 Under-5s (deaths from tuberculosis)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 5-14 years old (deaths from tuberculosis)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 15-49 years old (deaths from tuberculosis)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 50-69 years old (deaths from tuberculosis)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 70+ years old (deaths from tuberculosis)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 Incidence of malaria (per 1,000 population at risk)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 Under-5s (deaths from malaria)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 5-14 years old (deaths from malaria)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 15-49 years old (deaths from malaria)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 50-69 years old (deaths from malaria)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 70+ years old (deaths from malaria)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 Deaths from heptatitis (per 100,000 people)"                            
+                            }, {
+                                "code": "3.3",
+                                "title": "3.3 Number of people requiring treatment for neglected tropical diseases (people requiring treatment)"                            
+                            }
+                        ]
                     }
                 ]           
                  },{
                 "id":4,
                 "image": "E_SDG_Icons-04",
                 "title": "Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all",
-                "description": "Goal 4 focuses on the acquisition of foundational and higher-order skills; greater and more equitable access to technical and vocational education and training and higher education; training throughout life; and the knowledge, skills and values needed to function well and contribute to society."
+                "description": "Goal 4 focuses on the acquisition of foundational and higher-order skills; greater and more equitable access to technical and vocational education and training and higher education; training throughout life; and the knowledge, skills and values needed to function well and contribute to society.",
+                "targets": [
+                    {
+                        "code": "4.1",
+                        "title": "",
+                        "description": "",
+                        "indicators": [
+                            {
+                                "code": "4.1",
+                                "title": ""                            
+                            }
+                        ]
+                    }
+                ]
             },{
                 "id":5,
                 "image": "E_SDG_Icons-05",

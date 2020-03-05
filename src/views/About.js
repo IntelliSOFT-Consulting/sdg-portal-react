@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/header";
+import Header from "../components/aboutHeader";
 import Footer from "../components/footer";
 import { 
         Row, 
@@ -18,7 +18,7 @@ class About extends React.Component {
             <Header></Header>
                 <main>
                 <div className="container-fluid pl-5 pr-5 pb-5">
-                     <h5 className="display-3 mb-4 mt-2 text-center">The SDG and Agenda 2063 Data Portal for Africa</h5>
+                    
                     <Row className="pl-5 pr-5">
                    
                     <p className="text-center mb-5">

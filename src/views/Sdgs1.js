@@ -30,7 +30,7 @@ function Sdgs1() {
 
     const countries = require("../assets/data/countries.json");
    
-    const [target, setTarget] = useState('1.1');
+    const [target, setTarget] = useState('1.2');
     const [indicators, setIndicators] = useState([]);
     //const [years, setYears] = useState([]);
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
@@ -46,13 +46,17 @@ function Sdgs1() {
     const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
     const [mapChartType, setMapChartType] = useState('map');
     const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true, CM:true, BI:true});
+    const [firstIndicator, setFirstIndicator] = useState('');
+    const [sdgTargets, setSdgTargets] = useState([]);
     
     const [isLoading, setIsLoading] = useState(false);
     const [toggleModal, setOpenModal] = useState(false);
     let csvDataSourceData = '';
     let normalizedData = '';
     let sdgData = '';
-    let ind = [];  
+    let ind = [];
+    let indi = [];    
+    let targ = [];
 
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
@@ -81,28 +85,6 @@ function Sdgs1() {
         }
         loadNormalizedData(normalizedData);
     }, [country]);
-
-    useEffect(() => {
-        if(dataSource === 'pan'){
-            csvDataSourceData = require("../assets/data/sdg/pan.csv");
-            sdgData = require('../assets/data/globalDatabase.json');
-        }else if (dataSource === 'gdb'){
-            csvDataSourceData = require("../assets/data/sdg/gdb.csv");
-            sdgData = require('../assets/data/globalDatabase.json');
-        }
-
-        if(activSdg != 0){
-            const targetData = sdgData[activSdg].targets;
-            targetData.forEach(function(data){
-                if(data.code === target){
-                    ind = data.indicators;
-                }
-            })
-        }
-
-       // console.log(ind)
-        setIndicators(ind);
-    }, [activSdg, target])
 
     useEffect(() => {
         let isSubscribed = true;
@@ -134,6 +116,21 @@ function Sdgs1() {
             setSdgChartData(filteredChartData);
         }
 
+        const unIndicators = require('../assets/data/unsdgapi.json');
+        if(activSdg != 0){
+            const targets = unIndicators[activSdg-1].targets;
+            targ = targets
+        }
+        setSdgTargets(targ);
+
+        if(activSdg != 0){
+            sdgTargets.forEach(function(sdgtarget){
+                if(sdgtarget.code == target){
+                    
+                }
+            })
+        }
+
         const loadSdgData = (sdgCsvFile) => {
             setIsLoading(true);
             Papa.parse(sdgCsvFile, {
@@ -141,12 +138,13 @@ function Sdgs1() {
                 header: true,
                 complete: function(results){
                     if(isSubscribed){
+                        parseIndicatorData(target, results.data);
                         parseMapData(results.data);
                         const chartData = parseChartData(results.data)
                         filterChartData(chartData);
                         parseLineData(results.data);
                         parseVictoryChartData(results.data);
-                        setIsLoading(false)
+                        setIsLoading(false);
                     }
                 }
             })
@@ -154,6 +152,21 @@ function Sdgs1() {
         loadSdgData(csvDataSourceData);
         return () => isSubscribed = false
     }, [dataSource, indicator, year, target, checkedItems, activSdg]);
+
+    const parseIndicatorData = (sdgTarget, sdgCompiledData) => {
+        let indicators = []
+        let keys = Object.keys(sdgCompiledData[0]);
+        let ind = keys.slice(3, keys.length)
+        ind.forEach(function(indicator){
+            if(indicator.startsWith(sdgTarget)){
+                indi.push(indicator);
+            }
+        })
+        setIndicators(indi);
+        setFirstIndicator(indi[0]);
+        //console.log(target);
+        console.log(indi[0]);
+    }
 
     const parseNormalizedData = (data) => {
         const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
@@ -281,11 +294,14 @@ function Sdgs1() {
     //Choose SDG
     const handleSdgChange = (sdg) => {
         setActiveSdg(sdg);
+        setTarget(sdg + ".1" );
+        setIndicator(firstIndicator);
     }
 
     //Choose target
     const handleTargetChange = (e) => {
         setTarget(e.target.value);
+        setIndicator(firstIndicator);
     }
 
     //Choose indicator
@@ -346,7 +362,7 @@ function Sdgs1() {
                             <Col>
                                 <Input type="select" name="targetSelect" onChange={handleTargetChange} value={target}>
                                         {
-                                        targets.map((target, index) =>{
+                                        sdgTargets.map((target, index) =>{
                                         return <option key={index} value={target.code}>{target.code}</option>
                                         })
                                     }
@@ -354,10 +370,10 @@ function Sdgs1() {
                             </Col>
                             <Col>
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                                    
+                                 
                                     {
                                         indicators.map((indicator, index) => {
-                                            return <option key={index} value={indicator.title}>{indicator.title}</option>
+                                            return <option key={index} value={indicator}>{indicator}</option>
                                         })
                                     }
                                 </Input>
