@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/header";
+import Header from "../components/countryProfileHeader";
 import Footer from "../components/footer";
 import Gauge from "../visualizations/gauge";
 import Demographics from "../visualizations/demographics";
@@ -230,7 +230,7 @@ function CountryProfile (props, ) {
                 <Container>
                     <Row>
                         <Col md="12">
-                            <h5 className="country-profile-title"> African Countries Profile </h5>
+                            
                             <Select options={countries} 
                                         placeholder="Search Country or Click on the Map" 
                                         value={selectedCountry}

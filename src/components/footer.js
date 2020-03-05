@@ -1,4 +1,5 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Footer extends React.Component{
     render(){
@@ -12,9 +13,9 @@ class Footer extends React.Component{
                     </p>
                     <p>
 
-                        <a href="https://twitter.com/sdgcafrica" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.facebook.com/SDGCAfrica" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook-f"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.youtube.com/channel/UCf-dFkCW1W0g2CVDAZfLMAw" target="_blank" rel="noopener noreferrer"><i className="fa fa-youtube"></i></a>
+                        <a href="https://twitter.com/sdgcafrica" target="_blank" rel="noopener noreferrer" className="twitter-icon"><FontAwesomeIcon icon={['fab', 'twitter']} size="lg" color="bright-blue"></FontAwesomeIcon></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.facebook.com/SDGCAfrica" target="_blank" rel="noopener noreferrer" className="facebook-icon"><FontAwesomeIcon icon={['fab', 'facebook']} size="lg" color="light-blue"></FontAwesomeIcon></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.youtube.com/channel/UCf-dFkCW1W0g2CVDAZfLMAw" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'youtube']} size="lg" color="red"/></a>
                         
                     </p>
 

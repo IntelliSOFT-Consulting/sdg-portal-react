@@ -364,7 +364,10 @@ text-align: center;
 }
 
 .about-header .nav{
-  width: 70%;
+  width: 53%;
+}
+.country-profile-header .nav{
+  width: 50%;
 }
 
 .sdgsHeader .sdg-icon-padding img{
@@ -732,7 +735,7 @@ font-weight: 600;
 }
 
 .countryProfile{
-  height: 85vh;
+  height: 90vh;
 }
 .country-profile-text{
   margin-top: 10%;
@@ -755,3 +758,10 @@ font-weight: 600;
 }
 .aboutCards img { transition: all .2s ease-in-out; }
 .aboutCards img:hover { transform: scale(1.1); }
+
+.twitter-icon{
+  color: #1da1f2;
+}
+.facebook-icon{
+  color: #4267b2;
+}

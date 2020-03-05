@@ -21,11 +21,11 @@ import a2063 from "./views/a2063";
 import SdgIndex from "./views/SdgIndex";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fab, faYoutube, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faGlobeAfrica, faChartBar, faChartLine, faCircle } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle)
+library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter)
 
 function App() {
 
