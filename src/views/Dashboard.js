@@ -1,5 +1,5 @@
 import React , { useState , useEffect} from "react";
-import Header from "../components/header";
+import Header from "../components/dashboardHeader";
 import Footer from "../components/footer";
 
 import {
@@ -9,7 +9,7 @@ import {
     Card,
     CardBody,
     TabContent,
-    TabPane, Button, CardImg, Row, Col, Modal, Container
+    TabPane, Button, CardImg, Row, Col, Modal, Container,Table
 } from "reactstrap";
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -271,32 +271,33 @@ function Dashboard (){
         return(
             <>
             <Header></Header>
-             <main className="container-fluid dashboard">
-                <div className="nav-wrapper">
+            
+            <div className="nav-wrapper dashboard-regions">
                     <Nav className="nav-fill flex-column"
-                    id="tabs-icons-text"
-                    pills
-                    role="tablist">
-                      <Row className="no-gutters regions-header">
-                        {
-                        regions.map((region, index) =>{  
-                                return <Col>
-                                    <Button key={index} onClick={regionClick} value={region.id} className={ activeRegion == index+1 ? 'active': '' }> 
-                                            {region.name}
-                                    </Button>
-                                </Col>
-                            })
-                        }  
-                      </Row>
-                          
+                      id="tabs-icons-text"
+                      pills
+                      role="tablist">
+                        <Row className="no-gutters regions-header">
+                          {
+                          regions.map((region, index) =>{  
+                                  return <Col>
+                                      <Button key={index} onClick={regionClick} value={region.id} className={ activeRegion == index+1 ? 'active': '' }> 
+                                              {region.name}
+                                      </Button>
+                                  </Col>
+                              })
+                          }  
+                        </Row>  
                     </Nav>
-                </div> 
+              </div> 
+             <main className="container-fluid dashboard">
+          
                 <Card className="">
                     <CardBody>
                         <TabContent activeTab={activeRegion}>
                           <TabPane tabId="1">
-                            <table >
-                              <thead className="dashboard">
+                            <Table>
+                              <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
                                 { 
@@ -305,9 +306,7 @@ function Dashboard (){
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
-
                                                           <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
-
                                           </th>
                                   })}
                                     
@@ -332,7 +331,7 @@ function Dashboard (){
                                   }
                               </tbody>
                             
-                            </table>
+                            </Table>
                           </TabPane>
                           <TabPane tabId="2">
                           <table className="">
@@ -580,8 +579,9 @@ function Dashboard (){
                     </div>
                   </Modal>
                   </Container>
+                  <Footer></Footer>
               </main>
-            <Footer></Footer>
+          
             </>
         )
     //}
