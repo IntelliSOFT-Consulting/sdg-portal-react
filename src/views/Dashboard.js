@@ -23,7 +23,7 @@ function Dashboard (){
   const [dashboardData, setDashboardData] = useState([]);
   const [toggleModal, setOpenModal] = useState(false);
   const [dashboardPopupData, setModalPopupData] = useState([]);
-  const sdgsImages = require.context('../assets/img/sdg_icons', true);
+  const sdgsImages = require.context('../assets/img/inverted_sdg_icons', true);
   const [dashboardPopupIndicators, setDashboardPopupIndicators] = useState([]);
   const [dashboardPopupIndicatorsData, setDashboardPopupIndicatorsData] = useState([]);
   const [activePopup, setActivePopup] = useState('');
@@ -31,55 +31,55 @@ function Dashboard (){
   const sdgs = [
     {
         id :1,
-        image : "E_SDG_Icons-01"
+        image : "E Inverted Icons_WEB-01"
     },{
         id:2,
-        image : "E_SDG_Icons-02"
+        image : "E Inverted Icons_WEB-02"
     },{
         id:3,
-        image: "E_SDG_Icons-03"
+        image: "E Inverted Icons_WEB-03"
     },{
         id:4,
-        image: "E_SDG_Icons-04"
+        image: "E Inverted Icons_WEB-04"
     },{
         id:5,
-        image: "E_SDG_Icons-05"
+        image: "E Inverted Icons_WEB-05"
     },{
         id:6,
-        image: "E_SDG_Icons-06"
+        image: "E Inverted Icons_WEB-06"
     },{
         id:7,
-        image: "E_SDG_Icons-07"
+        image: "E Inverted Icons_WEB-07"
     },{
         id:8,
-        image: "E_SDG_Icons-08"
+        image: "E Inverted Icons_WEB-08"
     },{
         id:9,
-        image: "E_SDG_Icons-09"
+        image: "E Inverted Icons_WEB-09"
     },{
         id:10,
-        image: "E_SDG_Icons-10"
+        image: "E Inverted Icons_WEB-10"
     },{
         id:11,
-        image: "E_SDG_Icons-11"
+        image: "E Inverted Icons_WEB-11"
     },{
         id:12,
-        image: "E_SDG_Icons-12"
+        image: "E Inverted Icons_WEB-12"
     },{
         id:13,
-        image: "E_SDG_Icons-13"
+        image: "E Inverted Icons_WEB-13"
     },{
         id:14,
-        image: "E_SDG_Icons-14"
+        image: "E Inverted Icons_WEB-14"
     },{
         id:15,
-        image: "E_SDG_Icons-15"
+        image: "E Inverted Icons_WEB-15"
     },{
         id:16,
-        image: "E_SDG_Icons-16"
+        image: "E Inverted Icons_WEB-16"
         } ,{
         id:17,
-        image: "E_SDG_Icons-17"
+        image: "E Inverted Icons_WEB-17"
     }
     
   ];
@@ -301,7 +301,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -341,7 +341,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -381,7 +381,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -422,7 +422,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -462,7 +462,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -502,7 +502,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>

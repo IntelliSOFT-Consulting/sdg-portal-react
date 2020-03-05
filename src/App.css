@@ -730,12 +730,12 @@ font-weight: 600;
 }
 
 
-.sdg{
-  height: 80vh;
+.sdg, .about-page{
+  height: 75vh;
 }
 
 .countryProfile{
-  height: 90vh;
+  height: 75vh;
 }
 .country-profile-text{
   margin-top: 10%;

@@ -20,7 +20,7 @@ class About extends React.Component {
         return(
             <>
             <Header></Header>
-                <main>
+                <main className="about-page">
                 <div className="container-fluid pl-5 pr-5 pb-5">
                     
                     <Row className="pl-5 pr-5 pt-3">
