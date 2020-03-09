@@ -867,4 +867,23 @@ font-weight: 600;
 
 .year-widget-popup{
   display: none;
+  position: absolute;
+  right: 43px;
+  top: 0;
+  overflow-y: auto;
+  background: white;
+}
+.year-widget-popup .btn{
+  padding: 30px 30px;
+  color: #000;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.11), 0 1px 3px rgba(255, 255, 255, 0.08);
+  background: white;
+}
+
+.year-widget-popup .btn:not(:last-child) {
+  margin-right: 0px;
+}
+
+.display{
+  display: block;
 }

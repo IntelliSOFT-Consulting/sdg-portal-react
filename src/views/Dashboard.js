@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 function Dashboard (){
   const Papa = require("papaparse/papaparse.min.js");
@@ -28,6 +29,7 @@ function Dashboard (){
   const [dashboardPopupIndicatorsData, setDashboardPopupIndicatorsData] = useState([]);
   const [activePopup, setActivePopup] = useState('');
   const [year, setYear] = useState('2019');
+  const [toggleYearWidget, setToggleYearWidget] = useState(false);
 
   const sdgs = [
     {
@@ -126,7 +128,7 @@ function Dashboard (){
       }
     })
 
-    console.log(dashboardPopupIndicators);
+    //console.log(dashboardPopupIndicators);
     dashboardData.forEach(function(data){
       if(data.code == countryCode){
         dashboardPopupIndicators.forEach(function(ind){
@@ -269,6 +271,19 @@ function Dashboard (){
     return shortHand;
 }
 
+const handleYearWidget = () =>{
+  toggleYearWidget == false ? (
+    setToggleYearWidget(true)
+  ):(
+    setToggleYearWidget(false)
+  )
+  console.log(toggleYearWidget)
+}
+
+const handleClickYear = (year) => {
+  setYear(year.target.value);
+}
+
         return(
             <>
             <Header></Header>
@@ -293,11 +308,11 @@ function Dashboard (){
                     
               </div> 
              <main className="container-fluid dashboard">
-             <div className="text-right year-widget">
+             <div className = "text-right year-widget" onClick={handleYearWidget}>
                         <span className="year-widget-text">Year{year}</span>  
-                  <div className="year-widget-popup">
-                      <Link>2019</Link>   
-                      <Link>2018</Link> 
+                  <div className={ classnames("year-widget-popup", {display: toggleYearWidget === true}) }>
+                      <Button onClick={handleClickYear} value="2019">2019</Button>  
+                      <Button onClick={handleClickYear} value="2018">2018</Button> 
                   </div>
               </div>
                 <Card className="">
