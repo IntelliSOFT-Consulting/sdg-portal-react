@@ -27,6 +27,7 @@ function Dashboard (){
   const [dashboardPopupIndicators, setDashboardPopupIndicators] = useState([]);
   const [dashboardPopupIndicatorsData, setDashboardPopupIndicatorsData] = useState([]);
   const [activePopup, setActivePopup] = useState('');
+  const [year, setYear] = useState('2019');
 
   const sdgs = [
     {
@@ -289,9 +290,16 @@ function Dashboard (){
                           }  
                         </Row>  
                     </Nav>
+                    
               </div> 
              <main className="container-fluid dashboard">
-          
+             <div className="text-right year-widget">
+                        <span className="year-widget-text">Year{year}</span>  
+                  <div className="year-widget-popup">
+                      <Link>2019</Link>   
+                      <Link>2018</Link> 
+                  </div>
+              </div>
                 <Card className="">
                     <CardBody>
                         <TabContent activeTab={activeRegion}>
@@ -537,6 +545,7 @@ function Dashboard (){
                         </TabContent>
                     </CardBody>
                   </Card>
+                 
 <Container>
                   <Modal size="sm" isOpen={toggleModal} toggle={toggleModal} className="dashboard-modal">
                     <div className="modal-header">
