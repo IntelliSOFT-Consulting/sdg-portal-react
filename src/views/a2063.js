@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from "react";
-import Header from "../components/header";
+import Header from "../components/a2063Header";
 import Footer from "../components/footer";
 import Map from "../visualizations/map";
 import SdgMap from "../visualizations/sdgMap";
@@ -9,6 +9,7 @@ import classnames from "classnames";
 import {
     Row, Col, Nav,NavItem, NavLink, Card, TabContent, TabPane, Input, Button
 } from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 function A2063(){
@@ -20,21 +21,27 @@ function A2063(){
     const [innerTab, setInnerTab] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
 
-    const [years, setYears] = useState([]);
-    const [indicators, setIndicators] = useState([]);
-
-    const [indicator, setIndicator] = useState('3.2 Child mortality rate of girls (per 1 000 births) (per 1 000 live births)');
-   //const [indicator, setIndicator] = useState(1);
-    const [dataSource, setSource] = useState('gdb');
-    const [year, setYear] = useState('2006');
-    const [mapChartType, setMapChartType] = useState('chart');
     const [mapData, setMapData] = useState([]);
     const [chartData, setChartData] = useState([]);
+
+    const [goal, setGoal] = useState(0);
+    const [goals, setGoals] = useState([]);
+
+    const [indicator, setIndicator] = useState(1);
+    const [indicators, setIndicators] = useState([]);
+
+    let   years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
+    const [year, setYear] = useState('2006');
+
+    const [dataSource, setDataSource] = useState('pan');
+
+    const [mapChartType, setMapChartType] = useState('map');
 
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];
 
+    
     const getIndicators = useCallback(() => {
         const targetData = sdgData[1].targets;
         targetData.forEach(function(data){
@@ -44,13 +51,6 @@ function A2063(){
         })
         return ind;
     }, [indicator]); 
-
-    const setChartType = () => {
-        setMapChartType('chart');
-    }
-    const setMapType = () => {
-        setMapChartType('map');
-    }
 
     const parseMapData = (data) => {
         const years = [];
@@ -69,7 +69,7 @@ function A2063(){
                 years.sort((a, b) => b - a);
             }
         })
-        setYears(years);
+        //setYears(years);
         setMapData(indicatorData);
     }
 
@@ -80,7 +80,7 @@ function A2063(){
                 indicatorData.push([d.Entity, parseInt(d[indicator])])  
             }
         })
-        console.log(indicatorData)
+       // console.log(indicatorData)
        setChartData(indicatorData)
     }
 
@@ -94,7 +94,16 @@ function A2063(){
             sdgData = require('../assets/data/globalDatabase.json');
         }
         const indicators = getIndicators();
-        setIndicators(indicators);
+        //setIndicators(indicators);
+
+        const a2063Goals = agenda2063[activeTab-1].goals;
+        setGoals(a2063Goals);
+
+        const a2063Indicators = agenda2063[activeTab-1].goals[goal].indicators;
+        setIndicators(a2063Indicators);
+        
+        console.log(agenda2063[activeTab-1].goals);
+        console.log(goal);
 
         const loadSdgData = (sdgCsvFile) => {
             setIsLoading(true);
@@ -102,144 +111,117 @@ function A2063(){
                 download: true,
                 header: true,
                 complete: function(results){
-
                     if(isSubscribed){
                         parseMapData(results.data)
                         parseChartData(results.data)
                         setIsLoading(false);
                     }
-                    
                 }
             })
         }
         loadSdgData(csvDataSourceData);
-
         return () => isSubscribed = false
-    }, [dataSource, indicator, year, activeTab]);
+    }, [dataSource, indicator, goal, year, activeTab]);
 
+    const handleA2063Change = (a2063) => {
+        setActiveTab(parseInt(a2063) + 1)
+        console.log(parseInt(a2063) + 1)
+    }
+    const handleGoalChange = (e) => {
+        setGoal(parseInt(e.target.value))
+    }
+    const handleIndicatorChange = (e) => {
+        setIndicator(parseInt(e.target.value));
+    }
+    const handleDataSourceChange = (e) => {
+        setDataSource(e.target.value);
+    }
+    const handleYearChange = (e) => {
+        setYear(e.target.value);
+    }
+    const setMapType = () =>{
+        setMapChartType('map')
+    }
+    const setChartType = () =>{
+        setMapChartType('chart')
+    }
+    const setLineChartType = () => {
+        setMapChartType('line')
+    }
 
     return (
         <>
-        <Header></Header>
-            <main className="container-fluid agenda2063">
-                <Row>
-                    <Col md="2" className="agenda2063Side">
-                        <div className="nav-wrapper">
-                            <Nav className="flex-column " id="tabs-icons-text" pills role="tablist">
-                                { 
-                                    agenda2063.map((data, index) =>{
-                                    return <NavItem key={index}>
-                                                <NavLink key={index}
-                                                    className={classnames("mb-sm-3 mb-md-0", { active: activeTab === index+1 })}
-                                                    onClick={ () =>setActiveTab(index+1) } href="#!" role="tab">
-                                                    Aspiration {data.agenda} : {data.title}
-                                                </NavLink>
-                                            </NavItem>
+        <Header onActiveA2063Changed={handleA2063Change}></Header>
+            <main className="container agenda2063">
+                <Row className="mt-4 optionButtons ">
+                    <Col>
+                        <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>
+                                {
+                                goals.map((goal, index) =>{
+                                return <option key={index} value={index}> GOAL {goal.number}</option>
+                                })
+                            }
+                        </Input>
+                    </Col>
+                    <Col>
+                        <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
+                        
+                            {
+                                indicators.map((indicator, index) => {
+                                    return <option key={index} value={indicator}>{indicator}</option>
+                                })
+                            }
+                        </Input>
+                    </Col>
+                    <Col>
+                        <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
+                                {
+                                    years.map((year, index) => {
+                                    return <option key={index} value={year}> {year} </option>
                                     })
                                 }
-                            </Nav>
-                        </div>
+                        </Input>
+                    </Col>   
+                    <Col className="lastChild">
+                        <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
+                                <option value="gdb">Global Database</option>
+                                <option value="mrs">PanAfrican MRS</option>
+                        </Input>
+                    </Col>      
+                </Row>
+           
+                <Row className="mt-5">
+                    <Col md="11">   
+                        {
+                            mapChartType === 'map' ? (
+                                <SdgMap mySdgData ={mapData}></SdgMap>
+                            ) : (
+                                <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
+                            )
+                        }
                     </Col>
-                    <Col md="10">
-                        <TabContent activeTab={activeTab }>
-                        { 
-                            agenda2063.map((data, index) =>{
-                                let newID = index + 1
-                                let tabId = "plainTabs"+newID
-                                let goals = []
-                                goals = data.goals
-                                
-                                return <TabPane key={index} tabId={index+1} className={ activeTab === index+1 ? "active" : ""} >
-                                            <div className="agenda2063Header">
-                                                <Col md="12">
-                                                    <h5 className="display-4 mt-2 mb-2 text-center">
-                                                    Aspiration {data.agenda} : {data.title}
-                                                    </h5>
-                                                    <div className="nav-wrapper goalButtons">
-                                                        <Nav className="flex-column flex-md-row" id="tabs-icons-text" pills role="tablist">
-                                                            { 
-                                                                goals.map((goalData, index) =>{
-                                                                return <NavItem key={index}>
-                                                                            <NavLink aria-selected={index+1 } 
-                                                                                className={classnames("btn btn-warning", { active: innerTab === index+1 })}
-                                                                                onClick={  () =>setInnerTab(index+1)  } href="#!" role="tab">
-                                                                                Goal {goalData.number}
-                                                                            </NavLink>
-                                                                        </NavItem>
-                                                                })
-                                                            }
-                                                        </Nav>
-                                                    </div>
-                                                </Col>
-                                            </div>
-                                         
-                                            <TabContent activeTab={"innerTabs"}>
-                                                { 
-                                                    goals.map((goalData, index) =>{
-                                                        //console.log(goalData.indicators);
-                                                        let indicators = goalData.indicators;
-                                                        let newID = index + 1
-                                                        let tabId = "innerTabs"+newID
-                                                        return <TabPane key={index} tabId={index+1} className={ innerTab === index+1 ? "active" : ""}> 
-                                                                    <Card>
-                                                                        <Row className="selectButtons mt-2 mb-2">
-                                                                            <Col md="3">
-                                                                                <Input type="select" name="indicatorSelect" id="indicatorSelect" className="btn btn-primary">
-                                                                                   { indicators.map((indicator, index) => {
-                                                                                        return <option key={index}>{indicator}</option>
-                                                                                    })
-                                                                                }
-                                                                                </Input>
-                                                                            </Col>
-                                                                            <Col md="6">
-                                                                                <Button color="primary" type="button">Global Database</Button>
-                                                                                <Button color="primary" type="button">PanAfrican MRS</Button>
-                                                                            </Col>
-                                                                            <Col md="3">
-                                                                            <Input type="select" name="yearSelect" id="yearSelect" className="btn btn-primary"> 
-                                                                                    <option>2019</option>
-                                                                                    <option>2018</option>
-                                                                                    <option>2017</option>
-                                                                                </Input>
-                                                                            </Col>
-                                                                        </Row>
-                                                                    </Card>
-                                                                </TabPane>
-                                                    })
-                                                }
-                                            </TabContent>
-                                           
-                                        </TabPane>    
-                                    })
-                                    }
-                        </TabContent>
-                        <Card>
-                            {
-                                mapChartType === 'map' ? (
-                                    <SdgMap mySdgData ={mapData}></SdgMap>
-                                ) : (
-                                    <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
-                                )
-                            }
-
+                    
+                    <Col md="1">
+                        <div>
+                            <br></br><br></br>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
+                            <FontAwesomeIcon icon="globe-africa" />
                             
-                                 <div>
-                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
-                                        <span className="btn-inner--icon">
-                                            <i className="fa fa-globe" />
-                                        </span>
-                                        <span className="btn-inner--text">MAP</span>
-                                    </Button>
-                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
-                                        <span className="btn-inner--icon">
-                                        <i className="fa fa-chart-bar"></i>
-                                        </span>
-                                        <span className="btn-inner--text">CHART</span>
-                                    </Button>
-                                </div>
-                        </Card>
-                    </Col>
-                </Row> 
+                            </Button>
+                            <br></br><br></br>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
+                            <FontAwesomeIcon icon="chart-bar" />
+                            
+                            </Button>
+                            <br></br><br></br>
+                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'line' })}  onClick={setLineChartType}> 
+                            <FontAwesomeIcon icon="chart-line" />
+                            
+                            </Button>
+                        </div>
+                    </Col> 
+                   
+                </Row>    
             </main>
             <Footer></Footer>
         </>
