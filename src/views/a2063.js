@@ -4,6 +4,8 @@ import Footer from "../components/footer";
 import Map from "../visualizations/map";
 import SdgMap from "../visualizations/sdgMap";
 import SdgHighChart from "../visualizations/sdgHighChart";
+import IndexMap from "../visualizations/indexMap";
+import TreeMap from "../visualizations/treeMap";
 
 import classnames from "classnames";
 import {
@@ -16,6 +18,7 @@ function A2063(){
     const Papa = require("papaparse/papaparse.min.js");
     const agenda2063 = require('../assets/data/agenda2063.json');
     const a2063DataSource = require("../assets/data/sdg/pan.csv");
+    const aspirationsData = require("../assets/data/aspirationsData.json")
 
     const [activeTab, setActiveTab] = useState(0);
     const [innerTab, setInnerTab] = useState(1);
@@ -37,10 +40,12 @@ function A2063(){
 
     const [mapChartType, setMapChartType] = useState('map');
 
+    const [indexMapData, setIndexMapData] = useState([]);
+    const [country, setCountry] = useState('DZ');
+
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];
-
     
     const getIndicators = useCallback(() => {
         const targetData = sdgData[1].targets;
@@ -84,6 +89,32 @@ function A2063(){
        setChartData(indicatorData)
     }
 
+    const parseNormalizedData = (data) => {
+        const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
+        const mapData = [];
+        const radarData = [];
+
+        data.forEach(function(d){
+            mapData.push({
+                "code": (d.id),
+                "value": parseFloat(d.Score),
+                "name": d.Country
+            })
+        })
+        goals.forEach(function(goal) {
+            data.forEach(function(d){
+                if(country == d.id){
+                    radarData.push({
+                        "category": goal,
+                        value1 : d["goal"+goal],
+                    })
+                }
+            })
+        })
+        
+        setIndexMapData(mapData);
+    }
+
     useEffect(() => {
         let isSubscribed = true;
         if(dataSource === 'pan'){
@@ -115,6 +146,7 @@ function A2063(){
                     if(isSubscribed){
                         parseMapData(results.data)
                         parseChartData(results.data)
+                        console.log(results.data)
                         setIsLoading(false);
                     }
                 }
@@ -123,6 +155,21 @@ function A2063(){
         loadSdgData(csvDataSourceData);
         return () => isSubscribed = false
     }, [dataSource, indicator, goal, year, activeTab]);
+
+    useEffect(() => {
+        const normalizedData = require('../assets/data/normalizedGoalValues.csv')
+        const loadNormalizedData = (normalizedDataFile) => {
+            Papa.parse(normalizedDataFile, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results){
+                    parseNormalizedData(results.data);
+                }
+            })
+        }
+        loadNormalizedData(normalizedData);
+    }, [country]);
 
     const handleA2063Change = (a2063) => {
         setActiveTab(parseInt(a2063))
@@ -147,6 +194,10 @@ function A2063(){
     }
     const setLineChartType = () => {
         setMapChartType('line')
+    }
+
+    function handleIndexChildClick(country){
+        setCountry(country);
     }
 
     return (
@@ -227,29 +278,37 @@ function A2063(){
                         </div>
                     ):(
                         <div>
-                        <Row className="mt-4 optionButtons ">
-                            <Col>
-                                <Label className="all-sdgs-label">ALL ASPIRATIONS </Label>
-                            </Col>
-                            <Col>
-                                <Label className="all-sdgs-label">ALL SDGs </Label>
-                            </Col>
-                            <Col>
-                                <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
-                                        {
-                                            years.map((year, index) => {
-                                            return <option key={index} value={year}> {year} </option>
-                                            })
-                                        }
-                                </Input>
-                            </Col>   
-                            <Col className="lastChild">
-                                <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
-                                        <option value="gdb">Global Database</option>
-                                        <option value="mrs">PanAfrican MRS</option>
-                                </Input>
-                            </Col>      
-                        </Row>
+                            <Row className="mt-4 optionButtons ">
+                                <Col>
+                                    <Label className="all-sdgs-label">ALL ASPIRATIONS </Label>
+                                </Col>
+                                <Col>
+                                    <Label className="all-sdgs-label">ALL SDGs </Label>
+                                </Col>
+                                <Col>
+                                    <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
+                                            {
+                                                years.map((year, index) => {
+                                                return <option key={index} value={year}> {year} </option>
+                                                })
+                                            }
+                                    </Input>
+                                </Col>   
+                                <Col className="lastChild">
+                                    <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
+                                            <option value="gdb">Global Database</option>
+                                            <option value="mrs">PanAfrican MRS</option>
+                                    </Input>
+                                </Col>      
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
+                                </Col>
+                                <Col>
+                                    <TreeMap treeMapData = {aspirationsData} ></TreeMap>
+                                </Col>
+                            </Row>
                         </div>
                     )
                 }

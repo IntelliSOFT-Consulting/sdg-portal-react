@@ -126,7 +126,6 @@ function Sdgs1() {
         if(activSdg != 0){
             sdgTargets.forEach(function(sdgtarget){
                 if(sdgtarget.code == target){
-                    
                 }
             })
         }
