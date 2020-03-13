@@ -7,7 +7,7 @@ import SdgHighChart from "../visualizations/sdgHighChart";
 
 import classnames from "classnames";
 import {
-    Row, Col, Nav,NavItem, NavLink, Card, TabContent, TabPane, Input, Button
+    Row, Col, Nav,NavItem, NavLink, Card, TabContent, TabPane, Input, Button, Label
 } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -17,7 +17,7 @@ function A2063(){
     const agenda2063 = require('../assets/data/agenda2063.json');
     const a2063DataSource = require("../assets/data/sdg/pan.csv");
 
-    const [activeTab, setActiveTab] = useState(1);
+    const [activeTab, setActiveTab] = useState(0);
     const [innerTab, setInnerTab] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -96,14 +96,15 @@ function A2063(){
         const indicators = getIndicators();
         //setIndicators(indicators);
 
-        const a2063Goals = agenda2063[activeTab-1].goals;
-        setGoals(a2063Goals);
-
-        const a2063Indicators = agenda2063[activeTab-1].goals[goal].indicators;
-        setIndicators(a2063Indicators);
-        
-        console.log(agenda2063[activeTab-1].goals);
-        console.log(goal);
+        if(activeTab != 0){
+            const a2063Goals = agenda2063[activeTab-1].goals;
+            setGoals(a2063Goals);
+    
+            const a2063Indicators = agenda2063[activeTab-1].goals[goal].indicators;
+            setIndicators(a2063Indicators);
+            
+            console.log(agenda2063[activeTab-1].goals);
+        }
 
         const loadSdgData = (sdgCsvFile) => {
             setIsLoading(true);
@@ -124,8 +125,7 @@ function A2063(){
     }, [dataSource, indicator, goal, year, activeTab]);
 
     const handleA2063Change = (a2063) => {
-        setActiveTab(parseInt(a2063) + 1)
-        console.log(parseInt(a2063) + 1)
+        setActiveTab(parseInt(a2063))
     }
     const handleGoalChange = (e) => {
         setGoal(parseInt(e.target.value))
@@ -153,75 +153,107 @@ function A2063(){
         <>
         <Header onActiveA2063Changed={handleA2063Change}></Header>
             <main className="container agenda2063">
-                <Row className="mt-4 optionButtons ">
-                    <Col>
-                        <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>
-                                {
-                                goals.map((goal, index) =>{
-                                return <option key={index} value={index}> GOAL {goal.number}</option>
-                                })
-                            }
-                        </Input>
-                    </Col>
-                    <Col>
-                        <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                        
-                            {
-                                indicators.map((indicator, index) => {
-                                    return <option key={index} value={indicator}>{indicator}</option>
-                                })
-                            }
-                        </Input>
-                    </Col>
-                    <Col>
-                        <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
-                                {
-                                    years.map((year, index) => {
-                                    return <option key={index} value={year}> {year} </option>
-                                    })
-                                }
-                        </Input>
-                    </Col>   
-                    <Col className="lastChild">
-                        <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
-                                <option value="gdb">Global Database</option>
-                                <option value="mrs">PanAfrican MRS</option>
-                        </Input>
-                    </Col>      
-                </Row>
-           
-                <Row className="mt-5">
-                    <Col md="11">   
-                        {
-                            mapChartType === 'map' ? (
-                                <SdgMap mySdgData ={mapData}></SdgMap>
-                            ) : (
-                                <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
-                            )
-                        }
-                    </Col>
-                    
-                    <Col md="1">
+                {
+                    activeTab != 0 ? (
                         <div>
-                            <br></br><br></br>
-                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
-                            <FontAwesomeIcon icon="globe-africa" />
+                        <Row className="mt-4 optionButtons ">
+                            <Col>
+                                <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>
+                                        {
+                                        goals.map((goal, index) =>{
+                                        return <option key={index} value={index}> GOAL {goal.number}</option>
+                                        })
+                                    }
+                                </Input>
+                            </Col>
+                            <Col>
+                                <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
+                                
+                                    {
+                                        indicators.map((indicator, index) => {
+                                            return <option key={index} value={indicator}>{indicator}</option>
+                                        })
+                                    }
+                                </Input>
+                            </Col>
+                            <Col>
+                                <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
+                                        {
+                                            years.map((year, index) => {
+                                            return <option key={index} value={year}> {year} </option>
+                                            })
+                                        }
+                                </Input>
+                            </Col>   
+                            <Col className="lastChild">
+                                <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
+                                        <option value="gdb">Global Database</option>
+                                        <option value="mrs">PanAfrican MRS</option>
+                                </Input>
+                            </Col>      
+                        </Row>
+                
+                        <Row className="mt-5">
+                            <Col md="11">   
+                                {
+                                    mapChartType === 'map' ? (
+                                        <SdgMap mySdgData ={mapData}></SdgMap>
+                                    ) : (
+                                        <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
+                                    )
+                                }
+                            </Col>
                             
-                            </Button>
-                            <br></br><br></br>
-                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
-                            <FontAwesomeIcon icon="chart-bar" />
-                            
-                            </Button>
-                            <br></br><br></br>
-                            <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'line' })}  onClick={setLineChartType}> 
-                            <FontAwesomeIcon icon="chart-line" />
-                            
-                            </Button>
+                            <Col md="1">
+                                <div>
+                                    <br></br><br></br>
+                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'map' })} onClick={setMapType}>
+                                    <FontAwesomeIcon icon="globe-africa" />
+                                    
+                                    </Button>
+                                    <br></br><br></br>
+                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'chart' })}  onClick={setChartType}> 
+                                    <FontAwesomeIcon icon="chart-bar" />
+                                    
+                                    </Button>
+                                    <br></br><br></br>
+                                    <Button color="primary" type="button" className={ classnames("btn-icon" , { active: mapChartType === 'line' })}  onClick={setLineChartType}> 
+                                    <FontAwesomeIcon icon="chart-line" />
+                                    
+                                    </Button>
+                                </div>
+                            </Col>             
+                        </Row> 
                         </div>
-                    </Col> 
+                    ):(
+                        <div>
+                        <Row className="mt-4 optionButtons ">
+                            <Col>
+                                <Label className="all-sdgs-label">ALL ASPIRATIONS </Label>
+                            </Col>
+                            <Col>
+                                <Label className="all-sdgs-label">ALL SDGs </Label>
+                            </Col>
+                            <Col>
+                                <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
+                                        {
+                                            years.map((year, index) => {
+                                            return <option key={index} value={year}> {year} </option>
+                                            })
+                                        }
+                                </Input>
+                            </Col>   
+                            <Col className="lastChild">
+                                <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
+                                        <option value="gdb">Global Database</option>
+                                        <option value="mrs">PanAfrican MRS</option>
+                                </Input>
+                            </Col>      
+                        </Row>
+                        </div>
+                    )
+                }
                    
-                </Row>    
             </main>
             <Footer></Footer>
         </>

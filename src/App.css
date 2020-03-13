@@ -271,9 +271,14 @@ text-align: center;
   color: #fff;
 }
 
+.a2063-icon-padding .col{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .agenda2063Header .btn{
-  background-color: #eaeaea;
-  color: #fff;
+  background-color: #ffffff;
+    border: 1px solid #cccccc;
 }
 
 .agenda2063Header .btn-secondary{
@@ -292,7 +297,7 @@ text-align: center;
 .agenda2063Header .btn-secondary:not(:disabled):not(.disabled).active, 
 .agenda2063Header .show > .btn-secondary.dropdown-toggle {
   color: #212529;
-  background-color: #a1a1a2;
+  background-color: #fff;
   border-color: #f4f5f7;
 }
 .agenda2063Header .active .card-img{
@@ -305,7 +310,12 @@ text-align: center;
   display: none;
 }
 
-.agenda2063Header .a2063-icon-padding{
+.agenda2063Header .a2063-icon-padding .btn{
+  padding: 5px;
+  width: 90%;
+}
+
+/* .agenda2063Header .a2063-icon-padding{
   transition: active 2s;
 }
 
@@ -313,13 +323,18 @@ text-align: center;
 .agenda2063Header .a2063-icon-padding .btn-secondary:not(:disabled):not(.disabled).active, 
 .agenda2063Header .a2063-icon-padding .show > .btn-secondary.dropdown-toggle {
   transform: scale(1, 1.2);
-}
+} */
 
 .agenda2063Header .a2063-icon-padding img {
   padding-right: 0px;
   padding-left: 0px;
   width: 70%;
   height: 70%;
+}
+
+.a2063-icon-title-text{
+  font-size: 11px;
+  white-space: pre-line;
 }
 
 .agenda2063 .nav-pills .nav-link{
@@ -432,8 +447,7 @@ text-align: center;
   padding-left: 0px;
 }
 
-.sdgsHeader .sdg-icon-padding .btn,
-.agenda2063Header .a2063-icon-padding .btn{
+.sdgsHeader .sdg-icon-padding .btn{
   padding: 0px;
 }
 
