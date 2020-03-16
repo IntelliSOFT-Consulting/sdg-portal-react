@@ -14,7 +14,7 @@ import Spinner from "../visualizations/spinner";
 import Chart from "../visualizations/sdgChart";
 import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
-
+  
 function Sdgs1() {
 
     
@@ -469,8 +469,6 @@ function Sdgs1() {
                                 </div>
                             </Col>
                         </Row>
-
-          
                    </div>
                 ) : (
                     <div>
