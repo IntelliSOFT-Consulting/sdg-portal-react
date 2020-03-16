@@ -43,6 +43,8 @@ function A2063(){
     const [indexMapData, setIndexMapData] = useState([]);
     const [country, setCountry] = useState('DZ');
 
+    const [aspirationTitle, setAspirationTitle] = useState('');
+
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];
@@ -137,6 +139,8 @@ function A2063(){
             console.log(agenda2063[activeTab-1].goals);
         }
 
+        getAspirationTitles(aspirationsData);
+
         const loadSdgData = (sdgCsvFile) => {
             setIsLoading(true);
             Papa.parse(sdgCsvFile, {
@@ -195,9 +199,15 @@ function A2063(){
     const setLineChartType = () => {
         setMapChartType('line')
     }
-
     function handleIndexChildClick(country){
         setCountry(country);
+    }
+    const getAspirationTitles = (data) => {
+        data.forEach(function(d){
+            if(activeTab == d.id){
+                setAspirationTitle(d.category)
+            }
+        })
     }
 
     return (
@@ -207,6 +217,7 @@ function A2063(){
                 {
                     activeTab != 0 ? (
                         <div>
+                            <h4> ASPIRATION {activeTab} : {aspirationTitle} </h4>
                         <Row className="mt-4 optionButtons ">
                             <Col>
                                 <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>
@@ -281,9 +292,6 @@ function A2063(){
                             <Row className="mt-4 optionButtons ">
                                 <Col>
                                     <Label className="all-sdgs-label">ALL ASPIRATIONS </Label>
-                                </Col>
-                                <Col>
-                                    <Label className="all-sdgs-label">ALL SDGs </Label>
                                 </Col>
                                 <Col>
                                     <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
