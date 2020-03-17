@@ -30,7 +30,10 @@ library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, f
 function App() {
 
   console.log()
+  
   return (
+
+    
     <Router basename={'/build'}>
       <Switch>
             {/* <Route exact path="/Sdgs" component={Sdgs}></Route> */}
