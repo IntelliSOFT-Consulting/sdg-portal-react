@@ -357,8 +357,8 @@ const handleClickYear = (year) => {
                             </Table>
                           </TabPane>
                           <TabPane tabId="2">
-                          <table className="">
-                          <thead className="dashboard">
+                         <Table>
+                          <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
                                 { 
@@ -367,9 +367,7 @@ const handleClickYear = (year) => {
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
-                                                      <Button  value={index}>
-                                                          <CardImg  alt="..." src={ imgSrc }></CardImg>
-                                                      </Button>
+                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
                                   })}
                                     
@@ -394,11 +392,11 @@ const handleClickYear = (year) => {
                                     })
                                   }
                               </tbody>
-                          </table>
+                              </Table>
                           </TabPane>
                           <TabPane tabId="3">
-                            <table className="">
-                            <thead className="dashboard">
+                            <Table className="">
+                            <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
                                 { 
@@ -407,9 +405,7 @@ const handleClickYear = (year) => {
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
-                                                      <Button  value={index}>
-                                                          <CardImg  alt="..." src={ imgSrc }></CardImg>
-                                                      </Button>
+                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
                                   })}
                                     
@@ -435,11 +431,11 @@ const handleClickYear = (year) => {
                                     }
                                   
                               </tbody>
-                          </table>
+                          </Table>
                           </TabPane>
                           <TabPane tabId="4">
-                            <table className="">
-                            <thead className="dashboard">
+                            <Table className="">
+                            <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
                                 { 
@@ -448,9 +444,7 @@ const handleClickYear = (year) => {
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
-                                                      <Button  value={index}>
-                                                          <CardImg  alt="..." src={ imgSrc }></CardImg>
-                                                      </Button>
+                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
                                   })}
                                     
@@ -475,11 +469,11 @@ const handleClickYear = (year) => {
                                       })
                                     }
                               </tbody>
-                          </table>
+                          </Table>
                           </TabPane>
                           <TabPane tabId="5">
-                            <table className="">
-                            <thead className="dashboard">
+                            <Table className="">
+                            <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
                                 { 
@@ -488,9 +482,7 @@ const handleClickYear = (year) => {
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
-                                                      <Button  value={index}>
-                                                          <CardImg  alt="..." src={ imgSrc }></CardImg>
-                                                      </Button>
+                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
                                   })}
                                     
@@ -515,11 +507,11 @@ const handleClickYear = (year) => {
                                       })
                                     }
                               </tbody>
-                          </table>
+                          </Table>
                           </TabPane>
                           <TabPane tabId="6">
-                            <table className="">
-                            <thead className="dashboard">
+                            <Table className="">
+                            <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
                                 { 
@@ -528,9 +520,7 @@ const handleClickYear = (year) => {
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
-                                                      <Button  value={index}>
-                                                          <CardImg  alt="..." src={ imgSrc }></CardImg>
-                                                      </Button>
+                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
                                   })}
                                     
@@ -555,7 +545,7 @@ const handleClickYear = (year) => {
                                       })
                                     }
                               </tbody>
-                          </table>
+                          </Table>
                           </TabPane>      
                         </TabContent>
                     </CardBody>
