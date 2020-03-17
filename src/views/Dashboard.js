@@ -1,5 +1,5 @@
 import React , { useState , useEffect} from "react";
-import Header from "../components/header";
+import Header from "../components/dashboardHeader";
 import Footer from "../components/footer";
 
 import {
@@ -9,10 +9,11 @@ import {
     Card,
     CardBody,
     TabContent,
-    TabPane, Button, CardImg, Row, Col, Modal, Container
+    TabPane, Button, CardImg, Row, Col, Modal, Container,Table
 } from "reactstrap";
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 function Dashboard (){
   const Papa = require("papaparse/papaparse.min.js");
@@ -23,63 +24,65 @@ function Dashboard (){
   const [dashboardData, setDashboardData] = useState([]);
   const [toggleModal, setOpenModal] = useState(false);
   const [dashboardPopupData, setModalPopupData] = useState([]);
-  const sdgsImages = require.context('../assets/img/sdg_icons', true);
+  const sdgsImages = require.context('../assets/img/inverted_sdg_icons', true);
   const [dashboardPopupIndicators, setDashboardPopupIndicators] = useState([]);
   const [dashboardPopupIndicatorsData, setDashboardPopupIndicatorsData] = useState([]);
   const [activePopup, setActivePopup] = useState('');
+  const [year, setYear] = useState('2019');
+  const [toggleYearWidget, setToggleYearWidget] = useState(false);
 
   const sdgs = [
     {
         id :1,
-        image : "E_SDG_Icons-01"
+        image : "E Inverted Icons_WEB-01"
     },{
         id:2,
-        image : "E_SDG_Icons-02"
+        image : "E Inverted Icons_WEB-02"
     },{
         id:3,
-        image: "E_SDG_Icons-03"
+        image: "E Inverted Icons_WEB-03"
     },{
         id:4,
-        image: "E_SDG_Icons-04"
+        image: "E Inverted Icons_WEB-04"
     },{
         id:5,
-        image: "E_SDG_Icons-05"
+        image: "E Inverted Icons_WEB-05"
     },{
         id:6,
-        image: "E_SDG_Icons-06"
+        image: "E Inverted Icons_WEB-06"
     },{
         id:7,
-        image: "E_SDG_Icons-07"
+        image: "E Inverted Icons_WEB-07"
     },{
         id:8,
-        image: "E_SDG_Icons-08"
+        image: "E Inverted Icons_WEB-08"
     },{
         id:9,
-        image: "E_SDG_Icons-09"
+        image: "E Inverted Icons_WEB-09"
     },{
         id:10,
-        image: "E_SDG_Icons-10"
+        image: "E Inverted Icons_WEB-10"
     },{
         id:11,
-        image: "E_SDG_Icons-11"
+        image: "E Inverted Icons_WEB-11"
     },{
         id:12,
-        image: "E_SDG_Icons-12"
+        image: "E Inverted Icons_WEB-12"
     },{
         id:13,
-        image: "E_SDG_Icons-13"
+        image: "E Inverted Icons_WEB-13"
     },{
         id:14,
-        image: "E_SDG_Icons-14"
+        image: "E Inverted Icons_WEB-14"
     },{
         id:15,
-        image: "E_SDG_Icons-15"
+        image: "E Inverted Icons_WEB-15"
     },{
         id:16,
-        image: "E_SDG_Icons-16"
+        image: "E Inverted Icons_WEB-16"
         } ,{
         id:17,
-        image: "E_SDG_Icons-17"
+        image: "E Inverted Icons_WEB-17"
     }
     
   ];
@@ -125,7 +128,7 @@ function Dashboard (){
       }
     })
 
-    console.log(dashboardPopupIndicators);
+    //console.log(dashboardPopupIndicators);
     dashboardData.forEach(function(data){
       if(data.code == countryCode){
         dashboardPopupIndicators.forEach(function(ind){
@@ -268,46 +271,65 @@ function Dashboard (){
     return shortHand;
 }
 
+const handleYearWidget = () =>{
+  toggleYearWidget == false ? (
+    setToggleYearWidget(true)
+  ):(
+    setToggleYearWidget(false)
+  )
+  console.log(toggleYearWidget)
+}
+
+const handleClickYear = (year) => {
+  setYear(year.target.value);
+}
+
         return(
             <>
             <Header></Header>
-             <main className="container-fluid dashboard">
-                <div className="nav-wrapper">
+            
+            <div className="nav-wrapper dashboard-regions">
                     <Nav className="nav-fill flex-column"
-                    id="tabs-icons-text"
-                    pills
-                    role="tablist">
-                      <Row className="no-gutters regions-header">
-                        {
-                        regions.map((region, index) =>{  
-                                return <Col>
-                                    <Button key={index} onClick={regionClick} value={region.id} className={ activeRegion == index+1 ? 'active': '' }> 
-                                            {region.name}
-                                    </Button>
-                                </Col>
-                            })
-                        }  
-                      </Row>
-                          
+                      id="tabs-icons-text"
+                      pills
+                      role="tablist">
+                        <Row className="no-gutters regions-header">
+                          {
+                          regions.map((region, index) =>{  
+                                  return <Col>
+                                      <Button key={index} onClick={regionClick} value={region.id} className={ activeRegion == index+1 ? 'active': '' }> 
+                                              {region.name}
+                                      </Button>
+                                  </Col>
+                              })
+                          }  
+                        </Row>  
                     </Nav>
-                </div> 
+                    
+              </div> 
+             <main className="container-fluid dashboard">
+             <div className = "text-right year-widget" onClick={handleYearWidget}>
+                        <span className="year-widget-text">Year{year}</span>  
+                  <div className={ classnames("year-widget-popup", {display: toggleYearWidget === true}) }>
+                      <Button onClick={handleClickYear} value="2019">2019</Button>  
+                      <Button onClick={handleClickYear} value="2018">2018</Button> 
+                  </div>
+              </div>
                 <Card className="">
                     <CardBody>
                         <TabContent activeTab={activeRegion}>
                           <TabPane tabId="1">
-                            <table >
-                              <thead className="dashboard">
+                            <Table>
+                              <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
-
                                                           <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
-
                                           </th>
                                   })}
                                     
@@ -332,7 +354,7 @@ function Dashboard (){
                                   }
                               </tbody>
                             
-                            </table>
+                            </Table>
                           </TabPane>
                           <TabPane tabId="2">
                           <table className="">
@@ -341,7 +363,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -381,7 +403,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -422,7 +444,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -462,7 +484,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -502,7 +524,7 @@ function Dashboard (){
                                   <th></th>
                                 { 
                                   sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.jpg`);
+                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
                                           let sdgNumber = index + 1;
                                           let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
@@ -538,6 +560,7 @@ function Dashboard (){
                         </TabContent>
                     </CardBody>
                   </Card>
+                 
 <Container>
                   <Modal size="sm" isOpen={toggleModal} toggle={toggleModal} className="dashboard-modal">
                     <div className="modal-header">
@@ -580,8 +603,9 @@ function Dashboard (){
                     </div>
                   </Modal>
                   </Container>
+                  <Footer></Footer>
               </main>
-            <Footer></Footer>
+          
             </>
         )
     //}
