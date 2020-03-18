@@ -2,7 +2,7 @@
   "name": "sdg-portal",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://test.sdgca.intellisoftkenya.com/build",
+  "homepage": "https://test.sdgca.intellisoftkenya.com/sdgportal",
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.10",
     "@bit/formidablelabs.react-animations.head-shake": "^1.0.0",
