@@ -29,6 +29,7 @@ function A2063(){
 
     const [goal, setGoal] = useState(0);
     const [goals, setGoals] = useState([]);
+    const [goalID, setGoalID] = useState(1);
 
     const [indicator, setIndicator] = useState(1);
     const [indicators, setIndicators] = useState([]);
@@ -133,7 +134,9 @@ function A2063(){
             const a2063Goals = agenda2063[activeTab-1].goals;
             setGoals(a2063Goals);
     
-            const a2063Indicators = agenda2063[activeTab-1].goals[goal].indicators;
+            let a2063Indicators = []
+            console.log(agenda2063[activeTab-1].goals[goal])
+           // a2063Indicators = agenda2063[activeTab-1].goals[goal].indicators;
             setIndicators(a2063Indicators);
             
             console.log(agenda2063[activeTab-1].goals);
@@ -150,7 +153,7 @@ function A2063(){
                     if(isSubscribed){
                         parseMapData(results.data)
                         parseChartData(results.data)
-                        console.log(results.data)
+                      
                         setIsLoading(false);
                     }
                 }
@@ -180,6 +183,7 @@ function A2063(){
     }
     const handleGoalChange = (e) => {
         setGoal(parseInt(e.target.value))
+        console.log(e.target.value)
     }
     const handleIndicatorChange = (e) => {
         setIndicator(parseInt(e.target.value));
@@ -217,13 +221,13 @@ function A2063(){
                 {
                     activeTab != 0 ? (
                         <div>
-                            <h4> {aspirationTitle} </h4>
+                            <h4 className="aspiration-title"> {aspirationTitle} </h4>
                         <Row className="mt-4 optionButtons ">
                             <Col>
                                 <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>
                                         {
                                         goals.map((goal, index) =>{
-                                        return <option key={index} value={index}> GOAL {goal.number}</option>
+                                        return <option key={index} value={goal.id}> GOAL {goal.number}</option>
                                         })
                                     }
                                 </Input>
@@ -233,7 +237,7 @@ function A2063(){
                                 
                                     {
                                         indicators.map((indicator, index) => {
-                                            return <option key={index} value={indicator}>{indicator}</option>
+                                            return <option key={index} value={indicator}> INDICATOR {indicator}</option>
                                         })
                                     }
                                 </Input>

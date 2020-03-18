@@ -272,8 +272,8 @@ text-align: center;
 }
 
 .a2063-icon-padding .col{
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 2px;
+    padding-right: 2px;
 }
 
 .agenda2063Header .btn{
@@ -312,7 +312,6 @@ text-align: center;
 
 .agenda2063Header .a2063-icon-padding .btn{
   padding: 5px;
-  width: 90%;
 }
 
 /* .agenda2063Header .a2063-icon-padding{
@@ -962,4 +961,36 @@ font-weight: 600;
   vertical-align: top;
   border-top: 0rem solid #dee2e6;
   width: 5.5%;
+}
+
+.aspiration-title{
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+
+/* Media queries for responsiveness */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  
+}
+/* Large screens ----------- */
+@media only screen and (min-width : 1600px) {
+  .agenda2063Header .a2063-icon-padding .btn {
+    padding: 5px;
+    width: 97%;
+}
 }
