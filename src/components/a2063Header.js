@@ -170,7 +170,7 @@ function Header( {onActiveA2063Changed} ){
                                             
                                             <Button style={  activeA2063 == index ? buttonStylesActive : buttonStyles}  onClick={handleA2063Change} value={a2063.id} className={ activeA2063 == index ? 'active': '' }>
                                                 <span style={ activeA2063 == index ? titleTextStylesActive : titleTextStyles} className="a2063-icon-title-text"> { a2063.id !=0 ? 'Aspiration\n' + a2063.id : 'All \n Aspirations'} </span>
-                                                <div  style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles } ></div>
+                                                <div  style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles} className="a2063-icon-img" ></div>
                                             </Button>
                                         </Col>
                         })}

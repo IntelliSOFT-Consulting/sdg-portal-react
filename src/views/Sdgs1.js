@@ -504,10 +504,10 @@ function Sdgs1() {
                         </Row>
                     
                         <Row className="mt-3">
-                            <Col>
+                            <Col lg="6" md="12">
                                 <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
                             </Col>
-                            <Col>
+                            <Col lg="6" md="12">
                                 <RadarChart radarData={indexRadarChartData}></RadarChart>
                             </Col>
                         </Row>

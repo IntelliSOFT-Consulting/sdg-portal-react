@@ -270,21 +270,21 @@ function CountryProfile (props, ) {
                         </div>
                         <div className="modal-body" >
                             <Row className="countryDemographics">
-                                <Col md="2">
+                                <Col lg="2" md="6">
                                     <img className="countryFlags" alt=".." src={countryData.flagURL}></img>
                                 </Col>
                                 <Col>
                                     {/* <label className="countryName">{countryData.name}</label> */}
                                 </Col>
                                 <Col></Col>
-                                <Col>
+                                <Col lg="3" md="6">
                                     <label> Capital: {countryData.capital}</label> <br></br>
                                     <label>Poverty line: {countryData.povertyLine} </label> <br></br>
                                     <label>GDP Per Capita: {countryData.gdpPerCapita} </label>
                                 </Col>
                             </Row>
                             <Row className="pt-2">
-                                <Col>
+                                <Col lg="6" md="12">
                                     <Card>
                                         <CardHeader> 
                                             <h5 className="display-4 text-center">SDGs </h5>
@@ -305,7 +305,7 @@ function CountryProfile (props, ) {
                                     
                                     </Card>
                                 </Col>
-                                <Col>
+                                <Col lg="6" md="12">
                                     <Card>
                                         <CardHeader> 
                                             <h5 className="display-4 text-center">Perfomance by Goal </h5> 

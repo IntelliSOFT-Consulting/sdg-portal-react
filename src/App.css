@@ -341,7 +341,7 @@ text-align: center;
 }
 
 .agenda2063{
-  height: 70vh;
+  
 }
 
 .selectButtons{
@@ -972,16 +972,63 @@ font-weight: 600;
 /* Media queries for responsiveness */
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (min-width: 600px) {
+  .dashboard-goal-icons {
+    position: fixed;
+    top: 245px;
+    box-shadow: 0px 1px 2px #ccc;
+    background: #fff;
+    z-index: 99;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) {
+
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (max-width: 768px) {
+  .dashboard-goal-icons {
+    position: fixed;
+    top: 245px;
+    box-shadow: 0px 1px 2px #ccc;
+    background: #fff;
+    z-index: 99;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (max-width: 992px) {
+
+}
+
+@media only screen and (max-width: 945px) {
+  .a2063-icon-img{
+    display: none;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1008px) {
+  .agenda2063Header .nav {
+    width: 85%;
+}
+.agenda2063Header .navbar-brand{
+  width: 10%;
+}
+.agenda2063Header img{
+  width: 160px;
+}
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {

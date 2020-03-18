@@ -314,10 +314,10 @@ function A2063(){
                                 </Col>      
                             </Row>
                             <Row>
-                                <Col>
+                                <Col lg="6" md="12" sm="12" xs="12">
                                     <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
                                 </Col>
-                                <Col>
+                                <Col lg="6" md="12" sm="12" xs="12">
                                     <TreeMap treeMapData = {aspirationsData} ></TreeMap>
                                 </Col>
                             </Row>
