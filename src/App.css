@@ -749,6 +749,7 @@ font-weight: 600;
 
 .footer{
   padding: 0.5rem 0;
+  background: #ffffff;
 }
 
 .dashboard .card-img{
@@ -856,11 +857,11 @@ font-weight: 600;
 
 
 .sdg, .about-page{
-  height: 75vh;
+  
 }
 
 .countryProfile{
-  height: 75vh;
+ 
 }
 .country-profile-text{
   margin-top: 10%;

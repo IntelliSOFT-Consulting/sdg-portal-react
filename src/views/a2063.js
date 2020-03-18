@@ -217,7 +217,7 @@ function A2063(){
                 {
                     activeTab != 0 ? (
                         <div>
-                            <h4> ASPIRATION {activeTab} : {aspirationTitle} </h4>
+                            <h4> {aspirationTitle} </h4>
                         <Row className="mt-4 optionButtons ">
                             <Col>
                                 <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>

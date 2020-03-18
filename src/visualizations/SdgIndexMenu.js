@@ -8,6 +8,7 @@ import { PieCenter } from 'react-pie-menu/dist/index.prod';
 import * as styles from '../indexMenuStyles';
 import { ThemeProvider } from 'styled-components';
 
+
 function SdgIndexMenu( {x, y}) {
     const images = require.context('../assets/img/sdgs_icons', true);
     const sdgs = [{
