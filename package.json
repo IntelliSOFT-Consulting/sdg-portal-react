@@ -2,7 +2,7 @@
   "name": "sdg-portal",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://test.sdgca.intellisoftkenya.com/build",
+  "homepage": "https://test.sdgca.intellisoftkenya.com/sdgportal",
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.10",
     "@bit/formidablelabs.react-animations.head-shake": "^1.0.0",
@@ -33,6 +33,7 @@
     "react-gauge-chart": "^0.2.4",
     "react-multiselect-checkboxes": "^0.1.1",
     "react-pie-menu": "^0.2.5",
+    "react-radial-menu": "^1.0.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
     "react-select": "^2.0.0-beta.7",
@@ -41,8 +42,7 @@
     "reactstrap": "^8.1.1",
     "recharts": "^2.0.0-beta.1",
     "styled-components": "^5.0.1",
-    "victory": "^34.0.0",
-    "wheelnav": "^1.7.1"
+    "victory": "^34.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

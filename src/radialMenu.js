@@ -1,3 +1,4 @@
+const $ = window.$;
 $(document).ready(function() {
     var previous = document.getElementById("menu8"); //The last opened menu, "menu8" by default since it is opened on page load
 	var original = "menu"; //Concatenate this with the element id
