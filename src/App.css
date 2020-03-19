@@ -434,10 +434,10 @@ text-align: center;
 }
 
 .about-header .nav{
-  width: 53%;
+  /* width: 53%; */
 }
 .country-profile-header .nav{
-  width: 50%;
+
 }
 
 .sdgsHeader .sdg-icon-padding img,
@@ -1040,4 +1040,37 @@ font-weight: 600;
     padding: 5px;
     width: 97%;
 }
+}
+
+.radial-menu-circle{
+  opacity: 1 !important;
+    transform: scale(1);
+}
+
+.radial-outside-container, .radial-menu-content{
+  height: 90%;
+  display: flex;
+}
+
+.radial-menu-content{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  
+}
+.radial-menu-container{
+  display: block;
+}
+
+html, body, #root{
+  height: 100%;
+}
+
+.radial-menu-circle a{
+  transition: hover 2s;
+}
+
+.radial-menu-circle a:hover{
+  transform-origin: calc(0px + 50%) calc(0px + 50%);
+  transform: scaleX(1) scaleY(1) translateX(0px) scale(1.25);
 }

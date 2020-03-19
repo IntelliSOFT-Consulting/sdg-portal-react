@@ -186,10 +186,10 @@ function Header( {onActiveA2063Changed} ){
                     <Link to="/Sdgs" className="text-white">SDGs</Link>
                     <Link to="/Dashboard" className="text-white">DASHBOARD</Link>
                     <Link to="/CountryProfile" className="text-white">COUNTRY PROFILE</Link>
-                    <Link to="/Agenda2063" className="text-white">AGENDA 2063</Link>
+                    <Link to="/Agenda2063/Landing" className="text-white">AGENDA 2063</Link>
                     <Link to="/About" className="text-white">ABOUT US</Link>
                     <Link to="/Faqs" className="text-white">FAQs</Link>
-            </Menu>
+                </Menu>
             </header> 
           
             </>
