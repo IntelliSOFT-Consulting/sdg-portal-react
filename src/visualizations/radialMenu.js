@@ -1,7 +1,7 @@
 import React from "react";
 import $ from 'jquery';
 import RadialMenu from "react-radial-menu"
-import centerImage from '../assets/img/a2063_icons/a2063_big.png'
+import centerImage from '../assets/img/a2063_icons/white.png'
 import { Container } from 'reactstrap'
 
 

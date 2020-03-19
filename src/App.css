@@ -1066,13 +1066,18 @@ html, body, #root{
   height: 100%;
 }
 
-.radial-menu-circle a{
-  transition: hover 2s;
+.radial-menu-circle .children{
+  -webkit-transition: transform 0.5s ease-in-out;
+    -moz-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
-.radial-menu-circle a:hover{
-  transform-origin: calc(0px + 50%) calc(0px + 50%);
-  transform: scaleX(1) scaleY(1) translateX(0px) scale(1.25);
+.radial-menu-circle .children:hover{
+  transform: scale(1.25);
+}
+
+.radial-menu-circle .children:hover  ~ .radial-menu-button{
+  display: none;
 }
 
 .faq-icon{

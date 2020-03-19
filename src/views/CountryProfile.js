@@ -93,9 +93,6 @@ function CountryProfile (props, ) {
         "gdpPerCapita":0
     });
 
-    
-    
-
     const parseNormalizedData = (data) => {
         const normalizedData = [];
         data.forEach(function(d){
@@ -124,6 +121,7 @@ function CountryProfile (props, ) {
             })
         }
         loadNormalizedData(normalizedData);
+        console.log(selectedCountry); 
     }, []);
 
     const openModal = (countryCode) => {
@@ -160,7 +158,7 @@ function CountryProfile (props, ) {
         
     };
 
-
+      
 
     let code = "hc-a2";
 
@@ -311,7 +309,6 @@ function CountryProfile (props, ) {
                                             <h5 className="display-4 text-center">Perfomance by Goal </h5> 
                                         </CardHeader>
                                         <CardBody>
-                                        { console.log("Selected"+ selectedCountry)}
                                             {/* <Barometer barometerData={countryProfileData} country={countryProfileData.id} sdg={activeSdg}></Barometer> */}
                                             <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge>
                                         </CardBody>
