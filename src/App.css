@@ -1074,3 +1074,7 @@ html, body, #root{
   transform-origin: calc(0px + 50%) calc(0px + 50%);
   transform: scaleX(1) scaleY(1) translateX(0px) scale(1.25);
 }
+
+.faq-icon{
+  float: right;
+}
