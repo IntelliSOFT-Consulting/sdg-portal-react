@@ -48,6 +48,7 @@ function CountryProfile (props, ) {
     let countryFlag = '';
     let countryPoverty = '';
     let countryGDP = '';
+    let countryCode = '';
 
     const [countryProfileMapData, setCountryProfileMapData] = useState([]);
     const [countryProfileData, setCountryProfileData] = useState([]);
@@ -63,6 +64,7 @@ function CountryProfile (props, ) {
 
     if (props.location.state != null){
         country = props.location.state;
+        // setSelectedCountryCode(country.value);
         countriesData.forEach(function(data){
             if(data.code == country.value){
                 let imgSrc = flagImages(`./${data.flagURL}.png`);
@@ -71,6 +73,7 @@ function CountryProfile (props, ) {
                 countryPoverty = data.povertyLine
                 countryGDP = data.gdpPerCapita
                 countryFlag = imgSrc;
+                countryCode = data.code
             }
         })
         }
@@ -125,6 +128,7 @@ function CountryProfile (props, ) {
             })
         }
 
+        setSelectedCountryCode(countryCode);
         const loadDemographicsData = (demographicsDataFile) => {
             Papa.parse(demographicsDataFile, {
                 download: true,
