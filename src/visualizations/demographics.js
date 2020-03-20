@@ -36,9 +36,9 @@ function Demographics ( {demographicsData} ){
 
         let maleValueAxis = maleChart.xAxes.push(new am4charts.ValueAxis());
         maleValueAxis.renderer.inversed = true;
-        maleValueAxis.min = 0;
-        maleValueAxis.max = 20000;
-        maleValueAxis.strictMinMax = true;
+        // maleValueAxis.min = 0;
+        // maleValueAxis.max = 10000;
+        // maleValueAxis.strictMinMax = true;
         maleValueAxis.fontSize = 11;
         maleValueAxis.numberFormatter = new am4core.NumberFormatter();
 
@@ -56,8 +56,8 @@ function Demographics ( {demographicsData} ){
         maleSeries.fill = am4core.color("#2097d4");  
 
         let maleRange = maleValueAxis.axisRanges.create();
-        maleRange.value = 0;
-        maleRange.endValue = 20000;
+        // maleRange.value = 0;
+        // maleRange.endValue = 10000;
         maleRange.label.text = "Male";
         maleRange.label.dy = 20;
 
@@ -75,9 +75,9 @@ function Demographics ( {demographicsData} ){
         femaleCategoryAxis.renderer.inversed = true;
 
         let femaleValueAxis = femaleChart.xAxes.push(new am4charts.ValueAxis());
-        femaleValueAxis.min = 0;
-        femaleValueAxis.max = 20000;
-        femaleValueAxis.strictMinMax = true;
+        // femaleValueAxis.min = 0;
+        // femaleValueAxis.max = 10000;
+        // femaleValueAxis.strictMinMax = true;
         femaleValueAxis.numberFormatter = new am4core.NumberFormatter();
         femaleValueAxis.renderer.minLabelPosition = 0.01;
         femaleValueAxis.fontSize = 11;
@@ -96,8 +96,8 @@ function Demographics ( {demographicsData} ){
         
 
         let femaleRange = femaleValueAxis.axisRanges.create();
-        femaleRange.value = 0;
-        femaleRange.endValue = 20000;
+        // femaleRange.value = 0;
+        // femaleRange.endValue = 10000;
         femaleRange.label.text = "Female";
         femaleRange.label.dy = 20;
 
