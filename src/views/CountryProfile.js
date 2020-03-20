@@ -56,6 +56,10 @@ function CountryProfile (props, ) {
     const countriesJson = require('../assets/data/trial.json');
     const countries = countriesJson.map(country => ({ label: country.name, value: country.code }));
     const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedCountryCode, setSelectedCountryCode] = useState('');
+    const [countryDemographics, setCountryDemographics] = useState([]);
+
+    const ageBrackets = ["0-4","5-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74","75-79","80-84","85-89","90-94","95-99","100+"]
 
     if (props.location.state != null){
         country = props.location.state;
@@ -102,12 +106,12 @@ function CountryProfile (props, ) {
                 "name": d.Country
             })
         })
-        console.log(normalizedData);
         setCountryProfileMapData(normalizedData);
     }
 
     useEffect(() => {
         const normalizedData = require('../assets/data/normalizedGoalValues.csv')
+        const demographicsData = require('../assets/data/countriesDemographicData.csv');
         const loadNormalizedData = (normalizedDataFile) => {
             Papa.parse(normalizedDataFile, {
                 download: true,
@@ -120,13 +124,45 @@ function CountryProfile (props, ) {
                 }
             })
         }
+
+        const loadDemographicsData = (demographicsDataFile) => {
+            Papa.parse(demographicsDataFile, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results){
+                    parseDemographicsData(results.data, selectedCountryCode)
+                }
+            })
+        }
         loadNormalizedData(normalizedData);
-        console.log(selectedCountry); 
-    }, []);
+        loadDemographicsData(demographicsData);
+    }, [selectedCountryCode]);
+
+    const parseDemographicsData = (data, countryCode) => {
+        console.log(data)
+        const demographicsData = []
+        data.forEach(function(d){
+            ageBrackets.forEach(function(ageBracket, index){
+                if(d.Code == countryCode && d.Sex == "Female"){
+                    demographicsData.push({
+                        "age" : ageBracket,
+                        "female" :  parseInt(d[ageBracket])
+                    })
+                }
+               
+                if(d.Code == countryCode && d.Sex == "Male"){
+                    demographicsData[index]["male"] = parseInt(d[ageBracket])
+                }
+
+            })
+        })
+        setCountryDemographics(demographicsData);
+    }
 
     const openModal = (countryCode) => {
         setOpenModal(true);
-
+        setSelectedCountryCode(countryCode);
         countriesData.forEach(function(countryData){
             if(countryData.code == countryCode){
                 let imgSrc = flagImages(`./${countryData.flagURL}.png`);
@@ -155,10 +191,7 @@ function CountryProfile (props, ) {
     const handleChange = selectedOption => {
         setSelectedCountry(selectedOption)
         openModal(selectedOption.value)
-        
-    };
-
-      
+    }; 
 
     let code = "hc-a2";
 
@@ -325,7 +358,8 @@ function CountryProfile (props, ) {
                                         <h5 className="display-4 text-center">Country Demographics </h5>
                                         </CardHeader>
                                         <CardBody>
-                                            <Demographics></Demographics>
+                                            {console.log(countryDemographics)}
+                                            <Demographics demographicsData={countryDemographics}></Demographics>
                                         </CardBody>
                                         
                                     </Card>   

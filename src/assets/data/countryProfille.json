@@ -134,7 +134,7 @@
     "name": "Cote d'Ivoire",
     "capital": "Yamoussoukro",
     "region": "Western Africa",
-    "code": "CI",
+    "code": "DJ",
     "flagURL": "cote-d-ivoire-flag-medium",
     "povertyLine": 21.26041536,
     "gdpPerCapita": 3585.53599
@@ -144,7 +144,7 @@
     "name": "Djibouti",
     "capital": "Djibouti",
     "region": "Eastern Africa",
-    "code": "DJ",
+    "code": "EG",
     "flagURL": "djibouti-flag-medium",
     "povertyLine": 13.40064495,
     "gdpPerCapita": ""
@@ -154,7 +154,7 @@
     "name": "Egypt",
     "capital": "Cairo",
     "region": "Northern Africa",
-    "code": "EG",
+    "code": "GQ",
     "flagURL": "egypt-flag-medium",
     "povertyLine": 0.5893052813,
     "gdpPerCapita": 10551.29965
@@ -164,7 +164,7 @@
     "name": "Equatorial Guinea",
     "capital": "Malabo",
     "region": "Central Africa",
-    "code": "GQ",
+    "code": "ER",
     "flagURL": "equatorial-guinea-flag-medium",
     "povertyLine": "",
     "gdpPerCapita": 22213.74306
@@ -174,7 +174,7 @@
     "name": "Eritrea",
     "capital": "Asmara",
     "region": "Eastern Africa",
-    "code": "ER",
+    "code": "ET",
     "flagURL": "eritrea-flag-medium",
     "povertyLine": "",
     "gdpPerCapita": ""
@@ -184,7 +184,7 @@
     "name": "Ethiopia",
     "capital": "Addis Ababa",
     "region": "Eastern Africa",
-    "code": "ET",
+    "code": "TF",
     "flagURL": "ethiopia-flag-medium",
     "povertyLine": 45.19022282,
     "gdpPerCapita": 7870.644839
@@ -194,7 +194,7 @@
     "name": "Gabon",
     "capital": "Libreville",
     "region": "Central Africa",
-    "code": "GA",
+    "code": "GM",
     "flagURL": "gabon-flag-medium",
     "povertyLine": 13.7211652,
     "gdpPerCapita": 1729.926639
@@ -204,7 +204,7 @@
     "name": "Gambia",
     "capital": "Banjul",
     "region": "Western Africa",
-    "code": "GM",
+    "code": "GH",
     "flagURL": "gambia-flag-medium",
     "povertyLine": 2.407449212,
     "gdpPerCapita": 16463.87137
@@ -214,7 +214,7 @@
     "name": "Ghana",
     "capital": "Accra",
     "region": "Western Africa",
-    "code": "GH",
+    "code": "GN",
     "flagURL": "ghana-flag-medium",
     "povertyLine": 38.65250522,
     "gdpPerCapita": 1544.390653
@@ -224,7 +224,7 @@
     "name": "Guinea",
     "capital": "Conakry",
     "region": "Western Africa",
-    "code": "GN",
+    "code": "GW",
     "flagURL": "guinea-flag-medium",
     "povertyLine": 8.789484519,
     "gdpPerCapita": 4091.907058
@@ -234,7 +234,7 @@
     "name": "Guinea Bissau",
     "capital": "Bissau",
     "region": "Western Africa",
-    "code": "GW",
+    "code": "CI",
     "flagURL": "guinea-bissau-flag-medium",
     "povertyLine": 29.42346927,
     "gdpPerCapita": 2042.403191
