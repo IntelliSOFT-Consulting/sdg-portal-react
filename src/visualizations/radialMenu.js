@@ -1,7 +1,7 @@
 import React from "react";
 import $ from 'jquery';
 import RadialMenu from "react-radial-menu"
-import centerImage from '../assets/img/a2063_icons/a2063_big.png'
+import centerImage from '../assets/img/a2063_icons/white.png'
 import { Container } from 'reactstrap'
 
 
@@ -107,13 +107,16 @@ function SdgLandingMenu(){
 
         // const {items, center} = this.props
         return <div className="radial-outside-container">
-            <div className="radial-menu-content">
-                     <div className="radial-menu-container">
-                        <RadialMenu
-                        items={a2063Arr}
-                        center={center}  distance={100} itemsSize={130}/>
+                    <div className="radial-menu-content">
+                        <div className="radial-menu-container">
+                            <RadialMenu
+                            items={a2063Arr}
+                            center={center}  distance={100} itemsSize={130}/>
+                        </div>
                     </div>
-                </div>
+                    <div className="aspiration-content">
+                        <p>Aspiration</p>
+                    </div>
         </div>
         
         

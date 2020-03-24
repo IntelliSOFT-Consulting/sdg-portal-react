@@ -64,7 +64,6 @@ function CountryProfile (props, ) {
 
     if (props.location.state != null){
         country = props.location.state;
-        // setSelectedCountryCode(country.value);
         countriesData.forEach(function(data){
             if(data.code == country.value){
                 let imgSrc = flagImages(`./${data.flagURL}.png`);
@@ -141,7 +140,7 @@ function CountryProfile (props, ) {
         }
         loadNormalizedData(normalizedData);
         loadDemographicsData(demographicsData);
-    }, [selectedCountryCode]);
+    }, [selectedCountryCode, toggleModal]);
 
     const parseDemographicsData = (data, countryCode) => {
         console.log(data)
@@ -193,6 +192,7 @@ function CountryProfile (props, ) {
     }
 
     const handleChange = selectedOption => {
+        setSelectedCountryCode(selectedOption.value);
         setSelectedCountry(selectedOption)
         openModal(selectedOption.value)
     }; 
@@ -203,6 +203,7 @@ function CountryProfile (props, ) {
         chart: {
             map: 'custom/africa',
             backgroundColor: 'transparent',
+  
 
         },
         credits: {
@@ -262,7 +263,7 @@ function CountryProfile (props, ) {
         <>
         <Header></Header>
             <main className="countryProfile">
-                <Container>
+                <div className="container">
                     <Row>
                         <Col md="12">
                             
@@ -291,7 +292,7 @@ function CountryProfile (props, ) {
                     </Row>
                    
                         
-                </Container>
+                </div>
                 <Container>
                     <Modal size="xl" className="modal-dialog-centered country-profile-modal" isOpen={toggleModal}
                         toggle={toggleModal}  >

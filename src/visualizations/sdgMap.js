@@ -1399,8 +1399,8 @@ function SdgMap({ mySdgData }) {
             chart: {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
-                width: 800,
-                height: 450,
+                // width: 800,
+                // height: 450,
                 events: {
                     drilldown: function (e) {
                     //    if(!e.seriesOptions){

@@ -1083,3 +1083,11 @@ html, body, #root{
 .faq-icon{
   float: right;
 }
+
+.radial-menu-circle .children:hover  > .radial-menu-button{
+  display: none;
+}
+
+.aspiration-content{
+  width: 20%;
+}
