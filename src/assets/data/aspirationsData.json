@@ -3,7 +3,7 @@
     "id":1,
     "description": "A Prosperous Africa Based on Inclusive Growth and Sustainable Development",
     "title": "ASPIRATION 1",
-    "achievement": 80,
+    "achievement": 90,
     "color" : "#f15a2e",
     "color2" : "#c5370e"
   },
@@ -11,7 +11,7 @@
     "id":2,
     "description": "An Integrated Continent, Politically United and Based on the Ideals of Pan-Africanism and a Vision of African Renaissance",
     "title": "ASPIRATION 2",
-    "achievement": 60,
+    "achievement": 75,
     "color": "#4556a4",
     "color2" : "#313f7b"
   },
@@ -27,7 +27,7 @@
     "id":4,
     "description": "A Peaceful and Secure Africa",
     "title": "ASPIRATION 4",
-    "achievement": 37,
+    "achievement": 67,
     "color": "#039888",
     "color2" : "#027164"
   },
@@ -43,7 +43,7 @@
     "id":6,
     "description": "An Africa Whose Development is People Driven, Relying on the Potential of the African People",
     "title": "ASPIRATION 6",
-    "achievement": 29,
+    "achievement": 39,
     "color":"#e82065",
     "color2" : "#b9134b"
   },
@@ -51,7 +51,7 @@
     "id":7,
     "description": "Africa as a Strong and Influential Global Partner",
     "title": "ASPIRATION 7",
-    "achievement": 28,
+    "achievement": 20,
     "color":"#54253c",
     "color2" : "#2b121e"
   }

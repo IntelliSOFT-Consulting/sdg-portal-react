@@ -27,14 +27,14 @@ function A2063(){
     const [mapData, setMapData] = useState([]);
     const [chartData, setChartData] = useState([]);
 
-    const [goal, setGoal] = useState(0);
+    const [goal, setGoal] = useState(1);
     const [goals, setGoals] = useState([]);
     const [goalID, setGoalID] = useState(1);
 
     const [indicator, setIndicator] = useState(1);
     const [indicators, setIndicators] = useState([]);
 
-    let   years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
+    let   years = [2019];
     const [year, setYear] = useState('2006');
 
     const [dataSource, setDataSource] = useState('pan');
@@ -128,18 +128,18 @@ function A2063(){
             sdgData = require('../assets/data/globalDatabase.json');
         }
         const indicators = getIndicators();
-        //setIndicators(indicators);
+       // setIndicators(indicators);
 
         if(activeTab != 0){
             const a2063Goals = agenda2063[activeTab-1].goals;
             setGoals(a2063Goals);
+
+            setGoal(1)
+            console.log(goal)
     
             let a2063Indicators = []
-            console.log(agenda2063[activeTab-1].goals[goal])
-           // a2063Indicators = agenda2063[activeTab-1].goals[goal].indicators;
+            a2063Indicators = agenda2063[activeTab-1].goals[goal-1].indicators;
             setIndicators(a2063Indicators);
-            
-            console.log(agenda2063[activeTab-1].goals);
         }
 
         getAspirationTitles(aspirationsData);
@@ -183,7 +183,6 @@ function A2063(){
     }
     const handleGoalChange = (e) => {
         setGoal(parseInt(e.target.value))
-        console.log(e.target.value)
     }
     const handleIndicatorChange = (e) => {
         setIndicator(parseInt(e.target.value));

@@ -14,7 +14,7 @@ function sdgHighChart (  {myChartData, indicator, years} ){
     
     const chartOptions = {
         chart: {
-            type: 'column',
+            type: 'columnpyramid',
             height: 400
         },
         title: {

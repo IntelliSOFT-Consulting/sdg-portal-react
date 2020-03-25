@@ -52,10 +52,10 @@ function TreeMap( {treeMapData} ){
             useHTML: true,
             formatter: function () {
                 let label = '<div style="width:250px; white-space:pre-wrap;">' +
-                                '<span>' + this.point.name + ":" + this.point.description + '</span' + 
+                                '<span>' + this.point.name + " : " + this.point.description + '</span' + 
                                 '<br> <br>' + 
                                 '<div style="width:180px; height:10px; background-color: "#eee"> </div>' + 
-                                '<div > Achievement : <span style="padding: 5px;color: white;font-weight:600;background-color:' + this.point.color + ';">' + this.point.value + "%" + ' </span> </div' + 
+                                '<div > Achievement  <span style="padding: 5px;color: white;font-weight:600;background-color:' + this.point.color + ';">' + this.point.value + "%" + ' </span> </div' + 
                             '</div>'
                 return label
             },

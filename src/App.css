@@ -960,7 +960,7 @@ font-weight: 600;
   padding: 0rem;
   vertical-align: top;
   border-top: 0rem solid #dee2e6;
-  width: 5.5%;
+  width: 5.0%;
 }
 
 .aspiration-title{
@@ -975,7 +975,7 @@ font-weight: 600;
 @media only screen and (min-width: 600px) {
   .dashboard-goal-icons {
     position: fixed;
-    top: 245px;
+    top: 190px;
     box-shadow: 0px 1px 2px #ccc;
     background: #fff;
     z-index: 99;
@@ -995,7 +995,7 @@ font-weight: 600;
 @media only screen and (max-width: 768px) {
   .dashboard-goal-icons {
     position: fixed;
-    top: 245px;
+    top: 190px;
     box-shadow: 0px 1px 2px #ccc;
     background: #fff;
     z-index: 99;

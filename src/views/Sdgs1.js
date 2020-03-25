@@ -14,6 +14,7 @@ import Spinner from "../visualizations/spinner";
 import Chart from "../visualizations/sdgChart";
 import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
+import { filter } from "@amcharts/amcharts4/.internal/core/utils/Iterator";
   
 function Sdgs1() {
 
@@ -113,6 +114,7 @@ function Sdgs1() {
                     }
                 }
             }
+            console.log(filteredChartData)
             setSdgChartData(filteredChartData);
         }
 
@@ -215,6 +217,7 @@ function Sdgs1() {
                 indicatorData.push([ d.Code, parseInt(d[indicator])])  
             }
         })
+        console.log(indicatorData)
        return indicatorData
     }
 
