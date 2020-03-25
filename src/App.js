@@ -44,8 +44,8 @@ function App() {
             <Route exact path="/Sdgs/Index" component={SdgIndex}></Route>
             <Route path="/Dashboard" component={Dashboard}></Route>
             <Route path="/CountryProfile" component={CountryProfile}></Route>
-            <Route exact path="/Agenda2063" component={a2063}></Route>
-            <Route exact path="/Agenda2063/Landing" component={Agenda2063Landing}></Route>
+            <Route exact path="/Agenda2063" component={Agenda2063Landing}></Route>
+            <Route exact path="/Agenda2063/Landing" component={a2063}></Route>
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
             <Route exact path="/" component={Home}></Route>
