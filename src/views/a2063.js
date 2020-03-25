@@ -8,7 +8,7 @@ import TreeMap from "../visualizations/highTreeMap";
 
 import classnames from "classnames";
 import {
-    Row, Col, Input, Button, Label
+    Row, Col, Input, Button, Label, Container, Modal
 } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -16,7 +16,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function A2063(){
     const Papa = require("papaparse/papaparse.min.js");
     const agenda2063 = require('../assets/data/agenda2063.json');
-    const aspirationsData = require("../assets/data/aspirationsData.json")
+    const aspirationsData = require("../assets/data/aspirationsData.json");
+    const countries = require("../assets/data/countries.json");
 
     const [activeTab, setActiveTab] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,7 @@ function A2063(){
 
     const [goal, setGoal] = useState(1);
     const [goals, setGoals] = useState([]);
+    const [goalID, setGoalID] = useState(1);
 
     const [indicator, setIndicator] = useState(1);
     const [indicators, setIndicators] = useState([]);
@@ -41,51 +43,44 @@ function A2063(){
     const [country, setCountry] = useState('DZ');
 
     const [aspirationTitle, setAspirationTitle] = useState('');
+    const [toggleModal, setOpenModal] = useState(false);
+    const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true, CM:true, BI:true});
 
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];
     
-    const getIndicators = useCallback(() => {
-        const targetData = sdgData[1].targets;
-        targetData.forEach(function(data){
-            if(data.code === activeTab){
-                ind = data.indicators;
-            }
-        })
-        return ind;
-    }, [indicator]); 
+    // const getIndicators = useCallback(() => {
+    //     const targetData = sdgData[1].targets;
+    //     targetData.forEach(function(data){
+    //         if(data.code === activeTab){
+    //             ind = data.indicators;
+    //         }
+    //     })
+    //     return ind;
+    // }, [indicator]); 
 
     const parseMapData = (data) => {
-        const years = [];
-        const indicatorData = [];
+        const mapData = [];
+        const radarData = [];
+
         data.forEach(function(d){
-            if(d.Year === year ){
-                indicatorData.push({
-                    "code": d.Code,
-                    "drilldown" : d.Code,
-                    "value": d[indicator],
-                    "country": d.Entity
-                })  
-            }
-            if(d.Entity === "Mauritius"){
-                years.push(d.Year);
-                years.sort((a, b) => b - a);
-            }
+            mapData.push({
+                "code": (d.id),
+                "value": parseFloat(d.Score),
+                "name": d.Country
+            })
         })
-        //setYears(years);
-        setMapData(indicatorData);
+        setMapData(mapData);
     }
 
     const parseChartData = (data) =>{
-        const indicatorData = [];
+        const chartData = [];
         data.forEach(function(d){
-            if(d.Year === year ){
-                indicatorData.push([d.Entity, parseInt(d[indicator])])  
-            }
+            chartData.push([d.id, parseInt(d.Score)])  
         })
-       // console.log(indicatorData)
-       setChartData(indicatorData)
+       //setChartData(chartData)
+       return chartData;
     }
 
     const parseNormalizedData = (data) => {
@@ -110,35 +105,51 @@ function A2063(){
                 }
             })
         })
-        
         setIndexMapData(mapData);
     }
 
     useEffect(() => {
         let isSubscribed = true;
         if(dataSource === 'pan'){
-            csvDataSourceData = require("../assets/data/sdg/pan.csv");
+            csvDataSourceData = require("../assets/data/a2063DummyData.csv");
             sdgData = require('../assets/data/globalDatabase.json');
         }else if (dataSource === 'gdb'){
-            csvDataSourceData = require("../assets/data/sdg/gdb.csv");
+            csvDataSourceData = require("../assets/data/a2063DummyData.csv");
             sdgData = require('../assets/data/globalDatabase.json');
         }
-        const indicators = getIndicators();
-       // setIndicators(indicators);
 
         if(activeTab != 0){
             const a2063Goals = agenda2063[activeTab-1].goals;
             setGoals(a2063Goals);
 
-            setGoal(1)
+            setGoalID(1)
             console.log(goal)
     
             let a2063Indicators = []
-            a2063Indicators = agenda2063[activeTab-1].goals[goal-1].indicators;
+            a2063Indicators = agenda2063[activeTab-1].goals[goalID-1].indicators;
             setIndicators(a2063Indicators);
         }
 
         getAspirationTitles(aspirationsData);
+
+        const filterChartData = (myChartData) =>{
+            let filteredChartData = []
+            const keys = Object.keys(checkedItems);
+            for (const key of keys){
+                for(const data of myChartData){
+                    if(data.includes(key.toLowerCase()) && checkedItems[key] === true){
+                        for(const country of countries){
+                            if (country.alpha2Code === key){
+                                data[0] = country.name
+                            }
+                        }
+                        filteredChartData.push(data)
+                    }
+                }
+            }
+            console.log(filteredChartData)
+            setChartData(filteredChartData)
+        }
 
         const loadSdgData = (sdgCsvFile) => {
             setIsLoading(true);
@@ -148,8 +159,9 @@ function A2063(){
                 complete: function(results){
                     if(isSubscribed){
                         parseMapData(results.data)
-                        parseChartData(results.data)
-                      
+                        const chartData = parseChartData(results.data)
+                        filterChartData(chartData)
+                        
                         setIsLoading(false);
                     }
                 }
@@ -157,7 +169,7 @@ function A2063(){
         }
         loadSdgData(csvDataSourceData);
         return () => isSubscribed = false
-    }, [dataSource, indicator, goal, year, activeTab]);
+    }, [dataSource, indicator, goal, year, activeTab, checkedItems]);
 
     useEffect(() => {
         const normalizedData = require('../assets/data/normalizedGoalValues.csv')
@@ -175,10 +187,12 @@ function A2063(){
     }, [country]);
 
     const handleA2063Change = (a2063) => {
+        setGoal(1)
         setActiveTab(parseInt(a2063))
     }
     const handleGoalChange = (e) => {
         setGoal(parseInt(e.target.value))
+        setGoalID(parseInt(e.target.value))
     }
     const handleIndicatorChange = (e) => {
         setIndicator(parseInt(e.target.value));
@@ -198,6 +212,13 @@ function A2063(){
     const setLineChartType = () => {
         setMapChartType('line')
     }
+
+    const openModal = (countryId) => {
+        setOpenModal(true);
+    }
+    const closeModal = () => {
+        setOpenModal(false);
+    }
     function handleIndexChildClick(country){
         setCountry(country);
     }
@@ -207,6 +228,9 @@ function A2063(){
                 setAspirationTitle(d.description)
             }
         })
+    }
+    const handleChange = (event) => {
+        setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
     }
 
     return (
@@ -260,7 +284,17 @@ function A2063(){
                                     mapChartType === 'map' ? (
                                         <SdgMap mySdgData ={mapData}></SdgMap>
                                     ) : (
-                                        <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
+
+                                        <div>
+                                             <div className="add-country-div">
+                                                    <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                            <i className="fa fa-plus-circle mr-1" />
+                                                            Add a country
+                                                    </Button>
+                                                </div>
+                                                <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
+                                        </div>
+                                       
                                     )
                                 }
                             </Col>
@@ -319,6 +353,35 @@ function A2063(){
                         </div>
                     )
                 }
+
+                <Container>
+                    <Modal size="lg" className="modal-dialog-centered" isOpen={toggleModal}
+                        toggle={toggleModal}  >
+                        <div className="modal-header">
+                        <h6 className="">Choose data to show</h6>
+                            <button aria-label="Close" className="close" data-dismiss="modal" type="button"
+                                onClick={closeModal} >
+                                <span aria-hidden={true}>×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body" >
+                            <Container>
+                                <Row>
+                                    {
+                                        countries.map((country, index) => {
+                                        return <Col md="4" key={index}>
+                                        <Label key={index} check>
+                                                    <Input type="checkbox" name={country.alpha2Code} value={country.alpha2Code} checked={!!checkedItems[country.alpha2Code]} onChange={handleChange}/>{' '}
+                                                {country.name}
+                                                </Label>
+                                                </Col>    
+                                        })
+                                    }
+                                </Row>
+                            </Container>   
+                        </div>
+                    </Modal>
+                </Container>
                    
             </main>
             <Footer></Footer>
