@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useCallback} from "react";
 import Header from "../components/a2063Header";
 import Footer from "../components/footer";
-import Map from "../visualizations/map";
 import SdgMap from "../visualizations/sdgMap";
 import SdgHighChart from "../visualizations/sdgHighChart";
 import IndexMap from "../visualizations/indexMap";
@@ -9,7 +8,7 @@ import TreeMap from "../visualizations/highTreeMap";
 
 import classnames from "classnames";
 import {
-    Row, Col, Nav,NavItem, NavLink, Card, TabContent, TabPane, Input, Button, Label
+    Row, Col, Input, Button, Label
 } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -17,11 +16,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function A2063(){
     const Papa = require("papaparse/papaparse.min.js");
     const agenda2063 = require('../assets/data/agenda2063.json');
-    const a2063DataSource = require("../assets/data/sdg/pan.csv");
     const aspirationsData = require("../assets/data/aspirationsData.json")
 
     const [activeTab, setActiveTab] = useState(0);
-    const [innerTab, setInnerTab] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
 
     const [mapData, setMapData] = useState([]);
@@ -29,7 +26,6 @@ function A2063(){
 
     const [goal, setGoal] = useState(1);
     const [goals, setGoals] = useState([]);
-    const [goalID, setGoalID] = useState(1);
 
     const [indicator, setIndicator] = useState(1);
     const [indicators, setIndicators] = useState([]);
@@ -208,7 +204,7 @@ function A2063(){
     const getAspirationTitles = (data) => {
         data.forEach(function(d){
             if(activeTab == d.id){
-                setAspirationTitle(d.category)
+                setAspirationTitle(d.description)
             }
         })
     }
@@ -220,7 +216,7 @@ function A2063(){
                 {
                     activeTab != 0 ? (
                         <div>
-                            <h4 className="aspiration-title"> {aspirationTitle} </h4>
+                            <h4 className="aspiration-title p-3"> ASPIRATION  {activeTab} :  {aspirationTitle} </h4>
                         <Row className="mt-4 optionButtons ">
                             <Col>
                                 <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>
