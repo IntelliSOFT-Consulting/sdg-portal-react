@@ -1091,3 +1091,8 @@ html, body, #root{
 .aspiration-content{
   width: 20%;
 }
+
+.tree-map-aspiration-title,
+.tree-map-aspiration-value{
+  text-align: center;
+}

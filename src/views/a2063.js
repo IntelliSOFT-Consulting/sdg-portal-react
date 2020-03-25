@@ -5,7 +5,7 @@ import Map from "../visualizations/map";
 import SdgMap from "../visualizations/sdgMap";
 import SdgHighChart from "../visualizations/sdgHighChart";
 import IndexMap from "../visualizations/indexMap";
-import TreeMap from "../visualizations/treeMap";
+import TreeMap from "../visualizations/highTreeMap";
 
 import classnames from "classnames";
 import {
