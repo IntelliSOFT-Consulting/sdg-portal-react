@@ -9,13 +9,13 @@ import {
 } from 'react-router-dom';
 
 import Home from "./views/Home";
-import Sdgs from "./views/Sdgs";
+// import Sdgs from "./views/Sdgs";
 import Sdgs1 from "./views/Sdgs1";
 import Sdg from "./views/sdgs/sdg";
 import SdgIndex from "./views/SdgIndex";
 import Dashboard from "./views/Dashboard";
 import CountryProfile from "./views/CountryProfile";
-import Agenda2063 from "./views/Agenda2063";
+// import Agenda2063 from "./views/Agenda2063";
 import a2063 from "./views/a2063";
 import Agenda2063Landing from './views/a2063/Landing';
 import About from "./views/About";

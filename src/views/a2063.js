@@ -31,6 +31,7 @@ function A2063(){
 
     const [indicator, setIndicator] = useState(1);
     const [indicators, setIndicators] = useState([]);
+    const [firstIndicator, setFirstIndicator] = useState('');
 
     let   years = [2019];
     const [year, setYear] = useState('2006');
@@ -49,21 +50,10 @@ function A2063(){
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];
-    
-    // const getIndicators = useCallback(() => {
-    //     const targetData = sdgData[1].targets;
-    //     targetData.forEach(function(data){
-    //         if(data.code === activeTab){
-    //             ind = data.indicators;
-    //         }
-    //     })
-    //     return ind;
-    // }, [indicator]); 
 
-    const parseMapData = (data) => {
+    const parseMapData = (data, indicatorValue) => {
         const mapData = [];
-        const radarData = [];
-
+        const indicatorKey = "indicator"+indicatorValue
         data.forEach(function(d){
             mapData.push({
                 "code": (d.id),
@@ -74,12 +64,12 @@ function A2063(){
         setMapData(mapData);
     }
 
-    const parseChartData = (data) =>{
+    const parseChartData = (data, indicatorValue) =>{
         const chartData = [];
+        const indicatorKey = "indicator"+indicatorValue
         data.forEach(function(d){
             chartData.push([d.id, parseInt(d.Score)])  
         })
-       //setChartData(chartData)
        return chartData;
     }
 
@@ -121,15 +111,16 @@ function A2063(){
         if(activeTab != 0){
             const a2063Goals = agenda2063[activeTab-1].goals;
             setGoals(a2063Goals);
-
             setGoalID(1)
-            console.log(goal)
-    
+
             let a2063Indicators = []
             a2063Indicators = agenda2063[activeTab-1].goals[goalID-1].indicators;
             setIndicators(a2063Indicators);
+            setFirstIndicator(a2063Indicators[0])
+            
         }
 
+        console.log(indicator)
         getAspirationTitles(aspirationsData);
 
         const filterChartData = (myChartData) =>{
@@ -147,7 +138,6 @@ function A2063(){
                     }
                 }
             }
-            console.log(filteredChartData)
             setChartData(filteredChartData)
         }
 
@@ -161,7 +151,6 @@ function A2063(){
                         parseMapData(results.data)
                         const chartData = parseChartData(results.data)
                         filterChartData(chartData)
-                        
                         setIsLoading(false);
                     }
                 }
@@ -189,6 +178,7 @@ function A2063(){
     const handleA2063Change = (a2063) => {
         setGoal(1)
         setActiveTab(parseInt(a2063))
+        setIndicator(firstIndicator)
     }
     const handleGoalChange = (e) => {
         setGoal(parseInt(e.target.value))

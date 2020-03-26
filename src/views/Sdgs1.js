@@ -217,7 +217,7 @@ function Sdgs1() {
                 indicatorData.push([ d.Code, parseInt(d[indicator])])  
             }
         })
-        console.log(indicatorData)
+        console.log(indicator)
        return indicatorData
     }
 
@@ -517,34 +517,7 @@ function Sdgs1() {
                     </div>
                 )
             }
-                     <Container>
-                    <Modal size="lg" className="modal-dialog-centered" isOpen={toggleModal}
-                        toggle={toggleModal}  >
-                        <div className="modal-header">
-                        <h6 className="">Choose data to show</h6>
-                            <button aria-label="Close" className="close" data-dismiss="modal" type="button"
-                                onClick={closeModal} >
-                                <span aria-hidden={true}>×</span>
-                            </button>
-                        </div>
-                        <div className="modal-body" >
-                            <Container>
-                                <Row>
-                                    {
-                                        countries.map((country, index) => {
-                                        return <Col md="4" key={index}>
-                                        <Label key={index} check>
-                                                    <Input type="checkbox" name={country.alpha2Code} value={country.alpha2Code} checked={!!checkedItems[country.alpha2Code]} onChange={handleChange}/>{' '}
-                                                {country.name}
-                                                </Label>
-                                                </Col>    
-                                        })
-                                    }
-                                </Row>
-                            </Container>   
-                        </div>
-                    </Modal>
-                </Container>
+                
             </div>
         </main>
         <Footer></Footer>

@@ -43,7 +43,7 @@
         },{
             "id": 2,
             "number":9,
-            "indicators": [9, 10, 11, 12]
+            "indicators": []
         },{
             "id": 3,
             "number":10 ,

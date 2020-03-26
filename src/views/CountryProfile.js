@@ -140,7 +140,7 @@ function CountryProfile (props, ) {
         }
         loadNormalizedData(normalizedData);
         loadDemographicsData(demographicsData);
-    }, [selectedCountryCode, toggleModal]);
+    }, [toggleModal, selectedCountryCode ]);
 
     const parseDemographicsData = (data, countryCode) => {
         console.log(data)

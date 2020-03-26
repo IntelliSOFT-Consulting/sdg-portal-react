@@ -11,7 +11,7 @@ addTreemapModule(Highcharts);
 
 
 function TreeMap( {treeMapData} ){
-    console.log(treeMapData)
+   // console.log(treeMapData)
 
     const parseTreeMapData = (data) => {
         const parsedData = []

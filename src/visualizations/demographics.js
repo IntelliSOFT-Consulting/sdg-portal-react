@@ -10,9 +10,6 @@ function Demographics ( {demographicsData} ){
 
   useEffect(() => {
         let demographicData = require('../assets/data/1DemographicsChartData.json');
-
-        console.log(demographicsData)
-        console.log(demographicData)
         let mainContainer = am4core.create("chartdiv2", am4core.Container);
         mainContainer.width = am4core.percent(100);
         mainContainer.height = am4core.percent(100);
