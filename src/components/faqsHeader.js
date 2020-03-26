@@ -16,22 +16,22 @@ import {
     Col
   } from "reactstrap";
 
-class CountryProfileHeader extends React.Component{
+class FaqsHeader extends React.Component{
     componentDidMount(){
 
     }
     render(){
         return (
             <> 
-            <header className="header-global country-profile-header">
+            <header className="header-global about-header">
             <Navbar>
                 <NavbarBrand>
                     <Link to="/">
                         <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
                     </Link>   
                 </NavbarBrand>
-                <Nav className="country-profile-title">
-                <h5 className="display-3 mb-4 mt-2 text-center"> African Country Profiles</h5>
+                <Nav className="about-title">
+                <h5 className="display-3 mb-4 mt-2 text-center">FREQUENTLY ASKED QUESTIONS</h5>
                 </Nav>
                 
                 <Menu right>
@@ -51,4 +51,4 @@ class CountryProfileHeader extends React.Component{
     }
 }
 
-export default CountryProfileHeader;
+export default FaqsHeader;

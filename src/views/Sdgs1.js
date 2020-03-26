@@ -14,6 +14,7 @@ import Spinner from "../visualizations/spinner";
 import Chart from "../visualizations/sdgChart";
 import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
+import { filter } from "@amcharts/amcharts4/.internal/core/utils/Iterator";
   
 function Sdgs1() {
 
@@ -113,6 +114,7 @@ function Sdgs1() {
                     }
                 }
             }
+            console.log(filteredChartData)
             setSdgChartData(filteredChartData);
         }
 
@@ -215,6 +217,7 @@ function Sdgs1() {
                 indicatorData.push([ d.Code, parseInt(d[indicator])])  
             }
         })
+        console.log(indicator)
        return indicatorData
     }
 
@@ -504,44 +507,17 @@ function Sdgs1() {
                         </Row>
                     
                         <Row className="mt-3">
-                            <Col>
+                            <Col lg="6" md="12">
                                 <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
                             </Col>
-                            <Col>
+                            <Col lg="6" md="12">
                                 <RadarChart radarData={indexRadarChartData}></RadarChart>
                             </Col>
                         </Row>
                     </div>
                 )
             }
-                     <Container>
-                    <Modal size="lg" className="modal-dialog-centered" isOpen={toggleModal}
-                        toggle={toggleModal}  >
-                        <div className="modal-header">
-                        <h6 className="">Choose data to show</h6>
-                            <button aria-label="Close" className="close" data-dismiss="modal" type="button"
-                                onClick={closeModal} >
-                                <span aria-hidden={true}>×</span>
-                            </button>
-                        </div>
-                        <div className="modal-body" >
-                            <Container>
-                                <Row>
-                                    {
-                                        countries.map((country, index) => {
-                                        return <Col md="4" key={index}>
-                                        <Label key={index} check>
-                                                    <Input type="checkbox" name={country.alpha2Code} value={country.alpha2Code} checked={!!checkedItems[country.alpha2Code]} onChange={handleChange}/>{' '}
-                                                {country.name}
-                                                </Label>
-                                                </Col>    
-                                        })
-                                    }
-                                </Row>
-                            </Container>   
-                        </div>
-                    </Modal>
-                </Container>
+                
             </div>
         </main>
         <Footer></Footer>

@@ -48,6 +48,7 @@ function CountryProfile (props, ) {
     let countryFlag = '';
     let countryPoverty = '';
     let countryGDP = '';
+    let countryCode = '';
 
     const [countryProfileMapData, setCountryProfileMapData] = useState([]);
     const [countryProfileData, setCountryProfileData] = useState([]);
@@ -56,6 +57,10 @@ function CountryProfile (props, ) {
     const countriesJson = require('../assets/data/trial.json');
     const countries = countriesJson.map(country => ({ label: country.name, value: country.code }));
     const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedCountryCode, setSelectedCountryCode] = useState('');
+    const [countryDemographics, setCountryDemographics] = useState([]);
+
+    const ageBrackets = ["0-4","5-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74","75-79","80-84","85-89","90-94","95-99","100+"]
 
     if (props.location.state != null){
         country = props.location.state;
@@ -67,6 +72,7 @@ function CountryProfile (props, ) {
                 countryPoverty = data.povertyLine
                 countryGDP = data.gdpPerCapita
                 countryFlag = imgSrc;
+                countryCode = data.code
             }
         })
         }
@@ -93,9 +99,6 @@ function CountryProfile (props, ) {
         "gdpPerCapita":0
     });
 
-    
-    
-
     const parseNormalizedData = (data) => {
         const normalizedData = [];
         data.forEach(function(d){
@@ -105,12 +108,12 @@ function CountryProfile (props, ) {
                 "name": d.Country
             })
         })
-        console.log(normalizedData);
         setCountryProfileMapData(normalizedData);
     }
 
     useEffect(() => {
         const normalizedData = require('../assets/data/normalizedGoalValues.csv')
+        const demographicsData = require('../assets/data/countriesDemographicData.csv');
         const loadNormalizedData = (normalizedDataFile) => {
             Papa.parse(normalizedDataFile, {
                 download: true,
@@ -123,12 +126,46 @@ function CountryProfile (props, ) {
                 }
             })
         }
+
+        setSelectedCountryCode(countryCode);
+        const loadDemographicsData = (demographicsDataFile) => {
+            Papa.parse(demographicsDataFile, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results){
+                    parseDemographicsData(results.data, selectedCountryCode)
+                }
+            })
+        }
         loadNormalizedData(normalizedData);
-    }, []);
+        loadDemographicsData(demographicsData);
+    }, [toggleModal, selectedCountryCode ]);
+
+    const parseDemographicsData = (data, countryCode) => {
+        console.log(data)
+        const demographicsData = []
+        data.forEach(function(d){
+            ageBrackets.forEach(function(ageBracket, index){
+                if(d.Code == countryCode && d.Sex == "Female"){
+                    demographicsData.push({
+                        "age" : ageBracket,
+                        "female" :  parseInt(d[ageBracket])
+                    })
+                }
+               
+                if(d.Code == countryCode && d.Sex == "Male"){
+                    demographicsData[index]["male"] = parseInt(d[ageBracket])
+                }
+
+            })
+        })
+        setCountryDemographics(demographicsData);
+    }
 
     const openModal = (countryCode) => {
         setOpenModal(true);
-
+        setSelectedCountryCode(countryCode);
         countriesData.forEach(function(countryData){
             if(countryData.code == countryCode){
                 let imgSrc = flagImages(`./${countryData.flagURL}.png`);
@@ -155,12 +192,10 @@ function CountryProfile (props, ) {
     }
 
     const handleChange = selectedOption => {
+        setSelectedCountryCode(selectedOption.value);
         setSelectedCountry(selectedOption)
         openModal(selectedOption.value)
-        
-    };
-
-
+    }; 
 
     let code = "hc-a2";
 
@@ -168,6 +203,7 @@ function CountryProfile (props, ) {
         chart: {
             map: 'custom/africa',
             backgroundColor: 'transparent',
+  
 
         },
         credits: {
@@ -227,7 +263,7 @@ function CountryProfile (props, ) {
         <>
         <Header></Header>
             <main className="countryProfile">
-                <Container>
+                <div className="container">
                     <Row>
                         <Col md="12">
                             
@@ -256,7 +292,7 @@ function CountryProfile (props, ) {
                     </Row>
                    
                         
-                </Container>
+                </div>
                 <Container>
                     <Modal size="xl" className="modal-dialog-centered country-profile-modal" isOpen={toggleModal}
                         toggle={toggleModal}  >
@@ -270,21 +306,21 @@ function CountryProfile (props, ) {
                         </div>
                         <div className="modal-body" >
                             <Row className="countryDemographics">
-                                <Col md="2">
+                                <Col lg="2" md="6">
                                     <img className="countryFlags" alt=".." src={countryData.flagURL}></img>
                                 </Col>
                                 <Col>
                                     {/* <label className="countryName">{countryData.name}</label> */}
                                 </Col>
                                 <Col></Col>
-                                <Col>
+                                <Col lg="3" md="6">
                                     <label> Capital: {countryData.capital}</label> <br></br>
                                     <label>Poverty line: {countryData.povertyLine} </label> <br></br>
                                     <label>GDP Per Capita: {countryData.gdpPerCapita} </label>
                                 </Col>
                             </Row>
                             <Row className="pt-2">
-                                <Col>
+                                <Col lg="6" md="12">
                                     <Card>
                                         <CardHeader> 
                                             <h5 className="display-4 text-center">SDGs </h5>
@@ -305,13 +341,12 @@ function CountryProfile (props, ) {
                                     
                                     </Card>
                                 </Col>
-                                <Col>
+                                <Col lg="6" md="12">
                                     <Card>
                                         <CardHeader> 
                                             <h5 className="display-4 text-center">Perfomance by Goal </h5> 
                                         </CardHeader>
                                         <CardBody>
-                                        { console.log("Selected"+ selectedCountry)}
                                             {/* <Barometer barometerData={countryProfileData} country={countryProfileData.id} sdg={activeSdg}></Barometer> */}
                                             <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge>
                                         </CardBody>
@@ -328,7 +363,8 @@ function CountryProfile (props, ) {
                                         <h5 className="display-4 text-center">Country Demographics </h5>
                                         </CardHeader>
                                         <CardBody>
-                                            <Demographics></Demographics>
+                                            {console.log(countryDemographics)}
+                                            <Demographics demographicsData={countryDemographics}></Demographics>
                                         </CardBody>
                                         
                                     </Card>   

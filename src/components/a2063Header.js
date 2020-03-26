@@ -170,7 +170,7 @@ function Header( {onActiveA2063Changed} ){
                                             
                                             <Button style={  activeA2063 == index ? buttonStylesActive : buttonStyles}  onClick={handleA2063Change} value={a2063.id} className={ activeA2063 == index ? 'active': '' }>
                                                 <span style={ activeA2063 == index ? titleTextStylesActive : titleTextStyles} className="a2063-icon-title-text"> { a2063.id !=0 ? 'Aspiration\n' + a2063.id : 'All \n Aspirations'} </span>
-                                                <div  style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles } ></div>
+                                                <div  style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles} className="a2063-icon-img" ></div>
                                             </Button>
                                         </Col>
                         })}
@@ -186,10 +186,10 @@ function Header( {onActiveA2063Changed} ){
                     <Link to="/Sdgs" className="text-white">SDGs</Link>
                     <Link to="/Dashboard" className="text-white">DASHBOARD</Link>
                     <Link to="/CountryProfile" className="text-white">COUNTRY PROFILE</Link>
-                    <Link to="/Agenda2063" className="text-white">AGENDA 2063</Link>
+                    <Link to="/Agenda2063/Landing" className="text-white">AGENDA 2063</Link>
                     <Link to="/About" className="text-white">ABOUT US</Link>
                     <Link to="/Faqs" className="text-white">FAQs</Link>
-            </Menu>
+                </Menu>
             </header> 
           
             </>

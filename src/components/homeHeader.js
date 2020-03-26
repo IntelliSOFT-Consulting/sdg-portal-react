@@ -82,7 +82,7 @@ class HomeHeader extends React.Component{
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Agenda2063" className="btn btn-header btn-icon text-white">
+                                    <Link to="/Agenda2063/Landing" className="btn btn-header btn-icon text-white">
                                         <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/A2063.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">AGENDA <br></br> 2063</span>

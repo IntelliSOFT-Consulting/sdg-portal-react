@@ -272,8 +272,8 @@ text-align: center;
 }
 
 .a2063-icon-padding .col{
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 2px;
+    padding-right: 2px;
 }
 
 .agenda2063Header .btn{
@@ -312,7 +312,6 @@ text-align: center;
 
 .agenda2063Header .a2063-icon-padding .btn{
   padding: 5px;
-  width: 90%;
 }
 
 /* .agenda2063Header .a2063-icon-padding{
@@ -342,7 +341,7 @@ text-align: center;
 }
 
 .agenda2063{
-  height: 70vh;
+  
 }
 
 .selectButtons{
@@ -435,10 +434,10 @@ text-align: center;
 }
 
 .about-header .nav{
-  width: 53%;
+  /* width: 53%; */
 }
 .country-profile-header .nav{
-  width: 50%;
+
 }
 
 .sdgsHeader .sdg-icon-padding img,
@@ -961,5 +960,139 @@ font-weight: 600;
   padding: 0rem;
   vertical-align: top;
   border-top: 0rem solid #dee2e6;
-  width: 5.5%;
+  width: 5.0%;
+}
+
+.aspiration-title{
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+
+/* Media queries for responsiveness */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 600px) {
+  .dashboard-goal-icons {
+    position: fixed;
+    top: 190px;
+    box-shadow: 0px 1px 2px #ccc;
+    background: #fff;
+    z-index: 99;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .dashboard-goal-icons {
+    position: fixed;
+    top: 190px;
+    box-shadow: 0px 1px 2px #ccc;
+    background: #fff;
+    z-index: 99;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+
+}
+
+@media only screen and (max-width: 945px) {
+  .a2063-icon-img{
+    display: none;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1008px) {
+  .agenda2063Header .nav {
+    width: 85%;
+}
+.agenda2063Header .navbar-brand{
+  width: 10%;
+}
+.agenda2063Header img{
+  width: 160px;
+}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  
+}
+/* Large screens ----------- */
+@media only screen and (min-width : 1600px) {
+  .agenda2063Header .a2063-icon-padding .btn {
+    padding: 5px;
+    width: 97%;
+}
+}
+
+.radial-menu-circle{
+  opacity: 1 !important;
+    transform: scale(1);
+}
+
+.radial-outside-container, .radial-menu-content{
+  height: 90%;
+  display: flex;
+}
+
+.radial-menu-content{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  
+}
+.radial-menu-container{
+  display: block;
+}
+
+html, body, #root{
+  height: 100%;
+}
+
+.radial-menu-circle .children{
+  -webkit-transition: transform 0.5s ease-in-out;
+    -moz-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+}
+
+.radial-menu-circle .children:hover{
+  transform: scale(1.25);
+}
+
+.radial-menu-circle .children:hover  > .radial-menu-button{
+  display: none;
+}
+
+.faq-icon{
+  float: right;
+}
+
+.radial-menu-circle .children:hover  > .radial-menu-button{
+  display: none;
+}
+
+.aspiration-content{
+  width: 20%;
+}
+
+.tree-map-aspiration-title,
+.tree-map-aspiration-value{
+  text-align: center;
 }
