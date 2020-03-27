@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from "react";
 import Header from "../components/a2063Header";
 import Footer from "../components/footer";
 import SdgMap from "../visualizations/sdgMap";
-import SdgHighChart from "../visualizations/sdgHighChart";
+import SdgHighChart from "../visualizations/a2063HighChart";
 import IndexMap from "../visualizations/indexMap";
 import TreeMap from "../visualizations/highTreeMap";
 
