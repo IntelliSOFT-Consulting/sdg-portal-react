@@ -120,7 +120,6 @@ function CountryProfile (props, ) {
                 header: true,
                 skipEmptyLines: true,
                 complete: function(results){
-                   // console.log(results.data);
                     parseNormalizedData(results.data);
                     setCountryProfileData(results.data);
                 }
@@ -143,7 +142,7 @@ function CountryProfile (props, ) {
     }, [toggleModal, selectedCountryCode ]);
 
     const parseDemographicsData = (data, countryCode) => {
-        console.log(data)
+        // console.log(data)
         const demographicsData = []
         data.forEach(function(d){
             ageBrackets.forEach(function(ageBracket, index){
@@ -157,7 +156,6 @@ function CountryProfile (props, ) {
                 if(d.Code == countryCode && d.Sex == "Male"){
                     demographicsData[index]["male"] = parseInt(d[ageBracket])
                 }
-
             })
         })
         setCountryDemographics(demographicsData);

@@ -976,7 +976,7 @@ font-weight: 600;
   .dashboard-goal-icons {
     position: fixed;
     top: 190px;
-    box-shadow: 0px 1px 2px #ccc;
+    box-shadow: 0px 0px 0px #ccc;
     background: #fff;
     z-index: 99;
     display: flex;
@@ -996,7 +996,7 @@ font-weight: 600;
   .dashboard-goal-icons {
     position: fixed;
     top: 190px;
-    box-shadow: 0px 1px 2px #ccc;
+    box-shadow: 0px 0px 0px #ccc;
     background: #fff;
     z-index: 99;
     display: flex;
