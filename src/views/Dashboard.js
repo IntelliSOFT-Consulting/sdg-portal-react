@@ -136,13 +136,20 @@ function Dashboard (){
             indicatorsNames = dashboardIndicator.indicators
             console.log(indicatorsNames);
 
-
+            
     
             indicatorsNames.forEach(function(ind){
+
+              
+              let indicatorsNameArr = ind.indicator.split("_")
+             
+              let sdgColor = 'Dashboard Color ' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
+              console.log(sdgColor)
+
               indicatorData.push({
                 "title": ind.title,
                 "value": data[ind.indicator],
-                "color": ind.color
+                "color": data[sdgColor]
               })
 
               setDashboardPopupIndicatorsData(indicatorData)
