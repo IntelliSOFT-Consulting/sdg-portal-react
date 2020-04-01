@@ -113,7 +113,6 @@ function CountryProfile (props, ) {
 
     useEffect(() => {
         const normalizedData = require('../assets/data/normalizedGoalValues.csv')
-        const demographicsData = require('../assets/data/countriesDemographicData.csv');
         const loadNormalizedData = (normalizedDataFile) => {
             Papa.parse(normalizedDataFile, {
                 download: true,
@@ -125,21 +124,26 @@ function CountryProfile (props, ) {
                 }
             })
         }
+        //setSelectedCountryCode(countryCode);
+        loadNormalizedData(normalizedData);
+    }, [toggleModal, selectedCountryCode ]);
 
-        setSelectedCountryCode(countryCode);
+    useEffect(() => {
+        const demographicsData = require('../assets/data/countriesDemographicData.csv');
+        let parsedDemoData = []
         const loadDemographicsData = (demographicsDataFile) => {
             Papa.parse(demographicsDataFile, {
                 download: true,
                 header: true,
                 skipEmptyLines: true,
                 complete: function(results){
-                    parseDemographicsData(results.data, selectedCountryCode)
+                    parsedDemoData = parseDemographicsData(results.data, selectedCountryCode)
+                    setCountryDemographics(parsedDemoData)
                 }
             })
         }
-        loadNormalizedData(normalizedData);
         loadDemographicsData(demographicsData);
-    }, [toggleModal, selectedCountryCode ]);
+    }, [toggleModal, selectedCountryCode ])
 
     const parseDemographicsData = (data, countryCode) => {
         const demographicsData = []
@@ -151,13 +155,13 @@ function CountryProfile (props, ) {
                         "female" :  parseInt(d[ageBracket])
                     })
                 }
-               
                 if(d.Code == countryCode && d.Sex == "Male"){
                     demographicsData[index]["male"] = parseInt(d[ageBracket])
                 }
             })
         })
-        setCountryDemographics(demographicsData);
+       // setCountryDemographics(demographicsData);
+        return demographicsData;
     }
 
     const openModal = (countryCode) => {
