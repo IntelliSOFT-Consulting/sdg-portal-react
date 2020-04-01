@@ -31,6 +31,7 @@ function Dashboard (){
   const [year, setYear] = useState('2019');
   const [toggleYearWidget, setToggleYearWidget] = useState(false);
   const [indicatorData, setIndicatorData] = useState(0);
+  let dashboardDataSource = require.context('../assets/data', true);
 
   const sdgs = [
     {
@@ -129,36 +130,31 @@ function Dashboard (){
     console.log(dashboardData);
     dashboardData.forEach(function(data){
       if(data.code == countryCode){
-
         dashboardIndicators.forEach(function(dashboardIndicator){
           if(dashboardIndicator.id == sdgNumber){
             setDashboardPopupIndicators(dashboardIndicator.indicators);
             indicatorsNames = dashboardIndicator.indicators
-            console.log(indicatorsNames);
 
-            
-    
             indicatorsNames.forEach(function(ind){
-
-              
-              let indicatorsNameArr = ind.indicator.split("_")
-             
+              let indicatorsNameArr = ind.indicator.split("_");
+              let indicatorKey = ind.indicator
               let sdgColor = 'Dashboard Color ' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
-              console.log(sdgColor)
+              if(year == 2019){
+                sdgColor = 'col_' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2];
+                indicatorKey = indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
+              }
 
+              console.log(indicatorKey)
               indicatorData.push({
                 "title": ind.title,
-                "value": data[ind.indicator],
+                "value": data[indicatorKey],
                 "color": data[sdgColor]
               })
-
               setDashboardPopupIndicatorsData(indicatorData)
             })
-
           }
         })
        
-
         setModalPopupData({
           "country": data.Country,
           "color": data['sdg'+sdgNumber],
@@ -188,7 +184,8 @@ function Dashboard (){
   }
 
   useEffect(() => {
-    let dashboardDataSource = require('../assets/data/dashboard.csv');
+    let dashboardYear = 'dashboard_' + year
+    let dashboardDataSourceYear = dashboardDataSource(`./${dashboardYear}.csv`);
       const loadData = csvFile => {
         Papa.parse(csvFile, {
           download: true,
@@ -199,8 +196,8 @@ function Dashboard (){
           }
         })
       } 
-      loadData(dashboardDataSource);
-  }, [activeRegion])
+      loadData(dashboardDataSourceYear);
+  }, [activeRegion, year])
 
   useEffect(() => {
     parseDashboardData(activePopup);
