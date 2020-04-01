@@ -719,7 +719,7 @@ font-weight: 600;
 
 .modal-backdrop.show {
   opacity: 0.16;
-  background: #ffffff;
+  /* background: #ffffff; */
 }
 
 .modal-content{
