@@ -142,7 +142,6 @@ function CountryProfile (props, ) {
     }, [toggleModal, selectedCountryCode ]);
 
     const parseDemographicsData = (data, countryCode) => {
-        // console.log(data)
         const demographicsData = []
         data.forEach(function(d){
             ageBrackets.forEach(function(ageBracket, index){
