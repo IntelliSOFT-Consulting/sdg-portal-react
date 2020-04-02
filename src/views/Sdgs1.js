@@ -15,6 +15,8 @@ import Chart from "../visualizations/sdgChart";
 import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
 import { filter } from "@amcharts/amcharts4/.internal/core/utils/Iterator";
+import CheckboxTree from 'react-checkbox-tree';
+import Checkbox from '../views/checkbox'
   
 function Sdgs1() {
 
@@ -30,6 +32,7 @@ function Sdgs1() {
     const targets = activeSdgData.targets;
 
     const countries = require("../assets/data/countries.json");
+    const regions = ["North", "West", "Southern", "Central", "East"]
    
     const [target, setTarget] = useState('1.2');
     const [indicators, setIndicators] = useState([]);
@@ -52,6 +55,11 @@ function Sdgs1() {
     
     const [isLoading, setIsLoading] = useState(false);
     const [toggleModal, setOpenModal] = useState(false);
+    const [toggleRegionModal, setOpenRegionModal] = useState(false);
+    const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
+    const [isExpanded, setIsExpanded] = useState(["North", "West", "Southern", "Central", "East"])
+    const [regionCountries, setRegionCountries] = useState([])
+    
     let csvDataSourceData = '';
     let normalizedData = '';
     let sdgData = '';
@@ -59,16 +67,48 @@ function Sdgs1() {
     let indi = [];    
     let targ = [];
 
+    const nodes = [{
+        value: 'mars',
+        label: 'Mars',
+        children: [
+            { value: 'phobos', label: 'Phobos' },
+            { value: 'deimos', label: 'Deimos' },
+        ],
+    }];
+
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
 
+    const parseCountriesRegions = () =>{
+        let nodes = []
+        regions.forEach(function(region){
+            let countriesPerRegion = []
+            countries.forEach(function(country){
+                if(country.region == region){
+                    countriesPerRegion.push({
+                        value: country.alpha2Code,
+                        label: country.name
+                    })
+                }
+            })
+            nodes.push({
+                value : region,
+                label : region,
+                children: countriesPerRegion
+            })
+        })
+        return nodes
+    }
+    
     function handleIndexChildClick(country){
         setCountry(country);
     }
 
     useEffect(() => {
         const indexMapData = require('../assets/data/sdg/emptyCountriesMapData.json');
-    })
+        const nodes = parseCountriesRegions()
+        setRegionCountries(nodes)
+    }, [])
 
     useEffect(() => {
         const normalizedData = require('../assets/data/normalizedGoalValues.csv')
@@ -78,9 +118,7 @@ function Sdgs1() {
                 header: true,
                 skipEmptyLines: true,
                 complete: function(results){
-                  //  console.log(results.data);
                     parseNormalizedData(results.data);
-                    //setCountryProfileData(results.data);
                 }
             })
         }
@@ -109,11 +147,25 @@ function Sdgs1() {
                                 data[0] = country.name
                             }
                         }
-                        
-                        filteredChartData.push(data)
+                        //filteredChartData.push(data)
                     }
                 }
             }
+
+            console.log(myChartData)
+            console.log(isChecked)
+            isChecked.forEach(function(checked){
+                myChartData.forEach(function(data){
+                    if(data.includes(checked.toLowerCase())){
+                        for(const country of countries){
+                            if (country.alpha2Code === checked){
+                                data[0] = country.name
+                            }
+                        }
+                        filteredChartData.push(data)
+                    }
+                })
+            })
             console.log(filteredChartData)
             setSdgChartData(filteredChartData);
         }
@@ -152,7 +204,7 @@ function Sdgs1() {
         }
         loadSdgData(csvDataSourceData);
         return () => isSubscribed = false
-    }, [dataSource, indicator, year, target, checkedItems, activSdg]);
+    }, [dataSource, indicator, year, target, checkedItems, activSdg, isChecked]);
 
     const parseIndicatorData = (sdgTarget, sdgCompiledData) => {
         let indicators = []
@@ -345,12 +397,23 @@ function Sdgs1() {
         setOpenModal(false);
     }
 
+    const openRegionModal = () => {
+        setOpenRegionModal(true)
+    }
+    const closeRegionModal = () => {
+        setOpenRegionModal(false)
+    }
+
     const handleChange = (event) => {
         setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
     }
     const handleCountryChange = (event) => {
         setCountry(event.target.value);
     }
+    const handleCheck = (event) => {
+        setIsChecked(event)
+    }
+    
 
     return(
         <>
@@ -404,11 +467,8 @@ function Sdgs1() {
                                             <Spinner></Spinner>
                                         ) : (
                                             <div>
-                                                
                                                 <SdgMap mySdgData ={sdgMapData}></SdgMap>
-                                            
                                             </div>
-                                        
                                         )
                                     ): null
                                 }
@@ -422,8 +482,12 @@ function Sdgs1() {
                                                 <div className="add-country-div">
                                                     <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
                                                             <i className="fa fa-plus-circle mr-1" />
-                                                            Add a country
+                                                            Select country/ region
                                                     </Button>
+                                                    {/* <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openRegionModal}>
+                                                            <i className="fa fa-plus-circle mr-1" />
+                                                            Select region
+                                                    </Button> */}
                                                 </div>
                                                 
                                                 <SdgHighChart myChartData = {sdgChartData} indicator = {indicator} years = {years}></SdgHighChart>
@@ -481,7 +545,6 @@ function Sdgs1() {
                             </Col>
                             <Col>
                                 <Input type="select" name="countrySelect" onChange={handleCountryChange} value={country}>
-                                    
                                     {
                                         countries.map((country, index) => {
                                             return <option key={index} value={country.alpha2Code}>{country.name}</option>
@@ -517,6 +580,33 @@ function Sdgs1() {
                     </div>
                 )
             }
+
+                <Container className="pb-3">
+                    <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
+                        toggle={toggleModal}  >
+                        <div className="modal-header">
+                        <h6 className="">Choose data to show</h6>
+                            <button aria-label="Close" className="close" data-dismiss="modal" type="button"
+                                onClick={closeModal} >
+                                <span aria-hidden={true}>×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body" >
+                            <Container className="pb-3">
+                                <Row>
+                                <CheckboxTree
+                                    nodes={regionCountries}
+                                    checked={isChecked}
+                                    expanded={isExpanded}
+                                    onCheck={handleCheck} showNodeIcon={false} showExpandAll={false}
+                                />
+                                    
+                                </Row>
+                            </Container>   
+                        </div>
+                    </Modal>
+                   
+                </Container>
                 
             </div>
         </main>

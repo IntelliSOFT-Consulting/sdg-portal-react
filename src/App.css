@@ -1096,3 +1096,9 @@ html, body, #root{
 .tree-map-aspiration-value{
   text-align: center;
 }
+
+.select-label{
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.1rem;
+}
