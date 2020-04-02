@@ -4,6 +4,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from "classnames";
 import { css } from '@emotion/core';
+import CheckboxTree from 'react-checkbox-tree';
 
 import Header from "../components/sdgsHeader";
 import SdgMap from "../visualizations/sdgMap";
@@ -11,12 +12,10 @@ import Footer from "../components/footer";
 import SdgHighChart from "../visualizations/sdgHighChart";
 import LineChart from "../visualizations/lineChart";
 import Spinner from "../visualizations/spinner";
-import Chart from "../visualizations/sdgChart";
 import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
-import { filter } from "@amcharts/amcharts4/.internal/core/utils/Iterator";
-import CheckboxTree from 'react-checkbox-tree';
-import Checkbox from '../views/checkbox'
+
+
   
 function Sdgs1() {
 
@@ -138,22 +137,6 @@ function Sdgs1() {
 
         const filterChartData = (myChartData) =>{
             let filteredChartData = []
-            const keys = Object.keys(checkedItems);
-            for (const key of keys){
-                for(const data of myChartData){
-                    if(data.includes(key.toLowerCase()) && checkedItems[key] === true){
-                        for(const country of countries){
-                            if (country.alpha2Code === key){
-                                data[0] = country.name
-                            }
-                        }
-                        //filteredChartData.push(data)
-                    }
-                }
-            }
-
-            console.log(myChartData)
-            console.log(isChecked)
             isChecked.forEach(function(checked){
                 myChartData.forEach(function(data){
                     if(data.includes(checked.toLowerCase())){
@@ -166,7 +149,6 @@ function Sdgs1() {
                     }
                 })
             })
-            console.log(filteredChartData)
             setSdgChartData(filteredChartData);
         }
 
@@ -204,7 +186,7 @@ function Sdgs1() {
         }
         loadSdgData(csvDataSourceData);
         return () => isSubscribed = false
-    }, [dataSource, indicator, year, target, checkedItems, activSdg, isChecked]);
+    }, [dataSource, indicator, year, target, activSdg, isChecked]);
 
     const parseIndicatorData = (sdgTarget, sdgCompiledData) => {
         let indicators = []
