@@ -1,16 +1,18 @@
 import React from "react";
+import Header from "../components/header";
 import Footer from "../components/footer";
-
 import {
-    Card, 
-    CardImg,
-    Row,
-    Col
+    Link
+} from 'react-router-dom';
+
+import { 
+    CardImg, Row, Col
 } from "reactstrap";
+
 
 class Sdgs extends React.Component {
     render(){
-        var images = require.context('../assets/img/sdg_icons', true);
+        const images = require.context('../assets/img/sdg_icons', true);
         const sdgs = [
             {
                 id :1,
@@ -72,14 +74,18 @@ class Sdgs extends React.Component {
 
         return(
             <>
+            <Header></Header>
              <main className="sdg">
                  <div className="container">
                  <Row>
                     {sdgs.map(function(sdg, index){
-                        let  imgSrc = images(`./${sdg.image}.jpg`)
-                        return <Col md="2">
-                                         <CardImg key={index} alt="..." src={ imgSrc }></CardImg>     
-                                    
+                        let  imgSrc = images(`./${sdg.image}.jpg`);
+                        let sdgNumber = index + 1;
+                        let url = "Sdgs/Sdg_" + sdgNumber;
+                        return <Col md="2" key={index}>
+                                    <Link to={url}>
+                                        <CardImg  alt="..." src={ imgSrc }></CardImg>  
+                                    </Link>   
                                 </Col>
                     })}
                  </Row>

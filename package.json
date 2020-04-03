@@ -2,14 +2,47 @@
   "name": "sdg-portal",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://test.sdgca.intellisoftkenya.com/sdgportal",
   "dependencies": {
+    "@amcharts/amcharts4": "^4.7.10",
+    "@bit/formidablelabs.react-animations.head-shake": "^1.0.0",
+    "@bit/formidablelabs.react-animations.shake": "^1.0.0",
+    "@emotion/core": "^10.0.22",
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-brands-svg-icons": "^5.12.0",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@highcharts/map-collection": "^1.1.2",
     "bootstrap": "^4.3.1",
+    "circular-menu": "^1.0.6",
+    "classnames": "^2.2.6",
+    "highcharts": "^7.2.1",
+    "highcharts-react-official": "^2.2.2",
+    "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
     "node-sass": "^4.13.0",
+    "nouislider": "^14.1.1",
+    "papaparse": "^5.1.0",
+    "radium": "^0.26.0",
     "react": "^16.12.0",
+    "react-animated-css": "^1.2.1",
+    "react-animations": "^1.0.0",
+    "react-burger-menu": "^2.6.13",
+    "react-charts": "^2.0.0-beta.6",
     "react-dom": "^16.12.0",
+    "react-gauge-chart": "^0.2.4",
+    "react-multiselect-checkboxes": "^0.1.1",
+    "react-pie-menu": "^0.2.5",
+    "react-radial-menu": "^1.0.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
-    "reactstrap": "^8.1.1"
+    "react-select": "^2.0.0-beta.7",
+    "react-select-search": "^0.10.1",
+    "react-spinners": "^0.6.1",
+    "reactstrap": "^8.1.1",
+    "recharts": "^2.0.0-beta.1",
+    "styled-components": "^5.0.1",
+    "victory": "^34.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,5 +64,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0"
   }
 }

@@ -1,0 +1,218 @@
+[
+  {
+    "name": "Algeria",
+    "alpha2Code": "DZ"
+  },
+  {
+    "name": "Angola",
+    "alpha2Code": "AO"
+  },
+  {
+    "name": "Benin",
+    "alpha2Code": "BJ"
+  },
+  {
+    "name": "Botswana",
+    "alpha2Code": "BW"
+  },
+  {
+    "name": "Burkina Faso",
+    "alpha2Code": "BF"
+  },
+  {
+    "name": "Burundi",
+    "alpha2Code": "BI"
+  },
+  {
+    "name": "Cabo Verde",
+    "alpha2Code": "CM"
+  },
+  {
+    "name": "Cameroon",
+    "alpha2Code": "CV"
+  },
+  {
+    "name": "Central African Republic",
+    "alpha2Code": "CF"
+  },
+  {
+    "name": "Chad",
+    "alpha2Code": "TD"
+  },
+  {
+    "name": "Comoros",
+    "alpha2Code": "KM"
+  },
+  {
+    "name": "Congo",
+    "alpha2Code": "CG"
+  },
+  {
+    "name": "Côte d'Ivoire",
+    "alpha2Code": "CD"
+  },
+  {
+    "name": "Democratic Republic of Congo",
+    "alpha2Code": "DJ"
+  },
+  {
+    "name": "Djibouti",
+    "alpha2Code": "EG"
+  },
+  {
+    "name": "Egypt",
+    "alpha2Code": "GQ"
+  },
+  {
+    "name": "Equatorial Guinea",
+    "alpha2Code": "ER"
+  },
+  {
+    "name": "Eritrea",
+    "alpha2Code": "ET"
+  },
+  {
+    "name": "Ethiopia",
+    "alpha2Code": "TF"
+  },
+  {
+    "name": "Gabon",
+    "alpha2Code": "GM"
+  },
+  {
+    "name": "Gambia",
+    "alpha2Code": "GH"
+  },
+  {
+    "name": "Ghana",
+    "alpha2Code": "GN"
+  },
+  {
+    "name": "Guinea",
+    "alpha2Code": "GW"
+  },
+  {
+    "name": "Guinea-Bissau",
+    "alpha2Code": "CI"
+  },
+  {
+    "name": "Kenya",
+    "alpha2Code": "KE"
+  },
+  {
+    "name": "Lesotho",
+    "alpha2Code": "LS"
+  },
+  {
+    "name": "Liberia",
+    "alpha2Code": "LR"
+  },
+  {
+    "name": "Libya",
+    "alpha2Code": "LY"
+  },
+  {
+    "name": "Madagascar",
+    "alpha2Code": "MG"
+  },
+  {
+    "name": "Malawi",
+    "alpha2Code": "MW"
+  },
+  {
+    "name": "Mali",
+    "alpha2Code": "ML"
+  },
+  {
+    "name": "Mauritania",
+    "alpha2Code": "MR"
+  },
+  {
+    "name": "Mauritius",
+    "alpha2Code": "MU"
+  },
+  {
+    "name": "Morocco",
+    "alpha2Code": "MA"
+  },
+  {
+    "name": "Mozambique",
+    "alpha2Code": "MZ"
+  },
+  {
+    "name": "Namibia",
+    "alpha2Code": "NA"
+  },
+  {
+    "name": "Niger",
+    "alpha2Code": "NE"
+  },
+  {
+    "name": "Nigeria",
+    "alpha2Code": "NG"
+  },
+  {
+    "name": "Rwanda",
+    "alpha2Code": "RW"
+  },
+  {
+    "name": "Sao Tome and Principe",
+    "alpha2Code": "ST"
+  },
+  {
+    "name": "Senegal",
+    "alpha2Code": "SN"
+  },
+  {
+    "name": "Seychelles",
+    "alpha2Code": "SC"
+  },
+  {
+    "name": "Sierra Leone",
+    "alpha2Code": "SL"
+  },
+  {
+    "name": "Somalia",
+    "alpha2Code": "SO"
+  },
+  {
+    "name": "South Africa",
+    "alpha2Code": "ZA"
+  },
+  {
+    "name": "South Sudan",
+    "alpha2Code": "SS"
+  },
+  {
+    "name": "Sudan",
+    "alpha2Code": "SD"
+  },
+  {
+    "name": "eSwatini (fmr Swaziland)",
+    "alpha2Code": "SZ"
+  },
+  {
+    "name": "Tanzania",
+    "alpha2Code": "TZ"
+  },
+  {
+    "name": "Togo",
+    "alpha2Code": "TG"
+  },
+  {
+    "name": "Tunisia",
+    "alpha2Code": "TN"
+  },
+  {
+    "name": "Uganda",
+    "alpha2Code": "UG"
+  },
+  {
+    "name": "Zambia",
+    "alpha2Code": "ZM"
+  },
+  {
+    "name": "Zimbabwe",
+    "alpha2Code": "ZW"
+  }
+]

@@ -1,0 +1,196 @@
+[
+            {
+                "id" :1,
+                "title": "End poverty in all its forms everywhere",
+                "description": "Goal 1 calls for an end to poverty in all its manifestations, including extreme poverty, over the next 15 years. All people everywhere, including the poorest and most vulnerable, should enjoy a basic standard of living and social protection benefits.",
+                "image" : "E_SDG_Icons-01",
+                "targets": [
+                    {
+                        "code": "1.1",
+                        "title": "By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day",
+                        "description": "By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day",
+                        "uri": "/v1/Target/1.1",
+                        "indicators": [
+                            {
+                                "code": "1.1.1",
+                                "description": "Proportion of population below the international poverty line, by sex, age, employment status and geographical location (urban/rural)",
+                                "tier": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "code": "1.2",
+                        "title": "By 2030, reduce at least by half the proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions",
+                        "description": "By 2030, reduce at least by half the proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions",
+                        "uri": "/v1/Target/1.2",
+                        "indicators": [
+                            {
+                                "code": "1.2.1",
+                                "description": "Proportion of population living below the national poverty line, by sex and age",
+                                "tier": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "code": "1.3",
+                        "title": "Implement nationally appropriate social protection systems and measures for all, including floors, and by 2030 achieve substantial coverage of the poor and the vulnerable",
+                        "description": "Implement nationally appropriate social protection systems and measures for all, including floors, and by 2030 achieve substantial coverage of the poor and the vulnerable",
+                        "uri": "/v1/Target/1.3",
+                        "indicators": [
+                            {
+                                "code": "1.3.1",
+                                "description": "Proportion of population covered by social protection floors/systems, by sex, distinguishing children, unemployed persons, older persons, persons with disabilities, pregnant women, newborns, work-injury victims and the poor and the vulnerable",
+                                "tier": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "code": "1.4",
+                        "title": "By 2030, ensure that all men and women, in particular the poor and the vulnerable, have equal rights to economic resources, as well as access to basic services, ownership and control over land and other forms of property, inheritance, natural resources, appropriate new technology and financial services, including microfinance",
+                        "description": "By 2030, ensure that all men and women, in particular the poor and the vulnerable, have equal rights to economic resources, as well as access to basic services, ownership and control over land and other forms of property, inheritance, natural resources, appropriate new technology and financial services, including microfinance",
+                        "uri": "/v1/Target/1.4",
+                        "indicators": [
+                            {
+                                "code": "1.4.1",
+                                "description": "Proportion of population living in households with access to basic services",
+                                "tier": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "code": "1.5",
+                        "title": "By 2030, build the resilience of the poor and those in vulnerable situations and reduce their exposure and vulnerability to climate-related extreme events and other economic, social and environmental shocks and disasters",
+                        "description": "By 2030, build the resilience of the poor and those in vulnerable situations and reduce their exposure and vulnerability to climate-related extreme events and other economic, social and environmental shocks and disasters",
+                        "uri": "/v1/Target/1.5",
+                        "indicators": [
+                            {
+                                "code": "1.5.1",
+                                "description": "Number of deaths, missing persons and directly affected persons attributed to disasters per 100,000 population",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.5.2",
+                                "description": "Direct economic loss attributed to disasters in relation to global gross domestic product (GDP)",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.5.3",
+                                "description": "Number of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015-2030",
+                                "tier": "1"
+                            },
+                            {
+                                "code": "1.5.4",
+                                "description": "Proportion of local governments that adopt and implement local disaster risk reduction strategies in line with national disaster risk reduction strategies",
+                                "tier": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "code": "1.a",
+                        "title": "Ensure significant mobilization of resources from a variety of sources, including through enhanced development cooperation, in order to provide adequate and predictable means for developing countries, in particular least developed countries, to implement programmes and policies to end poverty in all its dimensions",
+                        "description": "Ensure significant mobilization of resources from a variety of sources, including through enhanced development cooperation, in order to provide adequate and predictable means for developing countries, in particular least developed countries, to implement programmes and policies to end poverty in all its dimensions",
+                        "uri": "/v1/Target/1.a",
+                        "indicators": [
+                            {
+                                "code": "1.a.2",
+                                "description": "Proportion of total government spending on essential services (education, health and social protection)",
+                                "tier": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "code": "1.b",
+                        "title": "Create sound policy frameworks at the national, regional and international levels, based on pro-poor and gender-sensitive development strategies, to support accelerated investment in poverty eradication actions",
+                        "description": "Create sound policy frameworks at the national, regional and international levels, based on pro-poor and gender-sensitive development strategies, to support accelerated investment in poverty eradication actions",
+                        "uri": "/v1/Target/1.b",
+                        "indicators": []
+                    }
+                ]
+            },{
+                "id":2,
+                "image" : "E_SDG_Icons-02",
+                "title": "End hunger, achieve food security and improved nutrition and promote sustainable agriculture",
+                "description": "Goal 2 seeks to end hunger and all forms of malnutrition and to achieve sustainable food production by 2030. It is premised on the idea that everyone should have access to sufficient nutritious food, which will require widespread promotion of sustainable agriculture, a doubling of agricultural productivity, increased investments and properly functioning food markets."
+            },{
+                "id":3,
+                "image": "E_SDG_Icons-03",
+                "title": "Ensure healthy lives and promote well-being for all at all ages",
+                "description": "Goal 3 aims to ensure health and well-being for all at all ages by improving reproductive, maternal and child health; ending the epidemics of major communicable diseases; reducing non-communicable and environmental diseases; achieving universal health coverage; and ensuring access to safe, affordable and effective medicines and vaccines for all."
+            },{
+                "id":4,
+                "image": "E_SDG_Icons-04",
+                "title": "Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all",
+                "description": "Goal 4 focuses on the acquisition of foundational and higher-order skills; greater and more equitable access to technical and vocational education and training and higher education; training throughout life; and the knowledge, skills and values needed to function well and contribute to society."
+            },{
+                "id":5,
+                "image": "E_SDG_Icons-05",
+                "title": "Achieve gender equality and empower all women and girls",
+                "description": "Goal 5 aims to empower women and girls to reach their full potential, which requires eliminating all forms of discrimination and violence against them, including harmful practices. It seeks to ensure that they have every opportunity for sexual and reproductive health and reproductive rights; receive due recognition for their unpaid work; have full access to productive resources; and enjoy equal participation with men in political, economic and public life."
+                
+            },{
+                "id":6,
+                "image": "E_SDG_Icons-06",
+                "title": "Ensure availability and sustainable management of water and sanitation for all",
+                "description": "Goal 6 goes beyond drinking water, sanitation and hygiene to also address the quality and sustainability of water resources. Achieving this Goal, which is critical to the survival of people and the planet, means expanding international cooperation and garnering the support of local communities in improving water and sanitation management."
+            },{
+                "id":7,
+                "image": "E_SDG_Icons-07",
+                "title": "Ensure access to affordable, reliable, sustainable and modern energy for all",
+                "description": "Goal 7 seeks to promote broader energy access and increased use of renewable energy, including through enhanced international cooperation and expanded infrastructure and technology for clean energy."
+            },{
+                "id":8,
+                "image": "E_SDG_Icons-08",
+                "title": "Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all",
+                "description": "Goal 8 aims to provide opportunities for full and productive employment and decent work for all while eradicating forced labour, human trafficking and child labour."
+            },{
+                "id":9,
+                "image": "E_SDG_Icons-09",
+                "title": "Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation",
+                "description": "Goal 9 focuses on the promotion of infrastructure development, industrialization and innovation. This can be accomplished through enhanced international and domestic financial, technological and technical support, research and innovation, and increased access to information and communication technology."
+            },{
+                "id":10,
+                "image": "E_SDG_Icons-10",
+                "title": "Reduce inequality within and among countries",
+                "description": "Goal 10 calls for reducing inequalities in income, as well as those based on sex, age, disability, race, class, ethnicity, religion and opportunity—both within and among countries. It also aims to ensure safe, orderly and regular migration and addresses issues related to representation of developing countries in global decision-making and development assistance."
+            },{
+                "id":11,
+                "image": "E_SDG_Icons-11",
+                "title": "Make cities and human settlements inclusive, safe, resilient and sustainable",
+                "description": "Goal 11 aims to renew and plan cities and other human settlements in a way that fosters community cohesion and personal security while stimulating innovation and employment."
+                
+            },{
+                "id":12,
+                "image": "E_SDG_Icons-12",
+                "title": "Ensure sustainable consumption and production patterns",
+                "description": "Goal 12 aims to promote sustainable consumption and production patterns through measures such as specific policies and international agreements on the management of materials that are toxic to the environment."
+            },{
+                "id":13,
+                "image": "E_SDG_Icons-13",
+                "title": "Take urgent action to combat climate change and its impacts",
+                "description": "Climate change presents the single biggest threat to development, and its widespread, unprecedented effects disproportionately burden the poorest and the most vulnerable. Urgent action is needed not only to combat climate change and its impacts, but also to build resilience in responding to climate-related hazards and natural disasters."
+            },{
+                "id":14,
+                "image": "E_SDG_Icons-14",
+                "title": "Conserve and sustainably use the oceans, seas and marine resources for sustainable development",
+                "description": "Goal 14 seeks to promote the conservation and sustainable use of marine and coastal ecosystems, prevent marine pollution and increase the economic benefits to small island developing States and LDCs from the sustainable use of marine resources."
+            },{
+                "id":15,
+                "image": "E_SDG_Icons-15",
+                "title": "Protect, restore and promote sustainable use of terrestrial ecosystems, sustainably manage forests, combat desertification, and halt and reverse land degradation and halt biodiversity loss",
+                "description": "Goal 15 focuses on managing forests sustainably, restoring degraded lands and successfully combating desertification, reducing degraded natural habitats and ending biodiversity loss. All of these efforts in combination will help ensure that livelihoods are preserved for those that depend directly on forests and other ecosystems, that biodiversity will thrive, and that the benefits of these natural resources will be enjoyed for generations to come."
+            },{
+                "id":16,
+                "image": "E_SDG_Icons-16",
+                "title": "Promote peaceful and inclusive societies for sustainable development, provide access to justice for all and build effective, accountable and inclusive institutions at all levels",
+                "description": "Goal 16 envisages peaceful and inclusive societies based on respect for human rights, the rule of law, good governance at all levels, and transparent, effective and accountable institutions. Many countries still face protracted violence and armed conflict, and far too many people are poorly supported by weak institutions and lack access to justice, information and other fundamental freedoms."
+             } ,{
+                "id":17,
+                "image": "E_SDG_Icons-17",
+                "title": "Strengthen the means of implementation and revitalize the Global Partnership for Sustainable Development",
+                "description": "The 2030 Agenda requires a revitalized and enhanced global partnership that mobilizes all available resources from Governments, civil society, the private sector, the United Nations system and other actors. Increasing support to developing countries, in particular LDCs, landlocked developing countries and small island developing States is fundamental to equitable progress for all."
+            },{
+                "id":18,
+                "image": "E_SDG_Icons-18"
+            }
+            
+        ]
