@@ -18,8 +18,6 @@ import IndexMap from "../visualizations/indexMap";
 
   
 function Sdgs1() {
-
-    
     const override = css`
         display: block;
         margin: 0 auto;
@@ -58,6 +56,7 @@ function Sdgs1() {
     const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
     const [isExpanded, setIsExpanded] = useState(["North", "West", "Southern", "Central", "East"])
     const [regionCountries, setRegionCountries] = useState([])
+    const [goalTitle, setGoalTitle] = useState('');
     
     let csvDataSourceData = '';
     let normalizedData = '';
@@ -100,6 +99,11 @@ function Sdgs1() {
     }
     
     function handleIndexChildClick(country){
+        setCountry(country);
+    }
+
+    function handleSdgChildClick(country){
+        setMapChartType('line');
         setCountry(country);
     }
 
@@ -185,6 +189,8 @@ function Sdgs1() {
             })
         }
         loadSdgData(csvDataSourceData);
+        console.log(data)
+        getGoalTitles(data)
         return () => isSubscribed = false
     }, [dataSource, indicator, year, target, activSdg, isChecked]);
 
@@ -265,50 +271,20 @@ function Sdgs1() {
         return -1;
     }
     const parseLineData = (data) => {
-        let countriesData = []
-        let countryData = {}
+        let countryData = []
         years =  years.sort((a, b) => a - b);
-       // console.log(years);
+        
         data.forEach(function(d){
-          
             years.forEach(function(year){
-                if(year == d.Year){
-                    let indicatorData = []
-                        indicatorData.push( parseInt(d[indicator]))
-                        countryData = {
-                            "name": d.Entity,
-                            "data": indicatorData
-                        }
-                    if(countriesData.length === 0){
-                        countriesData.push(countryData)  
-                    } else{
-                        if(indexOf(d.Entity, countriesData, countriesData) === -1){
-                            countriesData.push(countryData)
-                        }else{
-                            let index = indexOf(d.Entity, countriesData, countriesData);
-                            let oldData = countriesData[index].data;
-                            oldData.push(parseInt(d[indicator]))
-                            countriesData[index].data = oldData
-                        }
-                    } 
+                //console.log(year, d.Year, country, d.Code)
+                if(year == d.Year && country.toLowerCase() == d.Code){
+                  //  console.log(d[indicator])
+                    countryData.push(parseInt(d[indicator]))
                 }
             })
              
         })
-
-       // console.log(countriesData);
-        countriesData.forEach(function(countryData){
-            let data = countryData.data;
-            let filteredData = data.slice(0, 10);
-            // filteredData = filteredData.sort((a, b) => a - b);
-            //console.log(filteredData);
-            countryData.data = filteredData
-        })
-        
-       
-        let filteredData = countriesData.slice(0, 5);
-        setLineChartData(filteredData);
-        
+        setLineChartData(countryData); 
     }
 
     const parseVictoryChartData = (data) => {
@@ -395,6 +371,13 @@ function Sdgs1() {
     const handleCheck = (event) => {
         setIsChecked(event)
     }
+    const getGoalTitles = (data) => {
+        data.forEach(function(d){
+            if(activSdg == d.id){
+                setGoalTitle(d.title)
+            }
+        })
+    }
     
 
     return(
@@ -405,6 +388,7 @@ function Sdgs1() {
             {
                  activSdg != 0 ? (
                    <div>
+                        <h4 className="aspiration-title p-3"> GOAL  {activSdg} :  {goalTitle} </h4>
                         <Row className="mt-4 optionButtons ">
                             <Col>
                                 <Input type="select" name="targetSelect" onChange={handleTargetChange} value={target}>
@@ -442,14 +426,14 @@ function Sdgs1() {
                             </Col>      
                         </Row>
                         <Row className="mt-5">
-                            <Col md="11">
+                            <Col md="11" className="map-chart-container">
                                 {
                                     mapChartType === 'map' ? (
                                         isLoading ? (
                                             <Spinner></Spinner>
                                         ) : (
                                             <div>
-                                                <SdgMap mySdgData ={sdgMapData}></SdgMap>
+                                                <SdgMap mySdgData ={sdgMapData} onCountryClick={handleSdgChildClick}></SdgMap>
                                             </div>
                                         )
                                     ): null

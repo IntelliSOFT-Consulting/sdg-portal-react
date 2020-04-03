@@ -15,7 +15,7 @@ import HC_exporting2 from 'highcharts/modules/export-data';
 
 HC_exporting(Highcharts);
 HC_exporting2(Highcharts);
-function SdgMap({ mySdgData }) {
+function SdgMap({ mySdgData, onCountryClick }) {
         // let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
         drilldown(Highcharts);
         dataModule(Highcharts);
@@ -1379,107 +1379,17 @@ function SdgMap({ mySdgData }) {
             }]
         }
 
-        var data = Highcharts.geojson(Highcharts.maps["custom/africa"]),
-            separators = Highcharts.geojson(
-                Highcharts.maps["custom/africa"],
-                "mapline"
-            );
-
-        // Set drilldown pointers
-        data.forEach(function(el, i) {
-            el.drilldown = el.properties["hc-key"];
-            el.value = i; // Non-random bogus data
-        });
-
-        window.Highcharts = Highcharts;
-
-        
+        const handleCountryClick =  (country) =>{
+            onCountryClick(country)
+            //console.log(country)
+        }
+        let code = "hc-key";
   
         const mapOptions = {
             chart: {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
-                // width: 800,
-                // height: 450,
-                events: {
-                    drilldown: function (e) {
-                    //    if(!e.seriesOptions){
-                    //         var chart = this,
-                    //         mapKey = 'countries/' + e.point.drilldown,
-                    //         fail = setTimeout(function(){
-                    //             if(!Highcharts.maps[mapKey]){
-                    //                 chart.showLoading(
-                    //                     '<i class="icon-frown"></i> Failed loading ' + e.point.name
-                    //                 );
-                    //                 fail = setTimeout(function(){
-                    //                     chart.hideLoading();
-                    //                 }, 1000)
-                    //             }
-                    //         }, 3000)
-
-                    //         chart.showLoading('<i class="icon-spinner icon-spin icon-3x"></i>');
-                    //         $.getScript('https://code.highcharts.com/mapdata/' + mapKey + '.js', 
-                    //         function(){
-                    //             data = Highcharts.geojson(Highcharts.maps[mapKey]);
-                    //             $.each(data, function(i){
-                    //                 this.value = i
-                    //             });
-
-                    //             chart.hideLoading();
-                    //             clearTimeout(fail);
-                    //             chart.addSingleSeriesAsDrilldown(e.point, {
-                    //                 name : e.point.name,
-                    //                 data : data,
-                    //                 dataLabels: {
-                    //                     enabled: true,
-                    //                     format: "{point.name"
-                    //                 }
-                    //             })
-                    //         }
-
-                    //    }
-                        
-                        var chart = this,
-                            mapKey = 'countries/' + e.point.drilldown,
-                            chartName = e.point.name;
-                            $.getScript('https://code.highcharts.com/mapdata/' + mapKey + '.js', 
-                                function () {
-                                    var data = [],
-                                        drillPath,
-                                        regionMap = Highcharts.maps[mapKey],
-                                        regionMapGeoJson = Highcharts.geojson(regionMap);
-
-                                $.each(regionMapGeoJson, function (index, elem) {
-                                    drillPath = 'countries/' + elem.properties['hc-key'].slice(0, 2) + '/' + elem.properties['hc-key'] + '-all';
-                                    data.push({
-                                        code: elem.properties['hc-key'],
-                                        value: mySdgData.value,
-                                         drilldown: drillPath
-                                    })
-                                });
-                           
-                            chart.addSingleSeriesAsDrilldown(e.point, {
-                                name: e.point.name,
-                                data: data,
-                                mapData: regionMap,
-                                joinBy: ['hc-key', 'code'],
-                            });
-
-                            chart.applyDrilldown();
-
-                            chart.setTitle(null, {
-                                text: chartName
-                            });
-                        }).fail(function (jqxhr, settings, exception) {
-                            console.log('Couldn\'t find JS file!');
-                        });
-                    },
-                    drillup: function () {
-                        this.setTitle(null, {
-                            text: ''
-                        });
-                    }
-                }
+                height: '50%',
             },
             series: [{
                 data: mySdgData,
@@ -1521,8 +1431,7 @@ function SdgMap({ mySdgData }) {
                     point: {
                         events: {
                             click: function () {
-                            //loadCountryData(this.value);
-                            //openModal(this.value);
+                                handleCountryClick(this.properties[code])
                             }
                         }
                     }

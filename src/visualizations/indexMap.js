@@ -11,31 +11,12 @@ import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 function IndexMap({ mySdgData, onCountryClick }) {
         highchartsMap(Highcharts);
-
         let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
         let Papa = require("papaparse/papaparse.min.js");
         let sdgData = [];
         const period = "2017";
 
-        const newCountryData = [];
-        Papa.parse(csvFile, {
-            download: true,
-            header: true,
-            complete: function(results){
-                sdgData = results.data;
-                // cycle through source data and filter out required data points
-                for (let i = 0; i < sdgData.length; i++) {
-                    let dataPoint = sdgData[i];
-                    newCountryData.push({
-                            "code": dataPoint.code,
-                            "drilldown": dataPoint.drilldown,
-                            "value": dataPoint[period],
-                            "country":dataPoint.country
-                        });        
-                }
-                
-            }
-        })     
+           
   
         const handleCountryClick =  (country) =>{
             onCountryClick(country)
@@ -117,8 +98,6 @@ function IndexMap({ mySdgData, onCountryClick }) {
                     }
                 },
                 dataLabels: {
-                    // enabled: true,
-                    // format: '{point.name}'
                 }
             }]
           }

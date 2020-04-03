@@ -1102,3 +1102,6 @@ html, body, #root{
   font-size: 1rem;
   margin-bottom: 0.1rem;
 }
+.map-chart-container{
+  border: 1px solid #c1bebe;
+}

@@ -11,6 +11,7 @@ HC_exporting(Highcharts);
 HC_exporting2(Highcharts);
 
 function lineChart({lineChartData, years, indicator}){
+    console.log(lineChartData, years)
     years =  years.sort((a, b) => a - b);
     const chartOptions = {
         chart: {
@@ -24,7 +25,7 @@ function lineChart({lineChartData, years, indicator}){
         },
         xAxis: {
             // tickInterval: 10,
-            categories: ["2012", "2013", "2014", "2015", "2017" ],
+            categories: years,
             align: "left",
             startOnTick: false,
             endOnTick: false,
@@ -52,7 +53,9 @@ function lineChart({lineChartData, years, indicator}){
                 }
             }
         },
-        series : lineChartData,
+        series : [{
+            data : lineChartData
+        }],
 
         responsive: {
             rules: [{

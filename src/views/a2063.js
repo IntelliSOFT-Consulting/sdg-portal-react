@@ -301,7 +301,7 @@ function A2063(){
                         </Row>
                 
                         <Row className="mt-5">
-                            <Col md="11">   
+                            <Col md="11" className="map-chart-container">   
                                 {
                                     mapChartType === 'map' ? (
                                         <SdgMap mySdgData ={mapData}></SdgMap>
