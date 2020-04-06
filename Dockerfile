@@ -43,7 +43,7 @@ RUN a2enmod headers
 # Fix permissions for apache
 RUN chown -R www-data:www-data /var/www/html/
 
-COPY ./ /var/www/html
+#COPY ./ /var/www/html
 COPY --from=build /app/build /var/www/html
 
 EXPOSE 80
