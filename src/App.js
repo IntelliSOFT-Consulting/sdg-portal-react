@@ -36,7 +36,7 @@ function App() {
   return (
 
     
-    <Router basename={'/'}>
+    <Router basename={'/sdgportal'}>
       <Switch>
             {/* <Route exact path="/Sdgs" component={Sdgs}></Route> */}
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
