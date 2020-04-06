@@ -1,11 +1,11 @@
-# language: node_js
-# node_js:
-#   - "stable"
+language: node_js
+node_js:
+  - "stable"
 sudo: required
 services:
   - docker
-# before_script:
-#   - npm install
+before_script:
+  - npm install
 script:
   - docker build -t app .
 after_success:
