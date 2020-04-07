@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+script:
+  - docker build -t app .
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker tag app intellisoftkenya/sdg-data-portal:$TRAVIS_BUILD_NUMBER
+  - docker push intellisoftkenya/sdg-data-portal:$TRAVIS_BUILD_NUMBER
+  - docker tag app intellisoftkenya/sdg-data-portal:latest
+  - docker push intellisoftkenya/sdg-data-portal:latest

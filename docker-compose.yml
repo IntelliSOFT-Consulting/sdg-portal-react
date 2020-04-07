@@ -1,10 +1,8 @@
-version: '2.0'
 version: '3.3'
 
 services:
 
   sample:
-    container_name: sdg-react_app
     container_name: sample
     build:
       context: .
@@ -13,7 +11,6 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - '3000:3000'
-      - '3001:3000'
+      - '3001:80'
     environment:
       - NODE_ENV=development
