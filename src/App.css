@@ -719,7 +719,7 @@ font-weight: 600;
 
 .modal-backdrop.show {
   opacity: 0.16;
-  background: #ffffff;
+  /* background: #ffffff; */
 }
 
 .modal-content{
@@ -976,7 +976,7 @@ font-weight: 600;
   .dashboard-goal-icons {
     position: fixed;
     top: 190px;
-    box-shadow: 0px 1px 2px #ccc;
+    box-shadow: 0px 0px 0px #ccc;
     background: #fff;
     z-index: 99;
     display: flex;
@@ -996,7 +996,7 @@ font-weight: 600;
   .dashboard-goal-icons {
     position: fixed;
     top: 190px;
-    box-shadow: 0px 1px 2px #ccc;
+    box-shadow: 0px 0px 0px #ccc;
     background: #fff;
     z-index: 99;
     display: flex;
@@ -1095,4 +1095,10 @@ html, body, #root{
 .tree-map-aspiration-title,
 .tree-map-aspiration-value{
   text-align: center;
+}
+
+.select-label{
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.1rem;
 }

@@ -111,7 +111,16 @@ function Demographics ( {demographicsData} ){
     }, [demographicsData])
 
         return (
-          <div id="chartdiv2" style={{ width: "100%", height: "400px" }}></div>
+          <div>
+ <div id="chartdiv2" style={{ width: "100%", height: "400px" }}></div>
+        
+            {/* { demographicsData.map(function(d, index){
+                return <p> {d.age} </p>
+            })
+            } */}
+         
+          </div>
+         
         );
       
 }
