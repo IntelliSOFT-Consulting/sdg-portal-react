@@ -1,4 +1,11 @@
 import React, {useState, useEffect, useCallback} from "react";
+import {
+    Row, Col, Input, Button, Label, Container, Modal
+} from "reactstrap";
+import CheckboxTree from 'react-checkbox-tree';
+import classnames from "classnames";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Header from "../components/a2063Header";
 import Footer from "../components/footer";
 import SdgMap from "../visualizations/sdgMap";
@@ -6,18 +13,12 @@ import SdgHighChart from "../visualizations/a2063HighChart";
 import IndexMap from "../visualizations/indexMap";
 import TreeMap from "../visualizations/highTreeMap";
 
-import classnames from "classnames";
-import {
-    Row, Col, Input, Button, Label, Container, Modal
-} from "reactstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-
 function A2063(){
     const Papa = require("papaparse/papaparse.min.js");
     const agenda2063 = require('../assets/data/agenda2063.json');
     const aspirationsData = require("../assets/data/aspirationsData.json");
     const countries = require("../assets/data/countries.json");
+    const regions = ["North", "West", "Southern", "Central", "East"]
 
     const [activeTab, setActiveTab] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +47,9 @@ function A2063(){
     const [aspirationTitle, setAspirationTitle] = useState('');
     const [toggleModal, setOpenModal] = useState(false);
     const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true, CM:true, BI:true});
+    const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
+    const [isExpanded, setIsExpanded] = useState(["North", "West", "Southern", "Central", "East"])
+    const [regionCountries, setRegionCountries] = useState([])
 
     let csvDataSourceData = '';
     let sdgData = '';
@@ -98,6 +102,32 @@ function A2063(){
         setIndexMapData(mapData);
     }
 
+    const parseCountriesRegions = () =>{
+        let nodes = []
+        regions.forEach(function(region){
+            let countriesPerRegion = []
+            countries.forEach(function(country){
+                if(country.region == region){
+                    countriesPerRegion.push({
+                        value: country.alpha2Code,
+                        label: country.name
+                    })
+                }
+            })
+            nodes.push({
+                value : region,
+                label : region,
+                children: countriesPerRegion
+            })
+        })
+        return nodes
+    }
+
+    useEffect(() => {
+        const nodes = parseCountriesRegions()
+        setRegionCountries(nodes)
+    }, [])
+
     useEffect(() => {
         let isSubscribed = true;
         if(dataSource === 'pan'){
@@ -125,19 +155,18 @@ function A2063(){
 
         const filterChartData = (myChartData) =>{
             let filteredChartData = []
-            const keys = Object.keys(checkedItems);
-            for (const key of keys){
-                for(const data of myChartData){
-                    if(data.includes(key.toLowerCase()) && checkedItems[key] === true){
+            isChecked.forEach(function(checked){
+                myChartData.forEach(function(data){
+                    if(data.includes(checked.toLowerCase())){
                         for(const country of countries){
-                            if (country.alpha2Code === key){
+                            if (country.alpha2Code === checked){
                                 data[0] = country.name
                             }
                         }
                         filteredChartData.push(data)
                     }
-                }
-            }
+                })
+            })
             setChartData(filteredChartData)
         }
 
@@ -158,7 +187,7 @@ function A2063(){
         }
         loadSdgData(csvDataSourceData);
         return () => isSubscribed = false
-    }, [dataSource, indicator, goal, year, activeTab, checkedItems]);
+    }, [dataSource, indicator, goal, year, activeTab, isChecked]);
 
     useEffect(() => {
         const normalizedData = require('../assets/data/normalizedGoalValues.csv')
@@ -221,6 +250,9 @@ function A2063(){
     }
     const handleChange = (event) => {
         setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
+    }
+    const handleCheck = (event) => {
+        setIsChecked(event)
     }
 
     return (
@@ -357,16 +389,12 @@ function A2063(){
                         <div className="modal-body" >
                             <Container>
                                 <Row>
-                                    {
-                                        countries.map((country, index) => {
-                                        return <Col md="4" key={index}>
-                                        <Label key={index} check>
-                                                    <Input type="checkbox" name={country.alpha2Code} value={country.alpha2Code} checked={!!checkedItems[country.alpha2Code]} onChange={handleChange}/>{' '}
-                                                {country.name}
-                                                </Label>
-                                                </Col>    
-                                        })
-                                    }
+                                    <CheckboxTree
+                                        nodes={regionCountries}
+                                        checked={isChecked}
+                                        expanded={isExpanded}
+                                        onCheck={handleCheck} showNodeIcon={false} showExpandAll={false}
+                                    />
                                 </Row>
                             </Container>   
                         </div>

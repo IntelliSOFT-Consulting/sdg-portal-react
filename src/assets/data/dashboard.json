@@ -59,75 +59,93 @@
          "indicators": [
              {
                  "indicator": "n3_sdg3_art",
-                 "title": "People living with HIV who receive ART"
+                 "title": "People living with HIV who receive ART",
+                 "color" : "Dashboard Color sdg3_art"
              },
              {
                  "indicator": "n3_sdg3_births",
-                 "title": "Births attended by skilled health personnel (%)"
+                 "title": "Births attended by skilled health personnel (%)",
+                 "color" : "Dashboard Color sdg3_births"
              },
              {
                  "indicator": "n3_sdg3_fertility",
-                 "title": "Adolescent fertility (births per 1,000)"
+                 "title": "Adolescent fertility (births per 1,000)",
+                 "color" : "Dashboard Color sdg3_fertility"
              },
              {
                 "indicator": "n3_sdg3_hale",
-                "title": "Healthy life expectancy at birth (years)"
+                "title": "Healthy life expectancy at birth (years)",
+                "color" : "Dashboard Color sdg3_hale"
             },
             {
                 "indicator": "n3_sdg3_hiv",
-                "title": "HIV prevalence (per 1,000)"
+                "title": "HIV prevalence (per 1,000)",
+                "color" : "Dashboard Color sdg3_hiv"
             },
             {
                 "indicator": "n3_sdg3_malatreat",
-                "title": "Proportion of children under 5 with fever who are treated with appropriate anti-"
+                "title": "Proportion of children under 5 with fever who are treated with appropriate anti-",
+                "color" : "Dashboard Color sdg3_malatreat"
             },
             {
                 "indicator": "n3_sdg3_malmort",
-                "title": "Malaria mortality rate"
+                "title": "Malaria mortality rate",
+                "color" : "Dashboard Color sdg3_malmort"
             },
             {
                 "indicator": "n3_sdg3_matmort",
-                "title": "Maternal mortality (per 100,000 live births)"
+                "title": "Maternal mortality (per 100,000 live births)",
+                "color" : "Dashboard Color sdg3_matmort"
             },
             {
                 "indicator": "n3_sdg3_ncds",
-                "title": "Death rate from NCDs (per 100,000)"
+                "title": "Death rate from NCDs (per 100,000)",
+                "color" : "Dashboard Color sdg3_ncds"
             },
             {
                 "indicator": "n3_sdg3_neonat",
-                "title": "Neonatal mortality (per 1000 live births)"
+                "title": "Neonatal mortality (per 1000 live births)",
+                "color" : "Dashboard Color sdg3_neonat"
             },
             {
                 "indicator": "n3_sdg3_ntds",
-                "title": "Preventive Chemotherapy for Neglected Tropical Diseases (%)"
+                "title": "Preventive Chemotherapy for Neglected Tropical Diseases (%)",
+                "color" : ""
             },
             {
                 "indicator": "n3_sdg3_pollmort",
-                "title": "Death rate from household and ambient pollution (per 100,000)"
+                "title": "Death rate from household and ambient pollution (per 100,000)",
+                "color" : ""
             },
             {
                 "indicator": "n3_sdg3_swb",
-                "title": "Subjective wellbeing (0-10)"
+                "title": "Subjective wellbeing (0-10)",
+                "color" : ""
             },
             {
                 "indicator": "n3_sdg3_tb",
-                "title": "Incidence of tuberculosis (per 100,000)"
+                "title": "Incidence of tuberculosis (per 100,000)",
+                "color" : ""
             },
             {
                 "indicator": "n3_sdg3_traffic",
-                "title": "Traffic deaths (per 100,000)"
+                "title": "Traffic deaths (per 100,000)",
+                "color" : ""
             },
             {
                 "indicator": "n3_sdg3_u5mort",
-                "title": "Under 5 mortality (per 1000 live births)"
+                "title": "Under 5 mortality (per 1000 live births)",
+                "color" : ""
             },
             {
                 "indicator": "n3_sdg3_uhc",
-                "title": "UHC Tracer Index (0-100)"
+                "title": "UHC Tracer Index (0-100)",
+                "color" : ""
             },
             {
                 "indicator": "n3_sdg3_vac",
-                "title": "Infants who receive 2 WHO vaccines (%)"
+                "title": "Infants who receive 2 WHO vaccines (%)",
+                "color" : ""
             }
          ]
     },
