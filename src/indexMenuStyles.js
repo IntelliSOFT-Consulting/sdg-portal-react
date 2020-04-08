@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 export const container = css`
-//   background-color: black;
+  border : 2px solid white;
 `;
 
 export const center = css`
@@ -16,5 +16,18 @@ export const center = css`
 
 export const button = css`
   background: ${({ backgroundColor, centerRadius }) => `radial-gradient(transparent ${centerRadius}, ${backgroundColor} ${centerRadius})`}; 
-  /* e.g. background: radial-gradient(transparent 50px, red 50px); */
+  border : 2px solid white;
 `;
+
+
+export const slice = css`
+  div{
+    border : 2px solid white;
+  } 
+`;
+
+export const item = css` 
+  border : 2px solid white; 
+
+  
+`

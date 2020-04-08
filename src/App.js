@@ -42,7 +42,7 @@ function App() {
             {/* <Route exact path="/Sdgs" component={Sdgs}></Route> */}
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
             <Route exact path="/Sdgs/Sdg_1" component={Sdg}></Route>
-            <Route exact path="/Sdgs/Index" component={SdgIndex}></Route>
+            <Route exact path="/Sdg/Landing" component={SdgIndex}></Route>
             <Route path="/Dashboard" component={Dashboard}></Route>
             <Route path="/CountryProfile" component={CountryProfile}></Route>
             <Route exact path="/Agenda2063" component={Agenda2063Landing}></Route>

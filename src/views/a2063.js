@@ -12,6 +12,8 @@ import SdgMap from "../visualizations/sdgMap";
 import SdgHighChart from "../visualizations/a2063HighChart";
 import IndexMap from "../visualizations/indexMap";
 import TreeMap from "../visualizations/highTreeMap";
+import Spinner from "../visualizations/spinner";
+import LineChart from "../visualizations/lineChart";
 
 function A2063(){
     const Papa = require("papaparse/papaparse.min.js");
@@ -25,6 +27,7 @@ function A2063(){
 
     const [mapData, setMapData] = useState([]);
     const [chartData, setChartData] = useState([]);
+    const [lineChartData, setLineChartData] = useState([]);
 
     const [goal, setGoal] = useState(1);
     const [goals, setGoals] = useState([]);
@@ -77,6 +80,21 @@ function A2063(){
        return chartData;
     }
 
+    const parseLineData = (data) => {
+        let countryData = []
+        years =  years.sort((a, b) => a - b);
+        
+        data.forEach(function(d){
+            console.log(country.toLowerCase(), d.id)
+                if(country.toLowerCase() == d.id){
+                    countryData.push(parseInt(d[indicator]))
+                }   
+             
+        })
+        console.log(countryData)
+        setLineChartData(countryData); 
+    }
+
     const parseNormalizedData = (data) => {
         const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
         const mapData = [];
@@ -121,6 +139,10 @@ function A2063(){
             })
         })
         return nodes
+    }
+    function handleSdgChildClick(country){
+        setMapChartType('line');
+        setCountry(country);
     }
 
     useEffect(() => {
@@ -179,7 +201,8 @@ function A2063(){
                     if(isSubscribed){
                         parseMapData(results.data)
                         const chartData = parseChartData(results.data)
-                        filterChartData(chartData)
+                        filterChartData(chartData);
+                        parseLineData(results.data);
                         setIsLoading(false);
                     }
                 }
@@ -304,20 +327,45 @@ function A2063(){
                             <Col md="11" className="map-chart-container">   
                                 {
                                     mapChartType === 'map' ? (
-                                        <SdgMap mySdgData ={mapData}></SdgMap>
-                                    ) : (
+                                        <SdgMap mySdgData ={mapData} onCountryClick={handleSdgChildClick}></SdgMap>
+                                    ) : null
+                                }
 
-                                        <div>
+                                {
+                                    mapChartType === 'chart' ? (
+                                        isLoading ? (
+                                            <Spinner></Spinner> 
+                                        ) : (
+                                            <div>
                                              <div className="add-country-div">
                                                     <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
                                                             <i className="fa fa-plus-circle mr-1" />
-                                                            Add a country
+                                                            Add a country/ region
                                                     </Button>
                                                 </div>
                                                 <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
-                                        </div>
-                                       
-                                    )
+                                        </div>      
+                                        )
+                                    ): null
+                                }           
+
+                                {
+                                    mapChartType === 'line' ? (
+                                        isLoading ? (
+                                            <Spinner></Spinner> 
+                                        ) : (
+                                            <div>
+                                            <div className="add-country-div">
+                                                <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                        <i className="fa fa-plus-circle mr-1" />
+                                                        Add a country
+                                                </Button>
+                                            </div>
+                                            
+                                                <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
+                                            </div>
+                                        )
+                                    ): null
                                 }
                             </Col>
                             

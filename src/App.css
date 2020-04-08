@@ -1,5 +1,5 @@
 :root{
-  /* --red:#E5243B;
+  --red:#E5243B;
   --mustard:#DDA63A;
   --kelly-green: #4C9F38;
   --dark-red: #C5192D;
@@ -15,7 +15,7 @@
   --blue: #0A97D9;
   --lime-green: #56C02B;
   --royal-blue: #00689D;
-  --navy-blue: #19486A; */
+  --navy-blue: #19486A;
 }
 
 /* Position and sizing of burger button */
@@ -1084,7 +1084,7 @@ html, body, #root{
   float: right;
 }
 
-.radial-menu-circle .children:hover  > .radial-menu-button{
+.radial-menu-circle .children:hover  + .radial-menu-button{
   display: none;
 }
 
@@ -1104,4 +1104,65 @@ html, body, #root{
 }
 .map-chart-container{
   border: 1px solid #c1bebe;
+}
+
+.sdg-index .card-img{
+  border-radius: 0px;
+}
+
+.sdg-index-images .btn{
+  padding: 2px;
+  border-radius: 0px;
+  box-shadow: 0 0px 0px rgba(50, 50, 93, 0.11), 0 0px 0px rgba(0, 0, 0, 0.08);
+}
+
+.sdg-index{
+  padding: 50px;
+}
+
+.sdg-goal-div{
+  border: 2px solid #000;
+  text-align: center;
+  padding: 40px;
+}
+
+.sdg-goal-div .btn{
+  padding: 0px;
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+  box-shadow: 0 0px 0px rgba(50, 50, 93, 0.11), 0 0px 0px rgba(0, 0, 0, 0.08);
+  margin: 10px;
+}
+
+.sdg-goal-div .btn:not(:disabled):not(.disabled){
+  cursor: default;
+  box-shadow: 0 0px 0px rgba(50, 50, 93, 0.11), 0 0px 0px rgba(0, 0, 0, 0.08);
+    background: transparent;
+}
+
+.sdg-goal-div .card-img{ 
+  height: 50%;
+  width: 40%;
+}
+
+.btn-explore{
+  letter-spacing: 1px;
+  font-size: 1.175rem;
+  padding: 0.7rem 3rem;
+  line-height: 1.6;
+  border-radius: 2rem;
+  background-color: #fb5833;
+  color: #fff;
+}
+
+.btn-explore .btn:not(:disabled):not(.disabled),
+.btn-explore:hover,
+.btn-explore:active  {
+  background-color: #fb5833;
+  color: #fff;
+}
+
+.sdg-index h5{
+  font-weight: 600;
 }

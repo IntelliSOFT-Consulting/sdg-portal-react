@@ -17,16 +17,16 @@ import IndexMap from "../visualizations/indexMap";
 
 
   
-function Sdgs1() {
+function Sdgs1(props) {
     const override = css`
         display: block;
         margin: 0 auto;
         border-color: red;`;
     const Papa = require("papaparse/papaparse.min.js");
     const data = require('../assets/data/globalDatabase.json');
-    const [activSdg, setActiveSdg] = useState(0);
-    const activeSdgData = data[activSdg];
-    const targets = activeSdgData.targets;
+    
+    //const activeSdgData = data[activSdg];
+    //const targets = activeSdgData.targets;
 
     const countries = require("../assets/data/countries.json");
     const regions = ["North", "West", "Southern", "Central", "East"]
@@ -64,6 +64,7 @@ function Sdgs1() {
     let ind = [];
     let indi = [];    
     let targ = [];
+    let redirectSdg = 0;
 
     const nodes = [{
         value: 'mars',
@@ -76,6 +77,18 @@ function Sdgs1() {
 
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
+
+    if(props.location.state != null){
+        if(props.location.state == 18){
+            redirectSdg = 0
+        }else{
+            redirectSdg = props.location.state
+        }
+
+    }
+    console.log(redirectSdg)
+    const [activSdg, setActiveSdg] = useState(redirectSdg);
+    
 
     const parseCountriesRegions = () =>{
         let nodes = []
@@ -106,6 +119,8 @@ function Sdgs1() {
         setMapChartType('line');
         setCountry(country);
     }
+
+    console.log(props)
 
     useEffect(() => {
         const indexMapData = require('../assets/data/sdg/emptyCountriesMapData.json');
@@ -278,7 +293,7 @@ function Sdgs1() {
             years.forEach(function(year){
                 //console.log(year, d.Year, country, d.Code)
                 if(year == d.Year && country.toLowerCase() == d.Code){
-                  //  console.log(d[indicator])
+                    console.log(d[indicator])
                     countryData.push(parseInt(d[indicator]))
                 }
             })
@@ -409,6 +424,18 @@ function Sdgs1() {
                                     }
                                 </Input>
                             </Col>
+                            {
+                                mapChartType == 'line' ? (
+                            <Col>
+                                <Input type="select" name="countrySelect" onChange={handleCountryChange} value={country}>
+                                    {
+                                        countries.map((country, index) => {
+                                            return <option key={index} value={country.alpha2Code}>{country.name}</option>
+                                        })
+                                    }
+                                </Input>
+                            </Col>
+                                ):(
                             <Col>
                                 <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
                                         {
@@ -417,7 +444,8 @@ function Sdgs1() {
                                             })
                                         }
                                 </Input>
-                            </Col>   
+                            </Col> 
+                            )  }
                             <Col className="lastChild">
                                 <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
                                         <option value="gdb">Global Database</option>
