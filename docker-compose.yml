@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 version: '2.0'
+=======
+>>>>>>> f2363455da15a1ead11ef48f0bdfb948d8676060
 version: '3.3'
 
 services:
 
   sample:
+<<<<<<< HEAD
     container_name: sdg-react_app
+=======
+>>>>>>> f2363455da15a1ead11ef48f0bdfb948d8676060
     container_name: sample
     build:
       context: .
@@ -13,7 +19,11 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
+<<<<<<< HEAD
       - '3000:3000'
       - '3001:3000'
+=======
+      - '3001:80'
+>>>>>>> f2363455da15a1ead11ef48f0bdfb948d8676060
     environment:
       - NODE_ENV=development
