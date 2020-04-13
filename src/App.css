@@ -1123,10 +1123,16 @@ html, body, #root{
 .sdg-goal-div{
   border: 2px solid #000;
   text-align: center;
-  padding: 40px;
+  padding: 30px;
+}
+.a2063-goal-div{
+  text-align: center;
+  padding: 30px;
+  margin-top: 5.75rem;
 }
 
-.sdg-goal-div .btn{
+.sdg-goal-div .btn,
+.a2063-goal-div .btn{
   padding: 0px;
   width: 50%;
   height: 50%;
@@ -1141,7 +1147,8 @@ html, body, #root{
     background: transparent;
 }
 
-.sdg-goal-div .card-img{ 
+.sdg-goal-div .card-img,
+.a2063-goal-div .card-img{ 
   height: 50%;
   width: 40%;
 }
@@ -1178,13 +1185,13 @@ html, body, #root{
 
 .circle-container{
   position: relative;
-  width: 30em;
-  height: 30em;
+  width: 42em;
+  height: 42em;
     padding: 2.8em;
-    /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+    
     border: 1px solid #b5acac;
     border-radius: 50%;
-    margin: 1.75em auto 0;
+    margin: 5.75em auto 5.75em;
 }
 
 .circle-container .btn {
@@ -1193,13 +1200,15 @@ html, body, #root{
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 6em;
-    height: 6em;
-    margin: -2em;
+    width: 25%;
+    height: 25%;
+    margin: -5em;
     padding: 0;
 }
 
-.circle-container img { display: block; width: 100%; }
+.circle-container img {
+   display: block; width: 100%; 
+  }
 
 .a2063-circle{
     /* width:2em;
@@ -1211,4 +1220,24 @@ html, body, #root{
   text-align: left;
   font-weight: 300;
   list-style: none;
+}
+.circle-container div{
+  background-color: aquamarine;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4em;
+  height: 4em;
+  margin: -2em;
+  border-radius:50%;
+}
+.sdg-goal-div p{
+  white-space: pre-line;
+  font-size: 0.9rem;
+}
+
+.agenda-2063-icon{
+  border-radius: 50%;
 }
