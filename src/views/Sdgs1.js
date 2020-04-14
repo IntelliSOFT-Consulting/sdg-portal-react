@@ -76,15 +76,6 @@ function Sdgs1(props) {
         ],
     }];
 
-    const nodes = [{
-        value: 'mars',
-        label: 'Mars',
-        children: [
-            { value: 'phobos', label: 'Phobos' },
-            { value: 'deimos', label: 'Deimos' },
-        ],
-    }];
-
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
 
