@@ -227,6 +227,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .add-country-div{
   display: flex; justify-content: center;
+  padding: 15px;
 }
 
 .add-country-btn{
@@ -1240,4 +1241,24 @@ html, body, #root{
 
 .agenda-2063-icon{
   border-radius: 50%;
+}
+
+.rct-node-leaf .rct-text{
+  display: inline;
+}
+
+.rct-node-leaf{
+  display: inline;
+}
+
+
+.rct-collapse{
+  display: none;
+}
+
+.react-checkbox-tree label{
+  width: 25%;
+}
+.rct-node-expanded{
+  padding-bottom: 15px;
 }

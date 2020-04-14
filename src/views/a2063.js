@@ -278,6 +278,10 @@ function A2063(){
         setIsChecked(event)
     }
 
+    const handleCountryChange = (event) => {
+        setCountry(event.target.value);
+    }
+
     return (
         <>
         <Header onActiveA2063Changed={handleA2063Change}></Header>
@@ -306,15 +310,31 @@ function A2063(){
                                     }
                                 </Input>
                             </Col>
-                            <Col>
-                                <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
-                                        {
-                                            years.map((year, index) => {
-                                            return <option key={index} value={year}> {year} </option>
-                                            })
-                                        }
-                                </Input>
-                            </Col>   
+
+                            {
+                                mapChartType == 'line' ? (
+                                    <Col>
+                                        <Input type="select" name="countrySelect"  onChange={handleCountryChange} value={country}> 
+                                                {
+                                                     countries.map((country, index) => {
+                                                        return <option key={index} value={country.alpha2Code}>{country.name}</option>
+                                                    })
+                                                }
+                                        </Input>
+                                    </Col>  
+                                ):(
+                                    <Col>
+                                    <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
+                                            {
+                                                years.map((year, index) => {
+                                                return <option key={index} value={year}> {year} </option>
+                                                })
+                                            }
+                                    </Input>
+                                </Col>   
+                                )
+                            }
+                           
                             <Col className="lastChild">
                                 <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
                                         <option value="gdb">Global Database</option>
@@ -356,10 +376,10 @@ function A2063(){
                                         ) : (
                                             <div>
                                             <div className="add-country-div">
-                                                <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                {/* <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
                                                         <i className="fa fa-plus-circle mr-1" />
                                                         Add a country
-                                                </Button>
+                                                </Button> */}
                                             </div>
                                             
                                                 <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
@@ -425,7 +445,7 @@ function A2063(){
                 }
 
                 <Container>
-                    <Modal size="lg" className="modal-dialog-centered" isOpen={toggleModal}
+                    <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
                         toggle={toggleModal}  >
                         <div className="modal-header">
                         <h6 className="">Choose data to show</h6>

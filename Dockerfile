@@ -4,19 +4,6 @@ FROM node:12.2.0-alpine as build
 # set working directory
 WORKDIR /app
 
-<<<<<<< HEAD
-# install and cache app dependencies
-COPY package.json .
-RUN npm install
-RUN npm rebuild node-sass
-RUN npm audit fix
-
-
-COPY . .
-
-EXPOSE 3000
-=======
->>>>>>> f2363455da15a1ead11ef48f0bdfb948d8676060
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 

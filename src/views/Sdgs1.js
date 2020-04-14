@@ -35,6 +35,7 @@ function Sdgs1(props) {
     const [indicators, setIndicators] = useState([]);
     //const [years, setYears] = useState([]);
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
+    let sdgAllYears = [2019]
 
     const [sdgMapData, setSdgMapData] = useState([]);
     const [sdgChartData, setSdgChartData] = useState([]);
@@ -104,7 +105,7 @@ function Sdgs1(props) {
             })
             nodes.push({
                 value : region,
-                label : region,
+                label : region + " Africa",
                 children: countriesPerRegion
             })
         })
@@ -123,8 +124,8 @@ function Sdgs1(props) {
     console.log(props)
 
     useEffect(() => {
-        const indexMapData = require('../assets/data/sdg/emptyCountriesMapData.json');
         const nodes = parseCountriesRegions()
+        console.log(nodes)
         setRegionCountries(nodes)
     }, [])
 
@@ -497,10 +498,10 @@ function Sdgs1(props) {
                                         ) : (
                                             <div>
                                             <div className="add-country-div">
-                                                <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                {/* <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
                                                         <i className="fa fa-plus-circle mr-1" />
-                                                        Add a country
-                                                </Button>
+                                                        Add year
+                                                </Button> */}
                                             </div>
                                             
                                                 <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
@@ -549,7 +550,7 @@ function Sdgs1(props) {
                             <Col>
                                 <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
                                         {
-                                            years.map((year, index) => {
+                                            sdgAllYears.map((year, index) => {
                                             return <option key={index} value={year}> {year} </option>
                                             })
                                         }
