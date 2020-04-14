@@ -120,6 +120,8 @@ function Agenda2063Landing( ) {
   
   ];
   const agenda2063Icon = require('../../assets/img/a2063_icons/a2063_big_icon.png');
+  const metaData = require('../../assets/data/aspirationsMetaData.json');
+  console.log(metaData)
 
   let currAngle = -90;
   let degreeAngle = 360 /( agenda2063.length - 1);
@@ -137,13 +139,13 @@ function Agenda2063Landing( ) {
         <Header></Header>
         <div className="agenda2063-landing-div"> 
             <Row>
-              <Col lg="8" md="8" sm="12" xs="12">
+              <Col lg="7" md="7" sm="12" xs="12">
                   <div className="circle-container">
                           { 
                               agenda2063.map(function(a2063, index){
                                 let rotate = degreeAngle * index + currAngle ;
                                 let reverseRotate = rotate * -1
-                                let transform  = 'rotate(' + rotate + 'deg) translate(23em) rotate(' + reverseRotate + 'deg)'  ;
+                                let transform  = 'rotate(' + rotate + 'deg) translate(20em) rotate(' + reverseRotate + 'deg)'  ;
                                 let imgSrc = images(`./${a2063.imageSolid}.png`);
                                 let handleClick = ''
 
@@ -162,30 +164,27 @@ function Agenda2063Landing( ) {
                   </div>
               </Col>
 
-              <Col lg="4" md="4" sm="12" xs="12">
+              <Col lg="5" md="5" sm="12" xs="12">
                   {
                       agenda2063.map(function(a2063, index){
                           let imgSrc = images(`./${a2063.image}.png`);
                           let a2063Number = index + 1;
-                          let border = '3px solid ' + a2063.color; 
+                          let background =  a2063.color; 
                           let goals = a2063.goals;
                         return a2063Number == activeA2063 && a2063Number != 1 ? (
-                          <div style={{border}} className="a2063-goal-div">
+                          <div className="a2063-goal-div">
                             <div>
                               <Button >
                                   <CardImg src={ imgSrc }></CardImg>
                               </Button>
-                              <h4> {a2063.title} </h4>
-                              <p>
-                              { a2063.description }
-                              </p>
-                              <ul className="agenda2063-goals">
+                              <h4> Aspiration {a2063Number} : {a2063.description} </h4>
+                              <div className="agenda2063-goals">
                                 {
                                   goals.map(function(goal){
-                                    return <li>{goal} </li>
+                                    return <div style={{background}}>{goal} </div>
                                   })
                                 }
-                              </ul>
+                              </div>
                             </div>
                           </div>
                           ) : null   
