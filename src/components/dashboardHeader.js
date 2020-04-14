@@ -36,7 +36,7 @@ class DashboardHeader extends React.Component{
                 
                 <Menu right>
                     <Link to="/" className="text-white">HOME</Link> 
-                    <Link to="/Sdgs" className="text-white">SDGs</Link>
+                    <Link to="/Sdg/Landing" className="text-white">SDGs</Link>
                     <Link to="/Dashboard" className="text-white">DASHBOARD</Link>
                     <Link to="/CountryProfile" className="text-white">COUNTRY PROFILE</Link>
                     <Link to="/Agenda2063/Landing" className="text-white">AGENDA 2063</Link>

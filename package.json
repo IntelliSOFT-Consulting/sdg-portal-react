@@ -6,6 +6,7 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.10",
     "@bit/formidablelabs.react-animations.head-shake": "^1.0.0",
+    "@bit/formidablelabs.react-animations.pulse": "^1.0.0",
     "@bit/formidablelabs.react-animations.shake": "^1.0.0",
     "@emotion/core": "^10.0.22",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",

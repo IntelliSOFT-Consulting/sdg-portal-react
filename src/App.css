@@ -1,5 +1,5 @@
 :root{
-  /* --red:#E5243B;
+  --red:#E5243B;
   --mustard:#DDA63A;
   --kelly-green: #4C9F38;
   --dark-red: #C5192D;
@@ -15,7 +15,7 @@
   --blue: #0A97D9;
   --lime-green: #56C02B;
   --royal-blue: #00689D;
-  --navy-blue: #19486A; */
+  --navy-blue: #19486A;
 }
 
 /* Position and sizing of burger button */
@@ -227,6 +227,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .add-country-div{
   display: flex; justify-content: center;
+  padding: 15px;
 }
 
 .add-country-btn{
@@ -1084,7 +1085,7 @@ html, body, #root{
   float: right;
 }
 
-.radial-menu-circle .children:hover  > .radial-menu-button{
+.radial-menu-circle .children:hover  + .radial-menu-button{
   display: none;
 }
 
@@ -1101,4 +1102,163 @@ html, body, #root{
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 0.1rem;
+}
+.map-chart-container{
+  border: 1px solid #c1bebe;
+}
+
+.sdg-index .card-img{
+  border-radius: 0px;
+}
+
+.sdg-index-images .btn{
+  padding: 2px;
+  border-radius: 0px;
+  box-shadow: 0 0px 0px rgba(50, 50, 93, 0.11), 0 0px 0px rgba(0, 0, 0, 0.08);
+}
+
+.sdg-index{
+  padding: 50px;
+}
+
+.sdg-goal-div{
+  border: 2px solid #000;
+  text-align: center;
+  padding: 30px;
+}
+.a2063-goal-div{
+  text-align: center;
+  padding: 30px;
+  margin-top: 5.75rem;
+}
+
+.sdg-goal-div .btn,
+.a2063-goal-div .btn{
+  padding: 0px;
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+  box-shadow: 0 0px 0px rgba(50, 50, 93, 0.11), 0 0px 0px rgba(0, 0, 0, 0.08);
+  margin: 10px;
+}
+
+.sdg-goal-div .btn:not(:disabled):not(.disabled){
+  cursor: default;
+  box-shadow: 0 0px 0px rgba(50, 50, 93, 0.11), 0 0px 0px rgba(0, 0, 0, 0.08);
+    background: transparent;
+}
+
+.sdg-goal-div .card-img,
+.a2063-goal-div .card-img{ 
+  height: 50%;
+  width: 40%;
+}
+
+.btn-explore{
+  letter-spacing: 1px;
+  font-size: 1.175rem;
+  padding: 0.7rem 3rem;
+  line-height: 1.6;
+  border-radius: 2rem;
+  background-color: #fb5833;
+  color: #fff;
+}
+
+.btn-explore .btn:not(:disabled):not(.disabled),
+.btn-explore:hover,
+.btn-explore:active  {
+  background-color: #fb5833;
+  color: #fff;
+}
+
+.sdg-index h5{
+  font-weight: 600;
+}
+.aspiration-content{
+  border: 2px solid #000;
+}
+
+.agenda2063-landing-div{
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.circle-container{
+  position: relative;
+  width: 42em;
+  height: 42em;
+    padding: 2.8em;
+    
+    border: 1px solid #b5acac;
+    border-radius: 50%;
+    margin: 5.75em auto 5.75em;
+}
+
+.circle-container .btn {
+  display: block;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25%;
+    height: 25%;
+    margin: -5em;
+    padding: 0;
+}
+
+.circle-container img {
+   display: block; width: 100%; 
+  }
+
+.a2063-circle{
+    /* width:2em;
+    height:2em; */
+    border-radius:50%;
+}
+
+.agenda2063-goals{
+  text-align: left;
+  font-weight: 300;
+  list-style: none;
+}
+.circle-container div{
+  background-color: aquamarine;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4em;
+  height: 4em;
+  margin: -2em;
+  border-radius:50%;
+}
+.sdg-goal-div p{
+  white-space: pre-line;
+  font-size: 0.9rem;
+}
+
+.agenda-2063-icon{
+  border-radius: 50%;
+}
+
+.rct-node-leaf .rct-text{
+  display: inline;
+}
+
+.rct-node-leaf{
+  display: inline;
+}
+
+
+.rct-collapse{
+  display: none;
+}
+
+.react-checkbox-tree label{
+  width: 25%;
+}
+.rct-node-expanded{
+  padding-bottom: 15px;
 }

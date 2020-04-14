@@ -4,10 +4,10 @@ import { Link, Redirect} from 'react-router-dom'
 import { Container, Col, Row} from "reactstrap";
 import Select from 'react-select';
 import styled, { keyframes } from "styled-components";
-import HeadShake from "@bit/formidablelabs.react-animations.head-shake";
-const HeadShakeAnimation = keyframes`${HeadShake}`;
-const HeadShakeDiv = styled.div`
-  animation: infinite 4s ${HeadShakeAnimation};
+import Pulse from "@bit/formidablelabs.react-animations.pulse";
+const PulseAnimation = keyframes`${Pulse}`;
+const PulseDiv = styled.div`
+  animation: infinite 5s ${PulseAnimation};
 `;
 
 
@@ -62,10 +62,10 @@ class Home extends React.Component {
                             <Col md="4"></Col>
                             <Col md="4">
                             
-                                <HeadShakeDiv>
+                                <PulseDiv>
                                 <Link to="/Sdgs" className="btn btn-warning text-white">Explore Development Data</Link>
                                 
-                                </HeadShakeDiv>
+                                </PulseDiv>
                                
                             </Col>
                             <Col md="3">

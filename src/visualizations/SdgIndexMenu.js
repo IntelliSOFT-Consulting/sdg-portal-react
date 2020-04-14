@@ -6,7 +6,7 @@ import {Container, Row, Col
   import Header from '../components/header';
 import { PieCenter } from 'react-pie-menu/dist/index.prod';
 import * as styles from '../indexMenuStyles';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, css } from 'styled-components';
 
 
 function SdgIndexMenu( {x, y}) {
@@ -14,71 +14,71 @@ function SdgIndexMenu( {x, y}) {
     const sdgs = [{
             id :1,
             image : "E_SDG_Icons-01",
-            color : "red" 
+            color : "#E5243B" 
         },{
             id:2,
             image : "E_SDG_Icons-02",
-            color : "mustard"
+            color : "#DDA63A"
         },{
             id:3,
             image: "E_SDG_Icons-03",
-            color : "kelly-green"
+            color : "#4C9F38"
         },{
             id:4,
             image: "E_SDG_Icons-04",
-            color : "dark-red"
+            color : "#C5192D"
         },{
             id:5,
             image: "E_SDG_Icons-05",
-            color : "red-orange"
+            color : "#FF3A21"
         },{
             id:6,
             image: "E_SDG_Icons-06",
-            color : "bright-blue"
+            color : "#26BDE2"
         },{
             id:7,
             image: "E_SDG_Icons-07", 
-            color : "yellow"
+            color : "#FCC30B"
         },{
             id:8,
             image: "E_SDG_Icons-08",
-            color : "burgundy-red"
+            color : "#A21942"
         },{
             id:9,
             image: "E_SDG_Icons-09",
-            color : "orange"
+            color : "#FD6925"
         },{
             id:10,
             image: "E_SDG_Icons-10", 
-            color : "magenta"
+            color : "#DD1367"
         },{
             id:11,
             image: "E_SDG_Icons-11",
-            color : "golden-yellow"
+            color : "#FD9D24"
         },{
             id:12,
             image: "E_SDG_Icons-12",
-            color : "dark-mustard"
+            color : "#BF8B2E"
         },{
             id:13,
             image: "E_SDG_Icons-13",
-            color : "green"
+            color : "#3F7E44"
         },{
             id:14,
             image: "E_SDG_Icons-14",
-            color : "blue"
+            color : "#0A97D9"
         },{
             id:15,
             image: "E_SDG_Icons-15",
-            color : "lime-green"
+            color : "#56C02B"
         },{
             id:16,
             image: "E_SDG_Icons-16",
-            color : "royal-blue"
+            color : "#00689D"
             } ,{
             id:17,
             image: "E_SDG_Icons-17",
-            color : "navy-blue"
+            color : "#19486A"
         }
         
     ];
@@ -87,9 +87,18 @@ function SdgIndexMenu( {x, y}) {
         pieMenu: {
           container: styles.container,
           center: styles.center,
+          item : styles.item
         },
         slice: {
-          container: styles.button,
+            container: styles.button,
+            contentContainer: css`
+            border : 2px solid white;
+            // center content...
+            `,
+            content: css`
+            
+            // rotate content...
+            `,
         },
       };
 
@@ -102,6 +111,8 @@ function SdgIndexMenu( {x, y}) {
     )
     const Sdg = props =>(
         <Slice {...props}>
+             <img alt="..." src={require("../assets/img/sdgs_icons/E_SDG_Icons-00.jpg")}></img>
+                <p>Sdg</p>
         </Slice>
     )
 
@@ -110,12 +121,12 @@ function SdgIndexMenu( {x, y}) {
         <Header></Header>
         <Container className="pt-3 index-menu">
             <Row>
-                <Col>
-                </Col>
+                {/* <Col>
+                </Col> */}
                 <Col>
                 <ThemeProvider theme={theme}>
                     <PieMenu 
-                        radius='250px' centerRadius='40px' Center={Center}>
+                        radius='250px'  startOffsetAngle={65}  Center={Center}>
                         { 
                             sdgs.map(function(sdg, index){
                                 let  imgSrc = images(`./${sdg.image}.jpg`);
@@ -124,7 +135,7 @@ function SdgIndexMenu( {x, y}) {
                                 return <Sdg backgroundColor={sdg.color}>
 
                                         </Sdg>
-                                // return <Slice key={index} className="red">
+                                // return <Slice key={index} className="red" backgroundColor={sdg.color}>
                                 //             <img  alt="..." src={ imgSrc }></img>
                                 //             <p> {sdgNumber} </p>
                                 //         </Slice>
