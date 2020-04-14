@@ -14,6 +14,13 @@ import LineChart from "../visualizations/lineChart";
 import Spinner from "../visualizations/spinner";
 import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
+<<<<<<< HEAD
+=======
+
+
+  
+function Sdgs1() {
+>>>>>>> f79eb667c2085906d6146f5a5d3ae73644a9865f
 
 
   
@@ -57,7 +64,10 @@ function Sdgs1(props) {
     const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
     const [isExpanded, setIsExpanded] = useState(["North", "West", "Southern", "Central", "East"])
     const [regionCountries, setRegionCountries] = useState([])
+<<<<<<< HEAD
     const [goalTitle, setGoalTitle] = useState('');
+=======
+>>>>>>> f79eb667c2085906d6146f5a5d3ae73644a9865f
     
     let csvDataSourceData = '';
     let normalizedData = '';
@@ -76,9 +86,19 @@ function Sdgs1(props) {
         ],
     }];
 
+    const nodes = [{
+        value: 'mars',
+        label: 'Mars',
+        children: [
+            { value: 'phobos', label: 'Phobos' },
+            { value: 'deimos', label: 'Deimos' },
+        ],
+    }];
+
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
 
+<<<<<<< HEAD
     if(props.location.state != null){
         if(props.location.state == 18){
             redirectSdg = 0
@@ -91,6 +111,8 @@ function Sdgs1(props) {
     const [activSdg, setActiveSdg] = useState(redirectSdg);
     
 
+=======
+>>>>>>> f79eb667c2085906d6146f5a5d3ae73644a9865f
     const parseCountriesRegions = () =>{
         let nodes = []
         regions.forEach(function(region){
@@ -105,7 +127,11 @@ function Sdgs1(props) {
             })
             nodes.push({
                 value : region,
+<<<<<<< HEAD
                 label : region + " Africa",
+=======
+                label : region,
+>>>>>>> f79eb667c2085906d6146f5a5d3ae73644a9865f
                 children: countriesPerRegion
             })
         })
@@ -124,8 +150,13 @@ function Sdgs1(props) {
     console.log(props)
 
     useEffect(() => {
+<<<<<<< HEAD
         const nodes = parseCountriesRegions()
         console.log(nodes)
+=======
+        const indexMapData = require('../assets/data/sdg/emptyCountriesMapData.json');
+        const nodes = parseCountriesRegions()
+>>>>>>> f79eb667c2085906d6146f5a5d3ae73644a9865f
         setRegionCountries(nodes)
     }, [])
 
@@ -387,6 +418,7 @@ function Sdgs1(props) {
     const handleCheck = (event) => {
         setIsChecked(event)
     }
+<<<<<<< HEAD
     const getGoalTitles = (data) => {
         data.forEach(function(d){
             if(activSdg == d.id){
@@ -394,6 +426,8 @@ function Sdgs1(props) {
             }
         })
     }
+=======
+>>>>>>> f79eb667c2085906d6146f5a5d3ae73644a9865f
     
 
     return(
@@ -462,7 +496,11 @@ function Sdgs1(props) {
                                             <Spinner></Spinner>
                                         ) : (
                                             <div>
+<<<<<<< HEAD
                                                 <SdgMap mySdgData ={sdgMapData} onCountryClick={handleSdgChildClick}></SdgMap>
+=======
+                                                <SdgMap mySdgData ={sdgMapData}></SdgMap>
+>>>>>>> f79eb667c2085906d6146f5a5d3ae73644a9865f
                                             </div>
                                         )
                                     ): null
