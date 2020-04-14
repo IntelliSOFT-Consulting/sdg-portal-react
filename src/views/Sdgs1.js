@@ -29,7 +29,7 @@ function Sdgs1(props) {
     const [target, setTarget] = useState('1.1');
     const [sdgTargets, setSdgTargets] = useState([]);
 
-    const [indicator, setIndicator] = useState('1.1 Number of people not in extreme poverty (people)');
+    const [indicator, setIndicator] = useState('');
     const [indicators, setIndicators] = useState([]);
 
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
@@ -38,6 +38,7 @@ function Sdgs1(props) {
     const [sdgMapData, setSdgMapData] = useState([]);
     const [sdgChartData, setSdgChartData] = useState([]);
     const [lineChartData, setLineChartData] = useState([]);
+    const [countryLabel,setCountryLabel] = useState('')
 
     const [country, setCountry] = useState('DZ');
     const [dataSource, setDataSource] = useState('pan');
@@ -106,7 +107,7 @@ function Sdgs1(props) {
     //Set the country and regions popup data
     useEffect(() => {
         const nodes = parseCountriesRegions()
-        console.log(nodes)
+       // console.log(nodes)
         setRegionCountries(nodes)
     }, [])
 
@@ -137,7 +138,7 @@ function Sdgs1(props) {
     }, [target])
 
     useEffect(() => {
-       console.log(indicator)
+       //console.log(indicator)
         let isSubscribed = true;
         if(dataSource === 'pan'){
             csvDataSourceData = require("../assets/data/sdg/pan.csv");
@@ -257,17 +258,22 @@ function Sdgs1(props) {
     }
     const parseLineData = (data) => {
         let countryData = []
+        let countryLabel = ''
+
+
         years =  years.sort((a, b) => a - b);
         
         data.forEach(function(d){
             years.forEach(function(year){
                 if(year == d.Year && country.toLowerCase() == d.Code){
                     countryData.push(parseInt(d[indicator]))
+                    countryLabel = d.Entity
                 }
             })
-             
         })
-        setLineChartData(countryData); 
+        setCountryLabel(countryLabel)
+        setLineChartData(countryData);
+        console.log(countryData) 
     }
 
     //Choose SDG
@@ -350,7 +356,6 @@ function Sdgs1(props) {
                             </Col>
                             <Col>
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                                    {console.log(indicators)}
                                     <option> Choose indicator </option>
                                     {
                                         indicators.map((indicator, index) => {
@@ -438,7 +443,7 @@ function Sdgs1(props) {
                                                 </Button> */}
                                             </div>
                                             
-                                                <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
+                                                <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years} country ={countryLabel}></LineChart>
                                             </div>
                                         )
                                     ): null

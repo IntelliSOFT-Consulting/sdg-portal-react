@@ -10,7 +10,7 @@ import HC_exporting2 from 'highcharts/modules/export-data';
 HC_exporting(Highcharts);
 HC_exporting2(Highcharts);
 
-function lineChart({lineChartData, years, indicator}){
+function lineChart({lineChartData, years, indicator, country}){
     console.log(lineChartData, years)
     years =  years.sort((a, b) => a - b);
     const chartOptions = {
@@ -54,6 +54,7 @@ function lineChart({lineChartData, years, indicator}){
             }
         },
         series : [{
+            name : country,
             data : lineChartData
         }],
 
