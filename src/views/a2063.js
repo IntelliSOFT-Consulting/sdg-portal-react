@@ -302,7 +302,7 @@ function A2063(){
                             </Col>
                             <Col>
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                                
+                                    <option>Choose indicator</option>
                                     {
                                         indicators.map((indicator, index) => {
                                             return <option key={index} value={indicator}> INDICATOR {indicator}</option>
