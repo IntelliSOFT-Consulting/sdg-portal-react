@@ -16,7 +16,7 @@ import {
     Col
   } from "reactstrap";
 
-class FaqsHeader extends React.Component{
+class AboutHeader extends React.Component{
     componentDidMount(){
 
     }
@@ -31,7 +31,7 @@ class FaqsHeader extends React.Component{
                     </Link>   
                 </NavbarBrand>
                 <Nav className="about-title">
-                <h5 className="display-3 mb-4 mt-2 text-center">FREQUENTLY ASKED QUESTIONS</h5>
+                <h5 className="display-3 mb-4 mt-2 text-center">The SDG and Agenda 2063 Data Portal for Africa</h5>
                 </Nav>
                 
                 <Menu right>
@@ -51,4 +51,11 @@ class FaqsHeader extends React.Component{
     }
 }
 
-export default FaqsHeader;
+export default AboutHeader;
+
+
+
+
+
+
+

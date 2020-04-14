@@ -8,9 +8,9 @@
                     "color": "Dashboard Color sdg1_povtrend"
                 },
                 {
-                    "indicator": "n3_sdg1_wpc",
+                    "indicator": "n3_sdg1_natpov",
                     "title": "Poverty headcount ratio at $1.90/day (%)",
-                    "color": "Dashboard Color sdg1_wpc"
+                    "color": "Dashboard Color sdg1_natpov"
                 },
                 {
                     "indicator": "n3_sdg1_social",

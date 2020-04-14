@@ -16,14 +16,14 @@ import {
     Col
   } from "reactstrap";
 
-class FaqsHeader extends React.Component{
+class SsdgLandingHeader extends React.Component{
     componentDidMount(){
 
     }
     render(){
         return (
             <> 
-            <header className="header-global about-header">
+            <header className="header-global sdg-landing-header">
             <Navbar>
                 <NavbarBrand>
                     <Link to="/">
@@ -31,7 +31,7 @@ class FaqsHeader extends React.Component{
                     </Link>   
                 </NavbarBrand>
                 <Nav className="about-title">
-                <h5 className="display-3 mb-4 mt-2 text-center">FREQUENTLY ASKED QUESTIONS</h5>
+                <h5 className="display-3 mb-4 mt-2 text-center">Sustainable Development Goals</h5>
                 </Nav>
                 
                 <Menu right>
@@ -51,4 +51,12 @@ class FaqsHeader extends React.Component{
     }
 }
 
-export default FaqsHeader;
+export default SsdgLandingHeader;
+
+
+
+
+
+
+
+

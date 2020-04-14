@@ -76,10 +76,8 @@ function CountryProfile (props, ) {
             }
         })
         }
-
-
-        const [selectedCountryCode, setSelectedCountryCode] = useState(country.value);
-
+    const [selectedCountryCode, setSelectedCountryCode] = useState(country.value);
+    
     // Modal operations
     const [toggleModal, setOpenModal] = useState(country ? true: false);
     const [countryData, setCountryData] = useState(country ? {

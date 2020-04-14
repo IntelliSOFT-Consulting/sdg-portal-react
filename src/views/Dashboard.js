@@ -196,8 +196,9 @@ function Dashboard (){
           }
         })
       } 
+      parseDashboardData(activePopup);
       loadData(dashboardDataSourceYear);
-  }, [activeRegion, year])
+  }, [activeRegion, year, activePopup])
 
   useEffect(() => {
     parseDashboardData(activePopup);
