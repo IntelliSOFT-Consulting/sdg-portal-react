@@ -39,6 +39,7 @@ function App() {
     
     <Router >
       <Switch>
+      <Route exact path="/" component={Home}></Route>
             <Route exact path="/Sdg/Landing" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
 
@@ -50,7 +51,7 @@ function App() {
            
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
-            <Route exact path="/" component={Home}></Route>
+           
             
       </Switch>
     </Router>
