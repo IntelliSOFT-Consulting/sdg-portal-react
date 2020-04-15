@@ -126,14 +126,14 @@ function Agenda2063Landing( ) {
   let currAngle = -90;
   let degreeAngle = 360 /( agenda2063.length - 1);
 
-  const [activeA2063, setActive2063] = useState(2);
+  const [activeA2063, setActive2063] = useState(1);
 
   const handleA2063Change = (a2063) =>{
     setActive2063(a2063.currentTarget.value)
   }
   const handleOverallA2063 = () => {
-
   }
+
       return(
         <>
         <Header></Header>
@@ -147,17 +147,33 @@ function Agenda2063Landing( ) {
                                 let reverseRotate = rotate * -1
                                 let transform  = 'rotate(' + rotate + 'deg) translate(20em) rotate(' + reverseRotate + 'deg)'  ;
                                 let imgSrc = images(`./${a2063.image}.png`);
+                                let imageHover = images(`./${a2063.imageSolid}.png`);
+                                let background =  a2063.color;
                                 let handleClick = ''
 
+                                const backgroundHoverStyles = {
+                                  backgroundImage: `url(${imageHover})`,
+                                  width: "100%",
+                                  height: "100%",
+                                  backgroundSize: "cover"
+                              }
+                              const backgroundStyles = {
+                                  backgroundImage: `url(${imgSrc})`,
+                                  width: "100%",
+                                  height: "100%",
+                                  backgroundSize: "cover"
+                              }
+
                                 if(index != 0){
-                                  
-                                  return <Button onClick={handleA2063Change} value={index+1} style={{ transform }} className="a2063-circle">
-                                            <CardImg src={ imgSrc } ></CardImg>
+                                  return <Button onClick={handleA2063Change} value={index} style={{ transform }} className="a2063-circle">
+                                     <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
+                                            {/* <CardImg src={ imgSrc } ></CardImg> */}
                                         </Button>
                                 }else{
                                   transform = '';
-                                  return <Button value={index+1} className="a2063-circle">
-                                            <CardImg src={ imgSrc } ></CardImg>
+                                  return <Button value={index} className="a2063-circle">
+                                          <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
+                                            {/* <CardImg src={ imgSrc } ></CardImg> */}
                                         </Button>
                                 }
                           })}
@@ -168,10 +184,11 @@ function Agenda2063Landing( ) {
                   {
                       agenda2063.map(function(a2063, index){
                           let imgSrc = images(`./${a2063.image}.png`);
-                          let a2063Number = index + 1;
+                          let a2063Number = index ;
                           let background =  a2063.color; 
                           let goals = a2063.goals;
-                        return a2063Number == activeA2063 && a2063Number != 1 ? (
+                          
+                        return a2063Number == activeA2063 && a2063Number != 0 ? (
                           <div className="a2063-goal-div">
                             <div>
                               {/* <Button >

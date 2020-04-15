@@ -1222,7 +1222,7 @@ html, body, #root{
   font-weight: 400;
   list-style: none;
 }
-.circle-container div{
+/* .circle-container div{
   background-color: aquamarine;
   display: block;
   overflow: hidden;
@@ -1233,7 +1233,7 @@ html, body, #root{
   height: 4em;
   margin: -2em;
   border-radius:50%;
-}
+} */
 .sdg-goal-div p{
   white-space: pre-line;
   font-size: 0.9rem;
