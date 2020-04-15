@@ -146,12 +146,12 @@ function Agenda2063Landing( ) {
                                 let rotate = degreeAngle * index + currAngle ;
                                 let reverseRotate = rotate * -1
                                 let transform  = 'rotate(' + rotate + 'deg) translate(20em) rotate(' + reverseRotate + 'deg)'  ;
-                                let imgSrc = images(`./${a2063.imageSolid}.png`);
+                                let imgSrc = images(`./${a2063.image}.png`);
                                 let handleClick = ''
 
                                 if(index != 0){
                                   
-                                  return <Button onClick={handleA2063Change} value={index+1} style={{  transform }} className="a2063-circle">
+                                  return <Button onClick={handleA2063Change} value={index+1} style={{ transform }} className="a2063-circle">
                                             <CardImg src={ imgSrc } ></CardImg>
                                         </Button>
                                 }else{
@@ -174,14 +174,14 @@ function Agenda2063Landing( ) {
                         return a2063Number == activeA2063 && a2063Number != 1 ? (
                           <div className="a2063-goal-div">
                             <div>
-                              <Button >
+                              {/* <Button >
                                   <CardImg src={ imgSrc }></CardImg>
-                              </Button>
-                              <h4> Aspiration {a2063Number} : {a2063.description} </h4>
+                              </Button> */}
+                              <h4> Aspiration {index} : {a2063.description} </h4>
                               <div className="agenda2063-goals">
                                 {
                                   goals.map(function(goal){
-                                    return <div style={{background}}>{goal} </div>
+                                    return <div>{goal} </div>
                                   })
                                 }
                               </div>
