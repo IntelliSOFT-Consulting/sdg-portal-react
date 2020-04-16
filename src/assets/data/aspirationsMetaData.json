@@ -1,0 +1,37 @@
+[
+  {
+    "Aspiration": "Prosperous Africa",
+    "Details": ["Goal 1: A High Standard of Living, Quality of Life and Well Being for All",  "Goal 2: Well Educated Citizens and Skills revolution underpinned by Science, Technology and Innovation",  "Goal 3: Healthy and Well-Nourished Citizens",  "Goal 4: Transformed Economies and Job Creation",  "Goal 5: Modern Agriculture for increased productivity and production",  "Goal 6: Blue/ ocean economy for accelerated economic growth",  "Goal 7: Environmentally sustainable climate-resilient economies and communities"],
+    "Description": "ASPIRATION 1: A Prosperous Africa Based On Inclusive Growth And Sustainable Development"
+  },
+  {
+    "Aspiration": "Integrated Africa",
+    "Details": ["Goal 8: United Africa (Federal or Confederate)",  "Goal 9: Key Continental Financial and Monetary Institutions established and functional. Indicators under this goal are applicable to only regional and continental levels",  "Goal 10: World Class Infrastructure crisscrosses Africa"],
+    "Description": "Aspiration 2. An Integrated Continent, Politically United And Based On The Ideals Of Pan Africanism And Vision Of African Renaissance"
+  },
+  {
+    "Aspiration": "Democratic Africa",
+    "Details": ["Goal 11: Democratic values, practices, universal principles of human rights, justice and the rule of law entrenched",  "Goal 12: Capable institutions and transformed leadership in place at all levels"],
+    "Description": "Aspiration 3. An Africa Of Good Governance, Democracy, Respect For Human Rights, Justice And The Rule Of Law"
+  },
+  {
+    "Aspiration": "Peaceful Africa",
+    "Details": ["Goal 13: Peace, Security and Stability are preserved",  "Goal 14: A Stable and Peaceful Africa",  "Goal 15: A Fully Functional and Operational African Peace and Security Architecture"],
+    "Description": "Aspiration 4. A Peaceful And Secure Africa"
+  },
+  {
+    "Aspiration": "Strong Cultural Identity",
+    "Details": ["Goal 16: African Cultural Renaissance is pre-eminent"],
+    "Description": "Aspiration 5. Africa With A Strong Cultural Identity, Common Heritage, Values And Ethics"
+  },
+  {
+    "Aspiration": "People Driven Continent",
+    "Details": ["Goal 17: Full Gender Equality in All Spheres of Life",  "Goal 18: Engaged and Empowered Youth and Children"],
+    "Description": "Aspiration 6. An Africa Whose Development Is People Driven, Relying On The Potential Of The African People"
+  },
+  {
+    "Aspiration": "International Dynamic",
+    "Details": ["Goal 19: Africa as a major partner in global affairs and peaceful co-existence",  "Goal 20: Africa takes full responsibility for financing her development"],
+    "Description": "Aspiration 7: Africa As A Strong And Influential Global Partner"
+  }
+]

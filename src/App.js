@@ -30,14 +30,9 @@ import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretU
 
 library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown)
 
-function App() {
-
-  console.log()
-  
-  return (
-
-    
-    <Router basename="/sdgportal">
+function App() {  
+  return ( 
+    <Router  basename="/sdgportal" >
       <Switch>
             <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
@@ -51,7 +46,6 @@ function App() {
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
             <Route exact path="/" component={Home}></Route>
-            
       </Switch>
     </Router>
   );

@@ -120,72 +120,98 @@ function Agenda2063Landing( ) {
   
   ];
   const agenda2063Icon = require('../../assets/img/a2063_icons/a2063_big_icon.png');
+  const metaData = require('../../assets/data/aspirationsMetaData.json');
+  console.log(metaData)
 
   let currAngle = -90;
   let degreeAngle = 360 /( agenda2063.length - 1);
 
-  const [activeA2063, setActive2063] = useState(2);
+  const [activeA2063, setActive2063] = useState(1);
+  const [redirect, setRedirect] = useState(false);
 
   const handleA2063Change = (a2063) =>{
     setActive2063(a2063.currentTarget.value)
   }
   const handleOverallA2063 = () => {
+  }
 
+  const renderRedirect = (a2063) =>{
+    if(redirect){
+      return <Redirect to={{ pathname:"/Agenda2063",
+                              state: a2063
+      }}></Redirect>
+    }
+  }
+
+  const handleExploreButton = () =>{
+    setRedirect(true)
   }
       return(
         <>
         <Header></Header>
         <div className="agenda2063-landing-div"> 
             <Row>
-              <Col lg="8" md="8" sm="12" xs="12">
+              <Col lg="7" md="7" sm="12" xs="12">
                   <div className="circle-container">
                           { 
                               agenda2063.map(function(a2063, index){
                                 let rotate = degreeAngle * index + currAngle ;
                                 let reverseRotate = rotate * -1
-                                let transform  = 'rotate(' + rotate + 'deg) translate(23em) rotate(' + reverseRotate + 'deg)'  ;
-                                let imgSrc = images(`./${a2063.imageSolid}.png`);
+                                let transform  = 'rotate(' + rotate + 'deg) translate(20em) rotate(' + reverseRotate + 'deg)'  ;
+                                let imgSrc = images(`./${a2063.image}.png`);
+                                let imageHover = images(`./${a2063.imageSolid}.png`);
+                                let background =  a2063.color;
                                 let handleClick = ''
 
+                                const backgroundHoverStyles = {
+                                  backgroundImage: `url(${imageHover})`,
+                                  width: "100%",
+                                  height: "100%",
+                                  backgroundSize: "cover"
+                              }
+                              const backgroundStyles = {
+                                  backgroundImage: `url(${imgSrc})`,
+                                  width: "100%",
+                                  height: "100%",
+                                  backgroundSize: "cover"
+                              }
+
                                 if(index != 0){
-                                  
-                                  return <Button onClick={handleA2063Change} value={index+1} style={{  transform }} className="a2063-circle">
-                                            <CardImg src={ imgSrc } ></CardImg>
+                                  return <Button onClick={handleA2063Change} value={index} style={{ transform }} className="a2063-circle">
+                                              <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
                                         </Button>
                                 }else{
                                   transform = '';
-                                  return <Button value={index+1} className="a2063-circle">
-                                            <CardImg src={ imgSrc } ></CardImg>
+                                  return <Button value={index} className="a2063-circle">
+                                          <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
                                         </Button>
                                 }
                           })}
                   </div>
               </Col>
 
-              <Col lg="4" md="4" sm="12" xs="12">
+              <Col lg="5" md="5" sm="12" xs="12">
                   {
                       agenda2063.map(function(a2063, index){
                           let imgSrc = images(`./${a2063.image}.png`);
-                          let a2063Number = index + 1;
-                          let border = '3px solid ' + a2063.color; 
+                          let a2063Number = index ;
+                          let background =  a2063.color; 
                           let goals = a2063.goals;
-                        return a2063Number == activeA2063 && a2063Number != 1 ? (
-                          <div style={{border}} className="a2063-goal-div">
+                          
+                        return a2063Number == activeA2063 && a2063Number != 0 ? (
+                          <div className="a2063-goal-div">
                             <div>
-                              <Button >
+                              {/* <Button >
                                   <CardImg src={ imgSrc }></CardImg>
-                              </Button>
-                              <h4> {a2063.title} </h4>
-                              <p>
-                              { a2063.description }
-                              </p>
-                              <ul className="agenda2063-goals">
+                              </Button> */}
+                              <h4> Aspiration {index} : {a2063.description} </h4>
+                              <div className="agenda2063-goals">
                                 {
                                   goals.map(function(goal){
-                                    return <li>{goal} </li>
+                                    return <div>{goal} </div>
                                   })
                                 }
-                              </ul>
+                              </div>
                             </div>
                           </div>
                           ) : null   
@@ -193,8 +219,9 @@ function Agenda2063Landing( ) {
                     }
                      <div className="text-center pt-3">
                        <PulseDiv>
-                       <Link to="/Agenda2063" className="btn btn-explore">Explore data</Link>
+                       <Button onClick={handleExploreButton}  className="btn btn-explore">Explore data</Button>
                        </PulseDiv>
+                       {renderRedirect(activeA2063)}
                        
                         
                     </div>

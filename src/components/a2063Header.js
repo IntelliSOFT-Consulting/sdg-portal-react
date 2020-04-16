@@ -18,7 +18,7 @@ import {
     Button
   } from "reactstrap";
 
-function Header( {onActiveA2063Changed} ){
+function Header(  {onActiveA2063Changed} ){
 
     const images = require.context('../assets/img/a2063_icons', true);
     const agenda2063 = [{
@@ -99,14 +99,20 @@ function Header( {onActiveA2063Changed} ){
 
     const [activeA2063, setActiveA2063] = useState(0);
 
-    useEffect(() =>{
-       // console.log(activeSdg);
-    })
-
     const handleA2063Change = (e) => {
         setActiveA2063(e.currentTarget.value);
         onActiveA2063Changed(e.currentTarget.value);
     }
+
+    let redirectAgenda2063 = 0;
+    //console.log(props)
+    // if(props.location.state != null){
+    //     if(props.location.state == 18){
+    //         redirectAgenda2063 = 0
+    //     }else{
+    //         redirectAgenda2063 = props.location.state
+    //     }
+    // }
 
         return (
             <> 

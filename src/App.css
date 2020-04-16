@@ -1129,7 +1129,6 @@ html, body, #root{
 .a2063-goal-div{
   text-align: center;
   padding: 30px;
-  margin-top: 5.75rem;
 }
 
 .sdg-goal-div .btn,
@@ -1186,8 +1185,8 @@ html, body, #root{
 
 .circle-container{
   position: relative;
-  width: 42em;
-  height: 42em;
+  width: 36em;
+  height: 36em;
     padding: 2.8em;
     
     border: 1px solid #b5acac;
@@ -1203,12 +1202,14 @@ html, body, #root{
     left: 50%;
     width: 25%;
     height: 25%;
-    margin: -5em;
+    margin: -4.5em;
     padding: 0;
+    background: #fff;
 }
 
 .circle-container img {
    display: block; width: 100%; 
+   background: #fff;
   }
 
 .a2063-circle{
@@ -1219,10 +1220,10 @@ html, body, #root{
 
 .agenda2063-goals{
   text-align: left;
-  font-weight: 300;
+  font-weight: 400;
   list-style: none;
 }
-.circle-container div{
+/* .circle-container div{
   background-color: aquamarine;
   display: block;
   overflow: hidden;
@@ -1233,7 +1234,7 @@ html, body, #root{
   height: 4em;
   margin: -2em;
   border-radius:50%;
-}
+} */
 .sdg-goal-div p{
   white-space: pre-line;
   font-size: 0.9rem;
@@ -1242,6 +1243,7 @@ html, body, #root{
 .agenda-2063-icon{
   border-radius: 50%;
 }
+
 
 .rct-node-leaf .rct-text{
   display: inline;
@@ -1261,4 +1263,16 @@ html, body, #root{
 }
 .rct-node-expanded{
   padding-bottom: 15px;
+}
+.agenda2063-goals div{
+  margin: 10px;
+  background-color: #d7d8da;
+  padding: 20px;
+  color: #000;
+}
+
+ .circle-container .btn:first-child{
+  width: 30%;
+  height: 30%;
+  margin: -6.0em;
 }
