@@ -127,6 +127,7 @@ function Agenda2063Landing( ) {
   let degreeAngle = 360 /( agenda2063.length - 1);
 
   const [activeA2063, setActive2063] = useState(1);
+  const [redirect, setRedirect] = useState(false);
 
   const handleA2063Change = (a2063) =>{
     setActive2063(a2063.currentTarget.value)
@@ -134,6 +135,17 @@ function Agenda2063Landing( ) {
   const handleOverallA2063 = () => {
   }
 
+  const renderRedirect = (a2063) =>{
+    if(redirect){
+      return <Redirect to={{ pathname:"/Agenda2063",
+                              state: a2063
+      }}></Redirect>
+    }
+  }
+
+  const handleExploreButton = () =>{
+    setRedirect(true)
+  }
       return(
         <>
         <Header></Header>
@@ -207,8 +219,9 @@ function Agenda2063Landing( ) {
                     }
                      <div className="text-center pt-3">
                        <PulseDiv>
-                       <Link to="/Agenda2063" className="btn btn-explore">Explore data</Link>
+                       <Button onClick={handleExploreButton}  className="btn btn-explore">Explore data</Button>
                        </PulseDiv>
+                       {renderRedirect(activeA2063)}
                        
                         
                     </div>

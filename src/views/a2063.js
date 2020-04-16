@@ -15,14 +15,14 @@ import TreeMap from "../visualizations/highTreeMap";
 import Spinner from "../visualizations/spinner";
 import LineChart from "../visualizations/lineChart";
 
-function A2063(){
+function A2063(props){
     const Papa = require("papaparse/papaparse.min.js");
     const agenda2063 = require('../assets/data/agenda2063.json');
     const aspirationsData = require("../assets/data/aspirationsData.json");
     const countries = require("../assets/data/countries.json");
     const regions = ["North", "West", "Southern", "Central", "East"]
 
-    const [activeTab, setActiveTab] = useState(0);
+   
     const [isLoading, setIsLoading] = useState(false);
 
     const [mapData, setMapData] = useState([]);
@@ -57,6 +57,30 @@ function A2063(){
     let csvDataSourceData = '';
     let sdgData = '';
     let ind = [];
+    let redirectAgenda2063 = 0;
+
+    if(props.location.state != null){
+        if(props.location.state == 18){
+            redirectAgenda2063 = 0
+        }else{
+            redirectAgenda2063 = props.location.state
+        }
+    }
+
+    const [activeTab, setActiveTab] = useState(redirectAgenda2063);
+
+    const handleA2063Change = (a2063) => {
+        setGoal(activeTab)
+        setActiveTab(parseInt(a2063))
+        setIndicator(firstIndicator)
+    }
+
+    useEffect(() =>{
+        console.log(activeTab)
+        handleA2063Change(activeTab);
+    }, [activeTab])
+
+   
 
     const parseMapData = (data, indicatorValue) => {
         const mapData = [];
@@ -85,13 +109,11 @@ function A2063(){
         years =  years.sort((a, b) => a - b);
         
         data.forEach(function(d){
-            console.log(country.toLowerCase(), d.id)
                 if(country.toLowerCase() == d.id){
                     countryData.push(parseInt(d[indicator]))
                 }   
              
         })
-        console.log(countryData)
         setLineChartData(countryData); 
     }
 
@@ -227,11 +249,7 @@ function A2063(){
         loadNormalizedData(normalizedData);
     }, [country]);
 
-    const handleA2063Change = (a2063) => {
-        setGoal(1)
-        setActiveTab(parseInt(a2063))
-        setIndicator(firstIndicator)
-    }
+    
     const handleGoalChange = (e) => {
         setGoal(parseInt(e.target.value))
         setGoalID(parseInt(e.target.value))
@@ -302,7 +320,7 @@ function A2063(){
                             </Col>
                             <Col>
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                                    <option>Choose indicator</option>
+                                  
                                     {
                                         indicators.map((indicator, index) => {
                                             return <option key={index} value={indicator}> INDICATOR {indicator}</option>

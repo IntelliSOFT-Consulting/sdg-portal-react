@@ -26,7 +26,7 @@ function Sdgs1(props) {
     const countries = require("../assets/data/countries.json");
     const regions = ["North", "West", "Southern", "Central", "East"]
    
-    const [target, setTarget] = useState('1.1');
+    //const [target, setTarget] = useState('');
     const [sdgTargets, setSdgTargets] = useState([]);
 
     const [indicator, setIndicator] = useState('');
@@ -524,6 +524,7 @@ function Sdgs1(props) {
     }
 
     const [activSdg, setActiveSdg] = useState(redirectSdg);
+    const [target, setTarget] = useState(parseInt(redirectSdg) + ".1");
     
     const parseCountriesRegions = () =>{
         let nodes = []
@@ -583,15 +584,14 @@ function Sdgs1(props) {
             targ = unIndicators[activSdg-1].targets;
         }
         setSdgTargets(targ);
-        console.log(targ)
-
         let indic = []
         keysHardCode.forEach(function(indicator){
             if(indicator.startsWith(targ[0].code)){
                 indic.push(indicator);
             }
         })
-       // setIndicators(indic);
+        setIndicators(indic);
+        console.log(indic)
     }, [target, activSdg])
 
     useEffect(() => {
@@ -634,8 +634,8 @@ function Sdgs1(props) {
         })
         defaultIndicator = indi[0]
         setIndicators(indi);
+        console.log(indi)
         setFirstIndicator(indi[0]);
-       // console.log(defaultIndicator)
     }
 
     const parseNormalizedData = (data) => {

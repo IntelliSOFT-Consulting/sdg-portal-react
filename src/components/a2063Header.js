@@ -18,10 +18,9 @@ import {
     Button
   } from "reactstrap";
 
-function Header( {onActiveA2063Changed} ){
+function Header(  {onActiveA2063Changed} ){
 
     const images = require.context('../assets/img/a2063_icons', true);
-    console.log(images)
     const agenda2063 = [{
             id :0,
             image  : "Aspirations_1_0",
@@ -100,14 +99,20 @@ function Header( {onActiveA2063Changed} ){
 
     const [activeA2063, setActiveA2063] = useState(0);
 
-    useEffect(() =>{
-       // console.log(activeSdg);
-    })
-
     const handleA2063Change = (e) => {
         setActiveA2063(e.currentTarget.value);
         onActiveA2063Changed(e.currentTarget.value);
     }
+
+    let redirectAgenda2063 = 0;
+    //console.log(props)
+    // if(props.location.state != null){
+    //     if(props.location.state == 18){
+    //         redirectAgenda2063 = 0
+    //     }else{
+    //         redirectAgenda2063 = props.location.state
+    //     }
+    // }
 
         return (
             <> 
@@ -184,10 +189,10 @@ function Header( {onActiveA2063Changed} ){
           
                 <Menu right>
                     <Link to="/" className="text-white">HOME</Link> 
-                    <Link to="/Sdg/Landing" className="text-white">SDGs</Link>
+                    <Link to="/SdgLanding" className="text-white">SDGs</Link>
                     <Link to="/Dashboard" className="text-white">DASHBOARD</Link>
                     <Link to="/CountryProfile" className="text-white">COUNTRY PROFILE</Link>
-                    <Link to="/Agenda2063/Landing" className="text-white">AGENDA 2063</Link>
+                    <Link to="/A2063Landing" className="text-white">AGENDA 2063</Link>
                     <Link to="/About" className="text-white">ABOUT US</Link>
                     <Link to="/Faqs" className="text-white">FAQs</Link>
                 </Menu>

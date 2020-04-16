@@ -61,7 +61,7 @@ class HomeHeader extends React.Component{
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Sdgs" className="btn btn-header btn-icon text-white">
+                                    <Link to="/SdgLanding" className="btn btn-header btn-icon text-white">
                                         <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/Sdg.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">SDGs</span>
@@ -82,7 +82,7 @@ class HomeHeader extends React.Component{
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Agenda2063/Landing" className="btn btn-header btn-icon text-white">
+                                    <Link to="/A2063Landing" className="btn btn-header btn-icon text-white">
                                         <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/A2063.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">AGENDA <br></br> 2063</span>
