@@ -39,13 +39,13 @@ function App() {
     
     <Router basename="/sdgportal">
       <Switch>
-            <Route exact path="/Sdg/Landing" component={SdgIndex}></Route>
+            <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
 
             <Route path="/Dashboard" component={Dashboard}></Route>
             <Route path="/CountryProfile" component={CountryProfile}></Route>
 
-            <Route exact path="/Agenda2063/Landing" component={Agenda2063Landing}></Route>
+            <Route exact path="/A2063Landing" component={Agenda2063Landing}></Route>
             <Route exact path="/Agenda2063" component={a2063}></Route>
            
             <Route path="/About" component={About}></Route>
