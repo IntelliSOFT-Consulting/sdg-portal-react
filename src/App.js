@@ -37,11 +37,11 @@ function App() {
   return (
 
     
-    <Router >
+    <Router  basename="/sdgportal" >
       <Switch>
       <Route exact path="/" component={Home}></Route>
             <Route exact path="/Sdg/Landing" component={SdgIndex}></Route>
-            <Route exact path="/Sdgs" component={Sdgs1}></Route>
+            <Route exact path="/Sdgs" component={SdgIndex}></Route>
 
             <Route path="/Dashboard" component={Dashboard}></Route>
             <Route path="/CountryProfile" component={CountryProfile}></Route>

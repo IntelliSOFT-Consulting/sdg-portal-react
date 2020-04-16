@@ -21,6 +21,7 @@ import {
 function Header( {onActiveA2063Changed} ){
 
     const images = require.context('../assets/img/a2063_icons', true);
+    console.log(images)
     const agenda2063 = [{
             id :0,
             image  : "Aspirations_1_0",
