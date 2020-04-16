@@ -1204,6 +1204,7 @@ html, body, #root{
     height: 25%;
     margin: -4.5em;
     padding: 0;
+    background: #fff;
 }
 
 .circle-container img {
@@ -1242,6 +1243,7 @@ html, body, #root{
 .agenda-2063-icon{
   border-radius: 50%;
 }
+
 
 .rct-node-leaf .rct-text{
   display: inline;

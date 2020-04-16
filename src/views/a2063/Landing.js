@@ -166,14 +166,12 @@ function Agenda2063Landing( ) {
 
                                 if(index != 0){
                                   return <Button onClick={handleA2063Change} value={index} style={{ transform }} className="a2063-circle">
-                                     <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
-                                            {/* <CardImg src={ imgSrc } ></CardImg> */}
+                                              <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
                                         </Button>
                                 }else{
                                   transform = '';
                                   return <Button value={index} className="a2063-circle">
                                           <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
-                                            {/* <CardImg src={ imgSrc } ></CardImg> */}
                                         </Button>
                                 }
                           })}
