@@ -755,6 +755,7 @@ function Sdgs1(props) {
         setIndicator(indic[0]);
     }
 
+
     //Choose target
     const handleTargetChange = (e) => {
         setTarget(e.target.value);
