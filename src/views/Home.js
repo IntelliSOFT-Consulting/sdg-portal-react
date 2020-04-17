@@ -5,6 +5,11 @@ import { Container, Col, Row} from "reactstrap";
 import Select from 'react-select';
 import styled, { keyframes } from "styled-components";
 import Pulse from "@bit/formidablelabs.react-animations.pulse";
+import Shake from "@bit/formidablelabs.react-animations.shake";
+const ShakeAnimation = keyframes`${Shake}`;
+const ShakeDiv = styled.div`
+  animation: infinite 5s ${ShakeAnimation};
+`;
 const PulseAnimation = keyframes`${Pulse}`;
 const PulseDiv = styled.div`
   animation: infinite 5s ${PulseAnimation};
@@ -62,10 +67,10 @@ class Home extends React.Component {
                             <Col md="4"></Col>
                             <Col md="4">
                             
-                                <PulseDiv>
+                                <ShakeDiv>
                                 <Link to="/Sdgs" className="btn btn-warning text-white">Explore Development Data</Link>
                                 
-                                </PulseDiv>
+                                </ShakeDiv>
                                
                             </Col>
                             <Col md="3">

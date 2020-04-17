@@ -28,8 +28,6 @@ function Sdgs1(props) {
    
     //const [target, setTarget] = useState('');
     const [sdgTargets, setSdgTargets] = useState([]);
-
-    const [indicator, setIndicator] = useState('');
     const [indicators, setIndicators] = useState([]);
 
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
@@ -511,6 +509,8 @@ function Sdgs1(props) {
     let indi = [];    
     let targ = [];
     let redirectSdg = 0;
+    let redirectSdgIndicator = ''
+    let indic = []
 
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
@@ -518,13 +518,21 @@ function Sdgs1(props) {
     if(props.location.state != null){
         if(props.location.state == 18){
             redirectSdg = 0
+            
         }else{
             redirectSdg = props.location.state
+            keysHardCode.forEach(function(indicator){
+                if(indicator.startsWith(redirectSdg + ".1")){
+                    indic.push(indicator);
+                }
+            })
+            redirectSdgIndicator = indic[0]
         }
     }
 
     const [activSdg, setActiveSdg] = useState(redirectSdg);
     const [target, setTarget] = useState(parseInt(redirectSdg) + ".1");
+    const [indicator, setIndicator] = useState(redirectSdgIndicator);
     
     const parseCountriesRegions = () =>{
         let nodes = []
@@ -591,7 +599,7 @@ function Sdgs1(props) {
             }
         })
         setIndicators(indic);
-        console.log(indic)
+        //console.log(indic)
     }, [target, activSdg])
 
     useEffect(() => {
@@ -622,7 +630,7 @@ function Sdgs1(props) {
         loadSdgData(csvDataSourceData);
         getGoalTitles(data)
         return () => isSubscribed = false
-    }, [dataSource, indicator, year, target, activSdg, isChecked]);
+    }, [dataSource, indicator, year, target, activSdg, isChecked, country]);
 
     const parseIndicatorData = (sdgTarget, sdgCompiledData) => {
         let keys = Object.keys(sdgCompiledData[0]);
@@ -634,7 +642,7 @@ function Sdgs1(props) {
         })
         defaultIndicator = indi[0]
         setIndicators(indi);
-        console.log(indi)
+        //console.log(indi)
         setFirstIndicator(indi[0]);
     }
 
@@ -677,6 +685,8 @@ function Sdgs1(props) {
                 })  
             }
         })
+        console.log(indicator)
+        console.log(indicatorData)
         setSdgMapData(indicatorData);
     }
     const parseChartData = (data) => {

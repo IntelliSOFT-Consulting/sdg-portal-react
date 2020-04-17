@@ -61,62 +61,62 @@
   },
   {
     "name": "Côte d'Ivoire",
-    "alpha2Code": "CD",
+    "alpha2Code": "CI",
     "region": "Central"
   },
   {
     "name": "Democratic Republic of Congo",
-    "alpha2Code": "DJ",
+    "alpha2Code": "CD",
     "region": "West"
   },
   {
     "name": "Djibouti",
-    "alpha2Code": "EG",
+    "alpha2Code": "DJ",
     "region": "East"
   },
   {
     "name": "Egypt",
-    "alpha2Code": "GQ",
+    "alpha2Code": "EG",
     "region": "North"
   },
   {
     "name": "Equatorial Guinea",
-    "alpha2Code": "ER",
+    "alpha2Code": "GQ",
     "region": "Central"
   },
   {
     "name": "Eritrea",
-    "alpha2Code": "ET",
+    "alpha2Code": "ER",
     "region": "East"
   },
   {
     "name": "Ethiopia",
-    "alpha2Code": "TF",
+    "alpha2Code": "ET",
     "region": "East"
   },
   {
     "name": "Gabon",
-    "alpha2Code": "GM",
+    "alpha2Code": "GA",
     "region": "Central"
   },
   {
     "name": "Gambia",
-    "alpha2Code": "GH",
+    "alpha2Code": "GM",
     "region": "West"
   },
   {
     "name": "Ghana",
-    "alpha2Code": "GN",
+    "alpha2Code": "GH",
     "region": "West"
   },
   {
     "name": "Guinea",
-    "alpha2Code": "GW",
+    "alpha2Code": "GN",
     "region": "West"
   },
   {
     "name": "Guinea-Bissau",
-    "alpha2Code": "CI",
+    "alpha2Code": "GW",
     "region": "West"
   },
   {

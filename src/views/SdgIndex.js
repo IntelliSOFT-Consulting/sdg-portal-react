@@ -9,10 +9,28 @@ import {
 import { Link, Redirect} from 'react-router-dom'
 import styled, { keyframes } from "styled-components";
 import Pulse from "@bit/formidablelabs.react-animations.pulse";
+import BounceIn from "@bit/formidablelabs.react-animations.bounce-in";
+import Bounce from "@bit/formidablelabs.react-animations.bounce";
+
+import Shake from "@bit/formidablelabs.react-animations.shake";
+const ShakeAnimation = keyframes`${Shake}`;
+const ShakeDiv = styled.div`
+  animation: infinite 5s ${ShakeAnimation};
+`;
 
 const PulseAnimation = keyframes`${Pulse}`;
 const PulseDiv = styled.div`
-  animation: infinite 5s ${PulseAnimation};
+  animation: infinite 3s ${PulseAnimation};
+`;
+
+const BounceInAnimation = keyframes`${BounceIn}`;
+const BounceInDiv = styled.div`
+  animation: infinite 5s ${BounceInAnimation};
+`;
+
+const BounceAnimation = keyframes`${Bounce}`;
+const BounceDiv = styled.div`
+  animation: infinite 3s ${BounceAnimation};
 `;
 function SdgIndex() {
 
@@ -136,10 +154,6 @@ function SdgIndex() {
     setActiveSdg(sdg.currentTarget.value);
   }
 
-    // const setRedirect = () => {
-    //   setRedirect(true);
-    // }
-
     const renderRedirect = (sdg) =>{
       if(redirect){
         return <Redirect to={{ pathname:"/Sdgs",
@@ -188,9 +202,9 @@ function SdgIndex() {
                     }
                   
                     <div className="text-center pt-3">
-                    <PulseDiv>
+                    <ShakeDiv>
                         <Button onClick={handleExploreButton} className="btn btn-explore">Explore data</Button>
-                        </PulseDiv>
+                        </ShakeDiv>
                         {renderRedirect(activeSdg)}
                     </div>
               </Col>
