@@ -70,13 +70,12 @@ function A2063(props){
     const [activeTab, setActiveTab] = useState(redirectAgenda2063);
 
     const handleA2063Change = (a2063) => {
-        setGoal(activeTab)
+        setGoal(1)
         setActiveTab(parseInt(a2063))
         setIndicator(firstIndicator)
     }
 
     useEffect(() =>{
-        console.log(activeTab)
         handleA2063Change(activeTab);
     }, [activeTab])
 
