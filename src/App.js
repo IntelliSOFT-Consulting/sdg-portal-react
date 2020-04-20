@@ -32,7 +32,7 @@ library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, f
 
 function App() {  
   return ( 
-    <Router   >
+    <Router  basename="/sdgportal" >
       <Switch>
             <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
