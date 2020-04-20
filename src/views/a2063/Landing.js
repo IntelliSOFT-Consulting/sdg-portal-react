@@ -3,6 +3,7 @@ import Header from '../../components/a2063LandingHeader';
 import Radialmenu from '../../visualizations/radialMenu';
 import { Container, Row, Col, CardImg, Button } from 'reactstrap';
 import { Link, Redirect} from 'react-router-dom';
+import ReadMoreReact from 'read-more-react';
 import styled, { keyframes } from "styled-components";
 import Pulse from "@bit/formidablelabs.react-animations.pulse";
 const PulseAnimation = keyframes`${Pulse}`;
@@ -193,17 +194,11 @@ function Agenda2063Landing( ) {
               <Col lg="5" md="5" sm="12" xs="12">
                   {
                       agenda2063.map(function(a2063, index){
-                          let imgSrc = images(`./${a2063.image}.png`);
                           let a2063Number = index ;
-                          let background =  a2063.color; 
                           let goals = a2063.goals;
-                          
                         return a2063Number == activeA2063 && a2063Number != 0 ? (
                           <div className="a2063-goal-div">
                             <div>
-                              {/* <Button >
-                                  <CardImg src={ imgSrc }></CardImg>
-                              </Button> */}
                               <h4> Aspiration {index} : {a2063.description} </h4>
                               <div className="agenda2063-goals">
                                 {
