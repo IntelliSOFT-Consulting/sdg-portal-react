@@ -593,11 +593,13 @@ function Sdgs1(props) {
         }
         setSdgTargets(targ);
         let indic = []
+        if(activSdg != 0){
         keysHardCode.forEach(function(indicator){
             if(indicator.startsWith(targ[0].code)){
                 indic.push(indicator);
             }
         })
+    }
         setIndicators(indic);
         //console.log(indic)
     }, [target, activSdg])
@@ -617,7 +619,7 @@ function Sdgs1(props) {
                 header: true,
                 complete: function(results){
                     if(isSubscribed){
-                        parseIndicatorData(target, results.data);
+                        //parseIndicatorData(target, results.data);
                         parseMapData(results.data);
                         const chartData = parseChartData(results.data)
                         filterChartData(chartData);
@@ -642,7 +644,6 @@ function Sdgs1(props) {
         })
         defaultIndicator = indi[0]
         setIndicators(indi);
-        //console.log(indi)
         setFirstIndicator(indi[0]);
     }
 

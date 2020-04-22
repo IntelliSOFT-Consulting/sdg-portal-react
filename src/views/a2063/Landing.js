@@ -8,7 +8,7 @@ import styled, { keyframes } from "styled-components";
 import Pulse from "@bit/formidablelabs.react-animations.pulse";
 const PulseAnimation = keyframes`${Pulse}`;
 const PulseDiv = styled.div`
-  animation: infinite 5s ${PulseAnimation};
+  animation: infinite 2s ${PulseAnimation};
 `;
 
 
