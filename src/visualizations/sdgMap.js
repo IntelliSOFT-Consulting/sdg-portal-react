@@ -1384,6 +1384,90 @@ function SdgMap({ mySdgData, onCountryClick }) {
             //console.log(country)
         }
         let code = "hc-key";
+
+        (function(H){
+            H.seriesTypes.map.prototype.translateColors = function () {
+                        var series = this,
+                            nullColor = this.options.nullColor,
+                            colorAxis = this.colorAxis,
+                            colorKey = this.colorKey;
+        
+                        this.data.forEach(function (point) {
+                            var value = point[colorKey],
+                                color;
+        
+                            color = point.options.color ||
+                                (
+                                    //point.isNull ?
+                                    //    nullColor :
+                                        (colorAxis && value !== undefined) ?
+                                            colorAxis.toColor(value, point) :
+                                            point.color || series.color
+                                );
+        
+                            if (color) {
+                                point.color = color;
+                            }
+                        });
+                    };
+                
+        H.ColorAxis.prototype.toColor = function (value, point) {
+                    var pos,
+                        stops = this.stops,
+                        from,
+                        to,
+                        color,
+                        dataClasses = this.dataClasses,
+                        dataClass,
+                        i;
+        
+                    if (dataClasses) {
+                        i = dataClasses.length;
+                        while (i--) {
+                            dataClass = dataClasses[i];
+                            from = dataClass.from;
+                            to = dataClass.to;
+                            if (
+                                ((from === undefined || (value >= from))
+                                 && (to === undefined || (value <= to))
+                                 && (value !== null))
+                                || (from === null && to === null && value === null)
+                            ) {
+                                
+                                color = dataClass.color;
+                                
+                                if (point) {
+                                    point.dataClass = i;
+                                    point.colorIndex = dataClass.colorIndex;
+                                }
+        
+                                break;
+                            }
+                        }
+        
+                    } else {
+        
+                        pos = this.normalizedValue(value);
+                        i = stops.length;
+                        while (i--) {
+                            if (pos > stops[i][0]) {
+                                break;
+                            }
+                        }
+                        from = stops[i] || stops[i + 1];
+                        to = stops[i + 1] || from;
+        
+                        // The position within the gradient
+                        pos = 1 - (to[0] - pos) / ((to[0] - from[0]) || 1);
+        
+                        color = from.color.tweenTo(
+                            to.color,
+                            pos
+                        );
+                    }
+                    return color;
+                };        
+        }(Highcharts))
   
         const mapOptions = {
             chart: {
@@ -1467,12 +1551,12 @@ function SdgMap({ mySdgData, onCountryClick }) {
         
             colorAxis: {
                 dataClasses: [{
-                    from: -100,
-                    to: 0,
+                    from: null,
+                    to: null,
                     name: 'Information unavailable.',
                     color: '#cecdcd'
                 }, {
-                    from: 1,
+                    from: 0,
                     to: 10,
                     name: 'Off Track',
                     color: '#ff0000'

@@ -674,21 +674,28 @@ function Sdgs1(props) {
     }
 
     const parseMapData = (data) => {
-        const indicatorData = [];
+        const mapData = [];
+        let indicatorData = ''
         data.forEach(function(d){
             if(d.Year === year ){
-                indicatorData.push({
+                if(d[indicator] == ""){
+                    indicatorData = null
+                }else{
+                    indicatorData = parseInt(d[indicator])
+                }
+                mapData.push({
                     "code": d.Code,
                     "drilldown" : d.Code + "/" + d.Code + "-all",
-                    "value": d[indicator],
+                    "value": indicatorData,
                     "country": d.Entity
                 })  
             }
         })
-        console.log(indicator)
-        console.log(indicatorData)
-        setSdgMapData(indicatorData);
+
+        console.log(mapData)
+        setSdgMapData(mapData);
     }
+
     const parseChartData = (data) => {
         const indicatorData = [];
         data.forEach(function(d){
