@@ -1118,7 +1118,8 @@ html, body, #root{
 }
 
 .sdg-index{
-  padding: 50px;
+  padding: 10px 50px;
+
 }
 
 .sdg-goal-div{
@@ -1275,4 +1276,9 @@ html, body, #root{
   width: 30%;
   height: 30%;
   margin: -6.0em;
+}
+
+.read-more-button{
+  color: #fb5833;
+    text-decoration: underline;
 }

@@ -6,7 +6,8 @@ import {
   Container, Row, Col, CardImg, Button
 } from "reactstrap";
 
-import { Link, Redirect} from 'react-router-dom'
+import { Link, Redirect} from 'react-router-dom';
+import ReadMoreReact from 'read-more-react';
 import styled, { keyframes } from "styled-components";
 import Pulse from "@bit/formidablelabs.react-animations.pulse";
 import BounceIn from "@bit/formidablelabs.react-animations.bounce-in";
@@ -192,9 +193,11 @@ function SdgIndex() {
                                   <CardImg src={ imgSrc }></CardImg>
                               </Button>
                               <h5> {sdg.title} </h5>
-                              <p>
-                                {sdg.description}
-                              </p>
+                              <ReadMoreReact text = {sdg.description}
+                                    min={200}
+                                    ideal={400}
+                                    max={400} readMoreText="Read more..." >
+                              </ReadMoreReact>
                             </div>
                           </div>
                           ) : null   
