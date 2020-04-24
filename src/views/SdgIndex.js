@@ -21,11 +21,7 @@ const ShakeDiv = styled.div`
 
 const PulseAnimation = keyframes`${Pulse}`;
 const PulseDiv = styled.div`
-<<<<<<< HEAD
   animation: infinite 1.5s ${PulseAnimation};
-=======
-  animation: infinite 3s ${PulseAnimation};
->>>>>>> c901554c1a6b91c226118f990b02d8d9aa7ba0f3
 `;
 
 const BounceInAnimation = keyframes`${BounceIn}`;
@@ -198,7 +194,7 @@ function SdgIndex() {
                               </Button>
                               <h5> {sdg.title} </h5>
                               <ReadMoreReact text = {sdg.description}
-                                    min={200}
+                                    min={400}
                                     ideal={400}
                                     max={400} readMoreText="Read more..." >
                               </ReadMoreReact>
@@ -209,9 +205,9 @@ function SdgIndex() {
                     }
                   
                     <div className="text-center pt-3">
-                    <ShakeDiv>
+                    <PulseDiv>
                         <Button onClick={handleExploreButton} className="btn btn-explore">Explore data</Button>
-                        </ShakeDiv>
+                        </PulseDiv>
                         {renderRedirect(activeSdg)}
                     </div>
               </Col>
