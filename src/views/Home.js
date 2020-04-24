@@ -67,10 +67,10 @@ class Home extends React.Component {
                             <Col md="4"></Col>
                             <Col md="4">
                             
-                                <PulseDiv>
+                                <ShakeDiv>
                                 <Link to="/Sdgs" className="btn btn-warning text-white">Explore Development Data</Link>
                                 
-                                </PulseDiv>
+                                </ShakeDiv>
                                
                             </Col>
                             <Col md="3">
