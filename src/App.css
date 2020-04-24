@@ -543,9 +543,7 @@ text-align: center;
 
 /* Dashboard page */
 .dashboard{
-  /* height: 100vh;
-  overflow-y: auto; */
-  padding-top: 300px;
+  padding-top: 20%;
 }
 
 .dashboard tr{
@@ -1114,8 +1112,8 @@ html, body, #root{
 
 .circle-container{
   position: relative;
-  width: 36em;
-  height: 36em;
+  width: 30em;
+  height: 30em;
     padding: 2.8em;
     border: 1px solid #b5acac;
     border-radius: 50%;
@@ -1148,8 +1146,10 @@ html, body, #root{
 
 .agenda2063-goals{
   text-align: left;
-  font-weight: 400;
-  list-style: none;
+    font-weight: 400;
+    height: 250px;
+    overflow-y: scroll;
+    list-style: none;
 }
 /* .circle-container div{
   background-color: aquamarine;
@@ -1237,7 +1237,7 @@ html, body, #root{
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
+  
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -1257,7 +1257,6 @@ html, body, #root{
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
-
 }
 
 @media only screen and (max-width: 945px) {
@@ -1277,16 +1276,25 @@ html, body, #root{
         .agenda2063Header img{
           width: 160px;
         }
+
+        .dashboard{
+          padding-top: 270px;
+        }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  
+  .dashboard{
+    padding-top: 20%;
+  }
 }
 /* Large screens ----------- */
-@media only screen and (min-width : 1600px) {
+@media only screen and (min-width : 1400px) {
     .agenda2063Header .a2063-icon-padding .btn {
       padding: 5px;
       width: 97%;
+  }
+  .dashboard{
+    padding-top: 15%;
   }
 }

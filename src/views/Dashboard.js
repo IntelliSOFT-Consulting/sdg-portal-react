@@ -32,6 +32,8 @@ function Dashboard (){
   const [toggleYearWidget, setToggleYearWidget] = useState(false);
   const [indicatorData, setIndicatorData] = useState(0);
   let dashboardDataSource = require.context('../assets/data', true);
+  let d = require('../assets/data/dashboard.json');
+  console.log(d)
 
   const sdgs = [
     {

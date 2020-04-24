@@ -158,7 +158,7 @@ function Agenda2063Landing( ) {
                               agenda2063.map(function(a2063, index){
                                 let rotate = degreeAngle * index + currAngle ;
                                 let reverseRotate = rotate * -1
-                                let transform  = 'rotate(' + rotate + 'deg) translate(20em) rotate(' + reverseRotate + 'deg)'  ;
+                                let transform  = 'rotate(' + rotate + 'deg) translate(16em) rotate(' + reverseRotate + 'deg)'  ;
                                 let imgSrc = images(`./${a2063.image}.png`);
                                 let imageHover = images(`./${a2063.imageSolid}.png`);
                                 let background =  a2063.color;
@@ -203,6 +203,7 @@ function Agenda2063Landing( ) {
                               <div className="agenda2063-goals">
                                 {
                                   goals.map(function(goal){
+                                    
                                     return <div>{goal} </div>
                                   })
                                 }
