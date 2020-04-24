@@ -12,7 +12,7 @@ const ShakeDiv = styled.div`
 `;
 const PulseAnimation = keyframes`${Pulse}`;
 const PulseDiv = styled.div`
-  animation: infinite 5s ${PulseAnimation};
+  animation: infinite 1.5s ${PulseAnimation};
 `;
 
 

@@ -31,7 +31,7 @@ class Agenda2063LandingHeader extends React.Component{
                     </Link>   
                 </NavbarBrand>
                 <Nav className="about-title">
-                <h5 className="display-3 mb-4 mt-2 text-center"> Agenda 2063 </h5>
+                <h5 className="display-3 mb-4 mt-2 text-center pages-title"> Agenda 2063 </h5>
                 </Nav>
                 
                 <Menu right>

@@ -970,78 +970,6 @@ font-weight: 600;
 }
 
 
-/* Media queries for responsiveness */
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (min-width: 600px) {
-  .dashboard-goal-icons {
-    position: fixed;
-    top: 190px;
-    box-shadow: 0px 0px 0px #ccc;
-    background: #fff;
-    z-index: 99;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-}
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-  .dashboard-goal-icons {
-    position: fixed;
-    top: 190px;
-    box-shadow: 0px 0px 0px #ccc;
-    background: #fff;
-    z-index: 99;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-}
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
-
-}
-
-@media only screen and (max-width: 945px) {
-  .a2063-icon-img{
-    display: none;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 1008px) {
-  .agenda2063Header .nav {
-    width: 85%;
-}
-.agenda2063Header .navbar-brand{
-  width: 10%;
-}
-.agenda2063Header img{
-  width: 160px;
-}
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  
-}
-/* Large screens ----------- */
-@media only screen and (min-width : 1600px) {
-  .agenda2063Header .a2063-icon-padding .btn {
-    padding: 5px;
-    width: 97%;
-}
-}
 
 .radial-menu-circle{
   opacity: 1 !important;
@@ -1129,7 +1057,7 @@ html, body, #root{
 }
 .a2063-goal-div{
   text-align: center;
-  padding: 30px;
+  padding: 10px;
 }
 
 .sdg-goal-div .btn,
@@ -1189,10 +1117,9 @@ html, body, #root{
   width: 36em;
   height: 36em;
     padding: 2.8em;
-    
     border: 1px solid #b5acac;
     border-radius: 50%;
-    margin: 5.75em auto 5.75em;
+    margin: 2.75em auto 5.75em;
 }
 
 .circle-container .btn {
@@ -1270,6 +1197,7 @@ html, body, #root{
   background-color: #d7d8da;
   padding: 20px;
   color: #000;
+  font-size: 14px;
 }
 
  .circle-container .btn:first-child{
@@ -1281,4 +1209,84 @@ html, body, #root{
 .read-more-button{
   color: #fb5833;
     text-decoration: underline;
+}
+
+.pages-title{
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  color: black;
+}
+
+
+/* Media queries for responsiveness */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 600px) {
+  .dashboard-goal-icons {
+    position: fixed;
+    top: 190px;
+    box-shadow: 0px 0px 0px #ccc;
+    background: #fff;
+    z-index: 99;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+      .dashboard-goal-icons {
+        position: fixed;
+        top: 190px;
+        box-shadow: 0px 0px 0px #ccc;
+        background: #fff;
+        z-index: 99;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+
+}
+
+@media only screen and (max-width: 945px) {
+  .a2063-icon-img{
+    display: none;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1008px) {
+      .agenda2063Header .nav {
+        width: 85%;
+        }
+        .agenda2063Header .navbar-brand{
+          width: 10%;
+        }
+        .agenda2063Header img{
+          width: 160px;
+        }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  
+}
+/* Large screens ----------- */
+@media only screen and (min-width : 1600px) {
+    .agenda2063Header .a2063-icon-padding .btn {
+      padding: 5px;
+      width: 97%;
+  }
 }

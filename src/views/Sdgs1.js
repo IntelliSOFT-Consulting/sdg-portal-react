@@ -593,11 +593,13 @@ function Sdgs1(props) {
         }
         setSdgTargets(targ);
         let indic = []
+        if(activSdg != 0){
         keysHardCode.forEach(function(indicator){
             if(indicator.startsWith(targ[0].code)){
                 indic.push(indicator);
             }
         })
+    }
         setIndicators(indic);
         //console.log(indic)
     }, [target, activSdg])
@@ -617,7 +619,7 @@ function Sdgs1(props) {
                 header: true,
                 complete: function(results){
                     if(isSubscribed){
-                        parseIndicatorData(target, results.data);
+                        //parseIndicatorData(target, results.data);
                         parseMapData(results.data);
                         const chartData = parseChartData(results.data)
                         filterChartData(chartData);
@@ -642,7 +644,6 @@ function Sdgs1(props) {
         })
         defaultIndicator = indi[0]
         setIndicators(indi);
-        //console.log(indi)
         setFirstIndicator(indi[0]);
     }
 
@@ -674,21 +675,28 @@ function Sdgs1(props) {
     }
 
     const parseMapData = (data) => {
-        const indicatorData = [];
+        const mapData = [];
+        let indicatorData = ''
         data.forEach(function(d){
             if(d.Year === year ){
-                indicatorData.push({
+                if(d[indicator] == ""){
+                    indicatorData = null
+                }else{
+                    indicatorData = parseInt(d[indicator])
+                }
+                mapData.push({
                     "code": d.Code,
                     "drilldown" : d.Code + "/" + d.Code + "-all",
-                    "value": d[indicator],
+                    "value": indicatorData,
                     "country": d.Entity
                 })  
             }
         })
-        console.log(indicator)
-        console.log(indicatorData)
-        setSdgMapData(indicatorData);
+
+        console.log(mapData)
+        setSdgMapData(mapData);
     }
+
     const parseChartData = (data) => {
         const indicatorData = [];
         data.forEach(function(d){

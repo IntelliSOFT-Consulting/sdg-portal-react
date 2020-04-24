@@ -31,7 +31,7 @@ class SsdgLandingHeader extends React.Component{
                     </Link>   
                 </NavbarBrand>
                 <Nav className="about-title">
-                <h5 className="display-3 mb-4 mt-2 text-center">Sustainable Development Goals</h5>
+                <h5 className="display-3 mb-4 mt-2 text-center pages-title">Sustainable Development Goals</h5>
                 </Nav>
                 
                 <Menu right>
