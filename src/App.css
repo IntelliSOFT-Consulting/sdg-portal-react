@@ -543,9 +543,7 @@ text-align: center;
 
 /* Dashboard page */
 .dashboard{
-  /* height: 100vh;
-  overflow-y: auto; */
-  padding-top: 300px;
+  padding-top: 270px;
 }
 
 .dashboard tr{
@@ -1233,11 +1231,12 @@ html, body, #root{
     padding: 0;
     justify-content: center;
 }
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
+  
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -1253,16 +1252,25 @@ html, body, #root{
         padding: 0;
         justify-content: center;
     }
+
+    .dashboard{
+      padding-top: 250px;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
-
+  .dashboard{
+    padding-top: 270px;
+  }
 }
 
 @media only screen and (max-width: 945px) {
   .a2063-icon-img{
     display: none;
+  }
+  .dashboard{
+    padding-top: 270px;
   }
 }
 
@@ -1276,6 +1284,10 @@ html, body, #root{
         }
         .agenda2063Header img{
           width: 160px;
+        }
+
+        .dashboard{
+          padding-top: 270px;
         }
 }
 
