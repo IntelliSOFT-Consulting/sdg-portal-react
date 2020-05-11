@@ -29,6 +29,9 @@ class Header extends React.Component{
                     <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
                 </Link>   
             </NavbarBrand>
+            <Nav className="about-title">
+                <h5 className="display-3 mb-4 mt-2 text-center">Data Upload</h5>
+                </Nav>
                
             <Menu right>
                 <Link to="/" className="text-white">HOME</Link> 

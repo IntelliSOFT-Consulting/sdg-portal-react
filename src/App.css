@@ -1147,7 +1147,7 @@ html, body, #root{
 .agenda2063-goals{
   text-align: left;
     font-weight: 400;
-    height: 250px;
+    max-height: 250px;
     overflow-y: scroll;
     list-style: none;
 }

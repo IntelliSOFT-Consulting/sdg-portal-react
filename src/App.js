@@ -21,6 +21,7 @@ import a2063 from "./views/a2063";
 import Agenda2063Landing from './views/a2063/Landing';
 import About from "./views/About";
 import Faqs from "./views/Faqs";
+import DataUpload from "./views/DataUpload";
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -45,6 +46,7 @@ function App() {
            
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
+            <Route path="/DataUpload" component={DataUpload}></Route>
             <Route exact path="/" component={Home}></Route>
       </Switch>
     </Router>
