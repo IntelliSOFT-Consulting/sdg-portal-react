@@ -26,10 +26,10 @@ import DataUpload from "./views/DataUpload";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faYoutube, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown)
+library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile)
 
 function App() {  
   return ( 

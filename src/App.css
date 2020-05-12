@@ -1298,3 +1298,50 @@ html, body, #root{
     padding-top: 15%;
   }
 }
+
+.files-div{
+  padding: 10px 100px;
+}
+
+.file-div{
+  padding: 10px 0px;
+}
+
+.file-div a{
+  color: #32325d;
+  padding-left: 5px;
+  font-size: 1rem;
+}
+
+.files-div label{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #32325d;
+}
+
+.uploadFilesModal .form-control{
+  font-size: 0.875rem;
+    margin: 10px 0px;
+    height: calc(2.75rem);
+}
+
+.uploadFilesModal .modal-body{
+  padding: 15px;
+}
+
+.uploadFilesModal label{
+  font-size: 0.9rem;
+  margin-top: calc(2.75rem - 20px);
+
+}
+
+/* input[type="file"] {
+  display: none;
+} */
+
+.uploadFilesModal .custom-file-upload{
+  border: 1px solid #cad1d7;
+  border-radius: 0.25rem;
+  padding: 0.625rem 0.75rem;
+  margin-top: 0px;
+}
