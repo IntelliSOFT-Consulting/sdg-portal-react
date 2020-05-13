@@ -146,7 +146,7 @@ function DataUpload(){
                             <input type="file" id="file-upload" onChange={(e) => setFile(e.target.files[0])} />
                         </Col>
                     </Row>
-                        <input type="submit" className="btn btn-warning center" name="Upload" onClick={onClickHandler}></input>
+                    <input type="submit" className="btn btn-warning center" name="Upload" onClick={onClickHandler}></input>
                        
                 </div>
 
