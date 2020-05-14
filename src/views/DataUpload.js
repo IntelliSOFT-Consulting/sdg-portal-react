@@ -62,7 +62,7 @@ function DataUpload(){
                     <label>SDGs Data</label>
                     {
                         files.map(file => {
-                            let filePath = "file: //" +  file.data.file.path;
+                            let filePath = "../" +  file.data.file.path;
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
                                     <a href = {filePath} >{file.data.file.name} </a>
@@ -75,10 +75,12 @@ function DataUpload(){
                     <label>Agenda 2063 Data</label>
                     {
                         files.map(file => {
-                            let filePath = "file: //" +  file.data.file.path;
+                            let filePath =  file.data.file.path;
+                            let url = "../" + filePath.substring(21);
+                            console.log(url);
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = {filePath} >{file.data.file.name} </a>
+                                    <a href = {url} >{file.data.file.name} </a>
                                 </div>
                         })
                     }
