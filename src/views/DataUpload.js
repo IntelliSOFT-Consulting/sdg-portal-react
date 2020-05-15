@@ -6,16 +6,13 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-//const API_BASE = "http://localhost:3000"
-
 function DataUpload(){
      
     const [file, setFile] = useState(null);
     const [files, setFiles] = useState([]);
     const [toggleModal, setOpenModal] = useState(false);
 
-    const API_BASE = "http://localhost:3001/api"
+    const API_BASE = "http://localhost:3002/api"
 
     const onClickHandler = () =>{
         const data = new FormData()
@@ -45,10 +42,25 @@ function DataUpload(){
     useEffect(() => {
         const fetchData = async() =>{
             const result = await axios(API_BASE+'/files');
+
             setFiles(result.data.data);
-            console.log("result" + result);
+            console.log(result.data.data);
         }
+
+        const harry = () => {
+            axios.get(API_BASE+'/files')
+                .then(res => res.data)
+                .then(list => console.log(list))
+
+
+        }
+
+
         fetchData();
+        console.log("Hello")
+        harry();
+
+       
 
     }, [])
 
@@ -60,14 +72,12 @@ function DataUpload(){
             <Button className="btn-warning" onClick={ () => setOpenModal(true) }>Add new data</Button>
             <Row>
                 <Col>
-                { console.log(files)}
                     <label>SDGs Data</label>
                     {
                         files.map(file => {
-                           
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = "" > File </a>
+                                    <a href ="" > Ho </a>
                                 </div>
                         })
                     }
@@ -79,7 +89,7 @@ function DataUpload(){
                         files.map(file => {
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = "" > File </a>
+                                    <a href ="" > Ho </a>
                                 </div>
                         })
                     }
@@ -91,7 +101,7 @@ function DataUpload(){
                         files.map(file => {
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = "" > File </a>
+                                    <a href ="" > Ho </a>
                                 </div>
                         })
                     }
@@ -103,7 +113,7 @@ function DataUpload(){
                         files.map(file => {
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = "" > File </a>
+                                    <a href ="" > Ho </a>
                                 </div>
                         })
                     }
@@ -152,8 +162,6 @@ function DataUpload(){
             </Modal>
 
         </div>
-        
-       
 
         </>
     )
