@@ -15,7 +15,7 @@ function DataUpload(){
     const [files, setFiles] = useState([]);
     const [toggleModal, setOpenModal] = useState(false);
 
-    const API_BASE = "http://localhost:3000/api"
+    const API_BASE = "http://localhost:3001/api"
 
     const onClickHandler = () =>{
         const data = new FormData()
@@ -46,9 +46,10 @@ function DataUpload(){
         const fetchData = async() =>{
             const result = await axios(API_BASE+'/files');
             setFiles(result.data.data);
-            console.log(result.data.data);
+            console.log("result" + result);
         }
         fetchData();
+
     }, [])
 
 
@@ -59,13 +60,14 @@ function DataUpload(){
             <Button className="btn-warning" onClick={ () => setOpenModal(true) }>Add new data</Button>
             <Row>
                 <Col>
+                { console.log(files)}
                     <label>SDGs Data</label>
                     {
                         files.map(file => {
-                            let filePath = "../" +  file.data.file.path;
+                           
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = {filePath} >{file.data.file.name} </a>
+                                    <a href = "" > File </a>
                                 </div>
                         })
                     }
@@ -75,12 +77,9 @@ function DataUpload(){
                     <label>Agenda 2063 Data</label>
                     {
                         files.map(file => {
-                            let filePath =  file.data.file.path;
-                            let url = "../" + filePath.substring(21);
-                            console.log(url);
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = {url} >{file.data.file.name} </a>
+                                    <a href = "" > File </a>
                                 </div>
                         })
                     }
@@ -90,10 +89,9 @@ function DataUpload(){
                     <label>Dashboard Data</label>
                     {
                         files.map(file => {
-                            let filePath = "file: //" +  file.data.file.path;
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = {filePath} >{file.data.file.name} </a>
+                                    <a href = "" > File </a>
                                 </div>
                         })
                     }
@@ -103,10 +101,9 @@ function DataUpload(){
                     <label>Country Profile Data</label>
                     {
                         files.map(file => {
-                            let filePath = "file: //" +  file.data.file.path;
                             return <div className="file-div" key={file.Id}>
                                     <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href = {filePath} >{file.data.file.name} </a>
+                                    <a href = "" > File </a>
                                 </div>
                         })
                     }
