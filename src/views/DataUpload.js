@@ -2,14 +2,23 @@ import React, { useState, useEffect } from "react";
 import Header from '../components/header';
 import axios from 'axios';
 import {
-    Container, Row, Col, Button, Modal, Card, CardBody, CardHeader
+    Container, Row, Col, Button, Modal, Card, CardBody, CardHeader, Table, Input
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function DataUpload(){
      
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [years, setYears] = useState([2019, 2018, 2017]);
+    const [year, setYear] = useState(0);
+
+    const [pages, setPages] = useState(['SDG', 'Agenda 2063', 'Country Profile', 'Dashboard']);
+    const [page, setPage] = useState('');
+
     const [file, setFile] = useState(null);
     const [files, setFiles] = useState([]);
+
     const [toggleModal, setOpenModal] = useState(false);
 
     const API_BASE = "http://localhost:3002/api"
@@ -17,9 +26,13 @@ function DataUpload(){
     const onClickHandler = () =>{
         const data = new FormData()
         data.append('file', file)
-        data.append("title", "Title");
-        data.append("description", "Description")
-        console.log(data)
+        data.append("title", title);
+        data.append("description", description);
+        data.append("page", page);
+        data.append("year", year);
+        console.log(page, title, year, description);
+
+        //console.log(data)
 
         submitForm("multipart/form-data", data, (msg) => console.log(msg) )
     }
@@ -39,84 +52,160 @@ function DataUpload(){
             })
     }
 
-    useEffect(() => {
-        const fetchData = async() =>{
+        useEffect(() => {
+            const fetchData = async() =>{
             const result = await axios(API_BASE+'/files');
-
             setFiles(result.data.data);
             console.log(result.data.data);
+            }
+
+            fetchData();
+
+        }, [])
+
+
+        const openModal = (e) =>{
+            setOpenModal(true);
+            setPage(e.target.value);
         }
-
-        const harry = () => {
-            axios.get(API_BASE+'/files')
-                .then(res => res.data)
-                .then(list => console.log(list))
-
-
-        }
-
-
-        fetchData();
-        console.log("Hello")
-        harry();
-
-       
-
-    }, [])
 
 
     return (
         <>
         <Header></Header>
         <div className="container-fluid files-div" >
-            <Button className="btn-warning" onClick={ () => setOpenModal(true) }>Add new data</Button>
+            {/* <Button className="btn-warning" onClick={ () => setOpenModal(true) }>Add new data</Button> */}
             <Row>
-                <Col>
-                    <label>SDGs Data</label>
-                    {
-                        files.map(file => {
-                            return <div className="file-div" key={file.Id}>
-                                    <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href ="" > Ho </a>
-                                </div>
-                        })
-                    }
+                <Col md="6">
+                    <Card>
+                        <CardBody>
+                        <h3>SDGs Data</h3>
+                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
+                            <Table>
+                                <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    files.map(file => {
+                                        return <tr className="file-div" key={file.Id}>
+                                                    <td> <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon> </td>
+                                                    <td> {file.title} </td>   
+                                                    <td> {file.createdAt} </td>
+                                                    <td> </td>
+                                            </tr>
+                                    })
+                                }
+                                </tbody>
+                            </Table>
+                                
+                        </CardBody>
+                    </Card>
+                   
                 </Col>
 
-                <Col>
-                    <label>Agenda 2063 Data</label>
-                    {
-                        files.map(file => {
-                            return <div className="file-div" key={file.Id}>
-                                    <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href ="" > Ho </a>
-                                </div>
-                        })
-                    }
+                <Col md="6">
+                    <Card>
+                        <CardBody>
+                        <h3>SDGs Data</h3>
+                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
+                            <Table>
+                                <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    files.map(file => {
+                                        return <tr className="file-div" key={file.Id}>
+                                                    <td> <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon> </td>
+                                                    <td> {file.title} </td>   
+                                                    <td> {file.createdAt} </td>
+                                                    <td> </td>
+                                            </tr>
+                                    })
+                                }
+                                </tbody>
+                            </Table>
+                                
+                        </CardBody>
+                    </Card>
+                   
                 </Col>
 
-                <Col>
-                    <label>Dashboard Data</label>
-                    {
-                        files.map(file => {
-                            return <div className="file-div" key={file.Id}>
-                                    <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href ="" > Ho </a>
-                                </div>
-                        })
-                    }
+                <Col md="6">
+                    <Card>
+                        <CardBody>
+                        <h3>SDGs Data</h3>
+                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
+                            <Table>
+                                <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    files.map(file => {
+                                        return <tr className="file-div" key={file.Id}>
+                                                    <td> <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon> </td>
+                                                    <td> {file.title} </td>   
+                                                    <td> {file.createdAt} </td>
+                                                    <td> </td>
+                                            </tr>
+                                    })
+                                }
+                                </tbody>
+                            </Table>
+                                
+                        </CardBody>
+                    </Card>
+                   
                 </Col>
 
-                <Col>
-                    <label>Country Profile Data</label>
-                    {
-                        files.map(file => {
-                            return <div className="file-div" key={file.Id}>
-                                    <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon>
-                                    <a href ="" > Ho </a>
-                                </div>
-                        })
-                    }
+                <Col md="6">
+                    <Card>
+                        <CardBody>
+                        <h3>SDGs Data</h3>
+                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
+                            <Table>
+                                <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    files.map(file => {
+                                        return <tr className="file-div" key={file.Id}>
+                                                    <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
+                                                    <td> {file.title} </td>   
+                                                    <td> {file.createdAt} </td>
+                                                    <td> </td>
+                                            </tr>
+                                    })
+                                }
+                                </tbody>
+                            </Table>
+                                
+                        </CardBody>
+                    </Card>
+                   
                 </Col>
             </Row>
 
@@ -131,10 +220,10 @@ function DataUpload(){
                 <div className="modal-body">
                     <Row>
                         <Col md="2">
-                            <label>Title</label>
+                        <label>Title</label>
                         </Col>
                         <Col>
-                            <input type="text" className="form-control" name="title"></input>
+                            <input type="text" className="form-control" name="title" onChange={ e => setTitle(e.target.value) }></input>
                         </Col>
                     </Row>
                     <Row>
@@ -142,9 +231,45 @@ function DataUpload(){
                         <label>Description</label>
                         </Col>
                         <Col>
-                            <input type="text" className="form-control" name="description"></input>
+                            <input type="text" className="form-control" name="description" onChange={ e => setDescription(e.target.value) }></input>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col>
+                            <Row>
+                                <Col md="4">
+                                <label>Page</label>
+                                </Col>
+                                <Col>
+                                    <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page}>
+                                        {
+                                            pages.map((page, index) => {
+                                                return <option value={page}> {page} </option>
+                                            })
+                                        }
+                                    </Input>
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <Col>
+                            <Row>
+                                <Col md="2">
+                                <label>Year</label>
+                                </Col>
+                                <Col>
+                                    <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year}>
+                                        {
+                                            years.map((year, index) => {
+                                                return <option value = {year}> {year} </option>
+                                            })
+                                        }
+                                    </Input>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                   
                     <Row>
                         <Col md="2">
                         <label>File</label>

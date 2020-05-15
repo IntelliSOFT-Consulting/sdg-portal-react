@@ -1345,3 +1345,33 @@ html, body, #root{
   padding: 0.625rem 0.75rem;
   margin-top: 0px;
 }
+
+.files-div  .card h3{
+  text-align: center;
+    font-weight: 600;
+}
+
+.files-div .card{
+  padding: 20px;
+  margin: 10px;
+}
+
+.files-div .card  .btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.uploadFilesModal .btn:not(:disabled):not(.disabled){
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.files-div .table{
+  margin-top: 20px;
+}
+
+.files-div .table td, .table th{
+  width: max-content;
+  padding: 1px;
+}
