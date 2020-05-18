@@ -5,6 +5,7 @@ import {
     Container, Row, Col, Button, Modal, Card, CardBody, CardHeader, Table, Input
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Spinner from "../visualizations/spinner";
 
 function DataUpload(){
      
@@ -20,10 +21,12 @@ function DataUpload(){
     const [files, setFiles] = useState([]);
 
     const [toggleModal, setOpenModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const API_BASE = "http://localhost:3002/api"
 
     const onClickHandler = () =>{
+        isLoading(true);
         const data = new FormData()
         data.append('file', file)
         data.append("title", title);
@@ -42,13 +45,14 @@ function DataUpload(){
             url: `${API_BASE}/files`,
             method: 'POST',
             data: data,
-            headers: {
-            'Content-Type': contentType
-            }
-            }).then((response) => {
-            setResponse(response.data);
+            headers: { 'Content-Type': contentType }
+            })
+            .then((response) => {
+                setResponse(response.data);
+                isLoading(false);
+                setOpenModal(false);
             }).catch((error) => {
-            setResponse("error");
+                setResponse("error");
             })
     }
 
@@ -93,111 +97,123 @@ function DataUpload(){
                                 <tbody>
                                 {
                                     files.map(file => {
-                                        return <tr className="file-div" key={file.Id}>
-                                                    <td> <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon> </td>
-                                                    <td> {file.title} </td>   
-                                                    <td> {file.createdAt} </td>
-                                                    <td> </td>
-                                            </tr>
-                                    })
-                                }
-                                </tbody>
-                            </Table>
-                                
-                        </CardBody>
-                    </Card>
-                   
-                </Col>
-
-                <Col md="6">
-                    <Card>
-                        <CardBody>
-                        <h3>SDGs Data</h3>
-                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
-                            <Table>
-                                <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    files.map(file => {
-                                        return <tr className="file-div" key={file.Id}>
-                                                    <td> <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon> </td>
-                                                    <td> {file.title} </td>   
-                                                    <td> {file.createdAt} </td>
-                                                    <td> </td>
-                                            </tr>
-                                    })
-                                }
-                                </tbody>
-                            </Table>
-                                
-                        </CardBody>
-                    </Card>
-                   
-                </Col>
-
-                <Col md="6">
-                    <Card>
-                        <CardBody>
-                        <h3>SDGs Data</h3>
-                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
-                            <Table>
-                                <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    files.map(file => {
-                                        return <tr className="file-div" key={file.Id}>
-                                                    <td> <FontAwesomeIcon icon="file" size="lg"></FontAwesomeIcon> </td>
-                                                    <td> {file.title} </td>   
-                                                    <td> {file.createdAt} </td>
-                                                    <td> </td>
-                                            </tr>
-                                    })
-                                }
-                                </tbody>
-                            </Table>
-                                
-                        </CardBody>
-                    </Card>
-                   
-                </Col>
-
-                <Col md="6">
-                    <Card>
-                        <CardBody>
-                        <h3>SDGs Data</h3>
-                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
-                            <Table>
-                                <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    files.map(file => {
-                                        return <tr className="file-div" key={file.Id}>
+                                        if(file.page == 'SDG'){
+                                            return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> {file.createdAt} </td>
                                                     <td> </td>
                                             </tr>
+                                        }
+                                        
+                                    })
+                                }
+                                </tbody>
+                            </Table>
+                                
+                        </CardBody>
+                    </Card>
+                   
+                </Col>
+
+                <Col md="6">
+                    <Card>
+                        <CardBody>
+                        <h3>Agenda 2063 Data</h3>
+                            <Button className="btn-warning center" value="Agenda 2063" onClick={ openModal }>Add new data</Button>
+                            <Table>
+                                <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    files.map(file => {
+                                        if(file.page == 'Agenda 2063'){
+                                            return <tr className="file-div" key={file.Id}>
+                                                    <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
+                                                    <td> {file.title} </td>   
+                                                    <td> {file.createdAt} </td>
+                                                    <td> </td>
+                                            </tr>
+                                        }
+                                        
+                                    })
+                                }
+                                </tbody>
+                            </Table>
+                                
+                        </CardBody>
+                    </Card>
+                   
+                </Col>
+
+                <Col md="6">
+                    <Card>
+                        <CardBody>
+                        <h3>Country Profile Data</h3>
+                            <Button className="btn-warning center" value="Country Profile" onClick={ openModal }>Add new data</Button>
+                            <Table>
+                                <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    files.map(file => {
+                                        if(file.page == 'Country Profile'){
+                                            return <tr className="file-div" key={file.Id}>
+                                                    <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
+                                                    <td> {file.title} </td>   
+                                                    <td> {file.createdAt} </td>
+                                                    <td> </td>
+                                            </tr>
+                                        }
+                                        
+                                    })
+                                }
+                                </tbody>
+                            </Table>
+                                
+                        </CardBody>
+                    </Card>
+                   
+                </Col>
+
+                <Col md="6">
+                    <Card>
+                        <CardBody>
+                        <h3>Dashboard Data</h3>
+                            <Button className="btn-warning center" value="Dashboard" onClick={ openModal }>Add new data</Button>
+                            <Table>
+                                <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    files.map(file => {
+                                        if(file.page == 'Dashboard'){
+                                            return <tr className="file-div" key={file.Id}>
+                                                    <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
+                                                    <td> {file.title} </td>   
+                                                    <td> {file.createdAt} </td>
+                                                    <td> </td>
+                                            </tr>
+                                        }
+                                        
                                     })
                                 }
                                 </tbody>
@@ -280,7 +296,13 @@ function DataUpload(){
                             <input type="file" id="file-upload" onChange={(e) => setFile(e.target.files[0])} />
                         </Col>
                     </Row>
-                    <input type="submit" className="btn btn-warning center" name="Upload" onClick={onClickHandler}></input>
+                    <input type="submit" className="btn btn-warning center" name="Upload" onClick={onClickHandler}>
+                    {
+                            isLoading ? (
+                                <FontAwesomeIcon icon="spinner"></FontAwesomeIcon>
+                            ): null
+                        }
+                    </input>
                        
                 </div>
 
