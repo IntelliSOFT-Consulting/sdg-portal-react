@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Header from '../components/header';
+import Header from '../components/dataUploadHeader';
 import axios from 'axios';
 import {
     Container, Row, Col, Button, Modal, Card, CardBody, CardHeader, Table, Input
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Spinner from "../visualizations/spinner";
+import Moment from 'react-moment';
 
 function DataUpload(){
      
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [years, setYears] = useState([2019, 2018, 2017]);
-    const [year, setYear] = useState(0);
+    const [year, setYear] = useState(2019);
 
     const [pages, setPages] = useState(['SDG', 'Agenda 2063', 'Country Profile', 'Dashboard']);
     const [page, setPage] = useState('');
@@ -26,16 +27,15 @@ function DataUpload(){
     const API_BASE = "http://localhost:3002/api"
 
     const onClickHandler = () =>{
-        isLoading(true);
+        //Set button spinner
+        setIsLoading(true);
+
         const data = new FormData()
         data.append('file', file)
         data.append("title", title);
         data.append("description", description);
         data.append("page", page);
         data.append("year", year);
-        console.log(page, title, year, description);
-
-        //console.log(data)
 
         submitForm("multipart/form-data", data, (msg) => console.log(msg) )
     }
@@ -49,36 +49,35 @@ function DataUpload(){
             })
             .then((response) => {
                 setResponse(response.data);
-                isLoading(false);
+                //Remove button spinner
+                setIsLoading(false);
+
+                //Close modal
                 setOpenModal(false);
             }).catch((error) => {
                 setResponse("error");
             })
     }
 
-        useEffect(() => {
-            const fetchData = async() =>{
+    useEffect(() => {
+        const fetchData = async() =>{
             const result = await axios(API_BASE+'/files');
             setFiles(result.data.data);
-            console.log(result.data.data);
-            }
-
-            fetchData();
-
-        }, [])
-
-
-        const openModal = (e) =>{
-            setOpenModal(true);
-            setPage(e.target.value);
         }
+        fetchData();
+
+    }, [isLoading])
+
+    const openModal = (e) =>{
+        setOpenModal(true);
+        setPage(e.target.value);
+    }
 
 
     return (
         <>
         <Header></Header>
-        <div className="container-fluid files-div" >
-            {/* <Button className="btn-warning" onClick={ () => setOpenModal(true) }>Add new data</Button> */}
+        <div className="container-fluid files-div">
             <Row>
                 <Col md="6">
                     <Card>
@@ -101,7 +100,11 @@ function DataUpload(){
                                             return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
-                                                    <td> {file.createdAt} </td>
+                                                    <td> 
+                                                        <Moment format="DD/MM/YYYY HH:mm">
+                                                            {file.createdAt}
+                                                        </Moment>
+                                                    </td>
                                                     <td> </td>
                                             </tr>
                                         }
@@ -109,11 +112,9 @@ function DataUpload(){
                                     })
                                 }
                                 </tbody>
-                            </Table>
-                                
+                            </Table>   
                         </CardBody>
                     </Card>
-                   
                 </Col>
 
                 <Col md="6">
@@ -137,19 +138,20 @@ function DataUpload(){
                                             return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
-                                                    <td> {file.createdAt} </td>
+                                                    <td> 
+                                                        <Moment format="DD/MM/YYYY HH:mm">
+                                                            {file.createdAt}
+                                                        </Moment>
+                                                    </td>
                                                     <td> </td>
                                             </tr>
                                         }
-                                        
                                     })
                                 }
                                 </tbody>
                             </Table>
-                                
                         </CardBody>
                     </Card>
-                   
                 </Col>
 
                 <Col md="6">
@@ -173,19 +175,20 @@ function DataUpload(){
                                             return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
-                                                    <td> {file.createdAt} </td>
+                                                    <td> 
+                                                        <Moment format="DD/MM/YYYY HH:mm">
+                                                            {file.createdAt}
+                                                        </Moment>
+                                                    </td>
                                                     <td> </td>
                                             </tr>
                                         }
-                                        
                                     })
                                 }
                                 </tbody>
                             </Table>
-                                
                         </CardBody>
                     </Card>
-                   
                 </Col>
 
                 <Col md="6">
@@ -209,16 +212,18 @@ function DataUpload(){
                                             return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
-                                                    <td> {file.createdAt} </td>
+                                                    <td> 
+                                                        <Moment format="DD/MM/YYYY HH:mm">
+                                                            {file.createdAt}
+                                                        </Moment>
+                                                    </td>
                                                     <td> </td>
                                             </tr>
                                         }
-                                        
                                     })
                                 }
                                 </tbody>
                             </Table>
-                                
                         </CardBody>
                     </Card>
                    
@@ -251,7 +256,7 @@ function DataUpload(){
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col md="8"> 
                             <Row>
                                 <Col md="4">
                                 <label>Page</label>
@@ -268,7 +273,7 @@ function DataUpload(){
                             </Row>
                         </Col>
 
-                        <Col>
+                        <Col md="4">
                             <Row>
                                 <Col md="2">
                                 <label>Year</label>
@@ -292,17 +297,20 @@ function DataUpload(){
                             
                         </Col>
                         <Col>
-                            {/* <label for="file-upload" className="custom-file-upload">Choose file to upload</label> */}
-                            <input type="file" id="file-upload" onChange={(e) => setFile(e.target.files[0])} />
+                            <input type="file" id="file-upload" accept=".csv" onChange={(e) => setFile(e.target.files[0])} />
                         </Col>
                     </Row>
-                    <input type="submit" className="btn btn-warning center" name="Upload" onClick={onClickHandler}>
+
                     {
-                            isLoading ? (
-                                <FontAwesomeIcon icon="spinner"></FontAwesomeIcon>
-                            ): null
-                        }
-                    </input>
+                        isLoading ? (
+                            <Button className="btn btn-warning center">
+                                <FontAwesomeIcon icon="spinner"></FontAwesomeIcon> Uploading
+                            </Button>
+                        ):(
+                            <input type="submit" className="btn btn-warning center" name="Upload" onClick={onClickHandler}/>
+                        )
+                    }
+                  
                        
                 </div>
 

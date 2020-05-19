@@ -25,6 +25,7 @@
     "highcharts-react-official": "^2.2.2",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
+    "moment": "^2.25.3",
     "node-sass": "^4.14.1",
     "nouislider": "^14.1.1",
     "papaparse": "^5.1.0",
@@ -37,6 +38,7 @@
     "react-checkbox-tree": "^1.6.0",
     "react-dom": "^16.12.0",
     "react-gauge-chart": "^0.2.4",
+    "react-moment": "^0.9.7",
     "react-multiselect-checkboxes": "^0.1.1",
     "react-pie-menu": "^0.2.5",
     "react-radial-menu": "^1.0.0",
@@ -56,7 +58,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start" :"npm run build && (cd sdg-portal-api && npm start)"
+    "start": "npm run build && (cd sdg-portal-api && npm start)"
   },
   "eslintConfig": {
     "extends": "react-app"
