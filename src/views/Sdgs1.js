@@ -749,6 +749,8 @@ function Sdgs1(props) {
         setLineChartData(countryData);
     }
 
+    
+
     //Choose SDG
     const handleSdgChange = (sdg) => {
         setActiveSdg(sdg);
@@ -807,6 +809,7 @@ function Sdgs1(props) {
         setOpenModal(false);
     }
     const handleCountryChange = (event) => {
+        console.log(activSdg);
         setCountry(event.target.value);
     }
     const handleCheck = (event) => {

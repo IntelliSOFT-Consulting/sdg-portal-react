@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Header from '../components/dataUploadHeader';
 import axios from 'axios';
 import {
-    Container, Row, Col, Button, Modal, Card, CardBody, CardHeader, Table, Input
+    Container, Row, Col, Button, Modal, Card, CardBody, CardHeader, Table, Input, Form
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Spinner from "../visualizations/spinner";
 import Moment from 'react-moment';
+import CsvInterface from '../components/csvviewer/csvInterface';
 
 function DataUpload(){
      
@@ -14,11 +14,17 @@ function DataUpload(){
     const [description, setDescription] = useState('');
     const [years, setYears] = useState([2019, 2018, 2017]);
     const [year, setYear] = useState(2019);
+    const [yearFrom, setYearFrom] = useState(0);
+    const [yearTo, setYearTo] = useState(0);
 
     const [pages, setPages] = useState(['SDG', 'Agenda 2063', 'Country Profile', 'Dashboard']);
     const [page, setPage] = useState('');
 
-    const [file, setFile] = useState(null);
+    const dataSources = ['Global Database', 'Pan African Database'];
+    const [dataSource, setDataSource] = useState('Global Database');
+
+    const [file, setFile] = useState([]);
+    const [fileData, setFileData] = useState([]);
     const [files, setFiles] = useState([]);
 
     const [toggleModal, setOpenModal] = useState(false);
@@ -26,9 +32,16 @@ function DataUpload(){
 
     const API_BASE = "http://localhost:3002/api"
 
+    const handleFileData = (fileData) =>{
+        console.log(fileData)
+        setFileData(fileData)
+    }
+
     const onClickHandler = () =>{
         //Set button spinner
         setIsLoading(true);
+        console.log(fileData);
+        const dummyData = [{"Country": "Kenya", "id": "2"},{"Country": "Uganda", "id": "1"} ]
 
         const data = new FormData()
         data.append('file', file)
@@ -36,9 +49,12 @@ function DataUpload(){
         data.append("description", description);
         data.append("page", page);
         data.append("year", year);
+        data.append("fileData", JSON.stringify(fileData));
 
         submitForm("multipart/form-data", data, (msg) => console.log(msg) )
     }
+
+    
 
     const submitForm = (contentType, data, setResponse) =>{
         axios({
@@ -48,6 +64,7 @@ function DataUpload(){
             headers: { 'Content-Type': contentType }
             })
             .then((response) => {
+                console.log(data);
                 setResponse(response.data);
                 //Remove button spinner
                 setIsLoading(false);
@@ -73,7 +90,6 @@ function DataUpload(){
         setPage(e.target.value);
     }
 
-
     return (
         <>
         <Header></Header>
@@ -87,10 +103,10 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
+                                            <th width="5%"></th>
+                                            <th width="20%">File name</th>
+                                            <th width="15%">Date added</th>
+                                            <th width="25%">Added by</th>
                                         </tr>
                                 </thead>
                                 <tbody>
@@ -117,18 +133,18 @@ function DataUpload(){
                     </Card>
                 </Col>
 
-                <Col md="6">
+                 <Col md="6">
                     <Card>
                         <CardBody>
                         <h3>Agenda 2063 Data</h3>
-                            <Button className="btn-warning center" value="Agenda 2063" onClick={ openModal }>Add new data</Button>
+                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
                             <Table>
                                 <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
+                                            <th width="5%"></th>
+                                            <th width="20%">File name</th>
+                                            <th width="15%">Date added</th>
+                                            <th width="25%">Added by</th>
                                         </tr>
                                 </thead>
                                 <tbody>
@@ -146,10 +162,11 @@ function DataUpload(){
                                                     <td> </td>
                                             </tr>
                                         }
+                                        
                                     })
                                 }
                                 </tbody>
-                            </Table>
+                            </Table>   
                         </CardBody>
                     </Card>
                 </Col>
@@ -161,12 +178,12 @@ function DataUpload(){
                             <Button className="btn-warning center" value="Country Profile" onClick={ openModal }>Add new data</Button>
                             <Table>
                                 <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
-                                        </tr>
+                                <tr>
+                                    <th width="5%"></th>
+                                    <th width="20%">File name</th>
+                                    <th width="15%">Date added</th>
+                                    <th width="25%">Added by</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 {
@@ -198,12 +215,12 @@ function DataUpload(){
                             <Button className="btn-warning center" value="Dashboard" onClick={ openModal }>Add new data</Button>
                             <Table>
                                 <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
-                                        </tr>
+                                <tr>
+                                    <th width="5%"></th>
+                                    <th width="20%">File name</th>
+                                    <th width="15%">Date added</th>
+                                    <th width="25%">Added by</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 {
@@ -239,69 +256,81 @@ function DataUpload(){
                     </button>    
                 </div>
                 <div className="modal-body">
-                    <Row>
-                        <Col md="2">
+
+                    <Form>
                         <label>Title</label>
-                        </Col>
-                        <Col>
-                            <input type="text" className="form-control" name="title" onChange={ e => setTitle(e.target.value) }></input>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="2">
+                        <input type="text" className="form-control" name="title" onChange={ e => setTitle(e.target.value)} required/>
+
                         <label>Description</label>
-                        </Col>
-                        <Col>
-                            <input type="text" className="form-control" name="description" onChange={ e => setDescription(e.target.value) }></input>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="8"> 
-                            <Row>
-                                <Col md="4">
-                                <label>Page</label>
-                                </Col>
-                                <Col>
-                                    <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page}>
-                                        {
-                                            pages.map((page, index) => {
-                                                return <option value={page}> {page} </option>
-                                            })
-                                        }
-                                    </Input>
-                                </Col>
+                        <input type="text" className="form-control" name="description" onChange={ e => setDescription(e.target.value)} required/>
+                        {
+                            page === 'SDG' || page === 'Agenda 2063' ? (
+                                <Row>
+                                    <Col md="6">
+                                        <label>Page</label>
+                                        <Input type="select" name="page" value={page} onChange={ e=> setPage(e.target.value) }>
+                                            {
+                                                pages.map((page, index) => {
+                                                    return <option value={page}> {page} </option>
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                    <Col md="6">
+                                        <label>Data source</label>
+                                        <Input type="select" name="dataSourceSelect" onChange={ e => setDataSource(e.target.value) } value={dataSource} >
+                                            {
+                                                dataSources.map((dataSource, index) => {
+                                                    return <option value = {dataSource}> {dataSource} </option>
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                    
+                                    <Col md="6">
+                                        <label>Year from</label>
+                                        <Input type="text" name="yearFrom" required></Input> 
+                                    </Col>
+                                    
+                                    <Col md="6">
+                                        <label>Year to</label>
+                                        <Input type="text" name="yearTo" required></Input>
+                                    </Col>
+                                    
                             </Row>
-                        </Col>
+                            ):(
+                                <Row>
+                                    <Col md="6">
+                                        <label>Page</label>
+                                        <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page} >
+                                            {
+                                                pages.map((page, index) => {
+                                                    return <option value={page}> {page} </option>
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                    <Col md="6">
+                                        <label>Year</label>
+                                        <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year} >
+                                            {
+                                                years.map((year, index) => {
+                                                    return <option value = {year}> {year} </option>
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                    
+                                </Row>
+                            )
+                        }
 
-                        <Col md="4">
-                            <Row>
-                                <Col md="2">
-                                <label>Year</label>
-                                </Col>
-                                <Col>
-                                    <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year}>
-                                        {
-                                            years.map((year, index) => {
-                                                return <option value = {year}> {year} </option>
-                                            })
-                                        }
-                                    </Input>
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
-                   
-                    <Row>
-                        <Col md="2">
                         <label>File</label>
-                            
-                        </Col>
-                        <Col>
-                            <input type="file" id="file-upload" accept=".csv" onChange={(e) => setFile(e.target.files[0])} />
-                        </Col>
-                    </Row>
-
-                    {
+                        <CsvInterface handleSetFileData={ handleFileData }/>    
+                        {/* <Input type="file" id="file-upload" accept=".csv" 
+                                onChange={(e) => setFile(e.target.files[0])} required></Input> */}
+                       
+                        {
                         isLoading ? (
                             <Button className="btn btn-warning center">
                                 <FontAwesomeIcon icon="spinner"></FontAwesomeIcon> Uploading
@@ -310,8 +339,7 @@ function DataUpload(){
                             <input type="submit" className="btn btn-warning center" name="Upload" onClick={onClickHandler}/>
                         )
                     }
-                  
-                       
+                    </Form>
                 </div>
 
             </Modal>

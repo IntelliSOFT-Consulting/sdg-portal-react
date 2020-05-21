@@ -890,7 +890,7 @@ font-weight: 600;
   color: #4267b2;
 }
 
-.table th, .table td {
+.dashboard  .table th, .table td {
   padding: 1rem; 
   vertical-align: top;
 }
@@ -955,7 +955,7 @@ font-weight: 600;
 }
 
 
-.table th, .table td {
+.dashboardCard .table th, .table td {
   padding: 0rem;
   vertical-align: top;
   border-top: 0rem solid #dee2e6;
@@ -1321,23 +1321,14 @@ html, body, #root{
 
 .uploadFilesModal .form-control{
   font-size: 0.875rem;
-    margin: 10px 0px;
-    height: calc(2.75rem);
+  /* margin: 10px 0px; */
+  height: calc(2.75rem);
+  margin-bottom: 10px;
 }
 
 .uploadFilesModal .modal-body{
   padding: 15px;
 }
-
-.uploadFilesModal label{
-  font-size: 0.9rem;
-  margin-top: calc(2.75rem - 20px);
-
-}
-
-/* input[type="file"] {
-  display: none;
-} */
 
 .uploadFilesModal .custom-file-upload{
   border: 1px solid #cad1d7;
@@ -1371,7 +1362,7 @@ html, body, #root{
   margin-top: 20px;
 }
 
-.files-div .table td, .table th{
-  width: max-content;
-  padding: 1px;
+
+.files-div .modal-dialog{
+  padding-top: 150px;
 }
