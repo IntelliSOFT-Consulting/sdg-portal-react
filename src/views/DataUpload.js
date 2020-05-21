@@ -137,7 +137,7 @@ function DataUpload(){
                     <Card>
                         <CardBody>
                         <h3>Agenda 2063 Data</h3>
-                            <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
+                            <Button className="btn-warning center" value="Agenda 2063" onClick={ openModal }>Add new data</Button>
                             <Table>
                                 <thead>
                                         <tr>
@@ -198,6 +198,9 @@ function DataUpload(){
                                                         </Moment>
                                                     </td>
                                                     <td> </td>
+                                                    <td>
+                                                    <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
+                                                    </td>
                                             </tr>
                                         }
                                     })
@@ -247,7 +250,7 @@ function DataUpload(){
                 </Col>
             </Row>
 
-            <Modal className="uploadFilesModal" isOpen={toggleModal} toggle={toggleModal}>
+            <Modal className="uploadFilesModal modal-lg" isOpen={toggleModal} toggle={toggleModal}>
                 <div className="modal-header">
                 <h5 className="countryName" cssModule={{'modal-title': 'w-100 text-center'}}>Add new data</h5>
                     <button aria-label="Close" className="close" data-dismiss="modal" type="button"
@@ -266,7 +269,7 @@ function DataUpload(){
                         {
                             page === 'SDG' || page === 'Agenda 2063' ? (
                                 <Row>
-                                    <Col md="6">
+                                    <Col md="3">
                                         <label>Page</label>
                                         <Input type="select" name="page" value={page} onChange={ e=> setPage(e.target.value) }>
                                             {
@@ -276,7 +279,7 @@ function DataUpload(){
                                             }
                                         </Input>
                                     </Col>
-                                    <Col md="6">
+                                    <Col md="3">
                                         <label>Data source</label>
                                         <Input type="select" name="dataSourceSelect" onChange={ e => setDataSource(e.target.value) } value={dataSource} >
                                             {
@@ -287,12 +290,12 @@ function DataUpload(){
                                         </Input>
                                     </Col>
                                     
-                                    <Col md="6">
+                                    <Col md="3">
                                         <label>Year from</label>
                                         <Input type="text" name="yearFrom" required></Input> 
                                     </Col>
                                     
-                                    <Col md="6">
+                                    <Col md="3">
                                         <label>Year to</label>
                                         <Input type="text" name="yearTo" required></Input>
                                     </Col>
@@ -300,7 +303,7 @@ function DataUpload(){
                             </Row>
                             ):(
                                 <Row>
-                                    <Col md="6">
+                                    <Col md="3">
                                         <label>Page</label>
                                         <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page} >
                                             {
@@ -310,7 +313,7 @@ function DataUpload(){
                                             }
                                         </Input>
                                     </Col>
-                                    <Col md="6">
+                                    <Col md="3">
                                         <label>Year</label>
                                         <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year} >
                                             {

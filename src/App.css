@@ -1366,3 +1366,12 @@ html, body, #root{
 .files-div .modal-dialog{
   padding-top: 150px;
 }
+
+.ReactTable{
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+.ReactTable .rt-td, .ReactTable .rt-th {
+  padding: 6px 5px;
+}
