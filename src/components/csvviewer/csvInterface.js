@@ -3,17 +3,21 @@ import Papa from "papaparse";
 import "react-table/react-table.css";
 import ReactTable from "react-table";
 import CsvInput from './csvInput.js';
+import Spinner from '../../visualizations/spinner';
 
 function Interface( {handleSetFileData} ) {
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+      console.log(loading);
+
     if (data.length && columns.length) setLoading(false);
   }, [data, columns]);
 
   const handleFileChange = file => {
+    setLoading(true);
     Papa.parse(file, {
       header: true,
       dynamicTyping: true,
@@ -36,14 +40,17 @@ function Interface( {handleSetFileData} ) {
   return (
     <div>
       <CsvInput handleFileChange={handleFileChange} data={data} />
-      {!loading && (
+      { !loading && data.length && columns.length ? (
         <ReactTable
           data={data}
           columns={columns}
           defaultPageSize={10}
           className="-striped -highlight"
         />
-      )}
+      ) : loading ? (
+        <Spinner></Spinner>
+      ) :null
+      }
     </div>
   );
 }

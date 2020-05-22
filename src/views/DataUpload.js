@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Moment from 'react-moment';
 import CsvInterface from '../components/csvviewer/csvInterface';
+import { CSVLink, CSVDownload } from "react-csv";
 
 function DataUpload(){
      
@@ -27,14 +28,35 @@ function DataUpload(){
     const [fileData, setFileData] = useState([]);
     const [files, setFiles] = useState([]);
 
+    const [csvDownloadFileData, setCsvDownloadFileData] = useState([]);
+    const [csvFileName, setCsvFileName] = useState('');
+    const [csvLink, setCsvLink] = useState(React.createRef());
+
     const [toggleModal, setOpenModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const API_BASE = "http://localhost:3002/api"
+    const API_BASE = "http://localhost:3001/api"
 
     const handleFileData = (fileData) =>{
         console.log(fileData)
         setFileData(fileData)
+    }
+
+    const handleDownload = (e) =>{
+        const id = e.currentTarget.value;
+        axios.get(API_BASE + "/file/"+ id)
+            .then(res => {
+                const csvFile = (res.data.title).replace(/ /g, "");
+
+                setCsvFileName(csvFile);
+                setCsvDownloadFileData(res.data.data);
+
+                csvLink.current.link.click();
+            })
+            .catch(error => {
+                console.log(error.res)
+            });
+
     }
 
     const onClickHandler = () =>{
@@ -53,8 +75,6 @@ function DataUpload(){
 
         submitForm("multipart/form-data", data, (msg) => console.log(msg) )
     }
-
-    
 
     const submitForm = (contentType, data, setResponse) =>{
         axios({
@@ -121,7 +141,18 @@ function DataUpload(){
                                                             {file.createdAt}
                                                         </Moment>
                                                     </td>
-                                                    <td> </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDownload} value={file._id}>
+                                                            <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                        <CSVLink
+                                                                data={csvDownloadFileData}
+                                                                filename={csvFileName+'.csv'}
+                                                                className="hidden"
+                                                                ref={csvLink}
+                                                                target="_blank" 
+                                                            />
+                                                    </td>
                                             </tr>
                                         }
                                         
@@ -159,7 +190,18 @@ function DataUpload(){
                                                             {file.createdAt}
                                                         </Moment>
                                                     </td>
-                                                    <td> </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDownload} value={file._id}>
+                                                            <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                        <CSVLink
+                                                                data={csvDownloadFileData}
+                                                                filename={csvFileName+'.csv'}
+                                                                className="hidden"
+                                                                ref={csvLink}
+                                                                target="_blank" 
+                                                            />
+                                                    </td>
                                             </tr>
                                         }
                                         
@@ -198,8 +240,17 @@ function DataUpload(){
                                                         </Moment>
                                                     </td>
                                                     <td> </td>
-                                                    <td>
-                                                    <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDownload} value={file._id}>
+                                                            <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                        <CSVLink
+                                                                data={csvDownloadFileData}
+                                                                filename={csvFileName+'.csv'}
+                                                                className="hidden"
+                                                                ref={csvLink}
+                                                                target="_blank" 
+                                                            />
                                                     </td>
                                             </tr>
                                         }
@@ -237,7 +288,18 @@ function DataUpload(){
                                                             {file.createdAt}
                                                         </Moment>
                                                     </td>
-                                                    <td> </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDownload} value={file._id}>
+                                                            <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                        <CSVLink
+                                                                data={csvDownloadFileData}
+                                                                filename={csvFileName+'.csv'}
+                                                                className="hidden"
+                                                                ref={csvLink}
+                                                                target="_blank" 
+                                                            />
+                                                    </td>
                                             </tr>
                                         }
                                     })

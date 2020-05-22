@@ -4,6 +4,7 @@ function CsvInput({ handleFileChange }) {
   const csvRef = useRef(null);
 
   const handleChange = e => {
+    console.log("change");
     var file = csvRef.current.files[0];
     if (!file) return;
 
@@ -20,6 +21,7 @@ function CsvInput({ handleFileChange }) {
           accept=".csv"
           onChange={handleChange}
           ref={csvRef}
+          
         />
       </div>
     </form>

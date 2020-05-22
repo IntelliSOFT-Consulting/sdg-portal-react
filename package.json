@@ -36,6 +36,7 @@
     "react-burger-menu": "^2.6.13",
     "react-charts": "^2.0.0-beta.6",
     "react-checkbox-tree": "^1.6.0",
+    "react-csv": "^2.0.3",
     "react-csv-to-table": "0.0.4",
     "react-csv-viewer": "^1.0.4",
     "react-dom": "^16.12.0",
