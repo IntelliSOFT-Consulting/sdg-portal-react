@@ -502,7 +502,7 @@ text-align: center;
   border-radius: 50%;
   width: 150px;
   height: 150px;
-  border: 2px solid #d0d0d0;
+  border: 1px solid #cccccc;
 }
 
 .mapChartCard{

@@ -22,9 +22,9 @@ class About extends React.Component {
             <Header></Header>
                 <main className="about-page">
                 <div className="container-fluid pl-5 pr-5 pb-5">
-                    
+                <Row>
+                    <Col md="10" lg="8" className="mx-auto">
                     <Row className="pl-5 pr-5 pt-3">
-                   
                     <p className="text-center mb-5">
                     The Portal aims to serve as a unique access point to timely and reliable information about SDG and 
                     Agenda 2063 data for Africa. The site is designed to help policy makers and enable the general public
@@ -97,10 +97,14 @@ class About extends React.Component {
                             </Row>
                         </Col>
                     </Row>
-                    </div>
+                    </Col>
+                </Row>
+                    
+                    
+                </div>
      
-                </main>
-                <Footer></Footer>
+            </main>
+        <Footer></Footer>
             </>
         )
     }
