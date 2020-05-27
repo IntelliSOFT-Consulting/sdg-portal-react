@@ -30,7 +30,7 @@ class Header extends React.Component{
                 </Link>   
             </NavbarBrand>
             <Nav className="about-title">
-                <h5 className="display-3 mb-4 mt-2 text-center">Data Upload</h5>
+                <h5 className="display-3 mb-4 mt-2 text-center"></h5>
                 </Nav>
                
             <Menu right>

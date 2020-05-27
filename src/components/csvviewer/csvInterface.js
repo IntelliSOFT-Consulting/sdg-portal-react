@@ -11,8 +11,7 @@ function Interface( {handleSetFileData} ) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-      console.log(loading);
-
+      console.log(loading)
     if (data.length && columns.length) setLoading(false);
   }, [data, columns]);
 

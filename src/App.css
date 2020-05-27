@@ -1148,7 +1148,7 @@ html, body, #root{
   text-align: left;
     font-weight: 400;
     max-height: 250px;
-    overflow-y: scroll;
+    overflow-y: overlay;
     list-style: none;
 }
 /* .circle-container div{
@@ -1374,4 +1374,51 @@ html, body, #root{
 
 .ReactTable .rt-td, .ReactTable .rt-th {
   padding: 6px 5px;
+}
+
+.file-div .btn-icon{
+  padding: .1rem 1px;
+  background-color: transparent;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.11), 0 1px 3px rgba(255, 255, 255, 0.08);
+}
+
+.login-card{
+  position: relative;
+  max-width: 400px;
+  margin: 20px 0 70px;
+  /* min-height: 400px; */
+  padding: 30px;
+}
+
+.input-group>.input-group-prepend>.input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0px;
+}
+
+.login-card form .btn {
+  margin-top: 30px;
+}
+
+.forgot-password-link{
+  margin-top: 30px;
+}
+
+.login-card label{
+  margin-top: 15px;
+}
+.login-card .btn-warning.btn-link{
+  color: #fd6925;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.btn-round {
+  border-radius: 30px;
+}
+
+.login-card .title{
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin-bottom: 20px;
 }

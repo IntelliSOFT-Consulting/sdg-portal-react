@@ -22,18 +22,21 @@ import Agenda2063Landing from './views/a2063/Landing';
 import About from "./views/About";
 import Faqs from "./views/Faqs";
 import DataUpload from "./views/DataUpload";
+import Login from './views/Login';
+
+import history from './history';
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faYoutube, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
+import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt)
+library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock)
 
 function App() {  
   return ( 
-    <Router  basename="" >
+    <Router  basename="" history={history}>
       <Switch>
             <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
@@ -46,6 +49,7 @@ function App() {
            
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
+            <Route path="/Login" component={Login}></Route>
             <Route path="/DataUpload" component={DataUpload}></Route>
             <Route exact path="/" component={Home}></Route>
       </Switch>

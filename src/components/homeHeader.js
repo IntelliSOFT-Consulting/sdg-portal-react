@@ -103,7 +103,7 @@ class HomeHeader extends React.Component{
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/DataUpload" className="btn btn-header btn-icon text-white">
+                                    <Link to="/Login" className="btn btn-header btn-icon text-white">
                                         <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/FAQs.png')}></img>
                                         <br></br>
                                         <span className="nav-link-inner--text ml-1">Admin</span>
