@@ -11,14 +11,33 @@ function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const API_BASE = "http://localhost:3003/api"
+
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event) {
-        // event.preventDefault();
-        history.push('/DataUpload')
+        event.preventDefault();
 
+        fetch(API_BASE + '/user/authenticate', {
+            method: 'POST',
+            body: JSON.stringify({email, password}),
+            headers: {
+                'Content-Type': 'application/json'
+            } 
+        }).then(res => {
+            if(res.status === 200){
+               history.push('/DataUpload');
+            }else{
+                const error = new Error(res.error);
+                throw error;
+            }
+        }).catch(err => {
+            console.error(err);
+            alert('Error logging in, please try again.')
+        })
+        //history.push('/DataUpload');
     }
 
 

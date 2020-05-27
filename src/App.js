@@ -6,7 +6,7 @@ import './App.css';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 
 import {
-  BrowserRouter as Router, Switch, Route
+   Router, Switch, Route
 } from 'react-router-dom';
 
 import Home from "./views/Home";
@@ -36,7 +36,7 @@ library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, f
 
 function App() {  
   return ( 
-    <Router  basename="" history={history}>
+    <Router  basename="" history={history} forceRefresh={true}>
       <Switch>
             <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
