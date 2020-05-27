@@ -10,13 +10,10 @@ import {
 } from 'react-router-dom';
 
 import Home from "./views/Home";
-// import Sdgs from "./views/Sdgs";
 import Sdgs1 from "./views/Sdgs1";
-import Sdg from "./views/sdgs/sdg";
 import SdgIndex from "./views/SdgIndex";
 import Dashboard from "./views/Dashboard";
 import CountryProfile from "./views/CountryProfile";
-// import Agenda2063 from "./views/Agenda2063";
 import a2063 from "./views/a2063";
 import Agenda2063Landing from './views/a2063/Landing';
 import About from "./views/About";
@@ -25,6 +22,7 @@ import DataUpload from "./views/DataUpload";
 import Login from './views/Login';
 
 import history from './history';
+import withAuth from './views/withAuth';
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -50,7 +48,7 @@ function App() {
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
             <Route path="/Login" component={Login}></Route>
-            <Route path="/DataUpload" component={DataUpload}></Route>
+            <Route path="/DataUpload" component={withAuth(DataUpload)}></Route>
             <Route exact path="/" component={Home}></Route>
       </Switch>
     </Router>
