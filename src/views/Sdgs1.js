@@ -600,8 +600,9 @@ function Sdgs1(props) {
             }
         })
     }
-        setIndicators(indic);
+       // setIndicators(indic);
         //console.log(indic)
+        console.log(indic);
     }, [target, activSdg])
 
     useEffect(() => {
@@ -692,8 +693,6 @@ function Sdgs1(props) {
                 })  
             }
         })
-
-        console.log(mapData)
         setSdgMapData(mapData);
     }
 
@@ -749,8 +748,6 @@ function Sdgs1(props) {
         setLineChartData(countryData);
     }
 
-    
-
     //Choose SDG
     const handleSdgChange = (sdg) => {
         setActiveSdg(sdg);
@@ -763,6 +760,7 @@ function Sdgs1(props) {
             }
         })
         setIndicator(indic[0]);
+        setIndicators(indic);
     }
 
 
@@ -775,7 +773,7 @@ function Sdgs1(props) {
                 indic.push(indicator);
             }
         })
-        setIndicator(indic[0]);
+        setIndicators(indic);
     }
 
     //Choose indicator
@@ -846,7 +844,7 @@ function Sdgs1(props) {
                             </Col>
                             <Col>
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                                
+                               
                                     {
                                         indicators.map((indicator, index) => {
                                             return <option key={index} value={indicator}>{indicator}</option>
