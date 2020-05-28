@@ -89,7 +89,8 @@ function CountryProfile (props, ) {
         "flagURL":countryFlag,
         "size":0,
         "povertyLine":countryPoverty,
-        "gdpPerCapita":countryGDP
+        "gdpPerCapita":countryGDP,
+        "countryCode": countryCode
         } : {
         "id": 0,
         "name": "",
@@ -98,7 +99,8 @@ function CountryProfile (props, ) {
         "flagURL":"",
         "size":0,
         "povertyLine":0,
-        "gdpPerCapita":0
+        "gdpPerCapita":0,
+        "countryCode": ""
     });
 
     const parseNormalizedData = (data) => {
@@ -145,7 +147,7 @@ function CountryProfile (props, ) {
             })
         }
         loadDemographicsData(demographicsData);
-    }, [toggleModal, selectedCountryCode ])
+    }, [toggleModal, selectedCountryCode, selectedCountry ])
 
     const parseDemographicsData = (data, countryCode) => {
         const demographicsData = []
@@ -169,6 +171,7 @@ function CountryProfile (props, ) {
     const openModal = (countryCode) => {
         setOpenModal(true);
         setSelectedCountryCode(countryCode);
+        console.log(countryCode, countriesData)
         
         countriesData.forEach(function(countryData){
             if(countryData.code == countryCode){
@@ -181,7 +184,8 @@ function CountryProfile (props, ) {
                     "flagURL":imgSrc,
                     "size":countryData.size,
                     "povertyLine":countryData.povertyLine,
-                    "gdpPerCapita":countryData.gdpPerCapita
+                    "gdpPerCapita":countryData.gdpPerCapita,
+                    "countryCode": countryData.code
                   });
             }
         })
@@ -351,7 +355,8 @@ function CountryProfile (props, ) {
                                             <h5 className="display-4 text-center">Perfomance by Goal </h5> 
                                         </CardHeader>
                                         <CardBody>
-                                            <AngularGauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></AngularGauge>
+                                            {console.log(countryData)}
+                                            <AngularGauge barometerData={countryProfileData} country={countryData.countryCode} sdg={activeSdg}></AngularGauge>
                                             {/* <Barometer barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Barometer> */}
                                             {/* <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge> */}
                                         </CardBody>
@@ -368,7 +373,7 @@ function CountryProfile (props, ) {
                                         <h5 className="display-4 text-center">Country Demographics </h5>
                                         </CardHeader>
                                         <CardBody>
-                                            {console.log(countryDemographics)}
+                                           
                                             <Demographics demographicsData={countryDemographics}></Demographics>
                                         </CardBody>
                                         

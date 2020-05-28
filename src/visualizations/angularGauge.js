@@ -32,6 +32,7 @@ function Gauge( {barometerData, country, sdg}) {
         axis.renderer.ticks.template.length = 10;
         axis.renderer.grid.template.disabled = true;
         axis.renderer.labels.template.radius = 40;
+        axis.renderer.labels.template.fontSize = "0.9em";
         
         let axis2 = chart.xAxes.push(new am4charts.ValueAxis());
         axis2.min = 0;
@@ -40,6 +41,7 @@ function Gauge( {barometerData, country, sdg}) {
         axis2.renderer.labels.template.disabled = true;
         axis2.renderer.ticks.template.disabled = true;
         axis2.renderer.grid.template.disabled = true;
+        axis2.renderer.labels.template.bent = true;
 
         // Add ranges
         let range = axis2.axisRanges.create();
@@ -47,6 +49,7 @@ function Gauge( {barometerData, country, sdg}) {
         range.endValue = 25;
         range.axisFill.fillOpacity = 1;
         range.axisFill.fill = am4core.color("#ff3232");
+        
 
         let range2 = axis2.axisRanges.create();
         range2.value = 25;
@@ -84,24 +87,26 @@ function Gauge( {barometerData, country, sdg}) {
         hand.startWidth = 10;
         hand.pin.disabled = true;
         hand.value = 50;
+        hand.innerRadius = am4core.percent(20);
 
         let label = chart.radarContainer.createChild(am4core.Label);
         label.isMeasured = false;
-        label.fontSize = 25;
+        label.fontSize = 20;
         label.x = am4core.percent(50);
         label.y = am4core.percent(100);
         label.horizontalCenter = "middle";
         label.verticalCenter = "bottom";
 
         hand.events.on("propertychanged", function(ev) {
-            // range.endValue = ev.target.value;
-            // range2.value = ev.target.value;
-            label.text = axis2.positionToValue(hand.currentPosition).toFixed(1);
+            label.text = axis2.positionToValue(hand.currentPosition).toFixed(1) + "%";
             axis2.invalidate();
           });
-
+          console.log(barometerData);
+         
         barometerData.forEach(function(countryBarometerData){
-            if(countryBarometerData.code == country ){
+            console.log(country);
+            if(countryBarometerData.id == country ){
+                console.log(countryBarometerData.Score)
               let score = 0;
               let sdgCode = ''
               if(sdg == 18){
@@ -125,7 +130,7 @@ function Gauge( {barometerData, country, sdg}) {
         return function cleanUp(){
             chart.dispose();
         }
-}, [sdg])
+}, [sdg, country])
 
   return (
     <>
