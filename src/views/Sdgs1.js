@@ -13,8 +13,6 @@ import LineChart from "../visualizations/lineChart";
 import Spinner from "../visualizations/spinner";
 import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
-
-
   
 function Sdgs1(props) {
     const override = css`

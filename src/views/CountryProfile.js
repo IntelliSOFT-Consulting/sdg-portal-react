@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import Gauge from "../visualizations/gauge";
 import Demographics from "../visualizations/demographics";
 import Barometer from "../visualizations/barometer";
+import AngularGauge from '../visualizations/angularGauge';
 
 import {
     Container,
@@ -350,8 +351,9 @@ function CountryProfile (props, ) {
                                             <h5 className="display-4 text-center">Perfomance by Goal </h5> 
                                         </CardHeader>
                                         <CardBody>
-                                            {/* <Barometer barometerData={countryProfileData} country={countryProfileData.id} sdg={activeSdg}></Barometer> */}
-                                            <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge>
+                                            <AngularGauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></AngularGauge>
+                                            {/* <Barometer barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Barometer> */}
+                                            {/* <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge> */}
                                         </CardBody>
                                     
                                         
