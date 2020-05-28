@@ -104,7 +104,7 @@ function Gauge( {barometerData, country, sdg}) {
           console.log(barometerData);
          
         barometerData.forEach(function(countryBarometerData){
-            console.log(country);
+           // console.log(country);
             if(countryBarometerData.id == country ){
                 console.log(countryBarometerData.Score)
               let score = 0;

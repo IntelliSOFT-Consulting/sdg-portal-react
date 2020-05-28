@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SdgIndexMenu from '../visualizations/SdgIndexMenu';
 import Radialmenu from '../visualizations/radialMenu';
-import Header from '../components/sdgLandingHeader'
+import Header from '../components/sdgLandingHeader';
+import Footer from '../components/footer';
 import {
   Container, Row, Col, CardImg, Button
 } from "reactstrap";
@@ -232,7 +233,7 @@ function SdgIndex() {
              
             </Row>
         </div>
-         
+         <Footer></Footer>
         </>
       );
     }

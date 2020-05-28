@@ -27,10 +27,10 @@ import withAuth from './views/withAuth';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faYoutube, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock)
+library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle)
 
 function App() {  
   return ( 

@@ -1422,3 +1422,8 @@ html, body, #root{
   font-weight: 600;
   margin-bottom: 20px;
 }
+
+.fa-175x{
+  font-size: 1.75em;
+  margin-bottom: 5px;
+}

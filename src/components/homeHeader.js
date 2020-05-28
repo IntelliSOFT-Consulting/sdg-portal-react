@@ -12,6 +12,8 @@ import {
     Col
   } from "reactstrap";
 
+  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 class HomeHeader extends React.Component{
     componentDidMount(){
 
@@ -103,10 +105,10 @@ class HomeHeader extends React.Component{
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link to="/Login" className="btn btn-header btn-icon text-white">
-                                        <img className="icon mb-1" alt=".." src={require('../assets/img/home_icons/FAQs.png')}></img>
+                                    <Link to="/DataUpload" className="btn btn-header btn-icon text-white">
+                                    <FontAwesomeIcon icon={['fas', 'user-circle']} size="175x" color="black"/>
                                         <br></br>
-                                        <span className="nav-link-inner--text ml-1">Admin</span>
+                                        <span className="nav-link-inner--text ml-1">ADMIN</span>
                                     </Link>
                                 </NavItem>
                             </Nav>
