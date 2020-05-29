@@ -62,10 +62,11 @@
     "yarn": "^1.22.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "npm run build && (cd sdg-portal-api && npm start)"
   },
   "eslintConfig": {
     "extends": "react-app"

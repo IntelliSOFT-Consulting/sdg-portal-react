@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
      BrowserRouter as Router, 
      Link
@@ -13,14 +13,14 @@ import {
     NavItem,
     Nav,
     Row,
-    Col
+    Col,
+    Button
   } from "reactstrap";
 
-class CountryProfileHeader extends React.Component{
-    componentDidMount(){
-
+function CountryProfileHeader (){
+    const handleLogoutBtn = () => {
+        
     }
-    render(){
         return (
             <> 
             <header className="header-global country-profile-header">
@@ -42,13 +42,14 @@ class CountryProfileHeader extends React.Component{
                     <Link to="/A2063Landing" className="text-white">AGENDA 2063</Link>
                     <Link to="/About" className="text-white">ABOUT US</Link>
                     <Link to="/Faqs" className="text-white">FAQs</Link>
+                    <Button className="btn btn-line btn-warning" onClick={handleLogoutBtn}>Logout</Button>
                 </Menu>
             </Navbar>
             </header> 
           
             </>
         );
-    }
+    
 }
 
 export default CountryProfileHeader;

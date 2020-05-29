@@ -26,7 +26,7 @@ function Sdgs1(props) {
    
     //const [target, setTarget] = useState('');
     const [sdgTargets, setSdgTargets] = useState([]);
-    const [indicators, setIndicators] = useState([]);
+    
 
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
     let sdgAllYears = [2019]
@@ -524,13 +524,14 @@ function Sdgs1(props) {
                     indic.push(indicator);
                 }
             })
-            redirectSdgIndicator = indic[0]
+            redirectSdgIndicator = indic[0];
         }
     }
 
     const [activSdg, setActiveSdg] = useState(redirectSdg);
     const [target, setTarget] = useState(parseInt(redirectSdg) + ".1");
     const [indicator, setIndicator] = useState(redirectSdgIndicator);
+    const [indicators, setIndicators] = useState(indic);
     
     const parseCountriesRegions = () =>{
         let nodes = []

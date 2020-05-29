@@ -11,7 +11,7 @@ function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const API_BASE = "http://localhost:3003/api"
+    const API_BASE = "http://localhost:3000/api"
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -31,15 +31,15 @@ function Login(){
                history.push('/DataUpload');
             }else{
                 const error = new Error(res.error);
-                throw error;
+                console.log(error);
+                //throw error;
             }
         }).catch(err => {
             console.error(err);
             alert('Error logging in, please try again.')
         })
-        //history.push('/DataUpload');
     }
-
+  
 
     return(
         <>
