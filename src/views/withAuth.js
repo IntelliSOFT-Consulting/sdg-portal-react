@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 export default function withAuth(ComponentToProtect) {
-const API_BASE = "http://localhost:3003/api";
+const API_BASE = "http://localhost:3000/api";
 
   return class extends Component {
     constructor() {

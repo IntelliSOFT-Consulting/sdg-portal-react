@@ -102,6 +102,7 @@ function DataUpload(){
             setFiles(result.data.data);
         }
         fetchData();
+        console.log(files);
 
     }, [isLoading])
 

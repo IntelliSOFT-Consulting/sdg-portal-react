@@ -35,7 +35,7 @@ function Login(){
                 //throw error;
             }
         }).catch(err => {
-            console.error(err);
+            console.log(err.res);
             alert('Error logging in, please try again.')
         })
     }
