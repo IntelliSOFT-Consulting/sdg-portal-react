@@ -21,6 +21,9 @@ function DataUpload(){
     const [pages, setPages] = useState(['SDG', 'Agenda 2063', 'Country Profile', 'Dashboard']);
     const [page, setPage] = useState('');
 
+    const countryProfileSections = ['Country data', 'Goal perfomance', 'Demographics data' ];
+    const [section, setSection] = useState('Country data');
+
     const dataSources = ['Global Database', 'Pan African Database'];
     const [dataSource, setDataSource] = useState('Global Database');
 
@@ -70,6 +73,10 @@ function DataUpload(){
         data.append("page", page);
         data.append("year", year);
         data.append("fileData", JSON.stringify(fileData));
+        data.append("user", '');
+        data.append("yearFrom", yearFrom);
+        data.append("yearTo", yearTo);
+        data.append("section", section);
 
         submitForm("multipart/form-data", data, (msg) => console.log(msg) )
     }
@@ -353,16 +360,31 @@ function DataUpload(){
                                     
                                     <Col md="3">
                                         <label>Year from</label>
-                                        <Input type="text" name="yearFrom" required></Input> 
+                                        <Input type="select" name="yearTo" onChange={ e => setYearFrom(parseInt(e.target.value)) } value={yearFrom} >
+                                            {
+                                                years.map((year, index) => {
+                                                    return <option value = {year}> {year} </option>
+                                                })
+                                            }
+                                        </Input>
                                     </Col>
                                     
                                     <Col md="3">
                                         <label>Year to</label>
-                                        <Input type="text" name="yearTo" required></Input>
+                                        <Input type="select" name="yearTo" onChange={ e => setYearTo(parseInt(e.target.value)) } value={yearTo} >
+                                            {
+                                                years.map((year, index) => {
+                                                    return <option value = {year}> {year} </option>
+                                                })
+                                            }
+                                        </Input>
                                     </Col>
                                     
                             </Row>
-                            ):(
+                            ):null
+                        }
+                        {
+                            page === 'Dashboard' ? (
                                 <Row>
                                     <Col md="3">
                                         <label>Page</label>
@@ -386,7 +408,44 @@ function DataUpload(){
                                     </Col>
                                     
                                 </Row>
-                            )
+                            ):null
+                        }
+                        {
+                            page === 'Country Profile' ? (
+                                <Row>
+                                    <Col md="3">
+                                        <label>Page</label>
+                                        <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page} >
+                                            {
+                                                pages.map((page, index) => {
+                                                    return <option value={page}> {page} </option>
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                    <Col md="3">
+                                        <label>Section</label>
+                                        <Input type="select" name="countryProfileSectionsSelect" onChange={ e => setSection(e.target.value) } value={section} >
+                                            {
+                                                countryProfileSections.map((section, index) => {
+                                                    return <option value={section}> {section} </option>
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                    <Col md="3">
+                                        <label>Year</label>
+                                        <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year} >
+                                            {
+                                                years.map((year, index) => {
+                                                    return <option value = {year}> {year} </option>
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                    
+                                </Row>
+                            ):null
                         }
 
                         <label>File</label>

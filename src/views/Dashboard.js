@@ -180,6 +180,7 @@ function Dashboard (){
 
   useEffect(() => {
     let dashboardDataApi = {}
+    //Fetch dashboard API data
     const fetchDashboardData = async() =>{
       let apiData = []
       const result = await axios(API_BASE+'/files');
@@ -193,20 +194,7 @@ function Dashboard (){
 
     }
     fetchDashboardData();
-    // let dashboardYear = 'dashboard_' + year
-    // let dashboardDataSourceYear = dashboardDataSource(`./${dashboardYear}.csv`);
-    //   const loadData = csvFile => {
-    //     Papa.parse(csvFile, {
-    //       download: true,
-    //       header: true,
-    //       skipEmptyLines: false,
-    //       complete: function(results){
-    //           setDashboardData(results.data);
-    //       }
-    //     })
-    //   } 
-      parseDashboardData(activePopup);
-      //loadData(dashboardDataSourceYear);
+    parseDashboardData(activePopup);
   }, [activeRegion, year, activePopup])
 
   useEffect(() => {
