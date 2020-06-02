@@ -101,12 +101,9 @@ function Gauge( {barometerData, country, sdg}) {
             label.text = axis2.positionToValue(hand.currentPosition).toFixed(1) + "%";
             axis2.invalidate();
           });
-          console.log(barometerData);
          
         barometerData.forEach(function(countryBarometerData){
-           // console.log(country);
             if(countryBarometerData.id == country ){
-                console.log(countryBarometerData.Score)
               let score = 0;
               let sdgCode = ''
               if(sdg == 18){

@@ -61,7 +61,7 @@ function CountryProfile (props, ) {
     
     const [countryDemographics, setCountryDemographics] = useState([]);
 
-    const API_BASE = "http://localhost:3000/api"
+    const API_BASE = "http://localhost:3001/api"
 
     const ageBrackets = ["0-4","5-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74","75-79","80-84","85-89","90-94","95-99","100+"]
 
@@ -121,37 +121,30 @@ function CountryProfile (props, ) {
 
         const fetchCountryProfileData = async() =>{
             let apiData = []
-            let countryProfileApiData = {};
+            let countryProfileSdgsData = {}
+
+            let demographicsData = {}
+            let parsedDemoData = []
+
             const result = await axios(API_BASE+'/files');
             apiData =  result.data.data;
             apiData.forEach(function(d){
               if(d.page == "Country Profile" && d.section == 'Goal perfomance'){
-                countryProfileApiData = d
+                countryProfileSdgsData = d
+              }else if(d.page == "Country Profile" && d.section == 'Demographics data'){
+                demographicsData = d
               }
+
             })
-            setCountryProfileData(countryProfileApiData.data);
-            parseNormalizedData(countryProfileApiData.data);
+            setCountryProfileData(countryProfileSdgsData.data);
+            parseNormalizedData(countryProfileSdgsData.data);
+
+            parsedDemoData = parseDemographicsData(demographicsData.data, selectedCountryCode)
+            setCountryDemographics(parsedDemoData);
       
           }
           fetchCountryProfileData();
-    }, [toggleModal, selectedCountryCode ]);
-
-    useEffect(() => {
-        const demographicsData = require('../assets/data/countriesDemographicData.csv');
-        let parsedDemoData = []
-        const loadDemographicsData = (demographicsDataFile) => {
-            Papa.parse(demographicsDataFile, {
-                download: true,
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results){
-                    parsedDemoData = parseDemographicsData(results.data, selectedCountryCode)
-                    setCountryDemographics(parsedDemoData)
-                }
-            })
-        }
-        loadDemographicsData(demographicsData);
-    }, [toggleModal, selectedCountryCode, selectedCountry ])
+    }, [toggleModal, selectedCountryCode, selectedCountry ]);
 
     const parseDemographicsData = (data, countryCode) => {
         const demographicsData = []
@@ -175,7 +168,6 @@ function CountryProfile (props, ) {
     const openModal = (countryCode) => {
         setOpenModal(true);
         setSelectedCountryCode(countryCode);
-        console.log(countryCode, countriesData)
         
         countriesData.forEach(function(countryData){
             if(countryData.code == countryCode){
@@ -359,10 +351,7 @@ function CountryProfile (props, ) {
                                             <h5 className="display-4 text-center">Perfomance by Goal </h5> 
                                         </CardHeader>
                                         <CardBody>
-                                            {console.log(countryData)}
                                             <AngularGauge barometerData={countryProfileData} country={countryData.countryCode} sdg={activeSdg}></AngularGauge>
-                                            {/* <Barometer barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Barometer> */}
-                                            {/* <Gauge barometerData={countryProfileData} country={countryData.code} sdg={activeSdg}></Gauge> */}
                                         </CardBody>
                                     
                                         

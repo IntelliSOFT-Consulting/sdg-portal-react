@@ -38,7 +38,7 @@ function DataUpload(){
     const [toggleModal, setOpenModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const API_BASE = "http://localhost:3000/api"
+    const API_BASE = "http://localhost:3001/api"
 
     const handleFileData = (fileData) =>{
         console.log(fileData)
