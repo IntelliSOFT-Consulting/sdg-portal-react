@@ -62,8 +62,6 @@ function DataUpload(){
     const onClickHandler = () =>{
         //Set button spinner
         setIsLoading(true);
-        console.log(fileData);
-        const dummyData = [{"Country": "Kenya", "id": "2"},{"Country": "Uganda", "id": "1"} ]
 
         const data = new FormData()
         data.append('file', file)
@@ -393,9 +391,7 @@ function DataUpload(){
 
                         <label>File</label>
                         <CsvInterface handleSetFileData={ handleFileData }/>    
-                        {/* <Input type="file" id="file-upload" accept=".csv" 
-                                onChange={(e) => setFile(e.target.files[0])} required></Input> */}
-                       
+                    
                         {
                         isLoading ? (
                             <Button className="btn btn-warning center">

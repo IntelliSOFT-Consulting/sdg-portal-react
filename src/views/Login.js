@@ -11,6 +11,8 @@ function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [errorMsg, setErrorMsg] = useState('');
+
     const API_BASE = "http://localhost:3000/api"
 
     function validateForm() {
@@ -31,12 +33,15 @@ function Login(){
                history.push('/DataUpload');
             }else{
                 const error = new Error(res.error);
-                console.log(error);
-                //throw error;
+                //console.log(error);
+                throw error;
             }
         }).catch(err => {
-            console.log(err.res);
-            alert('Error logging in, please try again.')
+            //console.log(err.res);
+            //alert('Error logging in, please try again.')
+            setEmail('');
+            setPassword('');
+            setErrorMsg('Invalid email or password. Please try again.')
         })
     }
   
@@ -50,6 +55,7 @@ function Login(){
                 <Card className="login-card">
                 <Form onSubmit={handleSubmit}>
                     <h3 className="title text-center">Login to the Data Upload Dashboard </h3>
+                    <p className="error-message-label"> {errorMsg} </p>                   
                     <Label> Email </Label>
                     <InputGroup className="form-group-no-border">
                         <InputGroupAddon addonType="prepend">
