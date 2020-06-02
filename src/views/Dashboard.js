@@ -140,8 +140,6 @@ function Dashboard (){
                 sdgColor = 'col_' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2];
                 indicatorKey = indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
               }
-
-              console.log(indicatorKey)
               indicatorData.push({
                 "title": ind.title,
                 "value": data[indicatorKey],
@@ -611,7 +609,6 @@ const handleClickYear = (year) => {
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    { console.log(dashboardPopupIndicatorsData) }
                                   {
                                       dashboardPopupIndicatorsData.map(function(dashboardInd, index){
                                         return <tr>
