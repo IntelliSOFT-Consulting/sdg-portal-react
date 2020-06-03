@@ -72,11 +72,14 @@ function DataUpload(){
         data.append("description", description);
         data.append("page", page);
         data.append("year", year);
-        data.append("fileData", JSON.stringify(fileData));
         data.append("user", '');
         data.append("yearFrom", yearFrom);
         data.append("yearTo", yearTo);
         data.append("section", section);
+        data.append("file", null );
+        console.log( JSON.stringify(fileData));
+
+        data.append("fileData", JSON.stringify(fileData));
 
         submitForm("multipart/form-data", data, (msg) => console.log(msg) )
     }
@@ -98,6 +101,7 @@ function DataUpload(){
                 setOpenModal(false);
             }).catch((error) => {
                 setResponse("error");
+                console.log(error);
             })
     }
 

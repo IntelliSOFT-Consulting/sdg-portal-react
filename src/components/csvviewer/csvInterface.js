@@ -31,8 +31,17 @@ function Interface( {handleSetFileData} ) {
   };
 
   const handleDataChange = file => {
-    handleSetFileData(file.data);
-    setData(file.data);
+    let data = file.data
+    let slicedData = []
+    if(data.length > 100){
+      slicedData = data.slice(0, 99)
+    }
+    console.log(file.meta.fields);
+    console.log(slicedData);
+
+    handleSetFileData(slicedData);
+    
+    setData(slicedData);
     setColumns(makeColumns(file.meta.fields));
   };
 
