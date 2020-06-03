@@ -1,45 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/countryProfileHeader";
 import Footer from "../components/footer";
-import Gauge from "../visualizations/gauge";
+import CountryDetails from '../components/countryDetails';
 import Demographics from "../visualizations/demographics";
-import Barometer from "../visualizations/barometer";
 import AngularGauge from '../visualizations/angularGauge';
 
-import {
-    Container,
-    Modal,
-    Row,
-    Col,
-    CardImg,
-    Button, Card, CardBody, CardHeader
-} from "reactstrap";
+import { Container, Modal, Row, Col, CardImg, Button, Card, CardBody, CardHeader } from "reactstrap";
 import Select from 'react-select';
-
-
-import {
-    Link
-} from "react-router-dom";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
-import CountryProfileMap from "../visualizations/sdgMap";
-
 import * as am4core from "@amcharts/amcharts4/core";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import axios from 'axios';
-am4core.useTheme(am4themes_animated);
 
-const data = require('../assets/data/trial.json');
+am4core.useTheme(am4themes_animated);
 highchartsMap(Highcharts);
 
 function CountryProfile (props, ) {
     const flagImages = require.context('../assets/img/country_flags', true);
     const sdgsData = require('../assets/data/sdgs.json');
     const sdgsImages = require.context('../assets/img/sdg_icons', true);
+
     const countriesData = require('../assets/data/countryProfile.json');
     const Papa = require("papaparse/papaparse.min.js");
 
@@ -60,6 +45,7 @@ function CountryProfile (props, ) {
     const [selectedCountry, setSelectedCountry] = useState('');
     
     const [countryDemographics, setCountryDemographics] = useState([]);
+    const [countryDetailsData, setCountryDetailsData] = useState({})
 
     const API_BASE = "http://localhost:3001/api"
 
@@ -67,18 +53,32 @@ function CountryProfile (props, ) {
 
     if (props.location.state != null){
         country = props.location.state;
-        countriesData.forEach(function(data){
-            if(data.code == country.value){
-                let imgSrc = flagImages(`./${data.flagURL}.png`);
-                countryName = data.name;
-                countryCapital = data.capital;
-                countryPoverty = data.povertyLine
-                countryGDP = data.gdpPerCapita
-                countryFlag = imgSrc;
-                countryCode = data.code
-            }
-        })
-        }
+
+        // let countryProfileData = {}
+        // axios.get(API_BASE+'/files')
+        // .then(res => {
+        //     const apiData = res.data.data;
+        //     apiData.forEach(function(d){
+        //         if(d.page == "Country Profile" && d.section == 'Country data'){
+        //             countryProfileData = d.data
+        //             }
+        //         })
+
+        //     countryProfileData.forEach(function(data){
+        //         if(data.code == country.value){
+        //             console.log(data);
+        //             let imgSrc = flagImages(`./${data.flagURL}.png`);
+        //             countryName = data.name;
+        //             countryCapital = data.capital;
+        //             countryPoverty = data.povertyLine
+        //             countryGDP = data.gdpPerCapita
+        //             countryFlag = imgSrc;
+        //             countryCode = data.code
+        //         }
+        //     })
+        // })
+        
+    }
     const [selectedCountryCode, setSelectedCountryCode] = useState(country.value);
     
     // Modal operations
@@ -117,13 +117,49 @@ function CountryProfile (props, ) {
         setCountryProfileMapData(normalizedData);
     }
 
-    useEffect(() => {
+    const parseCountryProfileData = async(countryCode) => {
+        let apiData = []
+        let countryProfileData = {}
 
+        const result = await axios(API_BASE+'/files');
+        apiData =  result.data.data;
+        apiData.forEach(function(d){
+        if(d.page == "Country Profile" && d.section == 'Country data'){
+            countryProfileData = d.data
+            }
+        })
+        countryProfileData.forEach(function(data){
+            if(data.code == countryCode){
+                let imgSrc = flagImages(`./${data.flagURL}.png`);
+                countryName = data.name;
+                countryCapital = data.capital;
+                countryPoverty = data.povertyLine
+                countryGDP = data.gdpPerCapita
+                countryFlag = imgSrc;
+                countryCode = data.code
+            }
+        })
+        setCountryDetailsData({
+            "id": 0,
+            "name": countryName,
+            "capital":countryCapital,
+            "region":"",
+            "flagURL":countryFlag,
+            "size":0,
+            "povertyLine":countryPoverty,
+            "gdpPerCapita":countryGDP,
+            "countryCode": countryCode
+        });
+    }
+
+    useEffect(() => {
         const fetchCountryProfileData = async() =>{
             let apiData = []
-            let countryProfileSdgsData = {}
 
+            let countryProfileData = {}
+            let countryProfileSdgsData = {}
             let demographicsData = {}
+
             let parsedDemoData = []
 
             const result = await axios(API_BASE+'/files');
@@ -133,15 +169,18 @@ function CountryProfile (props, ) {
                 countryProfileSdgsData = d
               }else if(d.page == "Country Profile" && d.section == 'Demographics data'){
                 demographicsData = d
+              }else if(d.page == "Country Profile" && d.section == 'Country data'){
+                countryProfileData = d
               }
-
             })
             setCountryProfileData(countryProfileSdgsData.data);
             parseNormalizedData(countryProfileSdgsData.data);
 
             parsedDemoData = parseDemographicsData(demographicsData.data, selectedCountryCode)
             setCountryDemographics(parsedDemoData);
-      
+
+            parseCountryProfileData(selectedCountryCode)
+            // setCountryData()
           }
           fetchCountryProfileData();
     }, [toggleModal, selectedCountryCode, selectedCountry ]);
@@ -161,7 +200,6 @@ function CountryProfile (props, ) {
                 }
             })
         })
-       // setCountryDemographics(demographicsData);
         return demographicsData;
     }
 
@@ -277,9 +315,6 @@ function CountryProfile (props, ) {
                                         onChange={handleChange} className="country-profile-search" />
                         </Col>
                         <Col md="8" >
-
-                        
-
                             <HighchartsReact
                             constructorType ={'mapChart'}
                             highcharts={Highcharts}
@@ -300,29 +335,15 @@ function CountryProfile (props, ) {
                 <Container>
                     <Modal size="xl" className="modal-dialog-centered country-profile-modal" isOpen={toggleModal}
                         toggle={toggleModal}  >
-                        <div className="modal-header">
-                        <h5 className="countryName" cssModule={{'modal-title': 'w-100 text-center'}}>{countryData.name}</h5>
+                         <div className="modal-header">
+                            <h5 className="countryName" cssModule={{'modal-title': 'w-100 text-center'}}>{countryData.name}</h5>
                             <button aria-label="Close" className="close" data-dismiss="modal" type="button"
                                 onClick={closeModal} >
                                 <span aria-hidden={true}>×</span>
                             </button>
-                          
                         </div>
                         <div className="modal-body" >
-                            <Row className="countryDemographics">
-                                <Col lg="2" md="6">
-                                    <img className="countryFlags" alt=".." src={countryData.flagURL}></img>
-                                </Col>
-                                <Col>
-                                    {/* <label className="countryName">{countryData.name}</label> */}
-                                </Col>
-                                <Col></Col>
-                                <Col lg="3" md="6">
-                                    <label> Capital: {countryData.capital}</label> <br></br>
-                                    <label>Poverty line: {countryData.povertyLine} </label> <br></br>
-                                    <label>GDP Per Capita: {countryData.gdpPerCapita} </label>
-                                </Col>
-                            </Row>
+                        <CountryDetails countryData={countryDetailsData}></CountryDetails>
                             <Row className="pt-2">
                                 <Col lg="6" md="12">
                                     <Card>

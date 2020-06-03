@@ -129,10 +129,10 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                         <tr>
-                                            <th width="5%"></th>
-                                            <th width="20%">File name</th>
-                                            <th width="15%">Date added</th>
-                                            <th width="25%">Added by</th>
+                                            <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
                                         </tr>
                                 </thead>
                                 <tbody>
@@ -178,10 +178,10 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                         <tr>
-                                            <th width="5%"></th>
-                                            <th width="20%">File name</th>
-                                            <th width="15%">Date added</th>
-                                            <th width="25%">Added by</th>
+                                        <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
                                         </tr>
                                 </thead>
                                 <tbody>
@@ -227,10 +227,10 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                 <tr>
-                                    <th width="5%"></th>
-                                    <th width="20%">File name</th>
-                                    <th width="15%">Date added</th>
-                                    <th width="25%">Added by</th>
+                                <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -276,10 +276,10 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                 <tr>
-                                    <th width="5%"></th>
-                                    <th width="20%">File name</th>
-                                    <th width="15%">Date added</th>
-                                    <th width="25%">Added by</th>
+                                <th></th>
+                                            <th>File name</th>
+                                            <th>Date added</th>
+                                            <th>Added by</th>
                                 </tr>
                                 </thead>
                                 <tbody>
