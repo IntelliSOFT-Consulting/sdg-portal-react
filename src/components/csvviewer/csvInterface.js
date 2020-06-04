@@ -7,11 +7,12 @@ import Spinner from '../../visualizations/spinner';
 
 function Interface( {handleSetFileData} ) {
   const [data, setData] = useState([]);
+  const [slicedData, setSlicedData] = useState([]);
   const [columns, setColumns] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-      console.log(loading)
+     // console.log(loading)
     if (data.length && columns.length) setLoading(false);
   }, [data, columns]);
 
@@ -36,21 +37,19 @@ function Interface( {handleSetFileData} ) {
     if(data.length > 100){
       slicedData = data.slice(0, 99)
     }
-    console.log(file.meta.fields);
-    console.log(slicedData);
+    handleSetFileData(data);
+    setData(data);
 
-    handleSetFileData(slicedData);
-    
-    setData(slicedData);
+    setSlicedData(slicedData);
     setColumns(makeColumns(file.meta.fields));
   };
 
   return (
     <div>
       <CsvInput handleFileChange={handleFileChange} data={data} />
-      { !loading && data.length && columns.length ? (
+      { !loading && slicedData.length && columns.length ? (
         <ReactTable
-          data={data}
+          data={slicedData}
           columns={columns}
           defaultPageSize={10}
           className="-striped -highlight"

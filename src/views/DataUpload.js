@@ -41,7 +41,13 @@ function DataUpload(){
     const API_BASE = "http://localhost:3001/api"
 
     const handleFileData = (fileData) =>{
-        console.log(fileData)
+        
+
+        let slicedData = []
+        if(fileData.length > 100){
+            slicedData = fileData.slice(0, 99)
+        }
+       // console.log(slicedData)
         setFileData(fileData)
     }
 
@@ -62,23 +68,28 @@ function DataUpload(){
 
     }
 
-    const onClickHandler = () =>{
+    const getCurrentUser = () => {
+        console.log(localStorage.getItem('user'))
+        return localStorage.getItem('user')
+      }
+
+    const onClickHandler = (e) =>{
+
+        e.preventDefault()
         //Set button spinner
         setIsLoading(true);
 
-        const data = new FormData()
+        const data = new FormData();
         data.append('file', file)
         data.append("title", title);
         data.append("description", description);
         data.append("page", page);
         data.append("year", year);
-        data.append("user", '');
+        data.append("user", getCurrentUser());
         data.append("yearFrom", yearFrom);
         data.append("yearTo", yearTo);
         data.append("section", section);
         data.append("file", null );
-        console.log( JSON.stringify(fileData));
-
         data.append("fileData", JSON.stringify(fileData));
 
         submitForm("multipart/form-data", data, (msg) => console.log(msg) )
@@ -86,22 +97,19 @@ function DataUpload(){
 
     const submitForm = (contentType, data, setResponse) =>{
         axios({
-            url: `${API_BASE}/files`,
-            method: 'POST',
-            data: data,
-            headers: { 'Content-Type': contentType }
+                url: `${API_BASE}/files`,
+                method: 'POST',
+                data: data,
+                headers: { 'Content-Type': contentType },
+                maxContentLength: Infinity,
+                maxBodyLength: Infinity
             })
             .then((response) => {
-                console.log(data);
                 setResponse(response.data);
-                //Remove button spinner
                 setIsLoading(false);
-
-                //Close modal
                 setOpenModal(false);
             }).catch((error) => {
                 setResponse("error");
-                console.log(error);
             })
     }
 
@@ -111,8 +119,6 @@ function DataUpload(){
             setFiles(result.data.data);
         }
         fetchData();
-        console.log(files);
-
     }, [isLoading])
 
     const openModal = (e) =>{
@@ -133,10 +139,11 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
+                                            <th width="5%"></th>
+                                            <th width="13%">File name</th>
+                                            <th width="10%">Date added</th>
+                                            <th width="10%">Added by</th>
+                                            <th width="5%"></th>
                                         </tr>
                                 </thead>
                                 <tbody>
@@ -151,6 +158,7 @@ function DataUpload(){
                                                             {file.createdAt}
                                                         </Moment>
                                                     </td>
+                                                    <td> {file.user} </td>
                                                     <td> 
                                                          <Button className="btn-icon" onClick={handleDownload} value={file._id}>
                                                             <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
@@ -181,12 +189,13 @@ function DataUpload(){
                             <Button className="btn-warning center" value="Agenda 2063" onClick={ openModal }>Add new data</Button>
                             <Table>
                                 <thead>
-                                        <tr>
-                                        <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
-                                        </tr>
+                                    <tr>
+                                        <th width="5%"></th>
+                                        <th width="13%">File name</th>
+                                        <th width="10%">Date added</th>
+                                        <th width="10%">Added by</th>
+                                        <th width="5%"></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 {
@@ -200,6 +209,7 @@ function DataUpload(){
                                                             {file.createdAt}
                                                         </Moment>
                                                     </td>
+                                                    <td> {file.user} </td>
                                                     <td> 
                                                          <Button className="btn-icon" onClick={handleDownload} value={file._id}>
                                                             <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
@@ -230,12 +240,13 @@ function DataUpload(){
                             <Button className="btn-warning center" value="Country Profile" onClick={ openModal }>Add new data</Button>
                             <Table>
                                 <thead>
-                                <tr>
-                                <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
-                                </tr>
+                                    <tr>
+                                        <th width="5%"></th>
+                                        <th width="13%">File name</th>
+                                        <th width="10%">Date added</th>
+                                        <th width="10%">Added by</th>
+                                        <th width="5%"></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 {
@@ -249,7 +260,7 @@ function DataUpload(){
                                                             {file.createdAt}
                                                         </Moment>
                                                     </td>
-                                                    <td> </td>
+                                                    <td> {file.user} </td>
                                                     <td> 
                                                          <Button className="btn-icon" onClick={handleDownload} value={file._id}>
                                                             <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
@@ -279,12 +290,13 @@ function DataUpload(){
                             <Button className="btn-warning center" value="Dashboard" onClick={ openModal }>Add new data</Button>
                             <Table>
                                 <thead>
-                                <tr>
-                                <th></th>
-                                            <th>File name</th>
-                                            <th>Date added</th>
-                                            <th>Added by</th>
-                                </tr>
+                                    <tr>
+                                        <th width="5%"></th>
+                                        <th width="13%">File name</th>
+                                        <th width="10%">Date added</th>
+                                        <th width="10%">Added by</th>
+                                        <th width="5%"></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 {
@@ -298,6 +310,7 @@ function DataUpload(){
                                                             {file.createdAt}
                                                         </Moment>
                                                     </td>
+                                                    <td> {file.user} </td>
                                                     <td> 
                                                          <Button className="btn-icon" onClick={handleDownload} value={file._id}>
                                                             <FontAwesomeIcon icon="cloud-download-alt" size="lg"></FontAwesomeIcon>
@@ -332,11 +345,13 @@ function DataUpload(){
                 </div>
                 <div className="modal-body">
 
-                    <Form>
+                    <Form onSubmit={onClickHandler}>
                         <label>Title</label>
+                        <label className="sub-label">*</label>
                         <input type="text" className="form-control" name="title" onChange={ e => setTitle(e.target.value)} required/>
 
                         <label>Description</label>
+                        <label className="sub-label">*</label>
                         <input type="text" className="form-control" name="description" onChange={ e => setDescription(e.target.value)} required/>
                         {
                             page === 'SDG' || page === 'Agenda 2063' ? (
@@ -453,6 +468,7 @@ function DataUpload(){
                         }
 
                         <label>File</label>
+                        <label className="sub-label">* (Upload CSV files only)</label>
                         <CsvInterface handleSetFileData={ handleFileData }/>    
                     
                         {
@@ -461,7 +477,7 @@ function DataUpload(){
                                 <FontAwesomeIcon icon="spinner"></FontAwesomeIcon> Uploading
                             </Button>
                         ):(
-                            <input type="submit" className="btn btn-warning center" name="Upload" onClick={onClickHandler}/>
+                            <input type="submit" className="btn btn-warning center" value="submit" name="Upload"/>
                         )
                     }
                     </Form>

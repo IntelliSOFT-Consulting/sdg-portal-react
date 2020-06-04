@@ -955,7 +955,7 @@ font-weight: 600;
 }
 
 
-.dashboardCard .table th, .table td {
+.dashboardCard .table th, .dashboardCard .table td {
   padding: 0rem;
   vertical-align: top;
   border-top: 0rem solid #dee2e6;
@@ -1443,4 +1443,10 @@ html, body, #root{
   font-size: 0.9rem;
   letter-spacing: 0.2px;
   margin-bottom: 0px;
+}
+
+.sub-label{
+  padding-left: 2px;
+    font-size: .775rem;
+    color: #fd6825;
 }

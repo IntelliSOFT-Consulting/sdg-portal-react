@@ -26,6 +26,7 @@ function CountryProfileHeader (){
         axios.get(API_BASE + '/user/logout')
         .then(res => {
             if(res.status == 200){
+                localStorage.removeItem("user");
                 history.push('/Login');
             }else{
                 const error = new Error(res.error);

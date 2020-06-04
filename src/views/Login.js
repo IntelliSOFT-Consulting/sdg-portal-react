@@ -30,15 +30,13 @@ function Login(){
             } 
         }).then(res => {
             if(res.status === 200){
-               history.push('/DataUpload');
+                history.push('/DataUpload');
+                localStorage.setItem("user", email);
             }else{
                 const error = new Error(res.error);
-                //console.log(error);
                 throw error;
             }
         }).catch(err => {
-            //console.log(err.res);
-            //alert('Error logging in, please try again.')
             setEmail('');
             setPassword('');
             setErrorMsg('Invalid email or password. Please try again.')
