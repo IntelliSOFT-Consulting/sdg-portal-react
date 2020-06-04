@@ -1,0 +1,288 @@
+
+[
+   {
+      "code" : "dz",
+      "drilldown" : "countries/dz/dz-all",
+      "value" : "12"
+   },
+   {
+      "code" : "ao",
+      "drilldown" : "countries/ao/ao-all",
+      "value" : "17"
+   },
+   {
+      "code" : "bj",
+      "drilldown":"countries/bj/bj-all",
+      "value":"11"
+   },
+   ​   {
+      "code":"bw",
+      "drilldown":"countries/bw/bw-all",
+      "value":"14"
+   },
+   ​   {
+      "code":"bf",
+      "drilldown":"countries/bf/bf-all",
+      "value":"17"
+   },
+   ​   {
+      "code":"bi",
+      "drilldown":"countries/bi/bi-all",
+      "value":"18"
+   },
+   ​   {
+      "code":"cm",
+      "drilldown":"countries/cm/cm-all",
+      "value":"19"
+   },
+   ​   {
+      "code":"cv",
+      "drilldown":"countries/cv/cv-all",
+      "value":"20"
+   },
+   ​   {
+      "code":"cf",
+      "drilldown":"countries/cf/cf-all",
+      "value":"21"
+   },
+   ​   {
+      "code":"km",
+      "drilldown":"countries/km/km-all",
+      "value":"22"
+   },
+   ​   {
+      "code":"cd",
+      "drilldown":"countries/cd/cd-all",
+      "value":"23"
+   },
+   ​   {
+      "code":"dj",
+      "drilldown":"countries/dj/dj-all",
+      "value":"24"
+   },
+   ​   {
+      "code":"eg",
+      "drilldown":"countries/eg/eg-all",
+      "value":"25"
+   },
+   ​   {
+      "code":"gq",
+      "drilldown":"countries/gq/gq-all",
+      "value":"26"
+   },
+   ​   {
+      "code":"er",
+      "drilldown":"countries/er/er-all",
+      "value":"27"
+   },
+   ​   {
+      "code":"et",
+      "drilldown":"countries/et/et-all",
+      "value":"28"
+   },
+   {
+      "code":"ga",
+      "drilldown":"countries/ga/ga-all",
+      "value":"29"
+   },
+   {
+      "code":"gm",
+      "drilldown":"countries/gm/gm-all",
+      "value":"30"
+   },
+   ​   {
+      "code":"gh",
+      "drilldown":"countries/gh/gh-all",
+      "value":"31"
+   },
+   ​   {
+      "code":"gn",
+      "drilldown":"countries/gn/gn-all",
+      "value":"32"
+   },
+   ​   {
+      "code":"gw",
+      "drilldown":"countries/gw/gw-all",
+      "value":"33"
+   },
+   {
+      "code":"ci",
+      "drilldown":"countries/ci/ci-all",
+      "value":"34"
+   },
+   ​   {
+      "code":"ke",
+      "drilldown":"countries/ke/ke-all",
+      "value":"35"
+   },
+   ​   {
+      "code":"ls",
+      "drilldown":"countries/ls/ls-all",
+      "value":"36"
+   },
+   ​   {
+      "code":"lr",
+      "drilldown":"countries/lr/lr-all",
+      "value":"37"
+   },
+   ​   {
+      "code":"ly",
+      "drilldown":"countries/ly/ly-all",
+      "value":"38"
+   },
+   ​   {
+      "code":"mg",
+      "drilldown":"countries/mg/mg-all",
+      "value":"39"
+   },
+   ​   {
+      "code":"mw",
+      "drilldown":"countries/mw/mw-all",
+      "value":"40"
+   },
+   ​   {
+      "code":"ml",
+      "drilldown":"countries/ml/ml-all",
+      "value":"41"
+   },
+   {
+      "code":"mr",
+      "drilldown":"countries/mr/mr-all",
+      "value":"42"
+   },
+   ​   {
+      "code":"mu",
+      "drilldown":"countries/mu/mu-all",
+      "value":"43"
+   },
+   {
+      "code":"ma",
+      "drilldown":"countries/ma/ma-all",
+      "value":"44"
+   },
+   ​   {
+      "code":"mz",
+      "drilldown":"countries/mz/mz-all",
+      "value":"45"
+   },
+   {
+      "code":"na",
+      "drilldown":"countries/na/na-all",
+      "value":"46"
+   },
+   ​   {
+      "code":"ne",
+      "drilldown":"countries/ne/ne-all",
+      "value":"47"
+   },
+   ​   {
+      "code":"ng",
+      "drilldown":"countries/ng/ng-all",
+      "value":"48"
+   },
+   ​   {
+      "code":"cg",
+      "drilldown":"countries/cg/cg-all",
+      "value":"49"
+   },
+   ​   {
+      "code":"rw",
+      "drilldown":"countries/rw/rw-all",
+      "value":"50"
+   },
+   {
+      "code":"st",
+      "drilldown":"countries/st/st-all",
+      "value":"51"
+   },
+   ​   {
+      "code":"sn",
+      "drilldown":"countries/sn/sn-all",
+      "value":"52"
+   },
+   {
+      "code":"sc",
+      "drilldown":"countries/sc/sc-all",
+      "value":"53"
+   },
+   ​   {
+      "code":"sl",
+      "drilldown":"countries/sl/sl-all",
+      "value":"54"
+   },
+   ​   {
+      "code":"so",
+      "drilldown":"countries/so/so-all",
+      "value":"55"
+   },
+   ​   {
+      "code":"za",
+      "drilldown":"countries/za/za-all",
+      "value":"56"
+   },
+   ​   {
+      "code":"ss",
+      "drilldown":"countries/ss/ss-all",
+      "value":"57"
+   },
+   ​   {
+      "code":"sd",
+      "drilldown":"countries/sd/sd-all",
+      "value":"58"
+   },
+   ​   {
+      "code":"sz",
+      "drilldown":"countries/sz/sz-all",
+      "value":"59"
+   },
+   ​   {
+      "code":"tz",
+      "drilldown":"countries/tz/tz-all",
+      "value":"60"
+   },
+   ​   {
+      "code":"tg",
+      "drilldown":"countries/tg/tg-all",
+      "value":"61"
+   },
+   ​   {
+      "code":"tn",
+      "drilldown":"countries/tn/tn-all",
+      "value":"62"
+   },
+   ​   {
+      "code":"ug",
+      "drilldown":"countries/ug/ug-all",
+      "value":"27"
+   },
+   ​   {
+      "code":"eh",
+      "drilldown":"countries/eh/eh-all",
+      "value":"64"
+   },
+   ​   {
+      "code":"zm",
+      "drilldown":"countries/zm/zm-all",
+      "value":"65"
+   },
+   ​   {
+      "code":"zw",
+      "drilldown":"countries/zw/zw-all",
+      "value":"66"
+   },
+   ​   {
+      "code":"td",
+      "drilldown":"countries/td/td-all",
+      "value":"67"
+   },
+   ​   {
+      "code":"fr",
+      "drilldown":"countries/fr/fr-all",
+      "value":"68"
+   },
+   ​   {
+      "code":"sx",
+      "drilldown":"countries/sx/sx-all",
+      "value":"69"
+   }
+]​
