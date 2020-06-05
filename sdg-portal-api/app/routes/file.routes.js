@@ -38,7 +38,6 @@ router.route('/files')
     .post(auth, fileController.create);
 
 router.route('/file/:id').get(fileController.findOne);
-router.route('/file/:id').put(fileController.update);
 router.route('/file/:id').delete(fileController.delete);
 
 router.route('/user/create').post(userController.create);

@@ -1,0 +1,499 @@
+ [
+       {
+           "id": 1,
+            "indicators": [
+                {
+                    "indicator": "n3_sdg1_povtrend",
+                    "title": "Projected poverty headcount ratio at $1.90/day (%) in 2030",
+                    "color": "Dashboard Color sdg1_povtrend"
+                },
+                {
+                    "indicator": "n3_sdg1_natpov",
+                    "title": "Poverty headcount ratio at $1.90/day (%)",
+                    "color": "Dashboard Color sdg1_natpov"
+                },
+                {
+                    "indicator": "n3_sdg1_social",
+                    "title": "Population covered by Social Protection",
+                    "color": "Dashboard Color sdg1_social"
+                }
+            ]
+       },
+       {
+        "id": 2,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg2_crlyld",
+                 "title": "Cereal yield (t/ha)",
+                 "color":"Dashboard Color sdg2_crlyld"
+             },
+             {
+                 "indicator": "n3_sdg2_fertilizer",
+                 "title": "Fertilizer consumption",
+                 "color": "Dashboard Color sdg2_fertilizer"
+             },
+             {
+                 "indicator": "n3_sdg2_obesity",
+                 "title": "Prevalence of adult obesity (%)",
+                 "color": "Dashboard Color sdg2_obesity"
+             },
+             {
+                "indicator": "n3_sdg2_stunting",
+                "title": "Prevalence of stunting, under-5s (%)",
+                "color": "Dashboard Color sdg2_stunting"
+            },
+            {
+                "indicator": "n3_sdg2_undernsh",
+                "title": "Prevalence of undernourishment (%)",
+                "color": "Dashboard Color sdg2_undernsh"
+            },
+            {
+                "indicator": "n3_sdg2_wasting",
+                "title": "Prevalence of wasting, under-5s (%)",
+                "color": "Dashboard Color sdg2_wasting"
+            }
+         ]
+    },
+    {
+        "id": 3,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg3_art",
+                 "title": "People living with HIV who receive ART",
+                 "color" : "Dashboard Color sdg3_art"
+             },
+             {
+                 "indicator": "n3_sdg3_births",
+                 "title": "Births attended by skilled health personnel (%)",
+                 "color" : "Dashboard Color sdg3_births"
+             },
+             {
+                 "indicator": "n3_sdg3_fertility",
+                 "title": "Adolescent fertility (births per 1,000)",
+                 "color" : "Dashboard Color sdg3_fertility"
+             },
+             {
+                "indicator": "n3_sdg3_hale",
+                "title": "Healthy life expectancy at birth (years)",
+                "color" : "Dashboard Color sdg3_hale"
+            },
+            {
+                "indicator": "n3_sdg3_hiv",
+                "title": "HIV prevalence (per 1,000)",
+                "color" : "Dashboard Color sdg3_hiv"
+            },
+            {
+                "indicator": "n3_sdg3_malatreat",
+                "title": "Proportion of children under 5 with fever who are treated with appropriate anti-",
+                "color" : "Dashboard Color sdg3_malatreat"
+            },
+            {
+                "indicator": "n3_sdg3_malmort",
+                "title": "Malaria mortality rate",
+                "color" : "Dashboard Color sdg3_malmort"
+            },
+            {
+                "indicator": "n3_sdg3_matmort",
+                "title": "Maternal mortality (per 100,000 live births)",
+                "color" : "Dashboard Color sdg3_matmort"
+            },
+            {
+                "indicator": "n3_sdg3_ncds",
+                "title": "Death rate from NCDs (per 100,000)",
+                "color" : "Dashboard Color sdg3_ncds"
+            },
+            {
+                "indicator": "n3_sdg3_neonat",
+                "title": "Neonatal mortality (per 1000 live births)",
+                "color" : "Dashboard Color sdg3_neonat"
+            },
+            {
+                "indicator": "n3_sdg3_ntds",
+                "title": "Preventive Chemotherapy for Neglected Tropical Diseases (%)",
+                "color" : ""
+            },
+            {
+                "indicator": "n3_sdg3_pollmort",
+                "title": "Death rate from household and ambient pollution (per 100,000)",
+                "color" : ""
+            },
+            {
+                "indicator": "n3_sdg3_swb",
+                "title": "Subjective wellbeing (0-10)",
+                "color" : ""
+            },
+            {
+                "indicator": "n3_sdg3_tb",
+                "title": "Incidence of tuberculosis (per 100,000)",
+                "color" : ""
+            },
+            {
+                "indicator": "n3_sdg3_traffic",
+                "title": "Traffic deaths (per 100,000)",
+                "color" : ""
+            },
+            {
+                "indicator": "n3_sdg3_u5mort",
+                "title": "Under 5 mortality (per 1000 live births)",
+                "color" : ""
+            },
+            {
+                "indicator": "n3_sdg3_uhc",
+                "title": "UHC Tracer Index (0-100)",
+                "color" : ""
+            },
+            {
+                "indicator": "n3_sdg3_vac",
+                "title": "Infants who receive 2 WHO vaccines (%)",
+                "color" : ""
+            }
+         ]
+    },
+    {
+        "id": 4,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg4_literacy",
+                 "title": "Literacy rate of 15-24 year olds (%)"
+             },
+             {
+                 "indicator": "n3_sdg4_primary",
+                 "title": "Net primary school enrolment rate (%)"
+             },
+             {
+                 "indicator": "n3_sdg4_schlyrs",
+                 "title": "Mean years of schooling (years)"
+             }
+         ]
+    },
+    {
+        "id": 5,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg5_contra",
+                 "title": "Unmet demand for contraceptives (%)"
+             },
+             {
+                 "indicator": "n3_sdg5_edat",
+                 "title": "Female years of schooling (% male)"
+             },
+             {
+                 "indicator": "n3_sdg5_fgm",
+                 "title": "Proportion of girls and women who have undergone female genital mutilation/cutti"
+             },
+             {
+                 "indicator": "n3_sdg5_lfpr",
+                 "title": "Female labor force participation (% male)"
+             },
+             {
+                 "indicator": "n3_sdg5_marriage",
+                 "title": "Proportion of women who were married or in a union before age 18"
+             },
+             {
+                 "indicator": "n3_sdg5_minister",
+                 "title": "Women in ministerial positions"
+             },
+             {
+                 "indicator": "n3_sdg5_parl",
+                 "title": "Women in national parliaments (%)"
+             }
+         ]
+    },
+    {
+        "id": 6,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg6_freshwat",
+                 "title": "Freshwater withdrawal (%)"
+             },{
+                 "indicator": "n3_sdg6_gwd",
+                 "title": "Imported groundwater depletion (m3/year/capita)"
+             },
+             {
+                 "indicator": "n3_sdg6_sanita",
+                 "title": "Population using at least basic sanitation services (%)"
+             },
+             {
+                 "indicator": "n3_sdg6_water",
+                 "title": "Population using at least basic drinking water services (%)"
+             }
+         ]
+    },
+    {
+        "id": 7,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg7_cleanfuel",
+                 "title": "Access to clean fuels (%)"
+             },
+             {
+                 "indicator": "n3_sdg7_elecac",
+                 "title": "Access to electricity (%)"
+             },
+             {
+                 "indicator": "n3_sdg7_elecafford",
+                 "title": "Affordabilty of electricity"
+             },
+             {
+                 "indicator": "Renewable energy share",
+                 "title": "n3_sdg7_renewable"
+             }
+         ]
+    },
+    {
+        "id": 8,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg8_accounts",
+                 "title": "Access to bank account or mobile-money (% adult pop.)"
+             },
+             {
+                 "indicator": "n3_sdg8_business",
+                 "title": "Starting Business"
+             },
+             {
+                 "indicator": "n3_sdg8_employment",
+                 "title": "Employment"
+             },
+             {
+                 "indicator": "n3_sdg8_gdpgrowth",
+                 "title": "5-year GDP growth pc (%)"
+             },
+             {
+                 "indicator": "n3_sdg8_slavery",
+                 "title": "Slavery Score (0-100)"
+             }
+         ]
+    },
+    {
+        "id": 9,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg9_infrsc",
+                 "title": "Infrastructure score"
+             },
+             {
+                 "indicator": "n3_sdg9_intuse",
+                 "title": "Internet use (%)"
+             },
+             {
+                 "indicator": "n3_sdg9_lpi",
+                 "title": "Logistics Performance Index (1-5)"
+             },
+             {
+                 "indicator": "n3_sdg9_mobuse",
+                 "title": "Mobile broadband subscriptions (per 100)"
+             },
+             {
+                 "indicator": "n3_sdg9_publications",
+                 "title": "Scientific and technical journal articles (items per bn. PPP$ GDP)"
+             },
+             {
+                 "indicator": "n3_sdg9_rdex",
+                 "title": "Government R&D expenditures (% GDP)"
+             }
+         ]
+    },
+    {
+        "id": 10,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg10_adjgini",
+                 "title": "Adjusted Gini Coefficient (0-100)"
+             }
+         ]
+    },
+    {
+        "id": 11,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg11_pipedwat",
+                 "title": "Improved water source, piped (%)"
+             },
+             {
+                 "indicator": "n3_sdg11_pm25",
+                 "title": "PM2.5 in urban areas (µg/m3)"
+             },
+             {
+                 "indicator": "n3_sdg11_slums",
+                 "title": "Urban population living in slums"
+             },
+             {
+                 "indicator": "n3_sdg11_transport",
+                 "title": "Satisfaction with public transport (%)"
+             }
+         ]
+    },
+    {
+        "id": 12,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg12_ewaste",
+                 "title": "E-waste (kg/capita)"
+             },
+             {
+                 "indicator": "n3_sdg12_msw",
+                 "title": "Municipal solid waste (kg/person/year)"
+             },
+             {
+                 "indicator": "n3_sdg12_prodso2",
+                 "title": "Production-based SO2 emissions (kg/capita)"
+             },
+             {
+                 "indicator": "n3_sdg12_rgi",
+                 "title": "Natural Resource Value Realization Score"
+             }
+             ,
+             {
+                 "indicator": "n3_sdg12_so2",
+                 "title": "Net imported SO2 emissions (kg/capita)"
+             }
+             ,
+             {
+                 "indicator": "n3_sdg12_wastewat",
+                 "title": "Wastewater treated (%)"
+             }
+         ]
+    },
+    {
+        "id": 13,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg13_ccvm",
+                 "title": "Climate change vulnerability (0-1)"
+             },
+             {
+                 "indicator": "n3_sdg13_co2export",
+                 "title": "Exported CO2 emissions from fossil fuels (kg/capita)"
+             },
+             {
+                 "indicator": "Imported CO2 emissions, tech-adjusted (tCO2/capita)",
+                 "title": "n3_sdg13_co2import"
+             },
+             {
+                 "indicator": "n3_sdg13_co2pc",
+                 "title": "CO2 emissions from energy (tCO2/capita)"
+             }
+         ]
+    },
+    {
+        "id": 14,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg14_biodiv",
+                 "title": "Ocean Health Index - Biodiversity (0-100)"
+             },
+             {
+                 "indicator": "n3_sdg14_cleanwat",
+                 "title": "Ocean Health Index - Clean waters (0-100)"
+             },
+             {
+                 "indicator": "n3_sdg14_cpma",
+                 "title": "Marine sites, mean protected area (%)"
+             },
+             {
+                 "indicator": "n3_sdg14_fisheries",
+                 "title": "Ocean Health Index  - Fisheries (0-100)"
+             },
+             {
+                 "indicator": "n3_sdg14_fishstocks",
+                 "title": "Fish stocks overexploited or collapsed (%)"
+             },
+             {
+                 "indicator": "n3_sdg14_plastic",
+                 "title": "Inadequately managed plastic waste"
+             },
+             {
+                 "indicator": "n3_sdg14_trawl",
+                 "title": "Fish caught by trawling (%)"
+             }
+         ]
+    },
+    {
+        "id": 15,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg15_afrforest",
+                 "title": "Change in forest area"
+             },
+             {
+                 "indicator": "n3_sdg15_cpta",
+                 "title": "Terrestrial sites, mean protected area (%)"
+             },
+             {
+                 "indicator": "n3_sdg15_impbiothr",
+                 "title": "Imported biodiversity threats (threats per million)"
+             },
+             {
+                 "indicator": "n3_sdg15_redlist",
+                 "title": "Red List Index of species survival (0-1)"
+             }
+         ]
+    },
+    {
+        "id": 16,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg16_afrgoveff",
+                 "title": "Public Sector Accountability"
+             },
+             {
+                 "indicator": "n3_sdg16_afrprs",
+                 "title": "Property rights"
+             },
+             {
+                 "indicator": "n3_sdg16_clabor",
+                 "title": "Child labor (%)"
+             },
+             {
+                 "indicator": "n3_sdg16_conflict",
+                 "title": "Conflict deaths (per 100,000)"
+             },
+             {
+                 "indicator": "n3_sdg16_cpi",
+                 "title": "Corruption Perception Index (0-100)"
+             },
+             {
+                 "indicator": "n3_sdg16_homicides",
+                 "title": "Homicides (per 100,000)"
+             },
+             {
+                 "indicator": "n3_sdg16_justice",
+                 "title": "Access to justice"
+             },
+             {
+                 "indicator": "n3_sdg16_safe",
+                 "title": "Feel safe walking at night (%)"
+             }
+         ]
+    },
+    {
+        "id": 17,
+         "indicators": [
+             {
+                 "indicator": "n3_sdg16_u5reg",
+                 "title": "Registered births (%)"
+             },
+             {
+                 "indicator": "n3_sdg17_afrtaxrev",
+                 "title": "Tax revenue (% GDP)"
+             },
+             {
+                 "indicator": "n3_sdg17_govex",
+                 "title": "Health & Education spending (% GDP)"
+             },
+             {
+                 "indicator": "n3_sdg17_statcap",
+                 "title": "Governmental Statistical Capacity"
+             },
+             {
+                 "indicator": "n3_sdg17_tariff",
+                 "title": "Tariff on imports"
+             },
+             {
+                 "indicator": "n3_sdg17_visa",
+                 "title": "Visa Requirement"
+             }
+         ]
+    }
+]

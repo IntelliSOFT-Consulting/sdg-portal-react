@@ -20,7 +20,7 @@ import {
   } from "reactstrap";
 
 function CountryProfileHeader (){
-    const API_BASE = "http://localhost:3001/api";
+    const API_BASE = "http://localhost:3002/api";
 
     const handleLogoutBtn = () => {
         axios.get(API_BASE + '/user/logout')
