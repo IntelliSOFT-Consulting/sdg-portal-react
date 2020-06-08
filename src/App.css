@@ -1360,6 +1360,7 @@ html, body, #root{
 
 .files-div .table{
   margin-top: 20px;
+  table-layout: fixed;
 }
 
 
