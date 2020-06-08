@@ -53,6 +53,6 @@ app.get('/api/user/checkToken', withAuth, function(req, res) {
   res.sendStatus(200);
 });
 
-app.listen(3002, () => {
-    console.log("Server running on port 3002");
+app.listen(3001, () => {
+    console.log("Server running on port 3001");
    });
