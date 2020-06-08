@@ -1,0 +1,15 @@
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch({headless:false});
+  const page = await browser.newPage();
+
+  await page.goto('https://blog-api-django.herokuapp.com/admin/');
+  await page.screenshot({path: 'example.png'});
+  await page.type('[id="id_username"]', 'admin3');
+  await page.type('[id="id_password"]', 'blog12345');
+  await page.click('[type="submit"]');
+
+
+  //await browser.close();
+})();

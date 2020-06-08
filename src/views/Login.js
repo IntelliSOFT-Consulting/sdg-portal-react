@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-    Container, Row, Col, Button, Modal, Card, CardBody, CardHeader, Table, Input, Form, Label, InputGroup, InputGroupAddon, InputGroupText
+    Container, Row, Col, Card, Input, Form, Label, InputGroup, InputGroupAddon, InputGroupText
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +13,11 @@ function Login(){
 
     const [errorMsg, setErrorMsg] = useState('');
 
-    const API_BASE = "http://localhost:3001/api"
+    const API_BASE = "http://localhost:3002/api"
 
-    function validateForm() {
-        return email.length > 0 && password.length > 0;
-    }
+    // function validateForm() {
+    //     return email.length > 0 && password.length > 0;
+    // }
 
     function handleSubmit(event) {
         event.preventDefault();
