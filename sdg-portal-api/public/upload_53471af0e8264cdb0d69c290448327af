@@ -1,0 +1,55 @@
+id,name,capital,region,code,flagURL,povertyLine,gdpPerCapita
+1,Algeria,Algiers,Northern Africa,DZ,algeria-flag-medium,0.3027327882,13900.15811
+2,Angola,Luanda,Central Africa,AO,angola-flag-medium,30.77722898,6051.579368
+3,Benin,Porto-Novo,Western Africa,BJ,benin-flag-medium,45.35497243,2069.194923
+4,Botswana,Gaborone,Southern Africa,BW,botswana-flag-medium,16.20428312,15473.92262
+5,Burkina Faso,Ouagadougou,Western Africa,BF,burkina-faso-flag-medium,28.37371557,1696.225477
+6,Burundi,Bujumbura,Eastern Africa,BI,burundi-flag-medium,75.59309501,668.4789843
+7,Cameroon,Yaounde,Central Africa,CM,cameroon-flag-medium,15.47348,6283.162846
+8,Cabo Verde,Praia,Western Africa,CV,cape-verde-flag-medium,21.40545774,3383.460806
+9,Central African Republic,Bangui,Central Africa,CF,central-african-republic-flag-medium,77.13430136,661.2399677
+10,Chad,N'Djamena,Central Africa,TD,chad-flag-medium,43.72981201,1768.153411
+11,Comoros,Moroni,Eastern Africa,KM,comoros-flag-medium,21.18180587,2500.507998
+12,Congo,Brazzaville,Central Africa,CG,congo-republic-of-the-flag-medium,70.14311426,808.1332134
+13,Democratic Republic of the Congo,Kinshasa,Central Africa,CD,congo-democratic-republic-of-the-flag-medium,49.92618226,4957.59012
+14,Cote d'Ivoire,Yamoussoukro,Western Africa,CI,cote-d-ivoire-flag-medium,21.26041536,3585.53599
+15,Djibouti,Djibouti,Eastern Africa,DJ,djibouti-flag-medium,13.40064495,
+16,Egypt,Cairo,Northern Africa,EG,egypt-flag-medium,0.5893052813,10551.29965
+17,Equatorial Guinea,Malabo,Central Africa,GQ,equatorial-guinea-flag-medium,,22213.74306
+18,Eritrea,Asmara,Eastern Africa,ER,eritrea-flag-medium,,
+19,Ethiopia,Addis Ababa,Eastern Africa,ET,ethiopia-flag-medium,45.19022282,7870.644839
+20,Gabon,Libreville,Central Africa,GA,gabon-flag-medium,13.7211652,1729.926639
+21,Gambia,Banjul,Western Africa,GM,gambia-flag-medium,2.407449212,16463.87137
+22,Ghana,Accra,Western Africa,GH,ghana-flag-medium,38.65250522,1544.390653
+23,Guinea,Conakry,Western Africa,GN,guinea-flag-medium,8.789484519,4091.907058
+24,Guinea Bissau,Bissau,Western Africa,GW,guinea-bissau-flag-medium,29.42346927,2042.403191
+25,Kenya,Nairobi,Eastern Africa,KE,kenya-flag-medium,56.7199493,1548.677641
+26,Lesotho,Maseru,Southern Africa,LS,lesotho-flag-medium,27.58203861,2992.592241
+27,Liberia,Monrovia,Western Africa,LR,liberia-flag-medium,52.55701201,2665.035409
+28,Libya,Tripoli,Northern Africa,LY,libya-flag-medium,32.99084114,1168.261952
+29,Madagascar,Antananarivo,Central Africa,MG,madagascar-flag-medium,,17881.50933
+30,Malawi,Lilongwe,Southern Africa,MW,malawi-flag-medium,75.43135555,1416.439507
+31,Mali,Bamako,Western Africa,ML,mali-flag-medium,65.95194816,1095.042089
+32,Mauritania,Nouakchott,Northern Africa,MR,mauritania-flag-medium,27.25060813,2016.218793
+33,Mauritius,Port Louis,Southern Africa,MU,mauritius-flag-medium,5.77959443,3597.632689
+34,Morocco,Rabat,Northern Africa,MA,morocco-flag-medium,0.1845140186,20320.3703
+35,Mozambique,Maputo,Southern Africa,MZ,mozambique-flag-medium,0.3560021842,7485.012951
+36,Namibia,Windhoek,Southern Africa,NA,namibia-flag-medium,66.57150064,1136.393882
+37,Niger,Niamey,Western Africa,NE,niger-flag-medium,22.48774764,9517.384912
+38,Nigeria,Abuja,Western Africa,NG,nigeria-flag-medium,40.22094111,925.9900583
+39,Rwanda,Kigali,Eastern Africa,RW,rwanda-flag-medium,42.93545084,5351.076803
+40,Sao Tome and Principe,Sao Tome,Southern Africa,ST,sao-tome-and-principe-flag-medium,42.73662372,1857.411835
+41,Senegal,Dakar,Western Africa,SN,senegal-flag-medium,21.8916684,3052.713743
+42,Seychelles,Victoria,Eastern Africa,SC,seychelles-flag-medium,29.18024857,3142.68273
+43,Sierra Leone,Freetown,Western Africa,SL,sierra-leone-flag-medium,0.8835178227,26656.95252
+44,Somalia,Mogadishu,Eastern Africa,SO,somalia-flag-medium,39.508305,1391.014662
+45,South Africa,Pretoria,Southern Africa,ZA,south-africa-flag-medium,52.62267658,
+46,South Sudan,Juba,Eastern Africa,SS,south-sudan-flag-medium,24.4361729,12294.4731
+47,Sudan,Khartoum,Eastern Africa,SD,sudan-flag-medium,86.7362649,1569.888346
+48,eSwatini (fmr Swaziland),Lobamba,Southern Africa,SZ,swaziland-flag-medium,17.40982065,4466.506755
+49,Tanzania,Dar es Salaam,Eastern Africa,TZ,tanzania-flag-medium,35.55157567,2683.304024
+50,Togo,Lome,Western Africa,TG,togo-flag-medium,42.93765318,1511.952428
+51,Tunisia,Tunis,Northern Africa,TN,kenya-flag-medium,0.563580284,10849.29739
+52,Uganda,Kampala,Eastern Africa,UG,uganda-flag-medium,30.7854741,1698.061274
+53,Zambia,Lusaka,Southern Africa,ZM,zambia-flag-medium,53.09855946,3665.375337
+54,Zimbabwe,Harare,Southern Africa,ZW,zimbabwe-flag-medium,,2212.099917
