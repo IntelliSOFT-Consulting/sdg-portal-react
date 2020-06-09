@@ -76,9 +76,30 @@ exports.findOne = (req, res) => {
 
 };
 
-// Update a file identified by the filesId in the request
-exports.update = (req, res) => {
+// Update a file identified by the filesId in the request	
+exports.update = (req, res) => {	
+    if(!req.body){	
+        return res.status(400).send({	
+            message: 'Data to update can not be empty! '	
+        });	
+    }	
 
+
+    const id = req.params.id;	
+
+    File.findByIdAndUpdate(id, req.body, {useFindAndModify: false})	
+        .then(data => {	
+            if(!data){	
+                res.status(404).send({	
+                    message: 'Cannot update file with id=${id}'	
+                });	
+            }else res.send({ message : 'File has been updated'})	
+        })	
+        .catch(err => {	
+            res.status(500).send({	
+                message: 'Error updating file with id= ' +id	
+            })	
+        })	
 };
 
 // Delete a file with the specified filesId in the request
