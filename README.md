@@ -12,7 +12,13 @@ This project uses:
 
 2. In the project directory, run:
     ##### `npm config set '@bit:registry' https://node.bit.dev`
+    ##### `npm install` 
+
+3. Navigate to the API directory: 
+    ##### `cd sdg-portal-api` 
     ##### `npm install`
+    
+4. Navigate back to the project directory and run: 
     ##### `npm start`
 
 
