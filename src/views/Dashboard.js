@@ -1,6 +1,7 @@
 import React , { useState , useEffect} from "react";
 import Header from "../components/dashboardHeader";
 import Footer from "../components/footer";
+import Spinner from '../visualizations/spinner';
 
 import {
     Nav, Card, CardBody, TabContent, TabPane, Button, CardImg, Row, Col, Modal, Container,Table
@@ -25,6 +26,8 @@ function Dashboard (){
   const [year, setYear] = useState('2019');
   const [toggleYearWidget, setToggleYearWidget] = useState(false);
   const [indicatorData, setIndicatorData] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   let dashboardDataSource = require.context('../assets/data', true);
   let d = require('../assets/data/dashboard.json');
   const API_BASE = "http://localhost:3001/api"
@@ -111,8 +114,6 @@ function Dashboard (){
 
   const counter = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
-  
-
   const regionClick = (e) =>{
     setActiveRegion(e.target.value)
   }
@@ -182,6 +183,7 @@ function Dashboard (){
     let dashboardDataApi = {}
     //Fetch dashboard API data
     const fetchDashboardData = async() =>{
+      setLoading(true)
       let apiData = []
       const result = await axios(API_BASE+'/files');
       apiData =  result.data.data;
@@ -191,6 +193,7 @@ function Dashboard (){
         }
       })
       setDashboardData(dashboardDataApi.data);
+      setLoading(false)
 
     }
     fetchDashboardData();
@@ -340,6 +343,11 @@ const handleClickYear = (year) => {
               </div>
                 <Card className="">
                     <CardBody>
+                      {
+                        loading === true ? (
+                      <Spinner></Spinner>
+                        ): (
+                      
                         <TabContent activeTab={activeRegion}>
                           <TabPane tabId="1">
                             <Table>
@@ -571,6 +579,7 @@ const handleClickYear = (year) => {
                           </Table>
                           </TabPane>      
                         </TabContent>
+                        )}
                     </CardBody>
                   </Card>
                  
