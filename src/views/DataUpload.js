@@ -81,7 +81,23 @@ function DataUpload(){
         setIsLoading(true);
 
         if(fileData.length > 300){
-            submitLargeFiles(fileData);
+
+            let slicedArr = fileData.slice(0,299)
+
+            const data = new FormData();
+            data.append('file', file)
+            data.append("title", title);
+            data.append("description", description);
+            data.append("page", page);
+            data.append("year", year);
+            data.append("user", getCurrentUser());
+            data.append("yearFrom", yearFrom);
+            data.append("yearTo", yearTo);
+            data.append("section", section);
+            data.append("file", null );
+            data.append("fileData", JSON.stringify(slicedArr));
+
+            submitForm("multipart/form-data", data, (msg) => console.log(msg) )
         }else{
             const data = new FormData();
             data.append('file', file)
@@ -100,60 +116,60 @@ function DataUpload(){
         }
     }
 
-    const submitLargeFiles = (arr) =>{
-        const data = new FormData();
-        data.append('file', file)
-        data.append("title", title);
-        data.append("description", description);
-        data.append("page", page);
-        data.append("year", year);
-        data.append("user", getCurrentUser());
-        data.append("yearFrom", yearFrom);
-        data.append("yearTo", yearTo);
-        data.append("section", section);
-        data.append("file", null );
+    // const submitLargeFiles = (arr) =>{
+    //     const data = new FormData();
+    //     data.append('file', file)
+    //     data.append("title", title);
+    //     data.append("description", description);
+    //     data.append("page", page);
+    //     data.append("year", year);
+    //     data.append("user", getCurrentUser());
+    //     data.append("yearFrom", yearFrom);
+    //     data.append("yearTo", yearTo);
+    //     data.append("section", section);
+    //     data.append("file", null );
         
-        let chunks = [], chunkSize = 300, len;
-        len = arr.length
-        for (let i=0; i < len; i+= chunkSize) {
-            chunks.push(arr.slice(i,i+chunkSize));
-        }
+    //     let chunks = [], chunkSize = 300, len;
+    //     len = arr.length
+    //     for (let i=0; i < len; i+= chunkSize) {
+    //         chunks.push(arr.slice(i,i+chunkSize));
+    //     }
 
-        let firstChunk = true, lastChunk=false, noOfChunks = 0;
-        noOfChunks = chunks.length
-        let id = 0;
-        for(let j=0; j < noOfChunks; j++){
-            if(firstChunk){
-                data.append("fileData", JSON.stringify(chunks[0]))
-                axios({
-                    url: `${API_BASE}/files`,
-                    method: 'POST',
-                    data: data,
-                    headers: { 'Content-Type': "multipart/form-data" },
-                    maxContentLength: Infinity,
-                    maxBodyLength: Infinity
-                })
-                .then((response) => {
-                    chunks = chunks.slice(1);
-                    firstChunk = false;
+    //     let firstChunk = true, lastChunk=false, noOfChunks = 0;
+    //     noOfChunks = chunks.length
+    //     let id = 0;
+    //     for(let j=0; j < noOfChunks; j++){
+    //         if(firstChunk){
+    //             data.append("fileData", JSON.stringify(chunks[0]))
+    //             axios({
+    //                 url: `${API_BASE}/files`,
+    //                 method: 'POST',
+    //                 data: data,
+    //                 headers: { 'Content-Type': "multipart/form-data" },
+    //                 maxContentLength: Infinity,
+    //                 maxBodyLength: Infinity
+    //             })
+    //             .then((response) => {
+    //                 chunks = chunks.slice(1);
+    //                 firstChunk = false;
 
 
-                    id = response.data.data._id
-                    let newChunk = {
-                        fileData: JSON.stringify(chunks[0])
-                    } 
-                   // updateFile(id, newChunk)
-                }).catch((error) => {
-                    console.log(error)
-                })
-            }else if(lastChunk){
+    //                 id = response.data.data._id
+    //                 let newChunk = {
+    //                     fileData: JSON.stringify(chunks[0])
+    //                 } 
+    //                // updateFile(id, newChunk)
+    //             }).catch((error) => {
+    //                 console.log(error)
+    //             })
+    //         }else if(lastChunk){
        
-            }else{
-                console.log(fileID);
-            }
-        }
-         console.log(id)   
-    }
+    //         }else{
+    //             console.log(fileID);
+    //         }
+    //     }
+    //      console.log(id)   
+    // }
 
     const updateFile = (id, data) => {
         axios({
