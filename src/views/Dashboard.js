@@ -27,7 +27,7 @@ function Dashboard (){
   const [indicatorData, setIndicatorData] = useState(0);
   let dashboardDataSource = require.context('../assets/data', true);
   let d = require('../assets/data/dashboard.json');
-  const API_BASE = "http://localhost:3002/api"
+  const API_BASE = "http://localhost:3001/api"
   
 
   const sdgs = [

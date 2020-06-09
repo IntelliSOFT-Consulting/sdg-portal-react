@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Moment from 'react-moment';
 import CsvInterface from '../components/csvviewer/csvInterface';
 import { CSVLink, CSVDownload } from "react-csv";
-import { response } from "express";
 
 function DataUpload(){
      
@@ -31,6 +30,7 @@ function DataUpload(){
     const [file, setFile] = useState([]);
     const [fileData, setFileData] = useState([]);
     const [files, setFiles] = useState([]);
+    const [fileID, setFileID] = useState(0);
 
     const [csvDownloadFileData, setCsvDownloadFileData] = useState([]);
     const [csvFileName, setCsvFileName] = useState('');
@@ -39,9 +39,14 @@ function DataUpload(){
     const [toggleModal, setOpenModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const API_BASE = "http://localhost:3002/api"
+    const API_BASE = "http://localhost:3001/api"
 
     const handleFileData = (fileData) =>{
+        let slicedData = []
+        if(fileData.length > 100){
+            slicedData = fileData.slice(0, 99)
+        }
+       // console.log(slicedData)
         setFileData(fileData)
     }
 
@@ -63,8 +68,11 @@ function DataUpload(){
     }
 
     const getCurrentUser = () => {
+        //console.log(localStorage.getItem('user'))
         return localStorage.getItem('user')
       }
+
+     
 
     const onClickHandler = (e) =>{
 
@@ -72,7 +80,9 @@ function DataUpload(){
         //Set button spinner
         setIsLoading(true);
 
-        if(fileData.length < 300){
+        if(fileData.length > 300){
+            submitLargeFiles(fileData);
+        }else{
             const data = new FormData();
             data.append('file', file)
             data.append("title", title);
@@ -85,19 +95,80 @@ function DataUpload(){
             data.append("section", section);
             data.append("file", null );
             data.append("fileData", JSON.stringify(fileData));
-    
+
             submitForm("multipart/form-data", data, (msg) => console.log(msg) )
-        }else{
-            var i,len,chunks,chunkSize = 10;
-            len = fileData.length
-            for (i=0; i<len; i+=chunkSize) {
-                chunks.push(fileData.slice(i,i+chunkSize))
-            }
-            console.log(chunks)
-            
+        }
+    }
+
+    const submitLargeFiles = (arr) =>{
+        const data = new FormData();
+        data.append('file', file)
+        data.append("title", title);
+        data.append("description", description);
+        data.append("page", page);
+        data.append("year", year);
+        data.append("user", getCurrentUser());
+        data.append("yearFrom", yearFrom);
+        data.append("yearTo", yearTo);
+        data.append("section", section);
+        data.append("file", null );
+        
+        let chunks = [], chunkSize = 300, len;
+        len = arr.length
+        for (let i=0; i < len; i+= chunkSize) {
+            chunks.push(arr.slice(i,i+chunkSize));
         }
 
-        
+        let firstChunk = true, lastChunk=false, noOfChunks = 0;
+        noOfChunks = chunks.length
+        let id = 0;
+        for(let j=0; j < noOfChunks; j++){
+            if(firstChunk){
+                data.append("fileData", JSON.stringify(chunks[0]))
+                axios({
+                    url: `${API_BASE}/files`,
+                    method: 'POST',
+                    data: data,
+                    headers: { 'Content-Type': "multipart/form-data" },
+                    maxContentLength: Infinity,
+                    maxBodyLength: Infinity
+                })
+                .then((response) => {
+                    chunks = chunks.slice(1);
+                    firstChunk = false;
+
+
+                    id = response.data.data._id
+                    let newChunk = {
+                        fileData: JSON.stringify(chunks[0])
+                    } 
+                   // updateFile(id, newChunk)
+                }).catch((error) => {
+                    console.log(error)
+                })
+            }else if(lastChunk){
+       
+            }else{
+                console.log(fileID);
+            }
+        }
+         console.log(id)   
+    }
+
+    const updateFile = (id, data) => {
+        axios({
+            url: `${API_BASE}/file/${id}`,
+            method: 'PUT',
+            data: data,
+            headers: { 'Content-Type': "multipart/form-data" },
+            maxContentLength: Infinity,
+            maxBodyLength: Infinity
+        })
+        .then((response) => {
+            console.log(response.data)
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     const submitForm = (contentType, data, setResponse) =>{
@@ -114,21 +185,9 @@ function DataUpload(){
                 setIsLoading(false);
                 setOpenModal(false);
             }).catch((error) => {
+                console.log(error)
                 setResponse("error");
             })
-    }
-
-    const editData = (id, data) =>{
-        axios({
-            url: `${API_BASE}/files`,
-                method: 'POST',
-                data: data,
-                headers: 'multipart/form-data',
-        }).then(response => {
-            console.log(response)
-        }).catch(error => {
-
-        })
     }
 
     useEffect(() => {
@@ -156,13 +215,13 @@ function DataUpload(){
                             <Button className="btn-warning center" value="SDG" onClick={ openModal }>Add new data</Button>
                             <Table>
                                 <thead>
-                                    <tr>
-                                        <th width="2%"></th>
-                                        <th width="13%">File name</th>
-                                        <th width="10%">Date added</th>
-                                        <th width="10%">Added by</th>
-                                        <th width="2%"></th>
-                                    </tr>
+                                        <tr>
+                                            <th width="5%"></th>
+                                            <th width="13%">File name</th>
+                                            <th width="10%">Date added</th>
+                                            <th width="10%">Added by</th>
+                                            <th width="5%"></th>
+                                        </tr>
                                 </thead>
                                 <tbody>
                                 {
@@ -208,11 +267,11 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="2%"></th>
+                                        <th width="5%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="2%"></th>
+                                        <th width="5%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -259,12 +318,12 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="2%"></th>
+                                        <th width="5%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="2%"></th>
-                                    </tr>>
+                                        <th width="5%"></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 {
@@ -309,11 +368,11 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="2%"></th>
+                                        <th width="5%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="2%"></th>
+                                        <th width="5%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
