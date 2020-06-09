@@ -502,7 +502,7 @@ text-align: center;
   border-radius: 50%;
   width: 150px;
   height: 150px;
-  border: 2px solid #d0d0d0;
+  border: 1px solid #cccccc;
 }
 
 .mapChartCard{
@@ -890,7 +890,7 @@ font-weight: 600;
   color: #4267b2;
 }
 
-.table th, .table td {
+.dashboard  .table th, .table td {
   padding: 1rem; 
   vertical-align: top;
 }
@@ -955,7 +955,7 @@ font-weight: 600;
 }
 
 
-.table th, .table td {
+.dashboardCard .table th, .dashboardCard .table td {
   padding: 0rem;
   vertical-align: top;
   border-top: 0rem solid #dee2e6;
@@ -1147,8 +1147,8 @@ html, body, #root{
 .agenda2063-goals{
   text-align: left;
     font-weight: 400;
-    height: 250px;
-    overflow-y: scroll;
+    max-height: 250px;
+    overflow-y: overlay;
     list-style: none;
 }
 /* .circle-container div{
@@ -1297,4 +1297,157 @@ html, body, #root{
   .dashboard{
     padding-top: 15%;
   }
+}
+
+.files-div{
+  padding: 10px 100px;
+}
+
+.file-div{
+  padding: 10px 0px;
+}
+
+.file-div a{
+  color: #32325d;
+  padding-left: 5px;
+  font-size: 1rem;
+}
+
+.files-div label{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #32325d;
+}
+
+.uploadFilesModal .form-control{
+  font-size: 0.875rem;
+  /* margin: 10px 0px; */
+  height: calc(2.75rem);
+  margin-bottom: 10px;
+}
+
+.uploadFilesModal .modal-body{
+  padding: 15px;
+}
+
+.uploadFilesModal .custom-file-upload{
+  border: 1px solid #cad1d7;
+  border-radius: 0.25rem;
+  padding: 0.625rem 0.75rem;
+  margin-top: 0px;
+}
+
+.files-div  .card h3{
+  text-align: center;
+    font-weight: 600;
+}
+
+.files-div .card{
+  padding: 20px;
+  margin: 10px;
+}
+
+.files-div .card  .btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.uploadFilesModal .btn:not(:disabled):not(.disabled){
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.files-div .table{
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+
+.files-div .modal-dialog{
+  padding-top: 150px;
+}
+
+.ReactTable{
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+.ReactTable .rt-td, .ReactTable .rt-th {
+  padding: 6px 5px;
+}
+
+.file-div .btn-icon{
+  padding: .1rem 1px;
+  background-color: transparent;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.11), 0 1px 3px rgba(255, 255, 255, 0.08);
+}
+
+.login-card{
+  position: relative;
+  max-width: 400px;
+  margin: 20px 0 70px;
+  /* min-height: 400px; */
+  padding: 30px;
+}
+
+.input-group>.input-group-prepend>.input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0px;
+}
+
+.login-card form .btn {
+  margin-top: 30px;
+}
+
+.forgot-password-link{
+  margin-top: 30px;
+}
+
+.login-card label{
+  margin-top: 15px;
+}
+
+
+.btn-round {
+  border-radius: 30px;
+}
+
+.login-card .title{
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.fa-175x{
+  font-size: 1.75em;
+  margin-bottom: 5px;
+}
+
+.btn-warning:not(:disabled):not(.disabled){
+  color: rgb(255, 255, 255);
+    background-color: rgb(253, 105, 37);
+}
+
+.login-card .btn-warning.btn-link{
+  background-color: #fff;
+  color: #fd6925;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+ .error-message-label{
+  color: red;
+  font-weight: 400;
+  /* line-height: 1.7; */
+  font-size: 0.9rem;
+  letter-spacing: 0.2px;
+  margin-bottom: 0px;
+}
+
+.sub-label{
+  padding-left: 2px;
+    font-size: .775rem;
+    color: #fd6825;
 }

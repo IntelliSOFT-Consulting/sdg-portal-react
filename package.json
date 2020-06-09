@@ -16,14 +16,21 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@highcharts/map-collection": "^1.1.2",
+    "axios": "^0.19.2",
+    "bcrypt": "^4.0.1",
     "bootstrap": "^4.3.1",
     "circular-menu": "^1.0.6",
     "classnames": "^2.2.6",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
     "highcharts": "^7.2.1",
     "highcharts-react-official": "^2.2.2",
+    "history": "^4.10.1",
     "jquery": "^3.4.1",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.0",
+    "moment": "^2.25.3",
+    "node-sass": "^4.14.1",
     "nouislider": "^14.1.1",
     "papaparse": "^5.1.0",
     "radium": "^0.26.0",
@@ -33,8 +40,13 @@
     "react-burger-menu": "^2.6.13",
     "react-charts": "^2.0.0-beta.6",
     "react-checkbox-tree": "^1.6.0",
+    "react-csv": "^2.0.3",
+    "react-csv-to-table": "0.0.4",
+    "react-csv-viewer": "^1.0.4",
     "react-dom": "^16.12.0",
     "react-gauge-chart": "^0.2.4",
+    "react-hook-form": "^5.7.2",
+    "react-moment": "^0.9.7",
     "react-multiselect-checkboxes": "^0.1.1",
     "react-pie-menu": "^0.2.5",
     "react-radial-menu": "^1.0.0",
@@ -47,13 +59,14 @@
     "read-more-react": "^1.0.10",
     "recharts": "^2.0.0-beta.1",
     "styled-components": "^5.0.1",
-    "victory": "^34.0.0"
+    "yarn": "^1.22.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "npm run build && (cd sdg-portal-api && npm start)"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -74,3 +87,5 @@
     "@fortawesome/fontawesome-free": "^5.12.0"
   }
 }
+
+

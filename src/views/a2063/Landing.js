@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../../components/a2063LandingHeader';
+import Footer from '../../components/footer';
 import Radialmenu from '../../visualizations/radialMenu';
 import { Container, Row, Col, CardImg, Button } from 'reactstrap';
 import { Link, Redirect} from 'react-router-dom';
@@ -224,10 +225,11 @@ function Agenda2063Landing( ) {
               </Col>
 
             </Row>
+            <Footer></Footer>
         </div>
            
 
-        
+       
         </>
       );
     }

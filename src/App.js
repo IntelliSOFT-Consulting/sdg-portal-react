@@ -6,33 +6,35 @@ import './App.css';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 
 import {
-  BrowserRouter as Router, Switch, Route
+   Router, Switch, Route
 } from 'react-router-dom';
 
 import Home from "./views/Home";
-// import Sdgs from "./views/Sdgs";
 import Sdgs1 from "./views/Sdgs1";
-import Sdg from "./views/sdgs/sdg";
 import SdgIndex from "./views/SdgIndex";
 import Dashboard from "./views/Dashboard";
 import CountryProfile from "./views/CountryProfile";
-// import Agenda2063 from "./views/Agenda2063";
 import a2063 from "./views/a2063";
 import Agenda2063Landing from './views/a2063/Landing';
 import About from "./views/About";
 import Faqs from "./views/Faqs";
+import DataUpload from "./views/DataUpload";
+import Login from './views/Login';
+
+import history from './history';
+import withAuth from './views/withAuth';
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faYoutube, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown)
+library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle)
 
 function App() {  
   return ( 
-    <Router  basename="/sdgportal" >
+    <Router  basename="" history={history} forceRefresh={true}>
       <Switch>
             <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
@@ -45,6 +47,8 @@ function App() {
            
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
+            <Route path="/Login" component={Login}></Route>
+            <Route path="/DataUpload" component={withAuth(DataUpload)}></Route>
             <Route exact path="/" component={Home}></Route>
       </Switch>
     </Router>

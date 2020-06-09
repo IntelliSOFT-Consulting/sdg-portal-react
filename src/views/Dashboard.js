@@ -3,17 +3,11 @@ import Header from "../components/dashboardHeader";
 import Footer from "../components/footer";
 
 import {
-    Nav,
-    NavItem,
-    NavLink, 
-    Card,
-    CardBody,
-    TabContent,
-    TabPane, Button, CardImg, Row, Col, Modal, Container,Table
+    Nav, Card, CardBody, TabContent, TabPane, Button, CardImg, Row, Col, Modal, Container,Table
 } from "reactstrap";
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Dashboard (){
   const Papa = require("papaparse/papaparse.min.js");
@@ -33,7 +27,8 @@ function Dashboard (){
   const [indicatorData, setIndicatorData] = useState(0);
   let dashboardDataSource = require.context('../assets/data', true);
   let d = require('../assets/data/dashboard.json');
-  console.log(d)
+  const API_BASE = "http://localhost:3002/api"
+  
 
   const sdgs = [
     {
@@ -114,7 +109,9 @@ function Dashboard (){
     }
   ]
 
-  const counter = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  const counter = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+
+  
 
   const regionClick = (e) =>{
     setActiveRegion(e.target.value)
@@ -128,8 +125,6 @@ function Dashboard (){
     let sdgNumber = countrySdg.slice(2,n);
     let shortHandName = '';
     
-
-    console.log(dashboardData);
     dashboardData.forEach(function(data){
       if(data.code == countryCode){
         dashboardIndicators.forEach(function(dashboardIndicator){
@@ -145,8 +140,6 @@ function Dashboard (){
                 sdgColor = 'col_' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2];
                 indicatorKey = indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
               }
-
-              console.log(indicatorKey)
               indicatorData.push({
                 "title": ind.title,
                 "value": data[indicatorKey],
@@ -186,20 +179,22 @@ function Dashboard (){
   }
 
   useEffect(() => {
-    let dashboardYear = 'dashboard_' + year
-    let dashboardDataSourceYear = dashboardDataSource(`./${dashboardYear}.csv`);
-      const loadData = csvFile => {
-        Papa.parse(csvFile, {
-          download: true,
-          header: true,
-          skipEmptyLines: false,
-          complete: function(results){
-              setDashboardData(results.data);
-          }
-        })
-      } 
-      parseDashboardData(activePopup);
-      loadData(dashboardDataSourceYear);
+    let dashboardDataApi = {}
+    //Fetch dashboard API data
+    const fetchDashboardData = async() =>{
+      let apiData = []
+      const result = await axios(API_BASE+'/files');
+      apiData =  result.data.data;
+      apiData.forEach(function(d){
+        if(d.page == "Dashboard" && d.year == year){
+          dashboardDataApi = d
+        }
+      })
+      setDashboardData(dashboardDataApi.data);
+
+    }
+    fetchDashboardData();
+    parseDashboardData(activePopup);
   }, [activeRegion, year, activePopup])
 
   useEffect(() => {
@@ -602,7 +597,6 @@ const handleClickYear = (year) => {
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    { console.log(dashboardPopupIndicatorsData) }
                                   {
                                       dashboardPopupIndicatorsData.map(function(dashboardInd, index){
                                         return <tr>

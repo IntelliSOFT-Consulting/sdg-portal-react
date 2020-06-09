@@ -42,6 +42,7 @@ class AboutHeader extends React.Component{
                     <Link to="/A2063Landing" className="text-white">AGENDA 2063</Link>
                     <Link to="/About" className="text-white">ABOUT US</Link>
                     <Link to="/Faqs" className="text-white">FAQs</Link>
+                    <Link to="/DataUpload" className="text-white">ADMIN</Link>
                 </Menu>
             </Navbar>
             </header> 

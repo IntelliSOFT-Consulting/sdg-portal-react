@@ -29,6 +29,9 @@ class Header extends React.Component{
                     <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
                 </Link>   
             </NavbarBrand>
+            <Nav className="about-title">
+                <h5 className="display-3 mb-4 mt-2 text-center"></h5>
+                </Nav>
                
             <Menu right>
                 <Link to="/" className="text-white">HOME</Link> 
@@ -38,6 +41,7 @@ class Header extends React.Component{
                 <Link to="/A2063Landing" className="text-white">AGENDA 2063</Link>
                 <Link to="/About" className="text-white">ABOUT US</Link>
                 <Link to="/Faqs" className="text-white">FAQs</Link>
+                <Link to="/DataUpload" className="text-white">ADMIN</Link>
             </Menu>
             </header> 
           

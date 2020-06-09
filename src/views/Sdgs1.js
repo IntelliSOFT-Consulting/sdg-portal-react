@@ -13,8 +13,6 @@ import LineChart from "../visualizations/lineChart";
 import Spinner from "../visualizations/spinner";
 import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
-
-
   
 function Sdgs1(props) {
     const override = css`
@@ -28,7 +26,7 @@ function Sdgs1(props) {
    
     //const [target, setTarget] = useState('');
     const [sdgTargets, setSdgTargets] = useState([]);
-    const [indicators, setIndicators] = useState([]);
+    
 
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
     let sdgAllYears = [2019]
@@ -526,13 +524,14 @@ function Sdgs1(props) {
                     indic.push(indicator);
                 }
             })
-            redirectSdgIndicator = indic[0]
+            redirectSdgIndicator = indic[0];
         }
     }
 
     const [activSdg, setActiveSdg] = useState(redirectSdg);
     const [target, setTarget] = useState(parseInt(redirectSdg) + ".1");
     const [indicator, setIndicator] = useState(redirectSdgIndicator);
+    const [indicators, setIndicators] = useState(indic);
     
     const parseCountriesRegions = () =>{
         let nodes = []
@@ -600,8 +599,9 @@ function Sdgs1(props) {
             }
         })
     }
-        setIndicators(indic);
+       // setIndicators(indic);
         //console.log(indic)
+        console.log(indic);
     }, [target, activSdg])
 
     useEffect(() => {
@@ -692,8 +692,6 @@ function Sdgs1(props) {
                 })  
             }
         })
-
-        console.log(mapData)
         setSdgMapData(mapData);
     }
 
@@ -761,6 +759,7 @@ function Sdgs1(props) {
             }
         })
         setIndicator(indic[0]);
+        setIndicators(indic);
     }
 
 
@@ -773,7 +772,7 @@ function Sdgs1(props) {
                 indic.push(indicator);
             }
         })
-        setIndicator(indic[0]);
+        setIndicators(indic);
     }
 
     //Choose indicator
@@ -807,6 +806,7 @@ function Sdgs1(props) {
         setOpenModal(false);
     }
     const handleCountryChange = (event) => {
+        console.log(activSdg);
         setCountry(event.target.value);
     }
     const handleCheck = (event) => {
@@ -843,7 +843,7 @@ function Sdgs1(props) {
                             </Col>
                             <Col>
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                                
+                               
                                     {
                                         indicators.map((indicator, index) => {
                                             return <option key={index} value={indicator}>{indicator}</option>
