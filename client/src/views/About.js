@@ -1,18 +1,8 @@
 import React from "react";
 import Header from "../components/aboutHeader";
 import Footer from "../components/footer";
-import { 
-        Row, 
-        Col,
-        Card, 
-        CardBody,
-        CardHeader,
-        CardImg
-} from "reactstrap";
-import {
-    BrowserRouter as Router, 
-    Link
-} from 'react-router-dom';
+import { Row, Col, CardImg } from "reactstrap";
+import { Link } from 'react-router-dom';
 
 
 class About extends React.Component {
