@@ -1,22 +1,9 @@
-import React, {useState, useEffect} from "react";
-import {
-     BrowserRouter as Router, 
-     Link
-} from 'react-router-dom';
+import React, {useState } from "react";
+import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import {
-    UncontrolledCollapse,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    Nav,
-    Row,
-    Col,
-    CardImg,
-    Button
-  } from "reactstrap";
+import { NavbarBrand, Navbar, Nav, Col, Button } from "reactstrap";
 
 function Header(  {onActiveA2063Changed} ){
 
@@ -104,16 +91,6 @@ function Header(  {onActiveA2063Changed} ){
         onActiveA2063Changed(e.currentTarget.value);
     }
 
-    let redirectAgenda2063 = 0;
-    //console.log(props)
-    // if(props.location.state != null){
-    //     if(props.location.state == 18){
-    //         redirectAgenda2063 = 0
-    //     }else{
-    //         redirectAgenda2063 = props.location.state
-    //     }
-    // }
-
         return (
             <> 
             <header className="header-global agenda2063Header">
@@ -128,15 +105,8 @@ function Header(  {onActiveA2063Changed} ){
                         <Col></Col>
                         { 
                         agenda2063.map(function(a2063, index){
-                                let  imgSrc = images(`./${a2063.image}.png`);
-                                let  imgHover = images(`./${a2063.image2}.png`);
-
-                                let  iconSquare = images(`./${a2063.iconSquare}.png`);
-                                let  iconSquareHover = images(`./${a2063.iconSquareHover}.png`);
-
                                 let  iconSmall = images(`./${a2063.iconSmall}.png`);
                                 let  iconSmallHover = images(`./${a2063.iconSmallHover}.png`);
-
                                 let color = a2063.color;
 
                                 const backgroundHoverStyles = {
@@ -170,13 +140,11 @@ function Header(  {onActiveA2063Changed} ){
                                     backgroundColor: `rgb(${color})`
                                 }
 
-                                let sdgNumber = index + 1;
-                                let url = "Sdgs/Sdg_" + sdgNumber;
                                 return <Col key={index}>
                                             
-                                            <Button style={  activeA2063 == index ? buttonStylesActive : buttonStyles}  onClick={handleA2063Change} value={a2063.id} className={ activeA2063 == index ? 'active': '' }>
-                                                <span style={ activeA2063 == index ? titleTextStylesActive : titleTextStyles} className="a2063-icon-title-text"> { a2063.id !=0 ? 'Aspiration\n' + a2063.id : 'All \n Aspirations'} </span>
-                                                <div  style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles} className="a2063-icon-img" ></div>
+                                            <Button style={  activeA2063 === index ? buttonStylesActive : buttonStyles}  onClick={handleA2063Change} value={a2063.id} className={ activeA2063 === index ? 'active': '' }>
+                                                <span style={ activeA2063 === index ? titleTextStylesActive : titleTextStyles} className="a2063-icon-title-text"> { a2063.id !== 0 ? 'Aspiration\n' + a2063.id : 'All \n Aspirations'} </span>
+                                                <div  style={ activeA2063 === index ? backgroundHoverStyles : backgroundStyles} className="a2063-icon-img" ></div>
                                             </Button>
                                         </Col>
                         })}
