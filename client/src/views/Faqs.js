@@ -32,7 +32,7 @@ class Faqs extends React.Component {
                     <Card key="1">
                         <CardHeader onClick={this.toggle} data-event="1">Q: What are the Sustainable Development Goals?
                         {
-                            collapse == 1 ? (
+                            collapse === 1 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="1" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="1" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -53,7 +53,7 @@ class Faqs extends React.Component {
                     <Card key="2">
                         <CardHeader onClick={this.toggle} data-event="2">Q: Why develop an Africa SDG Index and Dashboards?
                         {
-                            collapse == 2 ? (
+                            collapse === 2 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="2" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="2" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -90,7 +90,7 @@ class Faqs extends React.Component {
                     <Card key="3">
                         <CardHeader onClick={this.toggle} data-event="3">Q: Do the Africa SDG Index and Dashboards replace or compete with official SDG monitoring?
                         {
-                            collapse == 3 ? (
+                            collapse === 3 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="3" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="3" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -116,7 +116,7 @@ class Faqs extends React.Component {
                         Q: How have indicators been selected for the Africa Index and Dashboards? Why are
                             they not identical to the recently proposed official SDG Indicators?
                             {
-                            collapse == 4 ? (
+                            collapse === 4 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="4" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="4" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -163,7 +163,7 @@ class Faqs extends React.Component {
                     <Card key="5">
                         <CardHeader onClick={this.toggle} data-event="5">Q: Why are some countries not included in the Africa SDG Index?
                         {
-                            collapse == 5 ? (
+                            collapse === 5 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="5" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="5" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -184,7 +184,7 @@ class Faqs extends React.Component {
                     <Card key="6">
                         <CardHeader onClick={this.toggle} data-event="6">Q: Do the Africa SDG Index and Dashboards replace or compete with official SDG monitoring?
                         {
-                            collapse == 6 ? (
+                            collapse === 6 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="6" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="6" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -208,7 +208,7 @@ class Faqs extends React.Component {
                     <Card key="7">
                         <CardHeader onClick={this.toggle} data-event="7">Q: Where do the data for the Africa SDG Index and Dashboards come from?
                         {
-                            collapse == 7 ? (
+                            collapse === 7 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="7" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="7" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -228,7 +228,7 @@ class Faqs extends React.Component {
                         <CardHeader onClick={this.toggle} data-event="8">Q: How do the Index and Dashboards compare performance across different
                              indicators?
                              {
-                            collapse == 8 ? (
+                            collapse === 8 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="8" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="8" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -248,7 +248,7 @@ class Faqs extends React.Component {
                     <Card key="9">
                         <CardHeader onClick={this.toggle} data-event="9">Q:  How are the SDGs and the indicators weighted?
                         {
-                            collapse == 9 ? (
+                            collapse === 9 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="9" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="9" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -271,7 +271,7 @@ class Faqs extends React.Component {
                     <Card key="10">
                         <CardHeader onClick={this.toggle} data-event="10">Q: How to interpret the Africa SDG Dashboards?
                         {
-                            collapse == 10 ? (
+                            collapse === 10 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="10" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="10" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -294,7 +294,7 @@ class Faqs extends React.Component {
                         <CardHeader onClick={this.toggle} data-event="11">Q: How are the Africa SDG Index and Dashboards scores calculated and what
                             aggregation method is used?
                             {
-                            collapse == 11 ? (
+                            collapse === 11 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="11" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="11" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -339,7 +339,7 @@ class Faqs extends React.Component {
                     <Card key="12">
                         <CardHeader onClick={this.toggle} data-event="12">Q: How do the Africa SDG Index and Dashboards deal with missing data?
                         {
-                            collapse == 12 ? (
+                            collapse === 12 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="12" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="12" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -362,7 +362,7 @@ class Faqs extends React.Component {
                     <Card key="13">
                         <CardHeader onClick={this.toggle} data-event="13">Q: How do you estimate trends?
                         {
-                            collapse == 13 ? (
+                            collapse === 13 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="13" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="13" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -413,7 +413,7 @@ class Faqs extends React.Component {
                         <CardHeader onClick={this.toggle} data-event="14">Q: How does the trend analysis deal with countries that have already met a SDG
                              target?
                              {
-                            collapse == 14 ? (
+                            collapse === 14 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="14" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="14" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -435,7 +435,7 @@ class Faqs extends React.Component {
                         <CardHeader onClick={this.toggle} data-event="15">Q: Morocco is ranked number 1 in the Africa SDG Index. Does this mean the country
                             has achieved all the SDGs?
                             {
-                            collapse == 15 ? (
+                            collapse === 15 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="15" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="15" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -453,7 +453,7 @@ class Faqs extends React.Component {
                     <Card key="16">
                         <CardHeader onClick={this.toggle} data-event="16">Q: How does the Africa SDG Index relate to other development indices for the SDGs?
                         {
-                            collapse == 16 ? (
+                            collapse === 16 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="16" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="16" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -476,7 +476,7 @@ class Faqs extends React.Component {
                     <Card key="17">
                         <CardHeader onClick={this.toggle} data-event="17">Q: How can I access the data for my country or region?
                         {
-                            collapse == 17 ? (
+                            collapse === 17 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="17" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="17" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -494,7 +494,7 @@ class Faqs extends React.Component {
                     <Card key="18">
                         <CardHeader onClick={this.toggle} data-event="18">Q: What are the major data limitations?
                         {
-                            collapse == 18 ? (
+                            collapse === 18 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="18" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="18" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -516,7 +516,7 @@ class Faqs extends React.Component {
                     <Card key="19">
                         <CardHeader onClick={this.toggle} data-event="19">Q: When will the Africa SDG Index and Dashboards be updated?
                         {
-                            collapse == 19 ? (
+                            collapse === 19 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="19" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="19" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>
@@ -535,7 +535,7 @@ class Faqs extends React.Component {
                     <Card key="20">
                         <CardHeader onClick={this.toggle} data-event="20">Q: To whom can I address my comments on the Africa SDG Index and Dashboards?
                         {
-                            collapse == 20 ? (
+                            collapse === 20 ? (
                                 <FontAwesomeIcon onClick={this.toggle} data-event="20" icon="caret-up" className="faq-icon icon-opened"></FontAwesomeIcon>
                             ):(
                                 <FontAwesomeIcon onClick={this.toggle} data-event="20" icon="caret-down" className="faq-icon icon-closed"></FontAwesomeIcon>

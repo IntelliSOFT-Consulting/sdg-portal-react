@@ -21,13 +21,9 @@ function Dashboard (){
   const [dashboardPopupIndicators, setDashboardPopupIndicators] = useState([]);
   const [dashboardPopupIndicatorsData, setDashboardPopupIndicatorsData] = useState([]);
   const [activePopup, setActivePopup] = useState('');
-  const [year, setYear] = useState('2019');
+  const [year, setYear] = useState(2019);
   const [toggleYearWidget, setToggleYearWidget] = useState(false);
-  const [indicatorData, setIndicatorData] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  let dashboardDataSource = require.context('../assets/data', true);
-  let d = require('../assets/data/dashboard.json');
   const API_BASE = "http://localhost:8080/api"
   
 
@@ -116,57 +112,7 @@ function Dashboard (){
     setActiveRegion(e.target.value)
   }
 
-  const parseDashboardData = (countrySdg) => {
-    let indicatorsNames = []
-    let indicatorData = [];
-    let n = countrySdg.length;
-    let countryCode = countrySdg.slice(0,2);
-    let sdgNumber = countrySdg.slice(2,n);
-    let shortHandName = '';
-    
-    dashboardData.forEach(function(data){
-      if(data.code == countryCode){
-        dashboardIndicators.forEach(function(dashboardIndicator){
-          if(dashboardIndicator.id == sdgNumber){
-            setDashboardPopupIndicators(dashboardIndicator.indicators);
-            indicatorsNames = dashboardIndicator.indicators
-
-            indicatorsNames.forEach(function(ind){
-              let indicatorsNameArr = ind.indicator.split("_");
-              let indicatorKey = ind.indicator
-              let sdgColor = 'Dashboard Color ' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
-              if(year == 2019){
-                sdgColor = 'col_' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2];
-                indicatorKey = indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
-              }
-              indicatorData.push({
-                "title": ind.title,
-                "value": data[indicatorKey],
-                "color": data[sdgColor]
-              })
-              setDashboardPopupIndicatorsData(indicatorData)
-            })
-          }
-        })
-       
-        setModalPopupData({
-          "country": data.Country,
-          "color": data['sdg'+sdgNumber],
-          "indicator": sdgNumber,
-          "shorthand" : getShortHand( parseInt(sdgNumber)),
-          "indicators": dashboardPopupIndicators
-        })
-      }
-    }) 
-  }
-
-  const handleIndicatorData = (dashboardData, countryCode, indicator) => {
-      dashboardData.forEach(function(d){
-        if(d.code == countryCode){
-            setIndicatorData(d[indicator])
-        }
-      })
-  }
+  
   
   const openModal = (e) => {
     setActivePopup(e.target.id);
@@ -186,117 +132,122 @@ function Dashboard (){
       const result = await axios(API_BASE+'/files');
       apiData =  result.data.data;
       apiData.forEach(function(d){
-        if(d.page == "Dashboard" && d.year == year){
+        if(d.page === "Dashboard" && d.year === year){
           dashboardDataApi = d
         }
       })
       setDashboardData(dashboardDataApi.data);
       setLoading(false)
-
+    }
+    const parseDashboardData = (countrySdg) => {
+      let indicatorsNames = []
+      let indicatorData = [];
+      let n = countrySdg.length;
+      let countryCode = countrySdg.slice(0,2);
+      let sdgNumber = countrySdg.slice(2,n);
+      
+      dashboardData.forEach(function(data){
+        if(data.code === countryCode){
+          dashboardIndicators.forEach(function(dashboardIndicator){
+            if(dashboardIndicator.id === parseInt(sdgNumber)){
+              setDashboardPopupIndicators(dashboardIndicator.indicators);
+              indicatorsNames = dashboardIndicator.indicators
+  
+              indicatorsNames.forEach(function(ind){
+                let indicatorsNameArr = ind.indicator.split("_");
+                let indicatorKey = ind.indicator
+                let sdgColor = 'Dashboard Color ' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
+                if(year === 2019){
+                  sdgColor = 'col_' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2];
+                  indicatorKey = indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
+                }
+                indicatorData.push({
+                  "title": ind.title,
+                  "value": data[indicatorKey],
+                  "color": data[sdgColor]
+                })
+                setDashboardPopupIndicatorsData(indicatorData)
+              })
+            }
+          })
+         
+          setModalPopupData({
+            "country": data.Country,
+            "color": data['sdg'+sdgNumber],
+            "indicator": sdgNumber,
+            "shorthand" : getShortHand( parseInt(sdgNumber)),
+            "indicators": dashboardPopupIndicators
+          })
+        }
+      }) 
     }
     fetchDashboardData();
     parseDashboardData(activePopup);
   }, [activeRegion, year, activePopup])
 
-  useEffect(() => {
-    parseDashboardData(activePopup);
-  }, [activePopup])
-
 
   const getShortHand = (goalNo) => {
-    var shortHand, description, color
+    var shortHand
     switch(goalNo){
         case 1:
             shortHand = ' No Poverty'
-            description = 'UN definition: "Extreme poverty rates have fallen by more than half since 1990. While this is a remarkable achievement, one-in-five people in developing regions still live on less than $1.90 a day. Millions more make little more than this daily amount and are at risk of slipping back into extreme poverty."'
-            color = '#e5243b';
             break
         case 2:
             shortHand = ' Zero Hunger'
-            description = 'UN definition: "It is time to rethink how we grow, share and consume our food.If done right, agriculture, forestry and fisheries can provide nutritious food for all and generate decent incomes, while supporting people-centred rural development and protecting the environment." '
-            color = '#dda73a'
             break
         case 3:
             shortHand = ' Good Health and Well Being'
-            description = 'UN definition: "Significant strides have been made in increasing life expectancy and reducing some of the common killers responsible for child and maternal mortality." '
-            color = '#4C9F38'
             break
         case 4:
             shortHand = ' Quality Education'
-            description = 'UN definition: "Obtaining a quality education underpins a range of fundamental development drivers. Major progress has been made towards increasing access to education at all levels, particularly for women and girls. Basic literacy skills across the world have improved tremendously, yet bolder efforts are needed to achieve universal education goals for all. For example, the world has achieved equality in primary education between girls and boys, but few countries have achieved that target at all levels of education."'
-            color = '#C5192D'
             break
         case 5:
             shortHand = ' Gender Equality'
-            description = ' UN definition: "Gender equality is not only a fundamental human right, but a necessary foundation for a peaceful, prosperous and sustainable world. Providing women and girls with equal access to education, health care, decent work, and representation in political and economic decision-making processes will fuel sustainable economies and benefit societies and humanity at large."  '
-            color = '#FF3A21'
             break
         case 6:
             shortHand = ' Clean Water & Sanitation '
-            description = 'UN definition: "Clean water is a basic human need, and one that should be easily accessible to all. There is sufficient fresh water on the planet to achieve this. However, due to poor infrastructure, investment and planning, every year millions of people — most of them children — die from diseases associated with inadequate water supply, sanitation and hygiene."'
-            color = '#26BDE2'
             break
         case 7:
             shortHand = ' Affordable And Clean Energy'
-            description = 'UN definition: "Energy is central to nearly every major challenge and opportunity the world faces today. Be it for jobs, security, climate change, food production or increasing incomes, access to energy for all is essential. Transitioning the global economy towards clean and sustainable sources of energy is one of our greatest challenges in the coming decades. Sustainable energy is an opportunity – it transforms lives, economies and the planet." '
-            color = '#FCC30B'
             break
         case 8:
             shortHand = ' Decent Work And Economic Growth'
-            description = 'UN definition: "Roughly half the world’s population still lives on the equivalent of about US$2 a day. And in too many places, having a job doesn’t guarantee the ability to escape from poverty. This slow and uneven progress requires us to rethink and retool our economic and social policies aimed at eradicating poverty." '
-            color = '#A21942'
             break
         case 9:
             shortHand = ' Industry, Innovation And Infrastructure'
-            description = '  UN definition: "Investments in infrastructure – transport, irrigation, energy and information and communication technology – are crucial to achieving sustainable development and empowering communities in many countries. It has long been recognized that growth in productivity and incomes, and improvements in health and education outcomes require investment in infrastructure." '
-            color = '#FD6925'
             break
         case 10:
             shortHand = ' Reduced Inequalities'
-            description = 'UN definition: "The international community has made significant strides towards lifting people out of poverty. The most vulnerable nations – the least developed countries, the landlocked developing countries and the small island developing states – continue to make inroads into poverty reduction. However, inequality still persists and large disparities remain in access to health and education services and other assets." '
-            color = '#DD1367'
             break
         case 11:
             shortHand = ' Sustainable Cities And Communities'
-            description = 'UN definition: "The challenges cities face can be overcome in ways that allow them to continue to thrive and grow, while improving resource use and reducing pollution and poverty. The future we want includes cities of opportunities for all, with access to basic services, energy, housing, transportation and more." '
-            color = '#FD9D24'
             break
         case 12:
             shortHand = ' Responsible Consumption and Production'
-            description = 'UN definition: "Sustainable consumption and production is about promoting resource and energy efficiency, sustainable infrastructure, and providing access to basic services, green and decent jobs and a better quality of life for all. Its implementation helps to achieve overall development plans, reduce future economic, environmental and social costs, strengthen economic competitiveness and reduce poverty." '
-            color = '#BF8B2E'
             break
         case 13:
             shortHand = ' Climate Action'
-            description = 'UN definition: "Affordable, scalable solutions are now available to enable countries to leapfrog to cleaner, more resilient economies. The pace of change is quickening as more people are turning to renewable energy and a range of other measures that will reduce emissions and increase adaptation efforts." '
-            color = '#3F7E44'
             break
         case 14:
             shortHand = ' Life Below Water'
-            description = 'UN definition: "Our oceans — their temperature, circulation, chemistry, and ecosystems — play a fundamental role in making Earth habitable. Our rainwater, drinking water, weather, climate, coastlines, much of our food, and even the oxygen in the air we breathe, are all ultimately provided and regulated by the sea. Throughout history, oceans and seas have been vital conduits for trade and transportation. Careful management of this essential global resource is a key feature of a sustainable future." '
-            color = '#0A97D9'
             break
         case 15:
             shortHand = ' Life On Land'
-            description = 'UN definition: "Forests cover 30 per cent of the Earth’s surface and in addition to providing food security and shelter, forests are key to combating climate change, protecting biodiversity and the homes of the indigenous population. Thirteen million hectares of forests are being lost every year while the persistent degradation of drylands has led to the desertification of 3.6 billion hectares." '
-            color = '#56C02B'
             break
         case 16:
             shortHand = ' Peace, Justice And Strong Institutions'
-            description = 'UN definition: "Goal 16 of the Sustainable Development Goals is dedicated to the promotion of peaceful and inclusive societies for sustainable development, the provision of access to justice for all, and building effective, accountable institutions at all levels." '
-            color = '#00689D'
             break
         case 17:
             shortHand = ' Partnership For The Goals'
-            description = 'UN definition: "A successful sustainable development agenda requires partnerships between governments, the private sector and civil society. These inclusive partnerships built upon principles and values, a shared vision, and shared goals that place people and the planet at the centre, are needed at the global, regional, national and local level." '
-            color = '#19486A'
             break
+        default:
+          shortHand = 'No poverty'
     }
     return shortHand;
 }
 
 const handleYearWidget = () =>{
-  toggleYearWidget == false ? (
+  toggleYearWidget === false ? (
     setToggleYearWidget(true)
   ):(
     setToggleYearWidget(false)
@@ -305,7 +256,7 @@ const handleYearWidget = () =>{
 }
 
 const handleClickYear = (year) => {
-  setYear(year.target.value);
+  setYear(parseInt(year.target.value));
 }
 
         return(
@@ -321,7 +272,7 @@ const handleClickYear = (year) => {
                           {
                           regions.map((region, index) =>{  
                                   return <Col>
-                                      <Button key={index} onClick={regionClick} value={region.id} className={ activeRegion == index+1 ? 'active': '' }> 
+                                      <Button key={index} onClick={regionClick} value={region.id} className={ activeRegion === index+1 ? 'active': '' }> 
                                               {region.name}
                                       </Button>
                                   </Col>
@@ -355,8 +306,6 @@ const handleClickYear = (year) => {
                                 { 
                                   sdgs.map(function(sdg, index){
                                           let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          let sdgNumber = index + 1;
-                                          let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
                                                           <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
@@ -371,11 +320,7 @@ const handleClickYear = (year) => {
                                               <td className="sdg-data"> {scoreData.Country}</td>
                                              { 
                                               counter.map(function(count){
-                                                 return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } 
-                                                 onClick={openModal} >
-                                                  
-                                                 </td>
-                                             
+                                                 return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
                                                 })  
                                              } 
                                           </tr>
@@ -393,8 +338,6 @@ const handleClickYear = (year) => {
                                 { 
                                   sdgs.map(function(sdg, index){
                                           let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          let sdgNumber = index + 1;
-                                          let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
                                                           <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
@@ -410,10 +353,7 @@ const handleClickYear = (year) => {
                                                     <td className="sdg-data"> {scoreData.Country}</td>
                                                   { 
                                                     counter.map(function(count){
-                                                      return <td key={count} className = { scoreData["sdg"+count] }>
-                                                      
-                                                      </td>
-                                                  
+                                                      return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
                                                       })  
                                                   } 
                                                 </tr>
@@ -431,8 +371,6 @@ const handleClickYear = (year) => {
                                 { 
                                   sdgs.map(function(sdg, index){
                                           let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          let sdgNumber = index + 1;
-                                          let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
                                                           <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
@@ -448,10 +386,7 @@ const handleClickYear = (year) => {
                                                       <td className="sdg-data"> {scoreData.Country}</td>
                                                     { 
                                                       counter.map(function(count){
-                                                        return <td key={count} className = { scoreData["sdg"+count] }>
-                                                        
-                                                        </td>
-                                                    
+                                                        return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
                                                         })  
                                                     } 
                                                   </tr>
@@ -470,8 +405,6 @@ const handleClickYear = (year) => {
                                 { 
                                   sdgs.map(function(sdg, index){
                                           let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          let sdgNumber = index + 1;
-                                          let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
                                                           <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
@@ -487,10 +420,7 @@ const handleClickYear = (year) => {
                                                       <td className="sdg-data"> {scoreData.Country}</td>
                                                     { 
                                                       counter.map(function(count){
-                                                        return <td key={count} className = { scoreData["sdg"+count] }>
-                                                        
-                                                        </td>
-                                                    
+                                                        return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
                                                         })  
                                                     } 
                                                   </tr>
@@ -508,8 +438,6 @@ const handleClickYear = (year) => {
                                 { 
                                   sdgs.map(function(sdg, index){
                                           let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          let sdgNumber = index + 1;
-                                          let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
                                                           <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
@@ -523,14 +451,11 @@ const handleClickYear = (year) => {
                                         if(scoreData.region === "Southern"){
                                             return <tr key={index} className={scoreData.region}>
                                                       <td className="sdg-data"> {scoreData.Country}</td>
-                                                    { 
-                                                      counter.map(function(count){
-                                                        return <td key={count} className = { scoreData["sdg"+count] }>
-                                                        
-                                                        </td>
-                                                    
-                                                        })  
-                                                    } 
+                                                      { 
+                                                        counter.map(function(count){
+                                                          return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
+                                                          })  
+                                                      } 
                                                   </tr>
                                           }
                                       })
@@ -546,8 +471,6 @@ const handleClickYear = (year) => {
                                 { 
                                   sdgs.map(function(sdg, index){
                                           let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          let sdgNumber = index + 1;
-                                          let url = "Sdgs/Sdg_" + sdgNumber;
                                           return <th key={index}>
                                                           <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
                                           </th>
@@ -563,10 +486,7 @@ const handleClickYear = (year) => {
                                                       <td className="sdg-data"> {scoreData.Country}</td>
                                                     { 
                                                       counter.map(function(count){
-                                                        return <td key={count} className = { scoreData["sdg"+count] }>
-                                                        
-                                                        </td>
-                                                    
+                                                        return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
                                                         })  
                                                     } 
                                                   </tr>

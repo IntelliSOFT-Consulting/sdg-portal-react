@@ -10,6 +10,7 @@ import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 function IndexMap({ mySdgData, onCountryClick }) {
+    console.log(mySdgData)
         highchartsMap(Highcharts);
         let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
         let Papa = require("papaparse/papaparse.min.js");

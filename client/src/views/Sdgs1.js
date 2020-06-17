@@ -587,23 +587,11 @@ function Sdgs1(props) {
                     normalizedDataApi = d.data
                 }
             })
+            
             parseNormalizedData(normalizedDataApi)
             setLoading(false)
         }
         fetchNormalizedData();
-        // const normalizedData = require('../assets/data/normalizedGoalValues.csv')
-        // const loadNormalizedData = (normalizedDataFile) => {
-        //     Papa.parse(normalizedDataFile, {
-        //         download: true,
-        //         header: true,
-        //         skipEmptyLines: true,
-        //         complete: function(results){
-        //             //parseNormalizedData(results.data);
-        //             console.log(results.data)
-        //         }
-        //     })
-        // }
-        //loadNormalizedData(normalizedData);
     }, [country]);
 
 
@@ -672,11 +660,16 @@ function Sdgs1(props) {
         const radarData = [];
 
         data.forEach(function(d){
-            mapData.push({
-                "code": (d.id),
-                "value": parseFloat(d.Score),
-                "name": d.Country
-            })
+            if(d.Country == null){
+                console.log("")
+            }else{
+                mapData.push({
+                    "code": (d.id),
+                    "value": parseFloat(d.Score),
+                    "name": d.Country
+                })
+            }
+           
         })
         goals.forEach(function(goal) {
             data.forEach(function(d){
@@ -688,8 +681,6 @@ function Sdgs1(props) {
                 }
             })
         })
-        // console.log(mapData)
-        // console.log(radarData)
         setIndexMapData(mapData);
         setIndexRadarChartData(radarData);
     }
