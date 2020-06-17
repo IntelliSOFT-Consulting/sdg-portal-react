@@ -1,21 +1,10 @@
 import React from "react";
-import $ from 'jquery';
 import RadialMenu from "react-radial-menu"
 import centerImage from '../assets/img/a2063_icons/white.png'
-import { Container, Row, Col } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 
 
-function SdgLandingMenu(){
-        const items = [
-            {"href":"http://www.facebook.com", "image":"url(assets/img/a2063_icons/Aspiration_1.png)"},
-            {"href":"http://www.reddit.com", "image":"url(examples/dist/images/social/reddit.png)"},
-            {"href":"http://www.flickr.com", "image":"url(examples/dist/images/social/flickr.png)"},
-            {"href":"http://www.google.com", "image":"url(examples/dist/images/social/googleplus.png)"},
-            {"href":"http://www.linkedin.com", "image":"url(examples/dist/images/social/linkedin.png)"},
-            {"href":"http://www.twitter.com", "image":"url(examples/dist/images/social/twitter.png)"},
-            {"href":"http://www.twitter.com", "image":"url(examples/dist/images/social/twitter.png)"}
-        ];
-        
+function SdgLandingMenu(){    
         const center = {
             "image": `url(${centerImage})`
         };
@@ -92,13 +81,6 @@ function SdgLandingMenu(){
  
         agenda2063.map(function(a2063, index){
                 let  imgSrc = images(`./${a2063.image}.png`);
-                let  imgHover = images(`./${a2063.image2}.png`);
-
-                let  iconSquare = images(`./${a2063.iconSquare}.png`);
-                let  iconSquareHover = images(`./${a2063.iconSquareHover}.png`);
-
-                let  iconSmall = images(`./${a2063.iconSmall}.png`);
-                let  iconSmallHover = images(`./${a2063.iconSmallHover}.png`);
                 a2063Arr.push({
                     href: "/Agenda2063",
                     image: `url(${imgSrc})`

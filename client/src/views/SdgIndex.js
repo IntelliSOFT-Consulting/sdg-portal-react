@@ -1,41 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import SdgIndexMenu from '../visualizations/SdgIndexMenu';
-import Radialmenu from '../visualizations/radialMenu';
+import React, { useState } from 'react';
 import Header from '../components/sdgLandingHeader';
 import Footer from '../components/footer';
-import {
-  Container, Row, Col, CardImg, Button
-} from "reactstrap";
+import { Row, Col, CardImg, Button } from "reactstrap";
 
-import { Link, Redirect} from 'react-router-dom';
+import {  Redirect} from 'react-router-dom';
 import ReadMoreReact from 'read-more-react';
 import styled, { keyframes } from "styled-components";
 import Pulse from "@bit/formidablelabs.react-animations.pulse";
-import BounceIn from "@bit/formidablelabs.react-animations.bounce-in";
-import Bounce from "@bit/formidablelabs.react-animations.bounce";
-
-import Shake from "@bit/formidablelabs.react-animations.shake";
-const ShakeAnimation = keyframes`${Shake}`;
-const ShakeDiv = styled.div`
-  animation: infinite 5s ${ShakeAnimation};
-`;
 
 const PulseAnimation = keyframes`${Pulse}`;
 const PulseDiv = styled.div`
   animation: infinite 1.5s ${PulseAnimation};
 `;
 
-const BounceInAnimation = keyframes`${BounceIn}`;
-const BounceInDiv = styled.div`
-  animation: infinite 5s ${BounceInAnimation};
-`;
-
-const BounceAnimation = keyframes`${Bounce}`;
-const BounceDiv = styled.div`
-  animation: infinite 3s ${BounceAnimation};
-`;
 function SdgIndex() {
-
   const [activeSdg, setActiveSdg] = useState('1');
   const [redirect, setRedirect] = useState(false);
   const images = require.context('../assets/img/sdg_icons', true);
@@ -150,7 +128,7 @@ function SdgIndex() {
     }
       
   ];
-  const sdgMetaData = require("../assets/data/sdgs.json");
+  // const sdgMetaData = require("../assets/data/sdgs.json");
 
   const handleOnClick = (sdg) =>{
     setActiveSdg(sdg.currentTarget.value);
@@ -168,11 +146,6 @@ function SdgIndex() {
       setRedirect(true)
     }
 
-    useEffect(() => {
-      console.log(activeSdg)
-    }, [activeSdg])
-
-
       return(
         <>
         <Header></Header>
@@ -184,11 +157,10 @@ function SdgIndex() {
                       sdgs.map(function(sdg, index){
                           let  imgSrc = images(`./${sdg.image}.jpg`);
                           let sdgNumber = index + 1;
-                          let url = "Sdgs/Sdg_" + sdgNumber;
                           let border = '3px solid ' + sdg.color; 
 
-                        return sdgNumber == activeSdg ? (
-                          <div style={{border}} className="sdg-goal-div">
+                        return sdgNumber === parseInt(activeSdg) ? (
+                          <div style={{border}} className="sdg-goal-div" key={index}>
                             <div>
                               <Button>
                                   <CardImg src={ imgSrc }></CardImg>
@@ -200,7 +172,7 @@ function SdgIndex() {
                                     max={400} readMoreText="Read more..." >
                               </ReadMoreReact>
                             </div>
-                          </div>
+                          </div>  
                           ) : null   
                         })
                     }
@@ -218,8 +190,6 @@ function SdgIndex() {
                   { 
                               sdgs.map(function(sdg, index){
                                   let  imgSrc = images(`./${sdg.image}.jpg`);
-                                  let sdgNumber = index + 1;
-                                  let url = "Sdgs/Sdg_" + sdgNumber;
                                   return <Col md="2" className="sdg-index-images" key={index}>
                                     <Button value={ index+1 } onClick={handleOnClick}>
                                       <CardImg src={ imgSrc } ></CardImg>

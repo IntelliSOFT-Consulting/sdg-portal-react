@@ -10,12 +10,14 @@ import HC_exporting2 from 'highcharts/modules/export-data';
 HC_exporting(Highcharts);
 HC_exporting2(Highcharts);
 
-function lineChart({lineChartData, years, indicator, country}){
-    console.log(lineChartData, years)
+function lineChart({lineChartData, years, country}){
     years =  years.sort((a, b) => a - b);
     const chartOptions = {
         chart: {
             height: 400
+        },
+        credits: {
+            enabled: false
         },
         title: {
             text: ''

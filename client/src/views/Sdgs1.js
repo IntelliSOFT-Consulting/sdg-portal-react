@@ -651,14 +651,12 @@ function Sdgs1(props) {
     }
 
     const parseNormalizedData = (data) => {
-        console.log(data)
         const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
         const mapData = [];
         const radarData = [];
 
         data.forEach(function(d){
             if(d.Country == null){
-                console.log("")
             }else{
                 mapData.push({
                     "code": (d.id).toUpperCase(),

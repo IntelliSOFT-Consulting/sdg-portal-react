@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../../components/a2063LandingHeader';
 import Footer from '../../components/footer';
-import Radialmenu from '../../visualizations/radialMenu';
-import { Container, Row, Col, CardImg, Button } from 'reactstrap';
-import { Link, Redirect} from 'react-router-dom';
-import ReadMoreReact from 'read-more-react';
+import {  Row, Col, Button } from 'reactstrap';
+import { Redirect} from 'react-router-dom';
 import styled, { keyframes } from "styled-components";
 import Pulse from "@bit/formidablelabs.react-animations.pulse";
 const PulseAnimation = keyframes`${Pulse}`;
@@ -121,10 +119,7 @@ function Agenda2063Landing( ) {
           }
   
   ];
-  const agenda2063Icon = require('../../assets/img/a2063_icons/a2063_big_icon.png');
-  const metaData = require('../../assets/data/aspirationsMetaData.json');
-  console.log(metaData)
-
+ 
   let currAngle = -90;
   let degreeAngle = 360 /( agenda2063.length - 1);
 
@@ -133,8 +128,6 @@ function Agenda2063Landing( ) {
 
   const handleA2063Change = (a2063) =>{
     setActive2063(a2063.currentTarget.value)
-  }
-  const handleOverallA2063 = () => {
   }
 
   const renderRedirect = (a2063) =>{
@@ -162,8 +155,6 @@ function Agenda2063Landing( ) {
                                 let transform  = 'rotate(' + rotate + 'deg) translate(16em) rotate(' + reverseRotate + 'deg)'  ;
                                 let imgSrc = images(`./${a2063.image}.png`);
                                 let imageHover = images(`./${a2063.imageSolid}.png`);
-                                let background =  a2063.color;
-                                let handleClick = ''
 
                                 const backgroundHoverStyles = {
                                   backgroundImage: `url(${imageHover})`,
@@ -178,14 +169,14 @@ function Agenda2063Landing( ) {
                                   backgroundSize: "cover"
                               }
 
-                                if(index != 0){
-                                  return <Button onClick={handleA2063Change} value={index} style={{ transform }} className="a2063-circle">
-                                              <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
+                                if(index !== 0){
+                                  return <Button onClick={handleA2063Change} value={index} style={{ transform }} className="a2063-circle" key={index}>
+                                              <div style={ activeA2063 === index ? backgroundHoverStyles : backgroundStyles }></div>
                                         </Button>
                                 }else{
                                   transform = '';
-                                  return <Button value={index} className="a2063-circle">
-                                          <div style={ activeA2063 == index ? backgroundHoverStyles : backgroundStyles }></div>
+                                  return <Button value={index} className="a2063-circle" key={index}>
+                                          <div style={ activeA2063 === index ? backgroundHoverStyles : backgroundStyles }></div>
                                         </Button>
                                 }
                           })}
@@ -197,15 +188,14 @@ function Agenda2063Landing( ) {
                       agenda2063.map(function(a2063, index){
                           let a2063Number = index ;
                           let goals = a2063.goals;
-                        return a2063Number == activeA2063 && a2063Number != 0 ? (
-                          <div className="a2063-goal-div">
+                        return parseInt(a2063Number) === parseInt(activeA2063) && a2063Number !== 0 ? (
+                          <div className="a2063-goal-div" key={index}>
                             <div>
                               <h4> Aspiration {index} : {a2063.description} </h4>
                               <div className="agenda2063-goals">
                                 {
-                                  goals.map(function(goal){
-                                    
-                                    return <div>{goal} </div>
+                                  goals.map(function(goal, index){
+                                    return <div key={index}>{goal} </div>
                                   })
                                 }
                               </div>

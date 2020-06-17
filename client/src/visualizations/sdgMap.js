@@ -1,8 +1,5 @@
 import React from 'react';
-import { 
-    Container
-    } from "reactstrap";
-import $ from "jquery";
+import {  Container} from "reactstrap";
 
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
@@ -1388,7 +1385,6 @@ function SdgMap({ mySdgData, onCountryClick }) {
         (function(H){
             H.seriesTypes.map.prototype.translateColors = function () {
                         var series = this,
-                            nullColor = this.options.nullColor,
                             colorAxis = this.colorAxis,
                             colorKey = this.colorKey;
         
@@ -1398,8 +1394,6 @@ function SdgMap({ mySdgData, onCountryClick }) {
         
                             color = point.options.color ||
                                 (
-                                    //point.isNull ?
-                                    //    nullColor :
                                         (colorAxis && value !== undefined) ?
                                             colorAxis.toColor(value, point) :
                                             point.color || series.color

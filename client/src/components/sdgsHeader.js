@@ -1,28 +1,14 @@
-import React, {useState, useEffect} from "react";
-import {
-     BrowserRouter as Router, 
-     Link
-} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import {
-    UncontrolledCollapse,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    Nav,
-    Row,
-    Col,
-    CardImg,
-    Button
-  } from "reactstrap";
+import { NavbarBrand, Navbar, Nav, Col, CardImg, Button} from "reactstrap";
 
 function Header( {onActiveSdgChanged} ){
 
     const images = require.context('../assets/img/sdgs_icons', true);
     const sdgs = [
-        
         {
             id :0,
             image : "E_SDG_Icons-00"
@@ -80,12 +66,7 @@ function Header( {onActiveSdgChanged} ){
         }
         
     ];
-
     const [activeSdg, setActiveSdg] = useState(0);
-
-    useEffect(() =>{
-       // console.log(activeSdg);
-    })
 
     const handleSdgChange = (e) => {
         setActiveSdg(e.currentTarget.value);
@@ -96,19 +77,15 @@ function Header( {onActiveSdgChanged} ){
             <> 
             <header className="header-global sdgsHeader">
                 <Navbar>
-                    <NavbarBrand>
-                        <Link to="/">
-                            <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
-                        </Link>   
-                    </NavbarBrand>
+                <Link to="/" className="navbar-brand">
+                        <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
+                    </Link>
                     <Nav className="sdg-icon-padding ">
                         { 
                         sdgs.map(function(sdg, index){
                                 let  imgSrc = images(`./${sdg.image}.jpg`);
-                                let sdgNumber = index + 1;
-                                let url = "Sdgs/Sdg_" + sdgNumber;
                                 return <Col key={index}>
-                                            <Button onClick={handleSdgChange} value={index} className={ activeSdg == index ? 'active': '' }>
+                                            <Button onClick={handleSdgChange} value={index} className={ parseInt(activeSdg) === index ? 'active': '' }>
                                                 <CardImg  alt="..." src={ imgSrc }></CardImg>
                                             </Button>
                                 </Col>

@@ -1,55 +1,42 @@
 import React, { useState, useEffect } from "react";
 import Header from '../components/dataUploadHeader';
 import axios from 'axios';
-import {
-    Container, Row, Col, Button, Modal, Card, CardBody, CardHeader, Table, Input, Form
+import { Row, Col, Button, Modal, Card, CardBody, Table, Input, Form
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Moment from 'react-moment';
 import CsvInterface from '../components/csvviewer/csvInterface';
-import { CSVLink, CSVDownload } from "react-csv";
-import { cos } from "@amcharts/amcharts4/.internal/core/utils/Math";
+import { CSVLink } from "react-csv";
+
 
 function DataUpload(){
      
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [years, setYears] = useState([2019, 2018, 2017]);
+    const years = [2019, 2018, 2017]
     const [year, setYear] = useState(2019);
-    const [yearFrom, setYearFrom] = useState(0);
+    const yearFrom = 0
     const [yearTo, setYearTo] = useState(0);
 
-    const [pages, setPages] = useState(['SDG', 'Agenda 2063', 'Country Profile', 'Dashboard']);
+    const pages = ['SDG', 'Agenda 2063', 'Country Profile', 'Dashboard']
     const [page, setPage] = useState('');
-
     const countryProfileSections = ['Country data', 'Goal perfomance', 'Demographics data' ];
     const sdgSections = ['Normalized data', 'Compiled data'];
-
     const [section, setSection] = useState('');
-
     const dataSources = ['Global Database', 'Pan African Database'];
     const [dataSource, setDataSource] = useState('Global Database');
-
-    const [file, setFile] = useState([]);
+    const file = []
     const [fileData, setFileData] = useState([]);
     const [files, setFiles] = useState([]);
-    const [fileID, setFileID] = useState(0);
-
     const [csvDownloadFileData, setCsvDownloadFileData] = useState([]);
     const [csvFileName, setCsvFileName] = useState('');
-    const [csvLink, setCsvLink] = useState(React.createRef());
-
+    const csvLink = React.createRef()
     const [toggleModal, setOpenModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const API_BASE = "http://localhost:8080/api"
 
     const handleFileData = (fileData) =>{
-        let slicedData = []
-        if(fileData.length > 100){
-            slicedData = fileData.slice(0, 99)
-        }
-       // console.log(slicedData)
         setFileData(fileData)
     }
 
@@ -58,24 +45,18 @@ function DataUpload(){
         axios.get(API_BASE + "/file/"+ id)
             .then(res => {
                 const csvFile = (res.data.title).replace(/ /g, "");
-
                 setCsvFileName(csvFile);
                 setCsvDownloadFileData(res.data.data);
-
                 csvLink.current.link.click();
             })
             .catch(error => {
                 console.log(error.res)
             });
-
     }
 
     const getCurrentUser = () => {
-        //console.log(localStorage.getItem('user'))
         return localStorage.getItem('user')
       }
-
-     
 
     const onClickHandler = (e) =>{
 
@@ -119,22 +100,6 @@ function DataUpload(){
         }
     }
 
-    const updateFile = (id, data) => {
-        axios({
-            url: `${API_BASE}/file/${id}`,
-            method: 'PUT',
-            data: data,
-            headers: { 'Content-Type': "multipart/form-data" },
-            maxContentLength: Infinity,
-            maxBodyLength: Infinity
-        })
-        .then((response) => {
-            console.log(response.data)
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
-
     const submitForm = (contentType, data, setResponse) =>{
         axios({
                 url: `${API_BASE}/files`,
@@ -154,20 +119,7 @@ function DataUpload(){
             })
     }
 
-    function sortData( a, b ) {
-        if ( a.createdAt < b.createdAt ){
-            console.log("something")
-          return -1;
-        }
-        if ( a.createdAt > b.createdAt ){
-            console("the other thing")
-          return 1;
-        }
-        return 0;
-      }
-
     useEffect(() => {
-        console.log(section)
         const fetchData = async() =>{
             const result = await axios(API_BASE+'/files');
             const apiData = result.data.data;
@@ -179,9 +131,9 @@ function DataUpload(){
 
     const openModal = (e) =>{
         let activeSection = ''
-        if(e.target.value == 'SDG'){
+        if(e.target.value === 'SDG'){
             activeSection = sdgSections[0]
-        }else if(e.target.value == 'Country Profile'){
+        }else if(e.target.value === 'Country Profile'){
             activeSection = countryProfileSections[0]
         }
         setSection(activeSection)
@@ -212,7 +164,7 @@ function DataUpload(){
                                 <tbody>
                                 {
                                     files.map(file => {
-                                        if(file.page == 'SDG'){
+                                        if(file.page === 'SDG'){
                                             return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
@@ -263,7 +215,7 @@ function DataUpload(){
                                 <tbody>
                                 {
                                     files.map(file => {
-                                        if(file.page == 'Agenda 2063'){
+                                        if(file.page === 'Agenda 2063'){
                                             return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
@@ -314,7 +266,7 @@ function DataUpload(){
                                 <tbody>
                                 {
                                     files.map(file => {
-                                        if(file.page == 'Country Profile'){
+                                        if(file.page === 'Country Profile'){
                                             return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
@@ -364,7 +316,7 @@ function DataUpload(){
                                 <tbody>
                                 {
                                     files.map(file => {
-                                        if(file.page == 'Dashboard'){
+                                        if(file.page === 'Dashboard'){
                                             return <tr className="file-div" key={file.Id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   

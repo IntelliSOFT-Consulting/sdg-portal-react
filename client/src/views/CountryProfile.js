@@ -37,7 +37,6 @@ function CountryProfile (props, ) {
     let countryFlag = '';
     let countryPoverty = '';
     let countryGDP = '';
-    let countryCode = '';
 
     const [countryProfileMapData, setCountryProfileMapData] = useState([]);
     const [countryProfileData, setCountryProfileData] = useState([]);
@@ -52,27 +51,6 @@ function CountryProfile (props, ) {
 
     const [selectedCountryCode, setSelectedCountryCode] = useState(country.value);
     const [toggleModal, setOpenModal] = useState(country ? true: false);
-    // const [countryData, setCountryData] = useState(country ? {
-    //     "id": 0,
-    //     "name": country.label,
-    //     "capital":countryCapital,
-    //     "region":"",
-    //     "flagURL":countryFlag,
-    //     "size":0,
-    //     "povertyLine":countryPoverty,
-    //     "gdpPerCapita":countryGDP,
-    //     "countryCode": countryCode
-    //     } : {
-    //     "id": 0,
-    //     "name": "",
-    //     "capital":"",
-    //     "region":"",
-    //     "flagURL":"",
-    //     "size":0,
-    //     "povertyLine":0,
-    //     "gdpPerCapita":0,
-    //     "countryCode": ""
-    // });
 
     const parseNormalizedData = (data) => {
         const normalizedData = [];
@@ -93,12 +71,12 @@ function CountryProfile (props, ) {
         const result = await axios(API_BASE+'/files');
         apiData =  result.data.data;
         apiData.forEach(function(d){
-        if(d.page == "Country Profile" && d.section == 'Country data'){
+        if(d.page === "Country Profile" && d.section === 'Country data'){
             countryProfileData = d.data
             }
         })
         countryProfileData.forEach(function(data){
-            if(data.code == countryCode){
+            if(data.code === countryCode && countryCode !== undefined){
                 let imgSrc = flagImages(`./${data.flagURL}.png`);
                 countryName = data.name;
                 countryCapital = data.capital;
@@ -125,13 +103,13 @@ function CountryProfile (props, ) {
         const demographicsData = []
         data.forEach(function(d){
             ageBrackets.forEach(function(ageBracket, index){
-                if(d.Code == countryCode && d.Sex == "Female"){
+                if(d.Code === countryCode && d.Sex === "Female"){
                     demographicsData.push({
                         "age" : ageBracket,
                         "female" :  parseInt(d[ageBracket])
                     })
                 }
-                if(d.Code == countryCode && d.Sex == "Male"){
+                if(d.Code === countryCode && d.Sex === "Male"){
                     demographicsData[index]["male"] = parseInt(d[ageBracket])
                 }
             })
@@ -147,7 +125,7 @@ function CountryProfile (props, ) {
 
     const closeModal = () => {
         setOpenModal(false);
-        selectedCountryCode(null);
+        setSelectedCountryCode(null);
     }
 
     const handleSdgChange = (e) => {
@@ -171,7 +149,7 @@ function CountryProfile (props, ) {
             apiData =  result.data.data;
             
             apiData.forEach(function(d){
-              if(d.page == "Country Profile" && d.section == 'Goal perfomance'){
+              if(d.page === "Country Profile" && d.section === 'Goal perfomance'){
                 countryProfileSdgsData = d
               }else if(d.page == "Country Profile" && d.section == 'Demographics data'){
                 demographicsData = d
@@ -205,6 +183,12 @@ function CountryProfile (props, ) {
         legend: {
             enabled: false
         },
+        tooltip: {
+            formatter: function () {
+                return  this.point.name + '<br>' +
+                      this.point.value;
+            }
+        },
         exporting: {
             enabled: false
         },
@@ -232,7 +216,7 @@ function CountryProfile (props, ) {
             data: countryProfileMapData,
             mapData: africaMapData,
             joinBy: ['iso-a2', 'code'],
-            name: 'Country Profile',
+            name: '',
             cursor: 'pointer',
             borderColor: 'black', //changes color of the country borders
             borderWidth: 0.5,
@@ -268,7 +252,7 @@ function CountryProfile (props, ) {
                             />
                         </Col>
                         <Col md="4" className="country-profile-text">
-                            <h5 className="" > AFRICAN COUNTRIES PROFILE </h5>
+                            {/* <h5 className="country-profile-title" > AFRICAN COUNTRIES PROFILE </h5> */}
                             <p>
                             Africa SDG Watch is a public platform to visualize and explore data, benchmark progress 
                             towards the SDGs and track performance of development indicators.

@@ -1,20 +1,9 @@
 import React from "react";
-import {
-     BrowserRouter as Router, 
-     Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import {
-    UncontrolledCollapse,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    Nav,
-    Row,
-    Col
-  } from "reactstrap";
+import { Nav, } from "reactstrap";
 
 class Header extends React.Component{
     componentDidMount(){
@@ -24,11 +13,9 @@ class Header extends React.Component{
         return (
             <> 
             <header className="header-global">
-            <NavbarBrand>
-                <Link to="/">
-                    <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
-                </Link>   
-            </NavbarBrand>
+            <Link to="/" className="navbar-brand">
+                        <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
+                    </Link>
             <Nav className="about-title">
                 <h5 className="display-3 mb-4 mt-2 text-center"></h5>
                 </Nav>

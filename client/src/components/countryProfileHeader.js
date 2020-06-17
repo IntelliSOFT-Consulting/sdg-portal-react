@@ -1,24 +1,12 @@
 import React from "react";
-import {
-     BrowserRouter as Router, 
-     Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import {
-    UncontrolledCollapse,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    Nav,
-    Row,
-    Col
-  } from "reactstrap";
+import { NavbarBrand, Navbar, Nav } from "reactstrap";
 
 class CountryProfileHeader extends React.Component{
     componentDidMount(){
-
     }
     render(){
         return (

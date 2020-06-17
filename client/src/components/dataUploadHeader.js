@@ -1,23 +1,11 @@
 import React from "react";
-import {
-     BrowserRouter as Router, 
-     Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import axios from 'axios';
 import history from '../history';
 
 // reactstrap components
-import {
-    UncontrolledCollapse,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    Nav,
-    Row,
-    Col,
-    Button
-  } from "reactstrap";
+import {Navbar,Nav,Button} from "reactstrap";
 
 function CountryProfileHeader (){
     const API_BASE = "http://localhost:8080/api"
@@ -25,7 +13,7 @@ function CountryProfileHeader (){
     const handleLogoutBtn = () => {
         axios.get(API_BASE + '/user/logout')
         .then(res => {
-            if(res.status == 200){
+            if(res.status === 200){
                 localStorage.removeItem("user");
                 localStorage.clear();
                 history.push('/Login');
@@ -37,18 +25,16 @@ function CountryProfileHeader (){
 
         }).catch(error => {
             console.log(error.res);
-            alert('Error logging in, please try again.')
+            //alert('Error logging in, please try again.')
         })
     }
         return (
             <> 
             <header className="header-global country-profile-header">
                 <Navbar>
-                    <NavbarBrand>
-                        <Link to="/">
-                            <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
-                        </Link>   
-                    </NavbarBrand>
+                <Link to="/" className="navbar-brand">
+                        <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
+                    </Link>
                     <Nav className="country-profile-title">
                     <h5 className="display-3 mb-4 mt-2 text-center"> Data Upload Dashboard</h5>
                     </Nav>

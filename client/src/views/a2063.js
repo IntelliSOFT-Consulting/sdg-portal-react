@@ -21,46 +21,34 @@ function A2063(props){
     const aspirationsData = require("../assets/data/aspirationsData.json");
     const countries = require("../assets/data/countries.json");
     const regions = ["North", "West", "Southern", "Central", "East"]
-
-   
     const [isLoading, setIsLoading] = useState(false);
-
     const [mapData, setMapData] = useState([]);
     const [chartData, setChartData] = useState([]);
     const [lineChartData, setLineChartData] = useState([]);
-
     const [goal, setGoal] = useState(1);
     const [goals, setGoals] = useState([]);
     const [goalID, setGoalID] = useState(1);
-
     const [indicator, setIndicator] = useState(1);
     const [indicators, setIndicators] = useState([]);
     const [firstIndicator, setFirstIndicator] = useState('');
 
     let   years = [2019];
     const [year, setYear] = useState('2006');
-
     const [dataSource, setDataSource] = useState('pan');
-
     const [mapChartType, setMapChartType] = useState('map');
-
     const [indexMapData, setIndexMapData] = useState([]);
     const [country, setCountry] = useState('DZ');
-
     const [aspirationTitle, setAspirationTitle] = useState('');
     const [toggleModal, setOpenModal] = useState(false);
-    const [checkedItems, setCheckedItems] = useState({DZ: true, AO: true, BJ: true, BW: true, CM:true, BI:true});
     const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
-    const [isExpanded, setIsExpanded] = useState(["North", "West", "Southern", "Central", "East"])
+    const isExpanded = ["North", "West", "Southern", "Central", "East"]
     const [regionCountries, setRegionCountries] = useState([])
 
     let csvDataSourceData = '';
-    let sdgData = '';
-    let ind = [];
     let redirectAgenda2063 = 0;
 
     if(props.location.state != null){
-        if(props.location.state == 18){
+        if(parseInt(props.location.state) === 18){
             redirectAgenda2063 = 0
         }else{
             redirectAgenda2063 = props.location.state
@@ -81,9 +69,8 @@ function A2063(props){
 
    
 
-    const parseMapData = (data, indicatorValue) => {
+    const parseMapData = (data) => {
         const mapData = [];
-        const indicatorKey = "indicator"+indicatorValue
         data.forEach(function(d){
             mapData.push({
                 "code": (d.id),
@@ -94,9 +81,8 @@ function A2063(props){
         setMapData(mapData);
     }
 
-    const parseChartData = (data, indicatorValue) =>{
+    const parseChartData = (data) =>{
         const chartData = [];
-        const indicatorKey = "indicator"+indicatorValue
         data.forEach(function(d){
             chartData.push([d.id, parseInt(d.Score)])  
         })
@@ -106,9 +92,8 @@ function A2063(props){
     const parseLineData = (data) => {
         let countryData = []
         years =  years.sort((a, b) => a - b);
-        
         data.forEach(function(d){
-                if(country.toLowerCase() == d.id){
+                if(country.toLowerCase() === d.id){
                     countryData.push(parseInt(d[indicator]))
                 }   
              
@@ -130,7 +115,7 @@ function A2063(props){
         })
         goals.forEach(function(goal) {
             data.forEach(function(d){
-                if(country == d.id){
+                if(country === d.id){
                     radarData.push({
                         "category": goal,
                         value1 : d["goal"+goal],
@@ -146,7 +131,7 @@ function A2063(props){
         regions.forEach(function(region){
             let countriesPerRegion = []
             countries.forEach(function(country){
-                if(country.region == region){
+                if(country.region === region){
                     countriesPerRegion.push({
                         value: country.alpha2Code,
                         label: country.name
@@ -175,13 +160,11 @@ function A2063(props){
         let isSubscribed = true;
         if(dataSource === 'pan'){
             csvDataSourceData = require("../assets/data/a2063DummyData.csv");
-            sdgData = require('../assets/data/globalDatabase.json');
         }else if (dataSource === 'gdb'){
             csvDataSourceData = require("../assets/data/a2063DummyData.csv");
-            sdgData = require('../assets/data/globalDatabase.json');
         }
 
-        if(activeTab != 0){
+        if(parseInt(activeTab) !== 0){
             const a2063Goals = agenda2063[activeTab-1].goals;
             setGoals(a2063Goals);
             setGoalID(1)
@@ -192,8 +175,6 @@ function A2063(props){
             setFirstIndicator(a2063Indicators[0])
             
         }
-
-        console.log(indicator)
         getAspirationTitles(aspirationsData);
 
         const filterChartData = (myChartData) =>{
@@ -283,14 +264,12 @@ function A2063(props){
     }
     const getAspirationTitles = (data) => {
         data.forEach(function(d){
-            if(activeTab == d.id){
+            if(parseInt(activeTab) === d.id){
                 setAspirationTitle(d.description)
             }
         })
     }
-    const handleChange = (event) => {
-        setCheckedItems({...checkedItems, [event.target.name]: event.target.checked});
-    }
+
     const handleCheck = (event) => {
         setIsChecked(event)
     }
@@ -304,7 +283,7 @@ function A2063(props){
         <Header onActiveA2063Changed={handleA2063Change}></Header>
             <main className="container agenda2063">
                 {
-                    activeTab != 0 ? (
+                    parseInt(activeTab) !== 0 ? (
                         <div>
                             <h4 className="aspiration-title p-3"> ASPIRATION  {activeTab} :  {aspirationTitle} </h4>
                         <Row className="mt-4 optionButtons ">
@@ -329,7 +308,7 @@ function A2063(props){
                             </Col>
 
                             {
-                                mapChartType == 'line' ? (
+                                mapChartType === 'line' ? (
                                     <Col>
                                         <Input type="select" name="countrySelect"  onChange={handleCountryChange} value={country}> 
                                                 {

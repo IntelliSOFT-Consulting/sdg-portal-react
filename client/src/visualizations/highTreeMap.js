@@ -1,12 +1,7 @@
 import React, {useEffect} from 'react';
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import HC_exporting from 'highcharts/modules/exporting';
-import HC_exporting2 from 'highcharts/modules/export-data';
 import addTreemapModule from 'highcharts/modules/treemap';
-
-// HC_exporting(Highcharts);
-// HC_exporting2(Highcharts);
 addTreemapModule(Highcharts);
 
 

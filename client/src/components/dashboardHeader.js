@@ -1,20 +1,9 @@
 import React from "react";
-import {
-     BrowserRouter as Router, 
-     Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import {
-    UncontrolledCollapse,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    Nav,
-    Row,
-    Col
-  } from "reactstrap";
+import { Navbar,Nav, } from "reactstrap";
 
 class DashboardHeader extends React.Component{
     componentDidMount(){
@@ -25,11 +14,9 @@ class DashboardHeader extends React.Component{
             <> 
             <header className="header-global dashboard-header">
             <Navbar>
-                <NavbarBrand>
-                    <Link to="/">
+            <Link to="/" className="navbar-brand">
                         <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
-                    </Link>   
-                </NavbarBrand>
+                    </Link>
                 <Nav className="about-title">
                 <h5 className="display-3 mb-4 mt-2 text-center">Africa SDG Dashboard</h5>
                 </Nav>

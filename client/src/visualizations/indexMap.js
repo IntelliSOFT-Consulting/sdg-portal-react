@@ -1,24 +1,12 @@
 import React from 'react';
-import { 
-    Container
-    } from "reactstrap";
-import $ from "jquery";
-
+import {  Container } from "reactstrap";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 function IndexMap({ mySdgData, onCountryClick }) {
-    console.log(mySdgData)
         highchartsMap(Highcharts);
-        let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
-        let Papa = require("papaparse/papaparse.min.js");
-        let sdgData = [];
-        const period = "2017";
-
-           
-  
         const handleCountryClick =  (country) =>{
             onCountryClick(country)
             //console.log(country)

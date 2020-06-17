@@ -1,9 +1,7 @@
 import React from 'react';
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import {
-    Container
-} from "reactstrap";
+import { Container } from "reactstrap";
 import HC_exporting from 'highcharts/modules/exporting';
 import HC_exporting2 from 'highcharts/modules/export-data';
 
@@ -11,14 +9,16 @@ HC_exporting(Highcharts);
 HC_exporting2(Highcharts);
 
 function sdgHighChart (  {myChartData, indicator, years} ){
-    
     const chartOptions = {
         chart: {
-            type: 'columnpyramid',
+            type: 'column',
             height: 400
         },
         title: {
             text: ''
+        },
+        credits: {
+            enabled: false
         },
         subtitle: {
             text: ''

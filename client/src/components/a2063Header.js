@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import { NavbarBrand, Navbar, Nav, Col, Button } from "reactstrap";
+import { Navbar, Nav, Col, Button } from "reactstrap";
+import { parse } from "@fortawesome/fontawesome-svg-core";
 
 function Header(  {onActiveA2063Changed} ){
 
@@ -95,11 +96,9 @@ function Header(  {onActiveA2063Changed} ){
             <> 
             <header className="header-global agenda2063Header">
                 <Navbar>
-                    <NavbarBrand>
-                        <Link to="/">
-                            <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
-                        </Link>   
-                    </NavbarBrand>
+                    <Link to="/" className="navbar-brand">
+                        <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
+                    </Link>
                     <Nav className="a2063-icon-padding ">
                         <Col></Col>
                         <Col></Col>
@@ -142,9 +141,9 @@ function Header(  {onActiveA2063Changed} ){
 
                                 return <Col key={index}>
                                             
-                                            <Button style={  activeA2063 === index ? buttonStylesActive : buttonStyles}  onClick={handleA2063Change} value={a2063.id} className={ activeA2063 === index ? 'active': '' }>
-                                                <span style={ activeA2063 === index ? titleTextStylesActive : titleTextStyles} className="a2063-icon-title-text"> { a2063.id !== 0 ? 'Aspiration\n' + a2063.id : 'All \n Aspirations'} </span>
-                                                <div  style={ activeA2063 === index ? backgroundHoverStyles : backgroundStyles} className="a2063-icon-img" ></div>
+                                            <Button style={  parseInt(activeA2063) === parseInt(index) ? buttonStylesActive : buttonStyles}  onClick={handleA2063Change} value={a2063.id} className={ parseInt(activeA2063) === parseInt(index) ? 'active': '' }>
+                                                <span style={ parseInt(activeA2063) === parseInt(index) ? titleTextStylesActive : titleTextStyles} className="a2063-icon-title-text"> { parseInt(a2063.id) !== 0 ? 'Aspiration\n' + a2063.id : 'All \n Aspirations'} </span>
+                                                <div  style={ parseInt(activeA2063) === parseInt(index) ? backgroundHoverStyles : backgroundStyles} className="a2063-icon-img" ></div>
                                             </Button>
                                         </Col>
                         })}
