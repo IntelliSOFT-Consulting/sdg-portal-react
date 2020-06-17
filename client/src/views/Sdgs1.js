@@ -40,16 +40,15 @@ function Sdgs1(props) {
     const [country, setCountry] = useState('DZ');
     const [dataSource, setDataSource] = useState('pan');
     const [year, setYear] = useState('2006');
-    const [normalizedYear, setNormalizedYear] = useState('2019')
+    const normalizedYear = '2019'
     
     const [mapChartType, setMapChartType] = useState('map');
-    const [firstIndicator, setFirstIndicator] = useState('');
     
     const [loading, setLoading] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [toggleModal, setOpenModal] = useState(false);
     const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
-    const [isExpanded, setIsExpanded] = useState(["North", "West", "Southern", "Central", "East"])
+    const isExpanded = ["North", "West", "Southern", "Central", "East"]
     const [regionCountries, setRegionCountries] = useState([])
     const [goalTitle, setGoalTitle] = useState('');
     const keysHardCode = ["1.1 Number of people not in extreme poverty (people)" ,
@@ -501,23 +500,21 @@ function Sdgs1(props) {
     "17.19 Population Census in last 10 years" ,
     "17.19 Completeness of birth registration (%)" ,
     "17.19 % of reported total deaths to estimated total deaths" ]
-
-    let defaultIndicator = ''
     
-    let csvDataSourceData = '';
+    
     const unIndicators = require('../assets/data/unsdgapi.json');
     
     let indi = [];    
-    let targ = [];
+    
     let redirectSdg = 0;
     let redirectSdgIndicator = ''
     let indic = []
-
+   
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
 
     if(props.location.state != null){
-        if(props.location.state == 18){
+        if(parseInt(props.location.state) === 18){
             redirectSdg = 0
             
         }else{
@@ -527,7 +524,7 @@ function Sdgs1(props) {
                     indic.push(indicator);
                 }
             })
-            redirectSdgIndicator = indic[0];
+            redirectSdgIndicator = parseInt(indic[0]);
         }
     }
 
@@ -541,7 +538,7 @@ function Sdgs1(props) {
         regions.forEach(function(region){
             let countriesPerRegion = []
             countries.forEach(function(country){
-                if(country.region == region){
+                if(country.region === region){
                     countriesPerRegion.push({
                         value: country.alpha2Code,
                         label: country.name
@@ -583,7 +580,7 @@ function Sdgs1(props) {
             apiData =  result.data.data;
            
             apiData.forEach(function(d){
-                if(d.page == "SDG" && d.section == "Normalized data" && d.year == parseInt(normalizedYear)){
+                if(d.page === "SDG" && d.section === "Normalized data" && d.year === parseInt(normalizedYear)){
                     normalizedDataApi = d.data
                 }
             })
@@ -596,12 +593,13 @@ function Sdgs1(props) {
 
 
     useEffect(() => {
-        if(activSdg != 0){
+        let targ = [];
+        if(parseInt(activSdg) !== 0){
             targ = unIndicators[activSdg-1].targets;
         }
         setSdgTargets(targ);
         let indic = []
-        if(activSdg != 0){
+        if(parseInt(activSdg) !== 0){
             keysHardCode.forEach(function(indicator){
                 if(indicator.startsWith(targ[0].code)){
                     indic.push(indicator);
@@ -611,6 +609,7 @@ function Sdgs1(props) {
     }, [target, activSdg])
 
     useEffect(() => {
+        let csvDataSourceData = '';
         let isSubscribed = true;
         if(dataSource === 'pan'){
             csvDataSourceData = require("../assets/data/sdg/pan.csv");
@@ -648,9 +647,7 @@ function Sdgs1(props) {
                 indi.push(indicator);
             }
         })
-        defaultIndicator = indi[0]
         setIndicators(indi);
-        setFirstIndicator(indi[0]);
     }
 
     const parseNormalizedData = (data) => {
@@ -664,7 +661,7 @@ function Sdgs1(props) {
                 console.log("")
             }else{
                 mapData.push({
-                    "code": (d.id),
+                    "code": (d.id).toUpperCase(),
                     "value": parseFloat(d.Score),
                     "name": d.Country
                 })
@@ -673,7 +670,7 @@ function Sdgs1(props) {
         })
         goals.forEach(function(goal) {
             data.forEach(function(d){
-                if(country == d.id){
+                if(country === d.id){
                     radarData.push({
                         "category": goal,
                         value1 : d["goal"+goal],
@@ -690,7 +687,7 @@ function Sdgs1(props) {
         let indicatorData = ''
         data.forEach(function(d){
             if(d.Year === year ){
-                if(d[indicator] == ""){
+                if(d[indicator] === ""){
                     indicatorData = null
                 }else{
                     indicatorData = parseInt(d[indicator])
@@ -732,15 +729,6 @@ function Sdgs1(props) {
         setSdgChartData(filteredChartData);
     }
 
-    const indexOf = (country, countriesData) => {
-        let i = 0;
-        for(i = 0; i < countriesData.length; i++){
-            if(country === countriesData[i].name){
-                return i;
-            }  
-        }
-        return -1;
-    }
     const parseLineData = (data) => {
         let countryData = []
         let countryLabel = ''
@@ -748,7 +736,7 @@ function Sdgs1(props) {
         
         data.forEach(function(d){
             years.forEach(function(year){
-                if(year == d.Year && country.toLowerCase() == d.Code){
+                if(year === parseInt(d.Year) && country.toLowerCase() === d.Code){
                     countryData.push(parseInt(d[indicator]))
                     countryLabel = d.Entity
                 }
@@ -825,7 +813,7 @@ function Sdgs1(props) {
     }
     const getGoalTitles = (data) => {
         data.forEach(function(d){
-            if(activSdg == d.id){
+            if(parseInt(activSdg) === d.id){
                 setGoalTitle(d.title)
             }
         })
@@ -838,7 +826,7 @@ function Sdgs1(props) {
             <main className="sdg">
             <div className="container">  
             {
-                 activSdg != 0 ? (
+                 parseInt(activSdg) !== 0 ? (
                    <div>
                         <h4 className="aspiration-title p-3"> GOAL  {activSdg} :  {goalTitle} </h4>
                         <Row className="mt-4 optionButtons ">
@@ -863,7 +851,7 @@ function Sdgs1(props) {
                                 </Input>
                             </Col>
                             {
-                                mapChartType == 'line' ? (
+                                mapChartType === 'line' ? (
                             <Col>
                                 <Input type="select" name="countrySelect" onChange={handleCountryChange} value={country}>
                                     {
@@ -1001,7 +989,7 @@ function Sdgs1(props) {
                             </Col>      
                         </Row>
                     
-                        <Row className="mt-3">
+                        <Row className="map-chart-container mt-3">
                             <Col lg="6" md="12">
                                 <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
                             </Col>

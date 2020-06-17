@@ -1,5 +1,5 @@
 /* Imports */
-import React, { Component, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -103,10 +103,10 @@ function Gauge( {barometerData, country, sdg}) {
           });
          
         barometerData.forEach(function(countryBarometerData){
-            if(countryBarometerData.id == country ){
+            if(countryBarometerData.id === country ){
               let score = 0;
               let sdgCode = ''
-              if(sdg == 18){
+              if(parseInt(sdg) === 18){
                 score = countryBarometerData.Score;
               }else{
                   sdgCode = 'goal' + sdg;

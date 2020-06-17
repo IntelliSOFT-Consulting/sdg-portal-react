@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -9,7 +9,7 @@ function Demographics ( {demographicsData} ){
   
 
   useEffect(() => {
-        let demographicData = require('../assets/data/1DemographicsChartData.json');
+        // let demographicData = require('../assets/data/1DemographicsChartData.json');
         let mainContainer = am4core.create("chartdiv2", am4core.Container);
         mainContainer.width = am4core.percent(100);
         mainContainer.height = am4core.percent(100);
