@@ -15,6 +15,8 @@ function Demographics ( {demographicsData} ){
         mainContainer.height = am4core.percent(100);
         mainContainer.layout = "horizontal";
 
+        mainContainer.logo.disabled=true;
+
       // chart.creditsPosition = "top-right";
 
         //Male chart

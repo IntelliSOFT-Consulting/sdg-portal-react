@@ -171,8 +171,7 @@ function CountryProfile (props, ) {
         chart: {
             map: 'custom/africa',
             backgroundColor: 'transparent',
-  
-
+            height: 550
         },
         credits: {
             enabled: false
@@ -276,7 +275,7 @@ function CountryProfile (props, ) {
                         <CountryDetails countryData={countryDetailsData}></CountryDetails>
                             <Row className="pt-2">
                                 <Col lg="6" md="12">
-                                    <Card>
+                                    <Card className="sdg-goal-card">
                                         <CardHeader> 
                                             <h5 className="display-4 text-center">SDGs </h5>
                                         </CardHeader>

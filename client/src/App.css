@@ -871,6 +871,8 @@ font-weight: 600;
   padding-right: 10%;
   padding-bottom: 10px;
   padding-top: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.15rem;
 }
 
 .demographics-card .card-body{
@@ -1455,5 +1457,17 @@ html, body, #root{
 }
 
 .country-profile-text p{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #32325d;
+}
 
+.country-profile-title h5{
+  text-transform: uppercase;
+  color: black;
+}
+
+.sdg-goal-card{
+  height: 100%;
 }

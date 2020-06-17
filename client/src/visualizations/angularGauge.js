@@ -19,6 +19,7 @@ function Gauge( {barometerData, country, sdg}) {
         chart.creditsPosition = "bottom-right";
 
         chart.innerRadius = am4core.percent(75);
+        chart.logo.disabled=true;
 
         let axis = chart.xAxes.push(new am4charts.ValueAxis());
         axis.min = 0;
