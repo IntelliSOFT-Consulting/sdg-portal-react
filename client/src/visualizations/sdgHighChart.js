@@ -10,13 +10,14 @@ import HC_exporting2 from 'highcharts/modules/export-data';
 HC_exporting(Highcharts);
 HC_exporting2(Highcharts);
 
-function sdgHighChart (  {myChartData, indicator, years} ){
+function sdgHighChart (  {myChartData, indicator} ){
     
     const chartOptions = {
         chart: {
             type: 'column',
             height: 400
         },
+        credits : false,
         title: {
             text: ''
         },

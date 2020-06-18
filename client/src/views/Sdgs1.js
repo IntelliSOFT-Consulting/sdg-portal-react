@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from "classnames";
 import { css } from '@emotion/core';
 import CheckboxTree from 'react-checkbox-tree';
-import axios from 'axios';
+
 import Header from "../components/sdgsHeader";
 import SdgMap from "../visualizations/sdgMap";
 import Footer from "../components/footer";
@@ -15,7 +15,6 @@ import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
   
 function Sdgs1(props) {
-    const API_BASE = "http://localhost:8080/api"
     const override = css`
         display: block;
         margin: 0 auto;
@@ -24,27 +23,17 @@ function Sdgs1(props) {
     const data = require('../assets/data/globalDatabase.json');
     const countries = require("../assets/data/countries.json");
     const regions = ["North", "West", "Southern", "Central", "East"]
-   
-    //const [target, setTarget] = useState('');
-    const [sdgTargets, setSdgTargets] = useState([]);
-    
-
+    const [sdgTargets, setSdgTargets] = useState([])
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
     let sdgAllYears = [2019]
-
     const [sdgMapData, setSdgMapData] = useState([]);
     const [sdgChartData, setSdgChartData] = useState([]);
     const [lineChartData, setLineChartData] = useState([]);
     const [countryLabel,setCountryLabel] = useState('')
-
     const [country, setCountry] = useState('DZ');
     const [dataSource, setDataSource] = useState('pan');
     const [year, setYear] = useState('2006');
-    const normalizedYear = '2019'
-    
-    const [mapChartType, setMapChartType] = useState('map');
-    
-    const [loading, setLoading] = useState(false);
+    const [mapChartType, setMapChartType] = useState('map'); 
     const [isLoading, setIsLoading] = useState(false);
     const [toggleModal, setOpenModal] = useState(false);
     const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
@@ -501,15 +490,15 @@ function Sdgs1(props) {
     "17.19 Completeness of birth registration (%)" ,
     "17.19 % of reported total deaths to estimated total deaths" ]
     
-    
+    let csvDataSourceData = '';
     const unIndicators = require('../assets/data/unsdgapi.json');
     
     let indi = [];    
-    
+    let targ = [];
     let redirectSdg = 0;
     let redirectSdgIndicator = ''
     let indic = []
-   
+
     const [indexMapData, setIndexMapData] = useState([]);
     const [indexRadarChartData, setIndexRadarChartData] = useState([]);
 
@@ -524,7 +513,7 @@ function Sdgs1(props) {
                     indic.push(indicator);
                 }
             })
-            redirectSdgIndicator = parseInt(indic[0]);
+            redirectSdgIndicator = indic[0];
         }
     }
 
@@ -571,29 +560,22 @@ function Sdgs1(props) {
 
     //Changes spider chart based on index map country click
     useEffect(() => {
-        let normalizedDataApi = {}
-        //Fetch SDG normalized API data
-        const fetchNormalizedData = async() =>{
-            setLoading(true)
-            let apiData = []
-            const result = await axios(API_BASE+'/files');
-            apiData =  result.data.data;
-           
-            apiData.forEach(function(d){
-                if(d.page === "SDG" && d.section === "Normalized data" && d.year === parseInt(normalizedYear)){
-                    normalizedDataApi = d.data
+        const normalizedData = require('../assets/data/normalizedGoalValues.csv')
+        const loadNormalizedData = (normalizedDataFile) => {
+            Papa.parse(normalizedDataFile, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results){
+                    parseNormalizedData(results.data);
                 }
             })
-            
-            parseNormalizedData(normalizedDataApi)
-            setLoading(false)
         }
-        fetchNormalizedData();
+        loadNormalizedData(normalizedData);
     }, [country]);
 
 
     useEffect(() => {
-        let targ = [];
         if(parseInt(activSdg) !== 0){
             targ = unIndicators[activSdg-1].targets;
         }
@@ -609,7 +591,6 @@ function Sdgs1(props) {
     }, [target, activSdg])
 
     useEffect(() => {
-        let csvDataSourceData = '';
         let isSubscribed = true;
         if(dataSource === 'pan'){
             csvDataSourceData = require("../assets/data/sdg/pan.csv");
@@ -624,7 +605,6 @@ function Sdgs1(props) {
                 header: true,
                 complete: function(results){
                     if(isSubscribed){
-                        //parseIndicatorData(target, results.data);
                         parseMapData(results.data);
                         const chartData = parseChartData(results.data)
                         filterChartData(chartData);
@@ -639,32 +619,17 @@ function Sdgs1(props) {
         return () => isSubscribed = false
     }, [dataSource, indicator, year, target, activSdg, isChecked, country]);
 
-    const parseIndicatorData = (sdgTarget, sdgCompiledData) => {
-        let keys = Object.keys(sdgCompiledData[0]);
-        let ind = keys.slice(3, keys.length)
-        ind.forEach(function(indicator){
-            if(indicator.startsWith(target)){
-                indi.push(indicator);
-            }
-        })
-        setIndicators(indi);
-    }
-
     const parseNormalizedData = (data) => {
         const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
         const mapData = [];
         const radarData = [];
 
         data.forEach(function(d){
-            if(d.Country == null){
-            }else{
-                mapData.push({
-                    "code": (d.id).toUpperCase(),
-                    "value": parseFloat(d.Score),
-                    "name": d.Country
-                })
-            }
-           
+            mapData.push({
+                "code": (d.id),
+                "value": parseFloat(d.Score),
+                "name": d.Country
+            })
         })
         goals.forEach(function(goal) {
             data.forEach(function(d){
@@ -676,6 +641,7 @@ function Sdgs1(props) {
                 }
             })
         })
+        
         setIndexMapData(mapData);
         setIndexRadarChartData(radarData);
     }
@@ -734,7 +700,7 @@ function Sdgs1(props) {
         
         data.forEach(function(d){
             years.forEach(function(year){
-                if(year === parseInt(d.Year) && country.toLowerCase() === d.Code){
+                if(parseInt(year) === parseInt(d.Year) && country.toLowerCase() === d.Code){
                     countryData.push(parseInt(d[indicator]))
                     countryLabel = d.Entity
                 }
@@ -765,9 +731,7 @@ function Sdgs1(props) {
         setTarget(e.target.value);
         let indic = []
         keysHardCode.forEach(function(indicator){
-            console.log(indicator, e.target.value)
-            if(indicator.startsWith((e.target.value).toUpperCase())){
-               
+            if(indicator.startsWith( (e.target.value).toUpperCase()) || indicator.startsWith(e.target.value) ){
                 indic.push(indicator);
             }
         })
@@ -813,7 +777,7 @@ function Sdgs1(props) {
     }
     const getGoalTitles = (data) => {
         data.forEach(function(d){
-            if(parseInt(activSdg) === d.id){
+            if(parseInt(activSdg) === parseInt(d.id)){
                 setGoalTitle(d.title)
             }
         })
@@ -989,7 +953,7 @@ function Sdgs1(props) {
                             </Col>      
                         </Row>
                     
-                        <Row className="map-chart-container mt-3">
+                        <Row className="mt-3">
                             <Col lg="6" md="12">
                                 <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
                             </Col>
