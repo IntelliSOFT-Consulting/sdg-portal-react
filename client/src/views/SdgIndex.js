@@ -185,7 +185,7 @@ function SdgIndex() {
                     </div>
               </Col>
               <Col lg="8" md="8" sm="12" xs="12">
-                    <h5>Select a goal to view Africa's progress and linked views</h5>
+                    
                   <Row className="no-gutters">
                   { 
                               sdgs.map(function(sdg, index){

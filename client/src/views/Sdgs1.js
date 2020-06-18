@@ -765,7 +765,9 @@ function Sdgs1(props) {
         setTarget(e.target.value);
         let indic = []
         keysHardCode.forEach(function(indicator){
-            if(indicator.startsWith(e.target.value)){
+            console.log(indicator, e.target.value)
+            if(indicator.startsWith((e.target.value).toUpperCase())){
+               
                 indic.push(indicator);
             }
         })

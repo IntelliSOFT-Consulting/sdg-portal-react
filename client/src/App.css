@@ -156,8 +156,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .sdg-icon-padding > .col, .sdg-icon-padding > [class*="col-"] {
-  padding-right: 2px;
-  padding-left: 2px;
+  padding-right: 4px;
+    padding-left: 4px;
 }
 
 .optionButtons > .col, .sdg-icon-padding > [class*="col-"]{
@@ -394,9 +394,12 @@ text-align: center;
     max-width: 1200px; } }
 
 .countryDemographics {
-    color: #32325c;
     font-weight: 700;
     text-transform: uppercase;
+    font-size: 1.05rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #0e1a2f;
+    letter-spacing: 1.3px;
 }
 .countryName{
   text-transform: uppercase;
@@ -460,7 +463,7 @@ text-align: center;
 .sdgsHeader .sdg-icon-padding .btn-secondary:not(:disabled):not(.disabled):active, 
 .sdgsHeader .sdg-icon-padding .btn-secondary:not(:disabled):not(.disabled).active, 
 .sdgsHeader .sdg-icon-padding .show > .btn-secondary.dropdown-toggle {
-  transform: scale(1, 1.3);
+  transform: scale(1.1, 1.1);
 }
 
 .modal-header .close {
@@ -1470,4 +1473,10 @@ html, body, #root{
 
 .sdg-goal-card{
   height: 100%;
+}
+
+.sdg-index-title{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.6rem;
+  color: #02314e;
 }

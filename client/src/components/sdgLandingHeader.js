@@ -20,7 +20,7 @@ class SsdgLandingHeader extends React.Component{
                     </Link>   
                
                 <Nav className="about-title">
-                <h5 className="display-3 mb-4 mt-2 text-center pages-title">Sustainable Development Goals</h5>
+                <h5 className="sdg-index-title">Select a goal to view Africa's progress and linked views</h5>
                 </Nav>
                 
                 <Menu right>
