@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import { Navbar, Nav, Col, Button } from "reactstrap";
-import { parse } from "@fortawesome/fontawesome-svg-core";
+import { Navbar, Nav, Col, Button } from "reactstrap"
 
 function Header(  {onActiveA2063Changed} ){
 

@@ -1467,7 +1467,7 @@ function SdgMap({ mySdgData, onCountryClick }) {
             chart: {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
-                height: '50%',
+                height: '60%',
                 
             },
             series: [{

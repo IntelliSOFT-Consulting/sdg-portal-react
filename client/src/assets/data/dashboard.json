@@ -235,8 +235,9 @@
                  "title": "Affordabilty of electricity"
              },
              {
-                 "indicator": "Renewable energy share",
-                 "title": "n3_sdg7_renewable"
+                "indicator": "n3_sdg7_renewable",
+                "title": "Renewable energy share"
+                 
              }
          ]
     },

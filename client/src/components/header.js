@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import { Nav, } from "reactstrap";
+import { Nav } from "reactstrap";
 
 class Header extends React.Component{
     componentDidMount(){
@@ -17,8 +17,7 @@ class Header extends React.Component{
                         <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
                     </Link>
             <Nav className="about-title">
-                <h5 className="display-3 mb-4 mt-2 text-center"></h5>
-                </Nav>
+            </Nav>
                
             <Menu right>
                 <Link to="/" className="text-white">HOME</Link> 

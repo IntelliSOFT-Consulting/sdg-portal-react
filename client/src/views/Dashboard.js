@@ -23,6 +23,7 @@ function Dashboard (){
   const [activePopup, setActivePopup] = useState('');
   const [year, setYear] = useState(2019);
   const [toggleYearWidget, setToggleYearWidget] = useState(false);
+  const [toggleLegendWidget, setToggleLegendWidget] = useState(false);
   const [loading, setLoading] = useState(false);
   const API_BASE = "http://localhost:8080/api"
   
@@ -108,6 +109,31 @@ function Dashboard (){
 
   const counter = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
+  const legend = [{
+    from: null,
+    to: null,
+    name: 'Information unavailable.',
+    color: '#cecdcd'
+}, {
+    from: 0,
+    to: 10,
+    name: 'Off Track',
+    color: '#ff0000'
+}, {
+    from: 10,
+    to: 20,
+    name: 'Significant challenges remain',
+    color: '#ffa500'
+},{
+    from: 20,
+    to: 30,
+    name: 'Challenges remain',
+    color: '#f1cd00'
+},{
+    from: 30,
+    name: 'SDG Achieved',
+    color: '#008d00'
+}]
   const regionClick = (e) =>{
     setActiveRegion(e.target.value)
   }
@@ -161,9 +187,18 @@ function Dashboard (){
                   sdgColor = 'col_' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2];
                   indicatorKey = indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
                 }
+
+                let rounded_off_val = 0
+                if(data[indicatorKey] !== null || data[indicatorKey] !== '' || data.hasOwnProperty('indicatorKey')){
+                  rounded_off_val = parseInt(Math.round(data[indicatorKey] * 10) / 10) || 0
+                }else{
+                  rounded_off_val = 0
+                }
+                console.log(rounded_off_val)
+                 
                 indicatorData.push({
                   "title": ind.title,
-                  "value": data[indicatorKey],
+                  "value": rounded_off_val,
                   "color": data[sdgColor]
                 })
                 setDashboardPopupIndicatorsData(indicatorData)
@@ -252,7 +287,14 @@ const handleYearWidget = () =>{
   ):(
     setToggleYearWidget(false)
   )
-  console.log(toggleYearWidget)
+}
+
+const handleLegendWidget = () =>{
+  toggleLegendWidget == false ?(
+    setToggleLegendWidget(true)
+  ):(
+    setToggleLegendWidget(false)
+  )
 }
 
 const handleClickYear = (year) => {
@@ -290,6 +332,27 @@ const handleClickYear = (year) => {
                       <Button onClick={handleClickYear} value="2018">2018</Button> 
                   </div>
               </div>
+
+              <div className = "text-right legend-widget" onClick={handleLegendWidget}>
+                        <span className="legend-widget-text">Legend</span>  
+                  <div className={ classnames("legend-widget-popup", {display: toggleLegendWidget === true}) }>
+                      <h6>Legend</h6> 
+                      <Table> 
+                      {
+                        legend.map((data, index) => {
+                          return <tr>
+                            <td key={index}>
+                            <FontAwesomeIcon icon="circle" color={data.color} ></FontAwesomeIcon>
+                            </td>
+                            <td> {data.name} </td>
+                          </tr>
+                        })
+                      }
+                      </Table>
+                    
+                  </div>
+              </div>
+
                 <Card className="">
                     <CardBody>
                       {

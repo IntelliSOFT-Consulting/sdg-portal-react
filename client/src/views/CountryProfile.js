@@ -151,7 +151,7 @@ function CountryProfile (props, ) {
             apiData.forEach(function(d){
               if(d.page === "Country Profile" && d.section === 'Goal perfomance'){
                 countryProfileSdgsData = d
-              }else if(d.page == "Country Profile" && d.section == 'Demographics data'){
+              }else if(d.page === "Country Profile" && d.section === 'Demographics data'){
                 demographicsData = d
               }
             })

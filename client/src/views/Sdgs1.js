@@ -493,7 +493,7 @@ function Sdgs1(props) {
     let csvDataSourceData = '';
     const unIndicators = require('../assets/data/unsdgapi.json');
     
-    let indi = [];    
+    // let indi = [];    
     let targ = [];
     let redirectSdg = 0;
     let redirectSdgIndicator = ''

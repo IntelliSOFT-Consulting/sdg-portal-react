@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 // reactstrap components
-import { NavbarBrand, Navbar, Nav, Col, CardImg, Button} from "reactstrap";
+import { Navbar, Nav, Col, CardImg, Button} from "reactstrap";
 
 function Header( {onActiveSdgChanged} ){
 
-    const images = require.context('../assets/img/sdgs_icons', true);
+    // const images = require.context('../assets/img/sdgs_icons', true);
     const notext_images = require.context('../assets/img/sdg_icons_notext', true);
     const sdgs = [
         {
@@ -105,7 +105,7 @@ function Header( {onActiveSdgChanged} ){
                     <Nav className="sdg-icon-padding ">
                         { 
                         sdgs.map(function(sdg, index){
-                                let imgSrc = images(`./${sdg.image}.jpg`);
+                                // let imgSrc = images(`./${sdg.image}.jpg`);
                                 let img_notext = notext_images(`./${sdg.image_notext}.jpg`)
                                 return <Col key={index}>
                                             <Button onClick={handleSdgChange} value={index} className={ parseInt(activeSdg) === index ? 'active': '' }>

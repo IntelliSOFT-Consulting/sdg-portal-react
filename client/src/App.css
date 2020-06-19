@@ -915,6 +915,18 @@ font-weight: 600;
 
 .year-widget{
   position: fixed;
+  top: 30%;
+  right: 0;
+  background: #ededed;
+  box-shadow: 0 0 3px #444242;
+  padding: 27px 1px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  z-index: 999;
+  height: 125px;
+}
+.legend-widget{
+  position: fixed;
   top: 50%;
   right: 0;
   background: #ededed;
@@ -926,7 +938,8 @@ font-weight: 600;
   height: 125px;
 }
 
-.year-widget-text{
+.year-widget-text,
+.legend-widget-text{
   width: 40px;
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
@@ -946,14 +959,31 @@ font-weight: 600;
   overflow-y: auto;
   background: white;
 }
-.year-widget-popup .btn{
+
+
+.legend-widget-popup{
+  display: none;
+  position: absolute;
+  right: 43px;
+  top: 0;
+  overflow-y: auto;
+  background: white;
+  width: 220px;
+    text-align: left;
+    padding: 10px;
+    font-size: 0.8rem;
+}
+
+.year-widget-popup .btn,
+.legend-widget-popup .btn{
   padding: 30px 30px;
   color: #000;
   box-shadow: 0 4px 6px rgba(255, 255, 255, 0.11), 0 1px 3px rgba(255, 255, 255, 0.08);
   background: white;
 }
 
-.year-widget-popup .btn:not(:last-child) {
+.year-widget-popup .btn:not(:last-child)
+.legend-widget-popup .btn:not(:last-child) {
   margin-right: 0px;
 }
 
@@ -1065,7 +1095,7 @@ html, body, #root{
   padding: 10px;
 }
 
-.sdg-goal-div .btn,
+
 .a2063-goal-div .btn{
   padding: 0px;
   width: 50%;
@@ -1075,17 +1105,25 @@ html, body, #root{
   margin: 10px;
 }
 
+.sdg-goal-div .btn{
+  padding: 0px;
+  background-color: transparent;
+  box-shadow: 0 0px 0px rgba(50, 50, 93, 0.11), 0 0px 0px rgba(0, 0, 0, 0.08);
+  margin: 10px;
+}
+
+
 .sdg-goal-div .btn:not(:disabled):not(.disabled){
   cursor: default;
   box-shadow: 0 0px 0px rgba(50, 50, 93, 0.11), 0 0px 0px rgba(0, 0, 0, 0.08);
     background: transparent;
 }
 
-.sdg-goal-div .card-img,
 .a2063-goal-div .card-img{ 
   height: 50%;
   width: 40%;
 }
+
 
 .btn-explore{
   letter-spacing: 1px;
@@ -1479,4 +1517,23 @@ html, body, #root{
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.6rem;
   color: #02314e;
+}
+
+.about-page p{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #132654;
+}
+
+.aboutCards h5{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1.05px;
+}
+.aboutCards{
+  margin-top: 25px;
+  margin-bottom: 60px;
 }

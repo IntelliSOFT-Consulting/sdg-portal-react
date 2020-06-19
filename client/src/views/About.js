@@ -11,7 +11,7 @@ class About extends React.Component {
             <>
             <Header></Header>
                 <main className="about-page">
-                <div className="container-fluid pl-5 pr-5 pb-5">
+                <div className="container-fluid pl-5 pr-5 pb-5 about-page"> 
                 <Row>
                     <Col md="10" lg="8" className="mx-auto">
                     <Row className="pl-5 pr-5 pt-3">

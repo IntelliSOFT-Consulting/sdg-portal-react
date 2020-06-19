@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../components/a2063LandingHeader';
 import Footer from '../../components/footer';
 import {  Row, Col, Button } from 'reactstrap';
-import { Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import styled, { keyframes } from "styled-components";
 import Pulse from "@bit/formidablelabs.react-animations.pulse";
 const PulseAnimation = keyframes`${Pulse}`;
@@ -120,8 +120,8 @@ function Agenda2063Landing( ) {
   
   ];
  
-  let currAngle = -90;
-  let degreeAngle = 360 /( agenda2063.length - 1);
+  let currAngle = -135;
+  let degreeAngle = 360 / (agenda2063.length - 1);
 
   const [activeA2063, setActive2063] = useState(1);
   const [redirect, setRedirect] = useState(false);
@@ -136,6 +136,12 @@ function Agenda2063Landing( ) {
                               state: a2063
       }}></Redirect>
     }
+  }
+
+  const handleA2063Index = () =>{
+    return <Redirect to={{ pathname:"/Agenda2063",
+                              state: "a2063"
+      }}></Redirect>
   }
 
   const handleExploreButton = () =>{
@@ -171,13 +177,15 @@ function Agenda2063Landing( ) {
 
                                 if(index !== 0){
                                   return <Button onClick={handleA2063Change} value={index} style={{ transform }} className="a2063-circle" key={index}>
-                                              <div style={ activeA2063 === index ? backgroundHoverStyles : backgroundStyles }></div>
+                                              <div style={ parseInt(activeA2063) === index ? backgroundHoverStyles : backgroundStyles }></div>
                                         </Button>
                                 }else{
                                   transform = '';
-                                  return <Button value={index} className="a2063-circle" key={index}>
-                                          <div style={ activeA2063 === index ? backgroundHoverStyles : backgroundStyles }></div>
+                                  
+                                  return <Button value={index} className="a2063-circle" key={index} onClick={handleA2063Index}>
+                                          <div style={ parseInt(activeA2063) === index ? backgroundHoverStyles : backgroundStyles }></div>
                                         </Button>
+                                        
                                 }
                           })}
                   </div>
