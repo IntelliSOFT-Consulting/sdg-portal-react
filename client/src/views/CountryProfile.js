@@ -16,6 +16,8 @@ import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 import * as am4core from "@amcharts/amcharts4/core";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import axios from 'axios';
+const Papa = require("papaparse/papaparse.min.js");
+let countryProfileDataSource = require.context('../assets/data', true);
 
 am4core.useTheme(am4themes_animated);
 highchartsMap(Highcharts);
@@ -64,18 +66,50 @@ function CountryProfile (props, ) {
         setCountryProfileMapData(normalizedData);
     }
 
-    const parseCountryProfileData = async(countryCode) => {
-        let apiData = []
-        let countryProfileData = {}
-
-        const result = await axios(API_BASE+'/files');
-        apiData =  result.data.data;
-        apiData.forEach(function(d){
-        if(d.page === "Country Profile" && d.section === 'Country data'){
-            countryProfileData = d.data
-            }
+    const fetchCountryDetailsCsv = (csv) => {
+        let countryDetails = []
+        Papa.parse(csv, {
+          download: true,
+          header: true,
+          skipEmptyLines: false,
+          complete: function(results){
+            countryDetails = results.data
+            parseCountryDetails(countryDetails, selectedCountryCode)
+          }
         })
-        countryProfileData.forEach(function(data){
+      }
+
+      const fetchNormalizedCsv = (csv) => {
+        let normalizedData = []
+        Papa.parse(csv, {
+          download: true,
+          header: true,
+          skipEmptyLines: false,
+          complete: function(results){
+            normalizedData = results.data
+            parseNormalizedData(normalizedData);
+            setCountryProfileData(normalizedData);
+          }
+        })
+      }
+
+      const fetchDemographicsCsv = (csv) => {
+        let demographicsData = []
+        let parsedDemoData = []
+        Papa.parse(csv, {
+          download: true,
+          header: true,
+          skipEmptyLines: false,
+          complete: function(results){
+            demographicsData = results.data
+            parsedDemoData = parseDemographicsData(demographicsData, selectedCountryCode)
+            setCountryDemographics(parsedDemoData);
+          }
+        })
+      }
+
+    const parseCountryDetails = (countryDetailsData, countryCode) => {
+        countryDetailsData.forEach(function(data){
             if(data.code === countryCode && countryCode !== undefined){
                 let imgSrc = flagImages(`./${data.flagURL}.png`);
                 countryName = data.name;
@@ -97,6 +131,29 @@ function CountryProfile (props, ) {
             "gdpPerCapita":countryGDP,
             "countryCode": countryCode
         });
+    }
+
+    const parseCountryProfileData = async(countryCode) => {
+        let apiData = []
+        let countryProfileData = {}
+        let countryDetailsCsv = countryProfileDataSource(`./countryDetails.csv`);
+
+        const result = await axios(API_BASE+'/files');
+        apiData =  result.data.data;
+        if(apiData.length !== 0){
+            apiData.forEach(function(d){
+                if(d.page === "Country Profile" && d.section === 'Country data'){
+                    countryProfileData = d.data
+                    }
+                })
+                if(Object.getOwnPropertyNames(countryProfileData).length !== 0){
+                    parseCountryDetails(countryProfileData, countryCode);
+                }else{
+                    fetchCountryDetailsCsv(countryDetailsCsv);
+                }
+        }else{
+            fetchCountryDetailsCsv(countryDetailsCsv);
+        } 
     }
 
     const parseDemographicsData = (data, countryCode) => {
@@ -145,23 +202,42 @@ function CountryProfile (props, ) {
             let demographicsData = {}
             let parsedDemoData = []
 
+            let normalizedCsv = countryProfileDataSource(`./normalizedGoalValues.csv`);
+            let demographicsCsv = countryProfileDataSource(`./countriesDemographicData.csv`);
+
             const result = await axios(API_BASE+'/files');
             apiData =  result.data.data;
-            
-            apiData.forEach(function(d){
-              if(d.page === "Country Profile" && d.section === 'Goal perfomance'){
-                countryProfileSdgsData = d
-              }else if(d.page === "Country Profile" && d.section === 'Demographics data'){
-                demographicsData = d
-              }
-            })
-            setCountryProfileData(countryProfileSdgsData.data);
-            parseNormalizedData(countryProfileSdgsData.data);
 
-            parsedDemoData = parseDemographicsData(demographicsData.data, selectedCountryCode)
-            setCountryDemographics(parsedDemoData);
+            if(apiData.length !== 0){
+                apiData.forEach(function(d){
+                    if(d.page === "Country Profile" && d.section === 'Goal perfomance'){
+                        countryProfileSdgsData = d
+                    }else if(d.page === "Country Profile" && d.section === 'Demographics data'){
+                        demographicsData = d
+                    }
+                })
+
+                //SDG goal values
+                if(Object.getOwnPropertyNames(countryProfileSdgsData).length !== 0){
+                    setCountryProfileData(countryProfileSdgsData.data);
+                    parseNormalizedData(countryProfileSdgsData.data);
+                }else{
+                    fetchNormalizedCsv(normalizedCsv);
+                }
+
+                //Demographics data
+                if(Object.getOwnPropertyNames(demographicsData).length !== 0){
+                    parsedDemoData = parseDemographicsData(demographicsData.data, selectedCountryCode)
+                    setCountryDemographics(parsedDemoData);
+                }else{
+                    fetchDemographicsCsv(demographicsCsv);
+                }
+
+            }else{
+                fetchNormalizedCsv(normalizedCsv);
+                fetchDemographicsCsv(demographicsCsv);
+            } 
           }
-
           parseCountryProfileData(selectedCountryCode);
           fetchCountryProfileData();
     }, [toggleModal, selectedCountryCode ]);
@@ -273,6 +349,7 @@ function CountryProfile (props, ) {
                         </div>
                         <div className="modal-body" >
                         <CountryDetails countryData={countryDetailsData}></CountryDetails>
+
                             <Row className="pt-2">
                                 <Col lg="6" md="12">
                                     <Card className="sdg-goal-card">
