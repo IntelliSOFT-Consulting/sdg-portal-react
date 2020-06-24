@@ -33,9 +33,8 @@ const auth = require('../../middleware');
 const fileController = require('../controllers/file.controller.js');
 const userController = require('../controllers/user.controller.js');
 
-router.route('/files')
-    .get(fileController.findAll)
-    .post(auth, fileController.create);
+router.route('/files').get(fileController.findAll);
+router.route('/files').post(auth, fileController.create);
 
 router.route('/file/:id').get(fileController.findOne);
 router.route('/file/:id').put(fileController.update);
@@ -43,6 +42,7 @@ router.route('/file/:id').delete(fileController.delete);
 
 router.route('/user/create').post(userController.create);
 router.route('/user/authenticate').post(userController.authenticate);
+router.route('/users').get(userController.findAll);
 
 router.route('/user/checkToken').get(auth, userController.withAuth);
 router.route('/user/logout').get(userController.logOut);

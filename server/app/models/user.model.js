@@ -35,4 +35,10 @@ UserSchema.methods.isCorrectPassword = function(password, callback){
     });
 }
 
-module.exports = moongose.model('User', UserSchema);
+// module.exports = moongose.model('User', UserSchema);
+
+var User = module.exports = moongose.model('User', UserSchema)
+
+module.exports.get = function (callback, limit){
+    User.find(callback).limit(limit);
+}

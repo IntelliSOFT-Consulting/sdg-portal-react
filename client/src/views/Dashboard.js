@@ -9,6 +9,8 @@ import {
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+const Papa = require("papaparse/papaparse.min.js");
+
 
 function Dashboard (){
   const dashboardIndicators = require("../assets/data/dashboard.json");
@@ -26,6 +28,7 @@ function Dashboard (){
   const [toggleLegendWidget, setToggleLegendWidget] = useState(false);
   const [loading, setLoading] = useState(false);
   const API_BASE = "http://localhost:8080/api"
+  let dashboardDataSource = require.context('../assets/data', true);
   
 
   const sdgs = [
@@ -149,29 +152,65 @@ function Dashboard (){
     setOpenModal(false)
   }
 
+  const fetchDashboardCsv = (dashboardCsvFile) => {
+    let dashData = {}
+    setLoading(false)
+    Papa.parse(dashboardCsvFile, {
+      download: true,
+      header: true,
+      skipEmptyLines: false,
+      complete: function(results){
+        dashData = results.data
+        setDashboardData(dashData);
+        setLoading(false)
+        return dashData
+      }
+    })
+  }
+
+  const setDashboardApi = (dashData) =>{ 
+    setDashboardData(dashData)
+  }
+
+
+
   useEffect(() => {
-    let dashboardDataApi = {}
-    //Fetch dashboard API data
-    const fetchDashboardData = async() =>{
+    const fetchDashboardApi = async() =>{ 
       setLoading(true)
       let apiData = []
+      let dashData = {}
+  
       const result = await axios(API_BASE+'/files');
       apiData =  result.data.data;
-      apiData.forEach(function(d){
-        if(d.page === "Dashboard" && d.year === year){
-          dashboardDataApi = d
-        }
-      })
-      setDashboardData(dashboardDataApi.data);
-      setLoading(false)
+      setLoading(false);
+      
+      if(apiData.length !== 0){
+        apiData.forEach(function(d){
+          if(d.page === "Dashboard" && d.year === year){
+            dashData = d.data
+          }
+        })
+        setDashboardApi(dashData)
+      }else{
+        let dashboardYear = 'dashboard_' + year
+        let dashboardCsvFile = dashboardDataSource(`./${dashboardYear}.csv`);
+        fetchDashboardCsv(dashboardCsvFile)
+      }
     }
+  
+    fetchDashboardApi()
+  }, [year])
+
+  useEffect(() => {
+    
     const parseDashboardData = (countrySdg) => {
       let indicatorsNames = []
       let indicatorData = [];
       let n = countrySdg.length;
       let countryCode = countrySdg.slice(0,2);
       let sdgNumber = countrySdg.slice(2,n);
-      
+
+      console.log(dashboardData)
       dashboardData.forEach(function(data){
         if(data.code === countryCode){
           dashboardIndicators.forEach(function(dashboardIndicator){
@@ -216,7 +255,7 @@ function Dashboard (){
         }
       }) 
     }
-    fetchDashboardData();
+    
     parseDashboardData(activePopup);
   }, [activeRegion, year, activePopup])
 

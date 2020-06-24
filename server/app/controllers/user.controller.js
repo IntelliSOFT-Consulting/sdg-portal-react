@@ -43,7 +43,8 @@ exports.authenticate = function(req, res, next){
                         expiresIn: '1h'
                     });
                     res.cookie('token', token, {httpOnly: true, signedCookie: true})
-                    .send({ screen: email });
+                    .sendStatus(200);
+                    
                 }
             })
         }
@@ -61,3 +62,22 @@ exports.logOut = function(req, res){
 exports.readCookie = function(req, res){
     //console.log(req)
 }
+
+
+// Retrieve and return all files from the database.
+exports.findAll = function (req, res) {
+      console.log(res)
+      User.get(function(err, users){
+          if(err){
+              res.json({
+                  status: 'error',
+                  message: err,
+              });
+          }
+          res.json({
+              status: "success",
+              message: "Files retrieved successfully",
+              data: users
+          })
+      })
+    };

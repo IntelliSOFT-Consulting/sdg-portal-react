@@ -30,6 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "moment": "^2.25.3",
+    "neat-csv": "^5.2.0",
     "node-sass": "^4.14.1",
     "nouislider": "^14.1.1",
     "papaparse": "^5.1.0",

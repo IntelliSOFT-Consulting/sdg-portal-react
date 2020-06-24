@@ -29,6 +29,7 @@ function Login(){
                 'Content-Type': 'application/json'
             } 
         }).then(res => {
+            console.log(res)
             if(res.status === 200){
                 history.push('/DataUpload');
                 localStorage.setItem("user", email);
