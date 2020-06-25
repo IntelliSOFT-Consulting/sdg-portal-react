@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from "classnames";
 import { css } from '@emotion/core';
 import CheckboxTree from 'react-checkbox-tree';
+import axios from 'axios';
 
 import Header from "../components/sdgsHeader";
 import SdgMap from "../visualizations/sdgMap";
@@ -15,6 +16,7 @@ import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
   
 function Sdgs1(props) {
+    const API_BASE = "http://localhost:8080/api"
     const override = css`
         display: block;
         margin: 0 auto;
@@ -558,20 +560,47 @@ function Sdgs1(props) {
         setRegionCountries(nodes)
     }, [])
 
+    const fetchNormalizedCsv = (csv) => {
+        let normalizedData = []
+        Papa.parse(csv, {
+          download: true,
+          header: true,
+          skipEmptyLines: false,
+          complete: function(results){
+            normalizedData = results.data
+            parseNormalizedData(normalizedData);
+          }
+        })
+      }
+ 
+
     //Changes spider chart based on index map country click
     useEffect(() => {
-        const normalizedData = require('../assets/data/normalizedGoalValues.csv')
-        const loadNormalizedData = (normalizedDataFile) => {
-            Papa.parse(normalizedDataFile, {
-                download: true,
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results){
-                    parseNormalizedData(results.data);
+        const loadNormalizedData = async() => {
+            let apiData = []
+            let normalizedApiData = {}
+            let normalizedCsv = require('../assets/data/normalizedGoalValues.csv');
+
+            const result = await axios(API_BASE+'/files');
+            apiData =  result.data.data;
+
+            if(apiData.length !== 0){
+                apiData.forEach(function(d){
+                    if(d.page === "SDG" && d.section === 'Normalized data'){
+                        normalizedApiData = d.data
+                    }
+                })
+                //SDG goal values
+                if(Object.getOwnPropertyNames(normalizedApiData).length !== 0){
+                    parseNormalizedData(normalizedApiData);
+                }else{
+                    fetchNormalizedCsv(normalizedCsv);
                 }
-            })
+            }else{
+                fetchNormalizedCsv(normalizedCsv);
+            }
         }
-        loadNormalizedData(normalizedData);
+        loadNormalizedData();
     }, [country]);
 
 

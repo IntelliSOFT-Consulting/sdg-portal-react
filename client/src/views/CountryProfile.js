@@ -148,10 +148,12 @@ function CountryProfile (props, ) {
                 })
                 if(Object.getOwnPropertyNames(countryProfileData).length !== 0){
                     parseCountryDetails(countryProfileData, countryCode);
+                    
                 }else{
                     fetchCountryDetailsCsv(countryDetailsCsv);
                 }
         }else{
+
             fetchCountryDetailsCsv(countryDetailsCsv);
         } 
     }
