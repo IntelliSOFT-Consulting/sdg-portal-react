@@ -7,8 +7,8 @@ function CountryDetails({ countryData }) {
                 
                 
                 <Col lg="3" md="6">
-                    <label> Capital: {countryData.capital}</label> <br></br>
-                    <label>Poverty line: {countryData.povertyLine} </label> <br></br>
+                    <label> CAPITAL: {countryData.capital}</label> <br></br>
+                    <label>POVERTY LINE: {countryData.povertyLine} </label> <br></br>
                     <label>GDP Per Capita: {countryData.gdpPerCapita} </label>
                 </Col>
 

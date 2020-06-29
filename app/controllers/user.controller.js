@@ -74,6 +74,7 @@ exports.findAll = function (req, res) {
                   message: err,
               });
           }
+
           res.json({
               status: "success",
               message: "Files retrieved successfully",

@@ -48,12 +48,6 @@ const dbConnectionURL = {
 mongoose.connect(dbConnectionURL.LOCALURL, options);
 let db = mongoose.connection;
 
-if(!db){
-    console.log("Connection error");
-}else{
-    console.log("Connection successful")
-}
-
 // Static files
 app.use(express.static(CLIENT_BUILD_PATH));
 app.use('/api', apiRoutes);
@@ -62,6 +56,10 @@ app.get('/api/files', withAuth, function(req, res){
    res.sendStatus(200);
 });
 
+app.get('api/users',function(res, res){
+  res.sendStatus(200)
+})
+
 app.get('/api/user/checkToken', withAuth, function(req, res) {
   res.sendStatus(200);
 });
@@ -69,6 +67,12 @@ app.get('/api/user/checkToken', withAuth, function(req, res) {
 app.get('/*', function(req, res) {
   res.sendFile(path.join(CLIENT_BUILD_PATH , "index.html"));
   })
+
+  if(!db){
+    console.log("Connection error");
+  }else{
+      console.log("Connection successful")      
+  }
 
 app.listen(PORT, () => {
     console.log("Server running on port " + PORT);
