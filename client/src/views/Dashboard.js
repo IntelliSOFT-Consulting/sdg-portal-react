@@ -209,8 +209,6 @@ function Dashboard (){
       let n = countrySdg.length;
       let countryCode = countrySdg.slice(0,2);
       let sdgNumber = countrySdg.slice(2,n);
-
-      console.log(dashboardData)
       dashboardData.forEach(function(data){
         if(data.code === countryCode){
           dashboardIndicators.forEach(function(dashboardIndicator){

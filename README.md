@@ -9,6 +9,7 @@ This project uses:
 ###Instructions
 
 1. Install mongodb and make sure MongoDB service is running.
+    `sudo systemctl start mongod`
 
 2. In the project directory, run:
     ##### `npm config set '@bit:registry' https://node.bit.dev`

@@ -656,7 +656,7 @@ function Sdgs1(props) {
         data.forEach(function(d){
             mapData.push({
                 "code": (d.id),
-                "value": parseFloat(d.Score),
+                "value": Math.round(parseFloat(d.Score) * 100) / 100,
                 "name": d.Country
             })
         })
@@ -688,7 +688,7 @@ function Sdgs1(props) {
                 mapData.push({
                     "code": d.Code,
                     "drilldown" : d.Code + "/" + d.Code + "-all",
-                    "value": indicatorData,
+                    "value": Math.round(parseFloat(indicatorData) * 100) / 100,
                     "country": d.Entity
                 })  
             }
