@@ -1,29 +1,30 @@
 
-# Data Portal For Advanced Visualization 
+# SDG Data Portal For Advanced Visualization 
 
 This project uses: 
 - React and React Router for the frontend
-- Express and Mongoose for the backend API
+- Express and Mongoose for the backend API/ server
 - MongoDB for the database
 
-###Instructions
-
-1. Install mongodb and make sure MongoDB service is running.
-
-2. In the project directory, run:
-    ##### `npm config set '@bit:registry' https://node.bit.dev`
-    ##### `npm install` 
-
-3. Navigate to the API directory: 
-    ##### `cd sdg-portal-api` 
-    ##### `npm install`
+### Prerequisites
+Install [mongodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and make sure MongoDB service is running. <br>
+     `sudo systemctl start mongod`
     
-4. Navigate back to the project directory and run: 
-    ##### `npm start`
+### Running the application in development mode:
+In the root folder run: <br>
+     `npm start`
 
+This builds the frontend application and runs the the server in development mode.<br />
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
-This builds the frontend application and runs the the backend API in development mode.<br />
-Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+To create a new user run the following command on the command line: <br>
 
+      curl -X POST \
+        http://localhost:8080/api/user/create \
+        -H 'Content-Type: application/json' \
+        -d '{
+        "email": "me@example.com",
+        "password": "mypassword"
+        }' 
 
 

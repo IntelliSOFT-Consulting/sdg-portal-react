@@ -20,8 +20,8 @@ function Agenda2063Landing( ) {
       image  : "a2063_big_icon",
       imageSolid  : "a2063_big_icon",
       color: "rgb(241, 90, 46)",
-      title: "Prosperous Africa",
-      description: "A Prosperous Africa Based on Inclusive Growth and Sustainable Development",
+      title: "Agenda 2063: The Africa We Want.",
+      description: "Agenda 2063 is Africa’s blueprint and master plan for transforming Africa into the global powerhouse of the future. It is the continent’s strategic framework that aims to deliver on its goal for inclusive and sustainable development and is a concrete manifestation of the pan-African drive for unity, self-determination, freedom, progress and collective prosperity pursued under Pan-Africanism and African Renaissance",
       goals: [
         "Goal 1: A High Standard of Living, Quality of Life and Well Being for All",
         "Goal 2: Well Educated Citizens and Skills revolution underpinned by Science, Technology and Innovation", 
@@ -123,7 +123,7 @@ function Agenda2063Landing( ) {
   let currAngle = -135;
   let degreeAngle = 360 / (agenda2063.length - 1);
 
-  const [activeA2063, setActive2063] = useState(1);
+  const [activeA2063, setActive2063] = useState(0);
   const [redirect, setRedirect] = useState(false);
 
   const handleA2063Change = (a2063) =>{
@@ -138,10 +138,9 @@ function Agenda2063Landing( ) {
     }
   }
 
-  const handleA2063Index = () =>{
-    return <Redirect to={{ pathname:"/Agenda2063",
-                              state: "a2063"
-      }}></Redirect>
+  const handleA2063Index = (a2063) =>{
+    setActive2063(a2063.currentTarget.value)
+
   }
 
   const handleExploreButton = () =>{
@@ -192,12 +191,12 @@ function Agenda2063Landing( ) {
               </Col>
 
               <Col lg="5" md="5" sm="12" xs="12">
-                  {
+              {
                       agenda2063.map(function(a2063, index){
                           let a2063Number = index ;
                           let goals = a2063.goals;
-                        return parseInt(a2063Number) === parseInt(activeA2063) && a2063Number !== 0 ? (
-                          <div className="a2063-goal-div" key={index}>
+                         if (parseInt(a2063Number) === parseInt(activeA2063) && parseInt(activeA2063) !== 0 )  {
+                          return <div className="a2063-goal-div" key={index}>
                             <div>
                               <h4> Aspiration {index} : {a2063.description} </h4>
                               <div className="agenda2063-goals">
@@ -209,7 +208,12 @@ function Agenda2063Landing( ) {
                               </div>
                             </div>
                           </div>
-                          ) : null   
+                          } else if (parseInt(a2063Number) === parseInt(activeA2063) && parseInt(activeA2063) === 0 ) {
+                              return <div className="a2063-goal-div">
+                                <h4 className="agenda2063-metadata-title"> {a2063.title} </h4>
+                                <div className="agenda2063-metadata"> {a2063.description} </div>
+                              </div>
+                          }
                         })
                     }
                      <div className="text-center pt-3">

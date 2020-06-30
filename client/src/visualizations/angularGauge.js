@@ -12,7 +12,7 @@ am4core.useTheme(am4themes_animated);
 
 function Gauge( {barometerData, country, sdg}) {
     useEffect(() => {
-
+console.log("me")
         // create chart
         let chart = am4core.create("chartdiv", am4charts.GaugeChart);
         chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
@@ -34,6 +34,9 @@ function Gauge( {barometerData, country, sdg}) {
         axis.renderer.grid.template.disabled = true;
         axis.renderer.labels.template.radius = 40;
         axis.renderer.labels.template.fontSize = "0.9em";
+        axis.renderer.labels.template.disabled = true;
+        axis.renderer.ticks.template.disabled = true;
+        
         
         let axis2 = chart.xAxes.push(new am4charts.ValueAxis());
         axis2.min = 0;
@@ -43,6 +46,7 @@ function Gauge( {barometerData, country, sdg}) {
         axis2.renderer.ticks.template.disabled = true;
         axis2.renderer.grid.template.disabled = true;
         axis2.renderer.labels.template.bent = true;
+       
 
         // Add ranges
         let range = axis2.axisRanges.create();
