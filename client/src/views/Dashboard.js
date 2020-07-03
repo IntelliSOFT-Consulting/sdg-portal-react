@@ -458,7 +458,7 @@ const handleClickYear = (year) => {
                                   {
                                     dashboardData.map(function(scoreData, index){
                                     return <tr key={index} className={scoreData.region}>
-                                              <td className="sdg-data sdg-data-country"> <div> {scoreData.Country}</div></td>
+                                              <td className="sdg-data"> <div className="sdg-data-country"> {scoreData.Country}</div></td>
                                              { 
                                               counter.map(function(count){
                                                  return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} > </td>
@@ -491,7 +491,7 @@ const handleClickYear = (year) => {
                                     dashboardData.map(function(scoreData, index){
                                       if(scoreData.region === "Central"){
                                           return <tr key={index} className={scoreData.region}>
-                                                    <td className="sdg-data sdg-data-country"> <div> {scoreData.Country}</div></td>
+                                                     <td className="sdg-data"> <div className="sdg-data-country"> {scoreData.Country}</div></td>
                                                   { 
                                                     counter.map(function(count){
                                                       return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
@@ -524,7 +524,7 @@ const handleClickYear = (year) => {
                                       dashboardData.map(function(scoreData, index){
                                         if(scoreData.region === "East"){
                                             return <tr key={index} className={scoreData.region}>
-                                                     <td className="sdg-data sdg-data-country"> <div> {scoreData.Country}</div></td>
+                                                     <td className="sdg-data"> <div className="sdg-data-country"> {scoreData.Country}</div></td>
                                                     { 
                                                       counter.map(function(count){
                                                         return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
@@ -558,7 +558,7 @@ const handleClickYear = (year) => {
                                       dashboardData.map(function(scoreData, index){
                                         if(scoreData.region === "North"){
                                             return <tr key={index} className={scoreData.region}>
-                                                      <td className="sdg-data sdg-data-country"> <div> {scoreData.Country}</div></td>
+                                                      <td className="sdg-data"> <div className="sdg-data-country"> {scoreData.Country}</div></td>
                                                     { 
                                                       counter.map(function(count){
                                                         return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
@@ -591,7 +591,7 @@ const handleClickYear = (year) => {
                                       dashboardData.map(function(scoreData, index){
                                         if(scoreData.region === "Southern"){
                                             return <tr key={index} className={scoreData.region}>
-                                                     <td className="sdg-data sdg-data-country"> <div> {scoreData.Country}</div></td>
+                                                      <td className="sdg-data"> <div className="sdg-data-country"> {scoreData.Country}</div></td>
                                                       { 
                                                         counter.map(function(count){
                                                           return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>
@@ -624,8 +624,8 @@ const handleClickYear = (year) => {
                                       dashboardData.map(function(scoreData, index){
                                         if(scoreData.region === "West"){
                                             return <tr key={index} className={scoreData.region}>
-                                              
-                                                     <td className="sdg-data sdg-data-country"> <div> {scoreData.Country}</div></td>
+
+                                                     <td className="sdg-data"> <div className="sdg-data-country"> {scoreData.Country}</div></td>
                                                     { 
                                                       counter.map(function(count){
                                                         return <td key={count} id={scoreData.code + count} className = { scoreData["sdg"+count] } onClick={openModal} ></td>

@@ -4,8 +4,6 @@ import {Row, Col} from 'reactstrap';
 function CountryDetails({ countryData }) {
   return (
             <Row className="country-details">
-                
-                
                 <Col lg="3" md="6">
                     <label> <span>CAPITAL: </span>  {countryData.capital}</label> <br></br>
                     <label> <span>POVERTY LINE: </span> {countryData.povertyLine} </label> <br></br>
