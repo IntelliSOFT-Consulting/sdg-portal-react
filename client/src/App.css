@@ -95,7 +95,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 
 .navbar-brand img {
-  height: 70px;
+  height: 90px;
 }
 .btn{
   letter-spacing: 0;
@@ -394,14 +394,14 @@ text-align: center;
   .modal-xl {
     max-width: 1200px; } }
 
-.countryDemographics {
-    color: #32325d;
-    
-    font-weight: 600;
-}
-
-.countryDemographics label{
+.country-details label{
   font-size: 1rem;
+  text-transform: uppercase;
+  color: #32325d;
+}
+.country-details label span{
+  font-weight: 700;
+    letter-spacing: 0.2px;
 }
 .countryName{
   text-transform: uppercase;
@@ -486,10 +486,22 @@ text-align: center;
 
 
 /* FAQ Page */
-
+.faqs .card-body p{
+  color: #32325d;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.1rem;
+}
 .faqs .card{
   margin-bottom: 8px;
 }
+
+.faqs .card-header {
+  padding: 0.5em 1.5rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.2rem;
+  color: #32325d;
+}
+
 
 /* About us page */
 .card-header {
@@ -589,7 +601,6 @@ text-align: center;
   box-shadow: 0px 1px 2px #ccc;
   background: #fff;
   z-index: 99;
-  display: flex;
   margin: 0;
   padding: 0;
   justify-content: center;
@@ -865,6 +876,10 @@ font-weight: 600;
 .countryProfile{
  
 }
+
+.country-profile-row{
+margin-top: 2%;
+}
 .country-profile-text{
   margin-top: 10%;
 }
@@ -872,7 +887,7 @@ font-weight: 600;
   padding-left: 10%;
   padding-right: 10%;
   padding-bottom: 10px;
-  padding-top: 10px;
+  padding-top: 15%;
   font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.15rem;
 }
@@ -897,7 +912,16 @@ font-weight: 600;
 }
 
 .dashboard  .table th, .table td {
-  vertical-align: top;
+  /* vertical-align: top; */
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.dashboard .table td{
+  font-size: 9px;
+  font-weight: 700;
+  text-align: right;
 }
 
 .table thead th {
@@ -1089,6 +1113,7 @@ html, body, #root{
   border: 2px solid #000;
   text-align: center;
   padding: 30px;
+  height: 45%
 }
 .a2063-goal-div{
   text-align: center;
@@ -1291,7 +1316,6 @@ html, body, #root{
     box-shadow: 0px 0px 0px #ccc;
     background: #fff;
     z-index: 99;
-    display: flex;
     margin: 0;
     padding: 0;
     justify-content: center;
@@ -1311,7 +1335,6 @@ html, body, #root{
         box-shadow: 0px 0px 0px #ccc;
         background: #fff;
         z-index: 99;
-        display: flex;
         margin: 0;
         padding: 0;
         justify-content: center;
@@ -1515,7 +1538,7 @@ html, body, #root{
     color: #fd6825;
 }
 
-.country-profile-text p{
+.country-profile-text {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
@@ -1554,4 +1577,9 @@ html, body, #root{
 .aboutCards{
   margin-top: 25px;
   margin-bottom: 60px;
+}
+
+
+.country-profile-indicators-modal{
+  left: 75%;
 }

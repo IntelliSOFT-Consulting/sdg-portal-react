@@ -7,6 +7,7 @@ import AngularGauge from '../visualizations/angularGauge';
 
 import { Container, Modal, Row, Col, CardImg, Button, Card, CardBody, CardHeader } from "reactstrap";
 import Select from 'react-select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -32,6 +33,8 @@ function CountryProfile (props, ) {
 
     const countriesJson = require('../assets/data/trial.json'); 
     const countries = countriesJson.map(country => ({ label: country.name, value: country.code }));
+    const dashboardIndicators = require("../assets/data/dashboard.json");
+    let dashboardDataSource = require.context('../assets/data', true);
 
     let country = 0;
     let countryName = '';
@@ -39,6 +42,8 @@ function CountryProfile (props, ) {
     let countryFlag = '';
     let countryPoverty = '';
     let countryGDP = '';
+    let year = 2019
+   
 
     const [countryProfileMapData, setCountryProfileMapData] = useState([]);
     const [countryProfileData, setCountryProfileData] = useState([]);
@@ -53,6 +58,175 @@ function CountryProfile (props, ) {
 
     const [selectedCountryCode, setSelectedCountryCode] = useState(country.value);
     const [toggleModal, setOpenModal] = useState(country ? true: false);
+
+    const [dashboardData, setDashboardData] = useState([]);
+    const [toggleIndicatorsModal, setOpenIndicatorsModal] = useState(false);
+    const [dashboardPopupData, setModalPopupData] = useState([]);
+    const [dashboardPopupIndicators, setDashboardPopupIndicators] = useState([]);
+    const [dashboardPopupIndicatorsData, setDashboardPopupIndicatorsData] = useState([]);
+    const [activePopup, setActivePopup] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const fetchDashboardCsv = (dashboardCsvFile) => {
+        let dashData = {}
+        setLoading(false)
+        Papa.parse(dashboardCsvFile, {
+          download: true,
+          header: true,
+          skipEmptyLines: false,
+          complete: function(results){
+            dashData = results.data
+            setDashboardData(dashData);
+            setLoading(false)
+            return dashData
+          }
+        })
+      }
+    
+      const setDashboardApi = (dashData) =>{ 
+        setDashboardData(dashData)
+      }
+
+      useEffect(() => {   
+        const parseDashboardData = (countrySdg) => {
+          let indicatorsNames = []
+          let indicatorData = [];
+          let n = countrySdg.length;
+          let countryCode = countrySdg.slice(0,2);
+          let sdgNumber = countrySdg.slice(2,n);
+          dashboardData.forEach(function(data){
+            if(data.code == countryCode.toLowerCase()){
+              dashboardIndicators.forEach(function(dashboardIndicator){
+                if(dashboardIndicator.id === parseInt(sdgNumber)){
+                  setDashboardPopupIndicators(dashboardIndicator.indicators);
+                  indicatorsNames = dashboardIndicator.indicators
+      
+                  indicatorsNames.forEach(function(ind){
+                    let indicatorsNameArr = ind.indicator.split("_");
+                    let indicatorKey = ind.indicator
+                    let sdgColor = 'Dashboard Color ' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
+                    if(year === 2019){
+                      sdgColor = 'col_' + indicatorsNameArr[1] + "_"  + indicatorsNameArr[2];
+                      indicatorKey = indicatorsNameArr[1] + "_"  + indicatorsNameArr[2]
+                    }
+    
+                    let rounded_off_val = 0
+                    if(data[indicatorKey] !== null || data[indicatorKey] !== '' || data.hasOwnProperty('indicatorKey')){
+                      rounded_off_val = parseInt(Math.round(data[indicatorKey] * 10) / 10) || 0
+                    }else{
+                      rounded_off_val = 0
+                    }
+                    console.log(rounded_off_val)
+                     
+                    indicatorData.push({
+                      "title": ind.title,
+                      "value": rounded_off_val,
+                      "color": data[sdgColor]
+                    })
+                    setDashboardPopupIndicatorsData(indicatorData)
+                  })
+                }
+              })
+             
+              setModalPopupData({
+                "country": data.Country,
+                "color": data['sdg'+sdgNumber],
+                "indicator": sdgNumber,
+                "shorthand" : getShortHand( parseInt(sdgNumber)),
+                "indicators": dashboardPopupIndicators
+              })
+            }
+          }) 
+        }
+        
+        parseDashboardData(activePopup);
+      }, [ year, activePopup])
+    
+      useEffect(() => {
+        const fetchDashboardApi = async() =>{ 
+          setLoading(true)
+          let apiData = []
+          let dashData = {}
+      
+          const result = await axios(API_BASE+'/files');
+          apiData =  result.data.data;
+          setLoading(false);
+          
+          if(apiData.length !== 0){
+            apiData.forEach(function(d){
+              if(d.page === "Dashboard" && d.year === year){
+                dashData = d.data
+              }
+            })
+            setDashboardApi(dashData)
+          }else{
+            let dashboardYear = 'dashboard_' + year
+            let dashboardCsvFile = dashboardDataSource(`./${dashboardYear}.csv`);
+            fetchDashboardCsv(dashboardCsvFile)
+          }
+        }
+        fetchDashboardApi();
+      }, [year])
+
+      const getShortHand = (goalNo) => {
+        var shortHand
+        switch(goalNo){
+            case 1:
+                shortHand = ' No Poverty'
+                break
+            case 2:
+                shortHand = ' Zero Hunger'
+                break
+            case 3:
+                shortHand = ' Good Health and Well Being'
+                break
+            case 4:
+                shortHand = ' Quality Education'
+                break
+            case 5:
+                shortHand = ' Gender Equality'
+                break
+            case 6:
+                shortHand = ' Clean Water & Sanitation '
+                break
+            case 7:
+                shortHand = ' Affordable And Clean Energy'
+                break
+            case 8:
+                shortHand = ' Decent Work And Economic Growth'
+                break
+            case 9:
+                shortHand = ' Industry, Innovation And Infrastructure'
+                break
+            case 10:
+                shortHand = ' Reduced Inequalities'
+                break
+            case 11:
+                shortHand = ' Sustainable Cities And Communities'
+                break
+            case 12:
+                shortHand = ' Responsible Consumption and Production'
+                break
+            case 13:
+                shortHand = ' Climate Action'
+                break
+            case 14:
+                shortHand = ' Life Below Water'
+                break
+            case 15:
+                shortHand = ' Life On Land'
+                break
+            case 16:
+                shortHand = ' Peace, Justice And Strong Institutions'
+                break
+            case 17:
+                shortHand = ' Partnership For The Goals'
+                break
+            default:
+              shortHand = 'No poverty'
+        }
+        return shortHand;
+    }
 
     const parseNormalizedData = (data) => {
         const normalizedData = [];
@@ -187,8 +361,24 @@ function CountryProfile (props, ) {
         setSelectedCountryCode(null);
     }
 
+    const openIndicatorsModal = (e) => {
+        console.log(e)
+        setActivePopup(e.currentTarget.value);
+        setOpenIndicatorsModal(true);
+    }
+
+    const closeIndicatorsModal = () => {
+        setOpenIndicatorsModal(false);
+
+    }
+
     const handleSdgChange = (e) => {
-        setActiveSdg(e.currentTarget.value);
+        let countrySdg = e.currentTarget.value
+        let n = countrySdg.length;
+          let countryCode = countrySdg.slice(0,2);
+          let sdgNumber = countrySdg.slice(2,n);
+        setActiveSdg(sdgNumber);
+        openIndicatorsModal(e)
     }
 
     const handleChange = selectedOption => {
@@ -314,23 +504,25 @@ function CountryProfile (props, ) {
         <Header></Header>
             <main className="countryProfile">
                 <div className="container">
-                    <Row>
-                        <Col md="12">
-                            <Select options={countries} 
-                                        placeholder="Search Country or Click on the Map" 
-                                        value={selectedCountry}
-                                        onChange={handleChange} className="country-profile-search" />
+                    <Row className="country-profile-row">
+                    <Col md="6"></Col>
+                        <Col md="6">
+                          
                         </Col>
-                        <Col md="8" >
+                        <Col md="7" >
                             <HighchartsReact
                             constructorType ={'mapChart'}
                             highcharts={Highcharts}
                             options={mapOptions}
                             />
                         </Col>
-                        <Col md="4" className="country-profile-text">
+                        <Col md="5" >
+                        <Select options={countries} 
+                                        placeholder="Search Country or Click on the Map" 
+                                        value={selectedCountry}
+                                        onChange={handleChange} className="country-profile-search" />
                             {/* <h5 className="country-profile-title" > AFRICAN COUNTRIES PROFILE </h5> */}
-                            <p>
+                            <p className="country-profile-text"> 
                             Africa SDG Watch is a public platform to visualize and explore data, benchmark progress 
                             towards the SDGs and track performance of development indicators.
                             </p>
@@ -364,7 +556,7 @@ function CountryProfile (props, ) {
                                                     let  imgSrc = sdgsImages(`./${sdg.image}.jpg`)
                                                     let sdgIndex = index+1;
                                                     return <Col md="2" sm="4" key={sdgIndex}>
-                                                                <Button onClick={handleSdgChange} value={sdgIndex}>
+                                                                <Button onClick={handleSdgChange} value={countryDetailsData.countryCode + sdgIndex}>
                                                                     <CardImg className="countryProfileSdgsImg" alt={index} src={ imgSrc }></CardImg>  
                                                                 </Button>   
                                                             </Col>
@@ -406,6 +598,48 @@ function CountryProfile (props, ) {
                         </div>
                     </Modal>
                 </Container>
+                {/* 2nd modal */}
+                <Container className="country-profile-indicators-modal">
+                    <Modal size="sm" isOpen={toggleIndicatorsModal} toggle={toggleIndicatorsModal} className="dashboard-modal ">
+                        <div className="modal-header">
+                            <h5 className="modal-title dashboardCountryName">{countryDetailsData.name}  </h5>
+                            <button aria-label="Close" className="close" data-dismiss="modal" type="button"
+                                    onClick={closeIndicatorsModal} >
+                                    <span aria-hidden={true}>×</span>
+                                </button>
+                        </div>
+                        <div className="modal-body">
+                            <Container>
+                                <Row className="p-2">
+                                        <h6> SDG { dashboardPopupData.indicator} <FontAwesomeIcon icon="circle" color={dashboardPopupData.color} /> </h6>
+                                    
+                                        <table className="dashboardDetailsTable">
+                                        <thead>
+                                            <tr>
+                                            <th className="indicatorCol">{dashboardPopupData.shorthand}</th>
+                                            <th className="valueCol">Value</th>
+                                            <th className="ratingCol">Rating</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {
+                                            dashboardPopupIndicatorsData.map(function(dashboardInd, index){
+                                                return <tr>
+                                                <td>{dashboardInd.title}</td>
+                                                <td className="valueData">{dashboardInd.value}</td>
+                                                <td className="ratingData">  <FontAwesomeIcon icon="circle" color={dashboardInd.color} /> </td>
+                                                </tr>
+                                            })
+                                            }
+
+                                        
+                                        </tbody>
+                                        </table>
+                                    </Row>
+                            </Container>
+                        </div>
+                    </Modal>
+                  </Container>
         </main>
         <Footer></Footer>
         </>

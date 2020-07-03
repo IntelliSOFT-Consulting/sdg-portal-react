@@ -3,13 +3,13 @@ import {Row, Col} from 'reactstrap';
 
 function CountryDetails({ countryData }) {
   return (
-            <Row className="countryDemographics">
+            <Row className="country-details">
                 
                 
                 <Col lg="3" md="6">
-                    <label> CAPITAL: {countryData.capital}</label> <br></br>
-                    <label>POVERTY LINE: {countryData.povertyLine} </label> <br></br>
-                    <label>GDP Per Capita: {countryData.gdpPerCapita} </label>
+                    <label> <span>CAPITAL: </span>  {countryData.capital}</label> <br></br>
+                    <label> <span>POVERTY LINE: </span> {countryData.povertyLine} </label> <br></br>
+                    <label> <span>GDP Per Capita: </span>{countryData.gdpPerCapita} </label>
                 </Col>
 
                 <Col></Col>

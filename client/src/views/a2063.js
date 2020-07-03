@@ -45,11 +45,11 @@ function A2063(props){
     const [regionCountries, setRegionCountries] = useState([])
 
     let csvDataSourceData = '';
-    let redirectAgenda2063 = 0;
+    let redirectAgenda2063 = 1;
 
     if(props.location.state != null){
-        if(parseInt(props.location.state) === 18){
-            redirectAgenda2063 = 0
+        if(parseInt(props.location.state) === 0){
+            redirectAgenda2063 = 1
         }else{
             redirectAgenda2063 = props.location.state
         }
@@ -157,6 +157,7 @@ function A2063(props){
     }, [])
 
     useEffect(() => {
+        console.log(activeTab)
         let isSubscribed = true;
         if(dataSource === 'pan'){
             csvDataSourceData = require("../assets/data/a2063DummyData.csv");
@@ -282,12 +283,11 @@ function A2063(props){
         <>
         <Header onActiveA2063Changed={handleA2063Change}></Header>
             <main className="container agenda2063">
-                {
-                    parseInt(activeTab) !== 0 ? (
+                
                         <div>
                             <h4 className="aspiration-title p-3"> ASPIRATION  {activeTab} :  {aspirationTitle} </h4>
-                        <Row className="mt-4 optionButtons ">
-                            <Col>
+                        <Row className="mt-4 optionButtons no-gutters">
+                            <Col md="2">
                                 <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>
                                         {
                                         goals.map((goal, index) =>{
@@ -296,7 +296,7 @@ function A2063(props){
                                     }
                                 </Input>
                             </Col>
-                            <Col>
+                            <Col md="5">
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
                                   
                                     {
@@ -309,7 +309,7 @@ function A2063(props){
 
                             {
                                 mapChartType === 'line' ? (
-                                    <Col>
+                                    <Col md="2">
                                         <Input type="select" name="countrySelect"  onChange={handleCountryChange} value={country}> 
                                                 {
                                                      countries.map((country, index) => {
@@ -319,7 +319,7 @@ function A2063(props){
                                         </Input>
                                     </Col>  
                                 ):(
-                                    <Col>
+                                    <Col md="2">
                                     <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
                                             {
                                                 years.map((year, index) => {
@@ -331,7 +331,7 @@ function A2063(props){
                                 )
                             }
                            
-                            <Col className="lastChild">
+                            <Col md="3" className="lastChild">
                                 <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
                                         <option value="gdb">Global Database</option>
                                         <option value="mrs">PanAfrican MRS</option>
@@ -406,39 +406,39 @@ function A2063(props){
                             </Col>             
                         </Row> 
                         </div>
-                    ):(
-                        <div>
-                            <Row className="mt-4 optionButtons ">
-                                <Col>
-                                    <Label className="all-sdgs-label">ALL ASPIRATIONS </Label>
-                                </Col>
-                                <Col>
-                                    <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
-                                            {
-                                                years.map((year, index) => {
-                                                return <option key={index} value={year}> {year} </option>
-                                                })
-                                            }
-                                    </Input>
-                                </Col>   
-                                <Col className="lastChild">
-                                    <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
-                                            <option value="gdb">Global Database</option>
-                                            <option value="mrs">PanAfrican MRS</option>
-                                    </Input>
-                                </Col>      
-                            </Row>
-                            <Row>
-                                <Col lg="6" md="6" sm="12" xs="12">
-                                    <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
-                                </Col>
-                                <Col lg="6" md="6" sm="12" xs="12">
-                                    <TreeMap treeMapData = {aspirationsData} ></TreeMap>
-                                </Col>
-                            </Row>
-                        </div>
-                    )
-                }
+                {/* //     ):(
+                //         <div>
+                //             <Row className="mt-4 optionButtons ">
+                //                 <Col>
+                //                     <Label className="all-sdgs-label">ALL ASPIRATIONS </Label>
+                //                 </Col>
+                //                 <Col>
+                //                     <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
+                //                             {
+                //                                 years.map((year, index) => {
+                //                                 return <option key={index} value={year}> {year} </option>
+                //                                 })
+                //                             }
+                //                     </Input>
+                //                 </Col>   
+                //                 <Col className="lastChild">
+                //                     <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
+                //                             <option value="gdb">Global Database</option>
+                //                             <option value="mrs">PanAfrican MRS</option>
+                //                     </Input>
+                //                 </Col>      
+                //             </Row>
+                //             <Row>
+                //                 <Col lg="6" md="6" sm="12" xs="12">
+                //                     <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
+                //                 </Col>
+                //                 <Col lg="6" md="6" sm="12" xs="12">
+                //                     <TreeMap treeMapData = {aspirationsData} ></TreeMap>
+                //                 </Col>
+                //             </Row>
+                //         </div>
+                //     )
+                // } */}
 
                 <Container>
                     <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}

@@ -822,18 +822,18 @@ function Sdgs1(props) {
                  parseInt(activSdg) !== 0 ? (
                    <div>
                         <h4 className="aspiration-title p-3"> GOAL  {activSdg} :  {goalTitle} </h4>
-                        <Row className="mt-4 optionButtons ">
-                            <Col>
+                        <Row className="mt-4 optionButtons no-gutters">
+                            <Col md="1">
                             
                                 <Input type="select" name="targetSelect" onChange={handleTargetChange} value={target}>
                                         {
                                         sdgTargets.map((target, index) =>{
-                                        return <option key={index} value={target.code}>{target.code}</option>
+                                        return <option key={index} value={target.code}> {target.code}</option>
                                         })
                                     }
                                 </Input>
                             </Col>
-                            <Col>
+                            <Col md="6">
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
                                
                                     {
@@ -845,7 +845,7 @@ function Sdgs1(props) {
                             </Col>
                             {
                                 mapChartType === 'line' ? (
-                            <Col>
+                            <Col md="2">
                                 <Input type="select" name="countrySelect" onChange={handleCountryChange} value={country}>
                                     {
                                         countries.map((country, index) => {
@@ -855,7 +855,7 @@ function Sdgs1(props) {
                                 </Input>
                             </Col>
                                 ):(
-                            <Col>
+                            <Col md="2">
                                 <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
                                         {
                                             years.map((year, index) => {
@@ -865,7 +865,7 @@ function Sdgs1(props) {
                                 </Input>
                             </Col> 
                             )  }
-                            <Col className="lastChild">
+                            <Col className="lastChild" md="3">
                                 <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
                                         <option value="gdb">Global Database</option>
                                         <option value="mrs">PanAfrican MRS</option>

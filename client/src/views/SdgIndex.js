@@ -162,17 +162,17 @@ function SdgIndex() {
                         return sdgNumber === parseInt(activeSdg) ? (
                           <div style={{border}} className="sdg-goal-div" key={index}>
                             <Row>
-                              <Col md="3">
+                              <Col md="4">
                                 <Button>
                                     <CardImg src={ imgSrc }></CardImg>
                                 </Button>
                               </Col>
-                              <Col md="9">
+                              <Col md="8">
                               <h5> {sdg.title} </h5>
                               <ReadMoreReact text = {sdg.description}
-                                    min={400}
-                                    ideal={400}
-                                    max={400} readMoreText="Read more..." >
+                                    min={145}
+                                    ideal={150}
+                                    max={160} readMoreText="Read more..." >
                               </ReadMoreReact>
                               </Col>
                               

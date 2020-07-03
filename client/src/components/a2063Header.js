@@ -9,15 +9,6 @@ function Header(  {onActiveA2063Changed} ){
 
     const images = require.context('../assets/img/a2063_icons', true);
     const agenda2063 = [{
-            id :0,
-            image  : "Aspirations_1_0",
-            image2 : "Aspirations_1_hover",
-            iconSmallHover : "a2063",
-            iconSmall : "a2063",
-            iconSquare : "Aspirations_icons_1_Integrated_Africa",
-            iconSquareHover : "Aspirations_icons_1_Integrated_Africa_hover",
-        color: [8, 100, 54]
-        },{
             id :1,
             image  : "Aspirations_1_0",
             image2 : "Aspirations_1_hover",
@@ -140,9 +131,9 @@ function Header(  {onActiveA2063Changed} ){
 
                                 return <Col key={index}>
                                             
-                                            <Button style={  parseInt(activeA2063) === parseInt(index) ? buttonStylesActive : buttonStyles}  onClick={handleA2063Change} value={a2063.id} className={ parseInt(activeA2063) === parseInt(index) ? 'active': '' }>
-                                                <span style={ parseInt(activeA2063) === parseInt(index) ? titleTextStylesActive : titleTextStyles} className="a2063-icon-title-text"> { parseInt(a2063.id) !== 0 ? 'Aspiration\n' + a2063.id : 'All \n Aspirations'} </span>
-                                                <div  style={ parseInt(activeA2063) === parseInt(index) ? backgroundHoverStyles : backgroundStyles} className="a2063-icon-img" ></div>
+                                            <Button style={  parseInt(activeA2063) === parseInt(index+1) ? buttonStylesActive : buttonStyles}  onClick={handleA2063Change} value={a2063.id} className={ parseInt(activeA2063) === parseInt(index+1) ? 'active': '' }>
+                                                <span style={ parseInt(activeA2063) === parseInt(index+1) ? titleTextStylesActive : titleTextStyles} className="a2063-icon-title-text"> { parseInt(a2063.id) !== 0 ? 'Aspiration\n' + a2063.id : 'All \n Aspirations'} </span>
+                                                <div  style={ parseInt(activeA2063) === parseInt(index+1) ? backgroundHoverStyles : backgroundStyles} className="a2063-icon-img" ></div>
                                             </Button>
                                         </Col>
                         })}
