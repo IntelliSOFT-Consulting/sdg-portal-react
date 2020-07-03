@@ -636,6 +636,11 @@ text-align: center;
   width: 100px;
 }
 
+.sdg-data-country{
+  max-height: 28px;
+    overflow: hidden;
+}
+
 .red{
   background-color: rgb(255, 0, 0);
 }
@@ -884,14 +889,16 @@ margin-top: 2%;
   margin-top: 10%;
 }
 .country-profile-search{
-  padding-left: 10%;
-  padding-right: 10%;
   padding-bottom: 10px;
   padding-top: 15%;
   font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.15rem;
 }
 
+.home-search{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.15rem;
+}
 .demographics-card .card-body{
   padding-left: 12%;
   padding-right: 12%;
@@ -927,6 +934,13 @@ margin-top: 2%;
 .table thead th {
   vertical-align: bottom;
   border-bottom: 0rem solid #dee2e6;
+  border-left: 1px solid #d7dad8a3;
+}
+
+.table thead th:first-child {
+  vertical-align: bottom;
+  border-bottom: 0rem solid #dee2e6;
+  border-left: 0px solid #d7dad8a3;
 }
 
 .table th, .table td {
@@ -1109,12 +1123,7 @@ html, body, #root{
 
 }
 
-.sdg-goal-div{
-  border: 2px solid #000;
-  text-align: center;
-  padding: 30px;
-  height: 45%
-}
+
 .a2063-goal-div{
   text-align: center;
   padding: 10px;
@@ -1582,4 +1591,28 @@ html, body, #root{
 
 .country-profile-indicators-modal{
   left: 75%;
+}
+
+.sdg-goal-div{
+  border: 2px solid #000;
+  text-align: center;
+  padding: 30px;
+  min-height: 50%;
+  max-height: 100%;
+  margin-top: 18%;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+.box {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.bounce-2 {
+  animation-name: bounce-2;
+  animation-timing-function: ease;
+}
+@keyframes bounce-2 {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-100px); }
 }

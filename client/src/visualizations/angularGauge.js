@@ -12,6 +12,7 @@ am4core.useTheme(am4themes_animated);
 
 function Gauge( {barometerData, country, sdg}) {
     useEffect(() => {
+      console.log(barometerData, country, sdg)
         // create chart
         let chart = am4core.create("chartdiv", am4charts.GaugeChart);
         chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect

@@ -72,7 +72,7 @@ class Home extends React.Component {
                                 <Select options={countries} 
                                         placeholder="Search by country" 
                                         value={selectedOption}
-                                        onChange={this.handleChange}/>
+                                        onChange={this.handleChange} className="home-search"/>
                                {this.renderRedirect(selectedOption)}
                             </Col>
                         </Row>
