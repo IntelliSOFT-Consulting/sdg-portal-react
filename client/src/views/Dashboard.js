@@ -624,6 +624,7 @@ const handleClickYear = (year) => {
                                       dashboardData.map(function(scoreData, index){
                                         if(scoreData.region === "West"){
                                             return <tr key={index} className={scoreData.region}>
+                                              
                                                      <td className="sdg-data sdg-data-country"> <div> {scoreData.Country}</div></td>
                                                     { 
                                                       counter.map(function(count){
