@@ -13,7 +13,7 @@ function Login(){
 
     const [errorMsg, setErrorMsg] = useState('');
 
-    const API_BASE = "http://localhost:8080/api"
+    const API_BASE = "http://161.35.59.148:8080/api"
 
     // function validateForm() {
     //     return email.length > 0 && password.length > 0;

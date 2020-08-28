@@ -27,7 +27,7 @@ function Dashboard (){
   const [toggleYearWidget, setToggleYearWidget] = useState(false);
   const [toggleLegendWidget, setToggleLegendWidget] = useState(false);
   const [loading, setLoading] = useState(false);
-  const API_BASE = "http://localhost:8080/api"
+  const API_BASE = "http://161.35.59.148:8080/api"
   let dashboardDataSource = require.context('../assets/data', true);
   
 
