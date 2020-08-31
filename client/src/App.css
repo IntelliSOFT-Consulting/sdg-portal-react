@@ -918,7 +918,7 @@ margin-top: 2%;
   color: #4267b2;
 }
 
-.dashboard  .table th, .table td {
+.dashboard .table th, .dashboard .table td {
   /* vertical-align: top; */
   font-size: 0.65rem;
   font-weight: 600;

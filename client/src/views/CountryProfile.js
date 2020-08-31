@@ -44,7 +44,6 @@ function CountryProfile (props, ) {
     let countryGDP = '';
     let year = 2019
    
-
     const [countryProfileMapData, setCountryProfileMapData] = useState([]);
     const [countryProfileData, setCountryProfileData] = useState([]);
     const [activeSdg, setActiveSdg] = useState(18);
@@ -116,8 +115,7 @@ function CountryProfile (props, ) {
                     }else{
                       rounded_off_val = 0
                     }
-                    console.log(rounded_off_val)
-                     
+
                     indicatorData.push({
                       "title": ind.title,
                       "value": rounded_off_val,
