@@ -34,7 +34,7 @@ library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, f
 
 function App() {  
   return ( 
-    <Router  basename="" history={history} forceRefresh={true}>
+    <Router  basename="/sdg-portal-react" history={history} forceRefresh={true}>
       <Switch>
             <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
