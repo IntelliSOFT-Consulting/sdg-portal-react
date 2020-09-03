@@ -13,7 +13,7 @@ function Login(){
 
     const [errorMsg, setErrorMsg] = useState('');
 
-    const API_BASE = "http://161.35.59.148:8080/api"
+    const API_BASE = process.env.REACT_APP_API_BASE;
 
     // function validateForm() {
     //     return email.length > 0 && password.length > 0;

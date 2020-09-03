@@ -16,7 +16,7 @@ import RadarChart from "../visualizations/radarChart";
 import IndexMap from "../visualizations/indexMap";
   
 function Sdgs1(props) {
-    const API_BASE = "http://161.35.59.148:8080/api"
+    const API_BASE = process.env.REACT_APP_API_BASE;
     const override = css`
         display: block;
         margin: 0 auto;

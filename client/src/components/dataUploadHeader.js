@@ -8,7 +8,7 @@ import history from '../history';
 import {Navbar,Nav,Button} from "reactstrap";
 
 function CountryProfileHeader (){
-    const API_BASE = "http://161.35.59.148:8080/api"
+    const API_BASE = process.env.REACT_APP_API_BASE;
 
     const handleLogoutBtn = () => {
         axios.get(API_BASE + '/user/logout')
