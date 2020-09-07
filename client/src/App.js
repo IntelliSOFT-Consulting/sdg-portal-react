@@ -1,13 +1,11 @@
 import React from 'react';
 import "./assets/vendor/nucleo/css/nucleo.css";
 import "./assets/vendor/font-awesome/css/font-awesome.min.css";
-import "./assets/scss/argon-design-system-react.scss";
+import "./assets/css/argon-design-system-react.css";
 import './App.css';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 
-import {
-   Router, Switch, Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from "./views/Home";
 import Sdgs1 from "./views/Sdgs1";
@@ -34,7 +32,7 @@ library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, f
 
 function App() {  
   return ( 
-    <Router  basename="/sdg-portal-react" history={history} forceRefresh={true}>
+    <Router  basename="/sdgportalreact" history={history} >
       <Switch>
             <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>

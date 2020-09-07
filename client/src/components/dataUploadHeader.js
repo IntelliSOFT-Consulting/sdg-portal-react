@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import axios from 'axios';
-import history from '../history';
+import { Navbar, Nav, Button } from "reactstrap";
+import { createBrowserHistory } from 'history';
 
+export const history = createBrowserHistory({forceRefresh:true});
 // reactstrap components
-import {Navbar,Nav,Button} from "reactstrap";
+
 
 function CountryProfileHeader (){
     const API_BASE = process.env.REACT_APP_API_BASE;
@@ -16,7 +18,7 @@ function CountryProfileHeader (){
             if(res.status === 200){
                 localStorage.removeItem("user");
                 localStorage.clear();
-                history.push('/Login');
+                history.push('/sdgportalreact/Login');
             }else{
                 const error = new Error(res.error);
                 console.log(error);

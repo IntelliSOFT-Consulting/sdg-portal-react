@@ -11,7 +11,7 @@ const path = require("path");
 const PORT = 8080;
 let app = express();
 
-const CLIENT_BUILD_PATH = path.join(__dirname, "client/build");
+const CLIENT_BUILD_PATH = path.join(__dirname, "/client/build");
 const apiRoutes = require('./app/routes/file.routes.js');
 
 app.use(bodyParser.json({limit: "50mb"}));

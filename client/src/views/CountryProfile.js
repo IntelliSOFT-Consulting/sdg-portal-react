@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import CountryDetails from '../components/countryDetails';
 import Demographics from "../visualizations/demographics";
 import AngularGauge from '../visualizations/angularGauge';
+import Spinner from "../visualizations/spinner";
 
 import { Container, Modal, Row, Col, CardImg, Button, Card, CardBody, CardHeader } from "reactstrap";
 import Select from 'react-select';
@@ -508,11 +509,19 @@ function CountryProfile (props, ) {
                           
                         </Col>
                         <Col md="7" >
-                            <HighchartsReact
-                            constructorType ={'mapChart'}
-                            highcharts={Highcharts}
-                            options={mapOptions}
-                            />
+                            {
+                                loading ? (
+                                    <Spinner></Spinner>
+                                
+                                ):(
+                                    <HighchartsReact
+                                    constructorType ={'mapChart'}
+                                    highcharts={Highcharts}
+                                    options={mapOptions}
+                                    />
+                                )
+                            }
+                            
                         </Col>
                         <Col md="5" >
                         <Select options={countries} 
