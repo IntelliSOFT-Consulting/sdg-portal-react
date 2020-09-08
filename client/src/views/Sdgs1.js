@@ -37,6 +37,7 @@ function Sdgs1(props) {
     const [year, setYear] = useState('2006');
     const [mapChartType, setMapChartType] = useState('map'); 
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingNormalized, setIsLoadingNormalized] = useState(true);
     const [toggleModal, setOpenModal] = useState(false);
     const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
     const isExpanded = ["North", "West", "Southern", "Central", "East"]
@@ -560,7 +561,10 @@ function Sdgs1(props) {
         setRegionCountries(nodes)
     }, [])
 
+
+
     const fetchNormalizedCsv = (csv) => {
+        setIsLoadingNormalized(true);
         let normalizedData = []
         Papa.parse(csv, {
           download: true,
@@ -569,18 +573,18 @@ function Sdgs1(props) {
           complete: function(results){
             normalizedData = results.data
             parseNormalizedData(normalizedData);
+            setIsLoadingNormalized(false);
           }
         })
       }
- 
 
     //Changes spider chart based on index map country click
     useEffect(() => {
+        console.log(isLoadingNormalized)
         const loadNormalizedData = async() => {
             let apiData = []
             let normalizedApiData = {}
             let normalizedCsv = require('../assets/data/normalizedGoalValues.csv');
-
             const result = await axios(API_BASE+'/files');
             apiData =  result.data.data;
 
@@ -595,6 +599,7 @@ function Sdgs1(props) {
                     parseNormalizedData(normalizedApiData);
                 }else{
                     fetchNormalizedCsv(normalizedCsv);
+                   
                 }
             }else{
                 fetchNormalizedCsv(normalizedCsv);
@@ -798,7 +803,6 @@ function Sdgs1(props) {
         setOpenModal(false);
     }
     const handleCountryChange = (event) => {
-        console.log(activSdg);
         setCountry(event.target.value);
     }
     const handleCheck = (event) => {
@@ -981,15 +985,23 @@ function Sdgs1(props) {
                                 </Input>
                             </Col>      
                         </Row>
-                    
-                        <Row className="mt-3">
-                            <Col lg="6" md="12">
-                                <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
-                            </Col>
-                            <Col lg="6" md="12">
-                                <RadarChart radarData={indexRadarChartData}></RadarChart>
-                            </Col>
-                        </Row>
+                        {
+                            isLoadingNormalized ? (
+                                <Row className="mt-3 spinner-height">
+                                    <Spinner></Spinner>
+                                </Row>
+                               
+                            ):(
+                                <Row className="mt-3">
+                                    <Col lg="6" md="12">
+                                        <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
+                                    </Col>
+                                    <Col lg="6" md="12">
+                                        <RadarChart radarData={indexRadarChartData}></RadarChart>
+                                    </Col>
+                                </Row>
+                            )
+                        }
                     </div>
                 )
             }

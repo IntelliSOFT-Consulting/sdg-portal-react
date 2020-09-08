@@ -13,6 +13,7 @@ function Radar( {radarData} ){
             chart.data = radarData;
             chart.padding(10, 10, 10, 10);
             chart.fontSize = 12;
+            chart.logo.disabled=true;
 
             let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
             categoryAxis.dataFields.category = "category";
@@ -35,6 +36,7 @@ function Radar( {radarData} ){
             series1.stacked = true;
             series1.columns.template.tooltipY = 0;
             series1.columns.template.strokeOpacity = 0;
+            
 
             chart.colors.list = [
                 am4core.color("#E5243B"),
