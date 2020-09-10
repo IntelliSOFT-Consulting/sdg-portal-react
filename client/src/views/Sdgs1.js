@@ -819,6 +819,7 @@ function Sdgs1(props) {
 
     return(
         <>
+        { console.log(indicator) }
         <Header onActiveSdgChanged={handleSdgChange}></Header>
             <main className="sdg">
             <div className="container">  
