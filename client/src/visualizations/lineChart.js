@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import {
@@ -12,6 +12,7 @@ HC_exporting2(Highcharts);
 
 function lineChart({lineChartData, years, country}){
     years =  years.sort((a, b) => a - b);
+
     const chartOptions = {
         chart: {
             height: 400
@@ -55,10 +56,7 @@ function lineChart({lineChartData, years, country}){
                 }
             }
         },
-        series : [{
-            name : country,
-            data : lineChartData
-        }],
+        series : lineChartData,
 
         responsive: {
             rules: [{

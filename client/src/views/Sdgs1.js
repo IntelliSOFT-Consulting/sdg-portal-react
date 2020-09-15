@@ -580,7 +580,6 @@ function Sdgs1(props) {
 
     //Changes spider chart based on index map country click
     useEffect(() => {
-        console.log(isLoadingNormalized)
         const loadNormalizedData = async() => {
             let apiData = []
             let normalizedApiData = {}
@@ -819,7 +818,6 @@ function Sdgs1(props) {
 
     return(
         <>
-        { console.log(indicator) }
         <Header onActiveSdgChanged={handleSdgChange}></Header>
             <main className="sdg">
             <div className="container">  
@@ -921,10 +919,10 @@ function Sdgs1(props) {
                                         ) : (
                                             <div>
                                             <div className="add-country-div">
-                                                {/* <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
                                                         <i className="fa fa-plus-circle mr-1" />
-                                                        Add year
-                                                </Button> */}
+                                                        Add Country
+                                                </Button>
                                             </div>
                                             
                                                 <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years} country ={countryLabel}></LineChart>
