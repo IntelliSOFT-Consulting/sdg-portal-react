@@ -641,7 +641,9 @@ function Sdgs1(props) {
                         parseMapData(results.data);
                         const chartData = parseChartData(results.data)
                         filterChartData(chartData);
-                        parseLineData(results.data);
+
+                        const lineData = parseLineData(results.data);
+                        filterLineData(lineData)
                         setIsLoading(false);
                     }
                 }
@@ -725,22 +727,42 @@ function Sdgs1(props) {
         })
         setSdgChartData(filteredChartData);
     }
-
-    const parseLineData = (data) => {
-        let countryData = []
-        let countryLabel = ''
-        years =  years.sort((a, b) => a - b);
-        
-        data.forEach(function(d){
-            years.forEach(function(year){
-                if(parseInt(year) === parseInt(d.Year) && country.toLowerCase() === d.Code){
-                    countryData.push(parseInt(d[indicator]))
-                    countryLabel = d.Entity
+    const filterLineData = (myLineData) =>{
+        let filteredLineData = []
+        isChecked.forEach(function(checked){
+            myLineData.forEach(function(data){
+                if(data.code == checked){
+                    filteredLineData.push(data)
                 }
             })
         })
-        setCountryLabel(countryLabel)
-        setLineChartData(countryData);
+        setLineChartData(filteredLineData)
+    }
+
+    const parseLineData = (data) => {
+        let countryLabel = ''
+        let lineChartData = []
+        years =  years.sort((a, b) => a - b);
+
+        countries.forEach(function(country){
+            let countryData = []
+            data.forEach(function(d){
+                years.forEach(function(year){
+                    if(parseInt(year) === parseInt(d.Year) && country.alpha2Code.toLowerCase() === d.Code ){
+                        countryData.push(parseInt(d[indicator]))
+                    }
+                })
+            })
+
+            lineChartData.push({
+                code: country.alpha2Code,
+                name: country.name,
+                data: countryData
+            })
+        })
+
+        setCountryLabel(countryLabel) 
+        return lineChartData;
     }
 
     //Choose SDG
