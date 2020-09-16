@@ -25,10 +25,10 @@ import withAuth from './views/withAuth';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faYoutube, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 
-
-library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle)
+library.add(fab, faTimesCircle, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle, faTrash)
 
 function App() {  
   return ( 
@@ -47,6 +47,7 @@ function App() {
             <Route path="/Faqs" component={Faqs}></Route>
             <Route path="/Login" component={Login}></Route>
             <Route path="/DataUpload" component={withAuth(DataUpload)}></Route>
+            {/* <Route path="/DataUpload" component={DataUpload}></Route> */}
             <Route exact path="/" component={Home}></Route>
       </Switch>
     </Router>

@@ -209,7 +209,7 @@ function Agenda2063Landing( ) {
                             </div>
                           </div>
                           } else if (parseInt(a2063Number) === parseInt(activeA2063) && parseInt(activeA2063) === 0 ) {
-                              return <div className="a2063-goal-div">
+                              return <div className="a2063-goal-div" key={index}>
                                 <h4 className="agenda2063-metadata-title"> {a2063.title} </h4>
                                 <div className="agenda2063-metadata"> {a2063.description} </div>
                               </div>

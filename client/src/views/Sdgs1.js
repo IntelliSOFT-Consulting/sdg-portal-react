@@ -17,6 +17,7 @@ import IndexMap from "../visualizations/indexMap";
   
 function Sdgs1(props) {
     const API_BASE = process.env.REACT_APP_API_BASE;
+    const [apiData, setApiData] = useState([])
     const override = css`
         display: block;
         margin: 0 auto;
@@ -38,6 +39,7 @@ function Sdgs1(props) {
     const [mapChartType, setMapChartType] = useState('map'); 
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingNormalized, setIsLoadingNormalized] = useState(true);
+    const [isLoadingRadar, setIsLoadingRadar] = useState(false);
     const [toggleModal, setOpenModal] = useState(false);
     const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
     const isExpanded = ["North", "West", "Southern", "Central", "East"]
@@ -492,7 +494,8 @@ function Sdgs1(props) {
     "17.19 Population Census in last 10 years" ,
     "17.19 Completeness of birth registration (%)" ,
     "17.19 % of reported total deaths to estimated total deaths" ]
-    
+    const toggle = () => setOpenModal(!toggleModal);
+
     let csvDataSourceData = '';
     const unIndicators = require('../assets/data/unsdgapi.json');
     
@@ -547,12 +550,15 @@ function Sdgs1(props) {
     }
     
     function handleIndexChildClick(country){
+        setIsLoadingRadar(true);
         setCountry(country);
     }
 
     function handleSdgChildClick(country){
         setMapChartType('line');
-        setCountry(country);
+        const code = country.toUpperCase();
+        setCountry(code);
+        setIsChecked([code])
     }
 
     //Set the country and regions popup data
@@ -578,15 +584,26 @@ function Sdgs1(props) {
         })
       }
 
+
+      //Fetch API Data
+    const fetchApiData = async() => {
+        const result = await axios(API_BASE+'/files');
+        const apiData =  result.data.data;
+        return apiData
+    }
+
     //Changes spider chart based on index map country click
     useEffect(() => {
-        const loadNormalizedData = async() => {
-            let apiData = []
-            let normalizedApiData = {}
-            let normalizedCsv = require('../assets/data/normalizedGoalValues.csv');
-            const result = await axios(API_BASE+'/files');
-            apiData =  result.data.data;
+        let normalizedCsv = require('../assets/data/normalizedGoalValues.csv');
+        let normalizedApiData = {}
+        let storedApiData = []
 
+        
+       // setIsLoadingNormalized(true);
+        fetchApiData().then(function(apiData) {
+            storedApiData = apiData
+            setIsLoadingNormalized(false);
+            setIsLoadingRadar(false);
             if(apiData.length !== 0){
                 apiData.forEach(function(d){
                     if(d.page === "SDG" && d.section === 'Normalized data'){
@@ -595,6 +612,7 @@ function Sdgs1(props) {
                 })
                 //SDG goal values
                 if(Object.getOwnPropertyNames(normalizedApiData).length !== 0){
+                    console.log(normalizedApiData)
                     parseNormalizedData(normalizedApiData);
                 }else{
                     fetchNormalizedCsv(normalizedCsv);
@@ -603,8 +621,14 @@ function Sdgs1(props) {
             }else{
                 fetchNormalizedCsv(normalizedCsv);
             }
+         })
+
+         if(storedApiData.length !== 0){
+            console.log("Subsequent times")
+        }else{
+            console.log("First time")
         }
-        loadNormalizedData();
+
     }, [country]);
 
 
@@ -624,7 +648,8 @@ function Sdgs1(props) {
     }, [target, activSdg])
 
     useEffect(() => {
-        let isSubscribed = true;
+        let compiledApiData = []
+
         if(dataSource === 'pan'){
             csvDataSourceData = require("../assets/data/sdg/pan.csv");
         }else if (dataSource === 'gdb'){
@@ -637,7 +662,6 @@ function Sdgs1(props) {
                 download: true,
                 header: true,
                 complete: function(results){
-                    if(isSubscribed){
                         parseMapData(results.data);
                         const chartData = parseChartData(results.data)
                         filterChartData(chartData);
@@ -646,12 +670,10 @@ function Sdgs1(props) {
                         filterLineData(lineData)
                         setIsLoading(false);
                     }
-                }
             })
         }
         loadSdgData(csvDataSourceData);
         getGoalTitles(data)
-        return () => isSubscribed = false
     }, [dataSource, indicator, year, target, activSdg, isChecked, country]);
 
     const parseNormalizedData = (data) => {
@@ -660,25 +682,67 @@ function Sdgs1(props) {
         const radarData = [];
 
         data.forEach(function(d){
-            mapData.push({
-                "code": (d.id),
-                "value": Math.round(parseFloat(d.Score) * 100) / 100,
-                "name": d.Country
-            })
+            if(d.id !== undefined){
+                mapData.push({
+                    "code": (d.id).toUpperCase(),
+                    "value": Math.round(parseFloat(d.Score) * 100) / 100,
+                    "name": d.Country
+                })
+            }
+            
         })
         goals.forEach(function(goal) {
             data.forEach(function(d){
-                if(country === d.id){
-                    radarData.push({
-                        "category": goal,
-                        value1 : d["goal"+goal],
-                    })
+                if(d.id !== undefined){
+                    if(country === (d.id).toUpperCase()){
+                        radarData.push({
+                            "category": goal,
+                            value1 : d["goal"+goal],
+                        })
+                    }
                 }
+                
             })
         })
         
+        console.log(radarData)
         setIndexMapData(mapData);
         setIndexRadarChartData(radarData);
+    }
+
+    const parseIndexMapData = (data) => {
+        const mapData = [];
+        data.forEach(function(d){
+            if(d.id !== undefined){
+                mapData.push({
+                    "code": (d.id).toUpperCase(),
+                    "value": Math.round(parseFloat(d.Score) * 100) / 100,
+                    "name": d.Country
+                })
+            }
+            
+        })
+        setIndexMapData(mapData);
+    }
+
+    const parseIndexRadarData = () => {
+        const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
+        const radarData = [];
+        goals.forEach(function(goal) {
+            data.forEach(function(d){
+                if(d.id !== undefined){
+                    if(country === (d.id).toUpperCase()){
+                        radarData.push({
+                            "category": goal,
+                            value1 : d["goal"+goal],
+                        })
+                    }
+                }
+                
+            })
+        })
+        setIndexRadarChartData(radarData);
+
     }
 
     const parseMapData = (data) => {
@@ -1006,6 +1070,7 @@ function Sdgs1(props) {
                                 </Input>
                             </Col>      
                         </Row>
+                       
                         {
                             isLoadingNormalized ? (
                                 <Row className="mt-3 spinner-height">
@@ -1017,9 +1082,18 @@ function Sdgs1(props) {
                                     <Col lg="6" md="12">
                                         <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
                                     </Col>
-                                    <Col lg="6" md="12">
-                                        <RadarChart radarData={indexRadarChartData}></RadarChart>
-                                    </Col>
+                                    {
+                                        isLoadingRadar ? (
+                                            <Col lg="6" md="12" className="spinner-height">
+                                                <Spinner></Spinner>
+                                            </Col>
+                                        ):(
+                                            <Col lg="6" md="12">
+                                                <RadarChart radarData={indexRadarChartData}></RadarChart>
+                                            </Col>
+                                        )
+                                    }
+                                    
                                 </Row>
                             )
                         }
@@ -1029,7 +1103,7 @@ function Sdgs1(props) {
 
                 <Container className="pb-3">
                     <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
-                        toggle={toggleModal}  >
+                        toggle={toggle}  >
                         <div className="modal-header">
                         <h6 className="">Choose data to show</h6>
                             <button aria-label="Close" className="close" data-dismiss="modal" type="button"

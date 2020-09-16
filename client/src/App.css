@@ -380,7 +380,8 @@ text-align: center;
   width: 120px;
 }
 /* Country profile page */
- .modal-body{
+ .country-profile-modal .modal-body,
+ .dashboard-modal .modal-body{
   padding: 0 0.9rem;
 }
 
@@ -468,18 +469,21 @@ text-align: center;
   transform: scale(1.1, 1.1);
 }
 
-.modal-header .close {
+.country-profile-modal .modal-header .close,
+.dashboard-modal .modal-header .close {
   padding: 0;
   margin: 0;
   border-bottom: 0px solid #e9ecef; 
 }
 
-.modal-header{
+.country-profile-modal .modal-header,
+.dashboard-modal .modal-header{
   padding-bottom: 0;
   padding-top: 10px;
 }
 
-.modal-dialog{
+.country-profile-modal .modal-dialog,
+.dashboard-modal .modal-dialog{
   width: 1150px;
   padding-top: 50px;
 }
@@ -931,16 +935,24 @@ margin-top: 2%;
   text-align: right;
 }
 
+.dashboard .table th{
+  border-left: 1px solid #d7dad8a3;
+}
+
+.dashboard .table th:first-child{
+  border-left: 0px solid #d7dad8a3;
+}
+
 .table thead th {
   vertical-align: bottom;
   border-bottom: 0rem solid #dee2e6;
-  border-left: 1px solid #d7dad8a3;
+  /* border-left: 1px solid #d7dad8a3; */
 }
 
 .table thead th:first-child {
   vertical-align: bottom;
   border-bottom: 0rem solid #dee2e6;
-  border-left: 0px solid #d7dad8a3;
+  /* border-left: 0px solid #d7dad8a3; */
 }
 
 .table th, .table td {
@@ -1619,4 +1631,29 @@ html, body, #root{
 
 .spinner-height{
   height: 40vh;
+}
+
+.delete-modal .modal-header{
+  border-bottom: 0px solid #e9ecef;
+  padding: 0px;
+  padding-top: 0.8rem;
+  padding-right: 1.5rem;
+}
+
+.delete-modal .modal-body{
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.delete-modal .modal-body h5{
+  padding-top: 0.8rem;
+}
+
+.delete-modal .modal-footer{
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.delete-btn{
+  background-color: #E30E28;
 }

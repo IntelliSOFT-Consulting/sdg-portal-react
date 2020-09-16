@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from '../components/dataUploadHeader';
 import axios from 'axios';
-import { Row, Col, Button, Modal, Card, CardBody, Table, Input, Form
+import { Row, Col, Button, Modal, Card, CardBody, Table, Input, Form, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Moment from 'react-moment';
@@ -30,14 +30,33 @@ function DataUpload(){
     const [files, setFiles] = useState([]);
     const [csvDownloadFileData, setCsvDownloadFileData] = useState([]);
     const [csvFileName, setCsvFileName] = useState('');
-    const csvLink = React.createRef()
+    const csvLink = useRef();
     const [toggleModal, setOpenModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [deleteID, setDeleteID] = useState([])
 
+    const toggle = () => setOpenModal(!toggleModal);
+    const toggleDelete = () => setDeleteModal(!deleteModal);
+ 
     const API_BASE = process.env.REACT_APP_API_BASE;
-
+    //const API_BASE = process.env.REACT_APP_TEST_API_BASE;
+ 
     const handleFileData = (fileData) =>{
         setFileData(fileData)
+    }
+
+    const handleDeleteBtn = (e) => {
+        setDeleteModal(true);
+        const id = e.currentTarget.value;
+        setDeleteID(id)
+    }
+
+    const deleteFile = () =>{
+        axios.delete(API_BASE + '/file/' + deleteID)
+        .then(res => {
+            setDeleteModal(false);
+          })
     }
 
     const handleDownload = (e) =>{
@@ -50,8 +69,9 @@ function DataUpload(){
                 csvLink.current.link.click();
             })
             .catch(error => {
-                console.log(error.res)
+                console.log(error)
             });
+            
     }
 
     const getCurrentUser = () => {
@@ -114,7 +134,7 @@ function DataUpload(){
                 setIsLoading(false);
                 setOpenModal(false);
             }).catch((error) => {
-                console.log(error)
+               // console.log(error)
                 setResponse("error");
             })
     }
@@ -127,7 +147,7 @@ function DataUpload(){
             setFiles(result.data.data);
         }
         fetchData();
-    }, [isLoading, section])
+    }, [isLoading, section, files])
 
     const openModal = (e) =>{
         let activeSection = ''
@@ -140,6 +160,8 @@ function DataUpload(){
         setOpenModal(true);
         setPage(e.target.value);
     }
+
+   
 
     return (
         <>
@@ -154,11 +176,12 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                         <tr>
-                                            <th width="5%"></th>
+                                            <th width="3%"></th>
                                             <th width="13%">File name</th>
                                             <th width="10%">Date added</th>
                                             <th width="10%">Added by</th>
-                                            <th width="5%"></th>
+                                            <th width="3%"></th>
+                                            <th width="3%"></th>
                                         </tr>
                                 </thead>
                                 <tbody>
@@ -186,6 +209,11 @@ function DataUpload(){
                                                                 target="_blank" 
                                                             />
                                                     </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDeleteBtn} value={file._id}>
+                                                            <FontAwesomeIcon icon="trash" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                    </td>
                                             </tr>
                                         }
                                         
@@ -205,11 +233,12 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
+                                        <th width="3%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -237,6 +266,11 @@ function DataUpload(){
                                                                 target="_blank" 
                                                             />
                                                     </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDeleteBtn} value={file._id}>
+                                                            <FontAwesomeIcon icon="trash" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                    </td>
                                             </tr>
                                         }
                                         
@@ -256,11 +290,12 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
+                                        <th width="3%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -288,6 +323,11 @@ function DataUpload(){
                                                                 target="_blank" 
                                                             />
                                                     </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDeleteBtn} value={file._id}>
+                                                            <FontAwesomeIcon icon="trash" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                    </td>
                                             </tr>
                                         }
                                     })
@@ -306,11 +346,12 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
+                                        <th width="3%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -338,6 +379,11 @@ function DataUpload(){
                                                                 target="_blank" 
                                                             />
                                                     </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDeleteBtn} value={file._id}>
+                                                            <FontAwesomeIcon icon="trash" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                    </td>
                                             </tr>
                                         }
                                     })
@@ -350,7 +396,7 @@ function DataUpload(){
                 </Col>
             </Row>
 
-            <Modal className="uploadFilesModal modal-lg" isOpen={toggleModal} toggle={toggleModal}>
+            <Modal className="uploadFilesModal modal-lg" isOpen={toggleModal} toggle={toggle}>
                 <div className="modal-header">
                 <h5 className="countryName" cssModule={{'modal-title': 'w-100 text-center'}}>Add new data</h5>
                     <button aria-label="Close" className="close" data-dismiss="modal" type="button"
@@ -498,6 +544,19 @@ function DataUpload(){
                     </Form>
                 </div>
 
+            </Modal>
+            
+            <Modal isOpen={deleteModal} toggle={toggleDelete} centered="true" className="delete-modal">
+                <ModalHeader toggle={toggleDelete}></ModalHeader>
+                <ModalBody>
+                    <FontAwesomeIcon icon={["far", "times-circle"]} size="3x" color="#E30E28"></FontAwesomeIcon>
+                    <h5>Confirm delete</h5> 
+                    Are you sure you want to delete this file? This action cannot be undone. 
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="danger" onClick={deleteFile} className="delete-btn">Delete</Button>{' '}
+                    <Button color="secondary" onClick={toggleDelete}>Cancel</Button>
+                </ModalFooter>
             </Modal>
 
         </div>

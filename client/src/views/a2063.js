@@ -14,6 +14,7 @@ import Spinner from "../visualizations/spinner";
 import LineChart from "../visualizations/lineChart";
 
 function A2063(props){
+    const API_BASE = process.env.REACT_APP_API_BASE;
     const Papa = require("papaparse/papaparse.min.js");
     const agenda2063 = require('../assets/data/agenda2063.json');
     const aspirationsData = require("../assets/data/aspirationsData.json");
@@ -32,7 +33,7 @@ function A2063(props){
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
     const [year, setYear] = useState('2006');
     const [dataSource, setDataSource] = useState('pan');
-    const [mapChartType, setMapChartType] = useState('line');
+    const [mapChartType, setMapChartType] = useState('map');
     const [country, setCountry] = useState('DZ');
     const [aspirationTitle, setAspirationTitle] = useState('');
     const [toggleModal, setOpenModal] = useState(false);
@@ -42,7 +43,7 @@ function A2063(props){
     const [indicators, setIndicators] = useState([]);
     const [countryLabel,setCountryLabel] = useState('')
 
-    const a2063Keys = ["Indicator 1: Gross National Income (GNI) per capita","Indicator 2: Unemployment rate","Indicator 3: Prevalence of underweight among children under 5","Indicator 4: Percentage of population with access to safe drinking water","Indicator 5: Percentage of household with access to electricity","Indicator 6: Percentage of household using electricity","Indicator 7: Percentage of population with access to the internet","Indicator 8: Percentage of population using internet","Indicator 9: Percentage of children in pre-school age attending preschool","Indicator 10: Net enrolment rate in basic education level","Indicator 11: Proportion of teachers qualified in Science or Technology or Engineering or Mathematics (STEM)","Indicator 12: Secondary school net enrolment rate.","Indicator 13: Percentage of women in the reproductive age 15-49 who have access to sexual and reproductive health service","Indicator 14: Maternal mortality ratio","Indicator 15: Neonatal mortality rate (per 1,000 live births)","Indicator 16: Under five mortality rate","Indicator 17: Percentage of deliveries attended by skilled health personnel","Indicator 18: Number of new HIV infections per 1000 population","Indicator 19: TB incidence per 100,000","Indicator 20: Malaria incidence per 1000 per year","Indicator 21: Percentage of eligible population with HIV having access to ARV treatment","Indicator 22: Real GDP % Growth","Indicator 23: Manufacturing Value Added (as percentage of GDP)","Indicator 24: Research and development expenditure as a proportion of GDP","Indicator 25: Tourism value added as a proportion of GDP","Indicator 26: Total Factor Productivity (TFP)","Indicator 27: Percentage of small-scale farmers graduating into small-scale commercial farming","Indicator 28: Fisheries Sector Value added (as share of GDP)","Indicator 29: Marine-biotechnology value added (as share of GDP)","Indicator 30: Percentage of agricultural land placed under sustainable land management practice","Indicator 31: ","Indicator 32: No. of Non-tariff barriers (NTBs) reported and eliminated","Indicator 33 : Percentage change in volume of intra-African Trade","Indicator 34: Percentage of progress made on the implementation of trans Africa highway missing link","Indicator 35: Percentage of the progress made on the implementation of the African High Speed Rail Network","Indicator 36: No. of protocols on African open skies Implemented","Indicator 37: Number of additional Mega Watts added onto the national grid","Indicator 38: Proportion of population using mobile phones","Indicator 39: ICT Sector Value Addition as share of GDP","Indicator 40: Percentage of people who believe that there are effective mechanisms and oversight institutions to hold their leaders accountable","Indicator 41: Percentage of people who perceive that there is freedom of the press.","Indicator 42: Percentage of people who believe that the elections are free, fair and transparent.","Indicator 43: Proportion of persons who had at least one contact with a public official and asked or paid a bribe during the previous twelve months","Indicator 44: Conflict related deaths per 100,000 population","Indicator 45: Existence of a national peace council (Need to review the indicator with the view to understand its function, composition and roles)","Indicator 46: Proportion of the content of the curricula on indigenous African culture, values and language in primary and secondary schools","Indicator 47: Proportion of total agricultural population with ownership or secure rights over agricultural land.","Indicator 48: Proportion of seats held by women in national parliaments, regional and local bodies","Indicator 49: Proportion of women and girls subjected to sexual and physical violence [SM5]","Indicator 50: Proportion of girls and women aged 15-49 years who have gone undergone Female Genital Mutilation/Cutting (FGM/C)[SM6]","Indicator 51: The proportion of children whose births are registered within the first year","Indicator 52: Unemployment rate","Indicator 53: Percentage of Children engaged in Child Labour","Indicator 54: Percentage of children engaged in child marriages","Indicator 55: Percentage of children who are victims of human trafficking","Indicator 56: Level of implementation of the provisions in the African Charter on the Rights of the Youth by Member States","Indicator 57: Availability of legislation on statistics that complies with fundamental principles of official statistics","Indicator 58: Proportion of funding allocated for the implementation of functional statistical system","Indicator 59: Existence of formal institutional arrangements for the coordination of the compilation of official statistics","Indicator 60: Proportion of public sector budget funded by national capital markets","Indicator 61: Total tax revenue as a percentage of GDP","Indicator 62: Total ODA as a percentage of the national budget","Indicator 63: Resources raised through innovative financing mechanisms as a percentage of national budget"];
+    const toggle = () => setOpenModal(!toggleModal);
 
     let csvDataSourceData = '';
     let redirectAgenda2063 = 1;
@@ -124,7 +125,7 @@ function A2063(props){
             countries.forEach(function(country){
                 if(country.region === region){
                     countriesPerRegion.push({
-                        value: country.name,
+                        value: country.alpha2Code,
                         label: country.name
                     })
                 }
@@ -145,7 +146,9 @@ function A2063(props){
 
     function handleSdgChildClick(country){
         setMapChartType('chart');
-        setCountry(country);
+        const code = country.toUpperCase();
+        setCountry(code);
+        setIsChecked([code])
     }
 
     useEffect(() => {
@@ -415,7 +418,7 @@ function A2063(props){
 
                 <Container>
                     <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
-                        toggle={toggleModal}  >
+                        toggle={toggle}  >
                         <div className="modal-header">
                         <h6 className="">Choose data to show</h6>
                             <button aria-label="Close" className="close" data-dismiss="modal" type="button"

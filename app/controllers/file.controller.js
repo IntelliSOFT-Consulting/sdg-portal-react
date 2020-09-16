@@ -100,5 +100,36 @@ exports.update = (req, res) => {
 
 // Delete a file with the specified filesId in the request
 exports.delete = (req, res) => {
-
+    const id = req.params.id;
+    File.findByIdAndDelete(id)
+    .then(data => {
+        if(!data){
+            res.status(404).send({
+                message: 'Cannot delete file with id=${id}'
+            });
+        }else{
+            res.send({ message: 'File has been deleted' })
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: 'Cannot delete file with id=${id}'
+        })
+    })
 };
+
+//Delete all
+exports.deleteAll = (req, res) => {
+    File.deleteMany({})
+      .then(data => {
+        res.send({
+          message: `${data.deletedCount} Files were deleted successfully!`
+        });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while removing all files."
+        });
+      });
+  };

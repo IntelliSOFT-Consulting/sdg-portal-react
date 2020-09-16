@@ -34,10 +34,10 @@ const fileController = require('../controllers/file.controller.js');
 const userController = require('../controllers/user.controller.js');
 
 router.route('/files').get(fileController.findAll);
-router.route('/files').post(auth, fileController.create);
+router.route('/files').post(fileController.create);
 
 router.route('/file/:id').get(fileController.findOne);
-router.route('/file/:id').put(fileController.update);
+router.route('/file/:id').put(auth, fileController.update);
 router.route('/file/:id').delete(fileController.delete);
 
 router.route('/user/create').post(userController.create);

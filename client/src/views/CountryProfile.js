@@ -361,7 +361,6 @@ function CountryProfile (props, ) {
     }
 
     const openIndicatorsModal = (e) => {
-        console.log(e)
         setActivePopup(e.currentTarget.value);
         setOpenIndicatorsModal(true);
     }
@@ -579,7 +578,6 @@ function CountryProfile (props, ) {
                                             <h5 className="display-4 text-center">Perfomance by Goal </h5> 
                                         </CardHeader>
                                         <CardBody>
-                                            {console.log(countryProfileData)}
                                             <AngularGauge barometerData={countryProfileData} country={countryDetailsData.countryCode} sdg={activeSdg}></AngularGauge>
                                         </CardBody>
                                     

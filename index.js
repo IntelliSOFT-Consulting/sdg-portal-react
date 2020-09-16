@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const path = require("path");
 
-const PORT = 8080;
+const PORT = 8888;
 let app = express();
 
 const CLIENT_BUILD_PATH = path.join(__dirname, "/client/build");
@@ -35,6 +35,7 @@ const options = {
 };
 // mongodb environment variables
 const {
+  LOCAL_MONGO_HOSTNAME,
   MONGO_HOSTNAME,
   MONGO_DB,
   MONGO_PORT
