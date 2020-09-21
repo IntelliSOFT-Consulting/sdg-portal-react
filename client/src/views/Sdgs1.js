@@ -13,7 +13,6 @@ import SdgHighChart from "../visualizations/sdgHighChart";
 import LineChart from "../visualizations/lineChart";
 import Spinner from "../visualizations/spinner";
 import RadarChart from "../visualizations/radarChart";
-import RadarChart2 from "../visualizations/radar2";
 import IndexMap from "../visualizations/indexMap";
   
 function Sdgs1(props) {
