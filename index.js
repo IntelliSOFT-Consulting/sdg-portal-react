@@ -14,6 +14,9 @@ let app = express();
 const CLIENT_BUILD_PATH = path.join(__dirname, "/client/build");
 const apiRoutes = require('./app/routes/file.routes.js');
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = process.env.ATLAS_MONGO_CONNECTION_STRING;
+
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 app.use(cookieParser());
@@ -28,25 +31,24 @@ const options = {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
-  useUnifiedTopology: true,
   autoIndex: false,
+  useUnifiedTopology: true,
   poolSize: 10,
   bufferMaxEntries: 0
 };
 // mongodb environment variables
-const {
-  LOCAL_MONGO_HOSTNAME,
-  MONGO_HOSTNAME,
-  MONGO_DB,
-  MONGO_PORT
-} = process.env;
+// const {
+//   LOCAL_MONGO_HOSTNAME,
+//   MONGO_HOSTNAME,
+//   MONGO_DB,
+//   MONGO_PORT
+// } = process.env;
 
-const dbConnectionURL = {
-  'LOCALURL': `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`
-};
+// const dbConnectionURL = {
+//   'LOCALURL': `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`
+// };
 
-//mongoose.connect(dbConnectionURL.LOCALURL, options);
-mongoose.connect(dbConnectionURL.LOCALURL, options);
+mongoose.connect(uri, options);
 let db = mongoose.connection;
 
 // Static files

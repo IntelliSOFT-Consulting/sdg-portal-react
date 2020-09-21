@@ -18,7 +18,7 @@ function SdgMap({ mySdgData, onCountryClick }) {
         dataModule(Highcharts);
         highchartsMap(Highcharts);
 
-        let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
+        let csvFile = require("../assets/data/sdg/sdgDataCompiled.csv");
         let Papa = require("papaparse/papaparse.min.js");
         let sdgData = [];
         const period = "2017";
