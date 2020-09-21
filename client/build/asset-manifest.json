@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/sdgportalreact/static/css/main.0e5abaad.chunk.css",
-    "main.js": "/sdgportalreact/static/js/main.e32dc035.chunk.js",
-    "main.js.map": "/sdgportalreact/static/js/main.e32dc035.chunk.js.map",
-    "runtime-main.js": "/sdgportalreact/static/js/runtime-main.63c47f6f.js",
-    "runtime-main.js.map": "/sdgportalreact/static/js/runtime-main.63c47f6f.js.map",
+    "main.js": "/sdgportalreact/static/js/main.0a794022.chunk.js",
+    "main.js.map": "/sdgportalreact/static/js/main.0a794022.chunk.js.map",
+    "runtime-main.js": "/sdgportalreact/static/js/runtime-main.3e369845.js",
+    "runtime-main.js.map": "/sdgportalreact/static/js/runtime-main.3e369845.js.map",
     "xlsx.js": "/sdgportalreact/static/js/xlsx.b6ad3b74.chunk.js",
     "xlsx.js.map": "/sdgportalreact/static/js/xlsx.b6ad3b74.chunk.js.map",
     "static/css/3.f67e6d40.chunk.css": "/sdgportalreact/static/css/3.f67e6d40.chunk.css",
@@ -14,16 +14,16 @@
     "static/js/4.9a436d8d.chunk.js.map": "/sdgportalreact/static/js/4.9a436d8d.chunk.js.map",
     "static/js/5.89187c00.chunk.js": "/sdgportalreact/static/js/5.89187c00.chunk.js",
     "static/js/5.89187c00.chunk.js.map": "/sdgportalreact/static/js/5.89187c00.chunk.js.map",
-    "static/js/6.345b39c8.chunk.js": "/sdgportalreact/static/js/6.345b39c8.chunk.js",
-    "static/js/6.345b39c8.chunk.js.map": "/sdgportalreact/static/js/6.345b39c8.chunk.js.map",
+    "static/js/6.5857b414.chunk.js": "/sdgportalreact/static/js/6.5857b414.chunk.js",
+    "static/js/6.5857b414.chunk.js.map": "/sdgportalreact/static/js/6.5857b414.chunk.js.map",
     "index.html": "/sdgportalreact/index.html",
-    "precache-manifest.be5d89c8cc7b2ce932592593105dbe8e.js": "/sdgportalreact/precache-manifest.be5d89c8cc7b2ce932592593105dbe8e.js",
+    "precache-manifest.c2fa32d1248ea9cdc35b18d1d2a428f4.js": "/sdgportalreact/precache-manifest.c2fa32d1248ea9cdc35b18d1d2a428f4.js",
     "service-worker.js": "/sdgportalreact/service-worker.js",
     "static/css/3.f67e6d40.chunk.css.map": "/sdgportalreact/static/css/3.f67e6d40.chunk.css.map",
     "static/css/main.0e5abaad.chunk.css.map": "/sdgportalreact/static/css/main.0e5abaad.chunk.css.map",
     "static/js/3.9251527c.chunk.js.LICENSE.txt": "/sdgportalreact/static/js/3.9251527c.chunk.js.LICENSE.txt",
     "static/js/5.89187c00.chunk.js.LICENSE.txt": "/sdgportalreact/static/js/5.89187c00.chunk.js.LICENSE.txt",
-    "static/js/6.345b39c8.chunk.js.LICENSE.txt": "/sdgportalreact/static/js/6.345b39c8.chunk.js.LICENSE.txt",
+    "static/js/6.5857b414.chunk.js.LICENSE.txt": "/sdgportalreact/static/js/6.5857b414.chunk.js.LICENSE.txt",
     "static/media/00.jpg": "/sdgportalreact/static/media/00.372fa977.jpg",
     "static/media/01.jpg": "/sdgportalreact/static/media/01.ae614dfd.jpg",
     "static/media/02.jpg": "/sdgportalreact/static/media/02.f21c3ca0.jpg",
@@ -158,10 +158,10 @@
     "static/media/zimbabwe-flag-medium.png": "/sdgportalreact/static/media/zimbabwe-flag-medium.54e09aad.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.63c47f6f.js",
+    "static/js/runtime-main.3e369845.js",
     "static/css/3.f67e6d40.chunk.css",
     "static/js/3.9251527c.chunk.js",
     "static/css/main.0e5abaad.chunk.css",
-    "static/js/main.e32dc035.chunk.js"
+    "static/js/main.0a794022.chunk.js"
   ]
 }
