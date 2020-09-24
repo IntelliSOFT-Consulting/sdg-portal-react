@@ -71,8 +71,8 @@ function A2063(props){
         let indicatorData = ''
         const mapData = [];
         data.forEach(function(d){
-            if(d.Year === year ){
-               // console.log(indicator, d[indicator])
+            if(d.Year === parseInt(year) ){
+                console.log(d)
                 if(d[indicator] === ""){
                     indicatorData = null
                 }else{
@@ -85,8 +85,9 @@ function A2063(props){
                     "country": d.Entity
                 })  
             }
+
         })
-        
+        console.log(mapData)
         setMapData(mapData);
     }
 
@@ -256,6 +257,8 @@ function A2063(props){
                         filterLineData(lineData)
                         localStorage.setItem('cachedAgenda2063', JSON.stringify(compiledApiData));
                         setAgenda2063Data(compiledApiData);
+                        delayShowMap();
+                        console.log(compiledApiData);
                     }else{
                         console.log("CSV fetch")
                         fetchA2063Csv(compiledCsv);
@@ -278,6 +281,8 @@ function A2063(props){
         //     const lineData = parseLineData(agenda2063Data);
         //     filterLineData(lineData)
         // }
+
+        console.log(agenda2063Data)
 
         if(parseInt(activeTab) !== 0){
             const a2063Goals = agenda2063[activeTab-1].goals;

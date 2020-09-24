@@ -35,7 +35,7 @@ const options = {
   poolSize: 10,
   bufferMaxEntries: 0
 };
-// mongodb environment variables
+//mongodb environment variables
 // const {
 //   LOCAL_MONGO_HOSTNAME,
 //   MONGO_HOSTNAME,

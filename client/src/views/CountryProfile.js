@@ -185,23 +185,7 @@ function CountryProfile (props, ) {
         let countryDetailsCsv = countryProfileDataSource(`./countryDetails.csv`);
 
         const result = await axios(API_BASE+'/files');
-        apiData =  result.data.data;
-        // if(apiData.length !== 0){
-        //     apiData.forEach(function(d){
-        //         if(d.page === "Country Profile" && d.section === 'Country data'){
-        //             countryProfileData = d.data
-        //             }
-        //         })
-        //         if(Object.getOwnPropertyNames(countryProfileData).length !== 0){
-        //             parseCountryDetails(countryProfileData, countryCode);
-                    
-        //         }else{
-        //             fetchCountryDetailsCsv(countryDetailsCsv);
-        //         }
-        // }else{
-
-        //     fetchCountryDetailsCsv(countryDetailsCsv);
-        // } 
+        apiData =  result.data.data; 
     }
 
     const parseMapData = (data) => {

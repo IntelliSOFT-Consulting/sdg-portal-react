@@ -4,10 +4,9 @@ function CsvInput({ handleFileChange }) {
   const csvRef = useRef(null);
 
   const handleChange = e => {
-    console.log("change");
     var file = csvRef.current.files[0];
     if (!file) return;
-
+    console.log(file)
     handleFileChange(file);
   };
   return (
