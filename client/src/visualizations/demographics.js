@@ -110,6 +110,10 @@ function Demographics ( {demographicsData} ){
         label.text = "  ";
         label.hiddenState.properties.dy = -100;
         label.fontSize = 10;
+
+        return function cleanUp(){
+          mainContainer.dispose();
+      }
     }, [demographicsData])
 
         return (

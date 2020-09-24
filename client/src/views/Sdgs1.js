@@ -627,18 +627,16 @@ function Sdgs1(props) {
                     apiData.forEach(function(d){
                         if(d.page === "SDG" && d.section === 'Normalized data'){
                             normalizedApiData = d.data
-                            localStorage.setItem('normalizedData', JSON.stringify(normalizedApiData));
                         }
                     })
 
                     if(Object.getOwnPropertyNames(normalizedApiData).length !== 0){
                         parseNormalizedData(normalizedApiData);
+                        localStorage.setItem('normalizedData', JSON.stringify(normalizedApiData));
                     }else{
-                        localStorage.setItem('normalizedData', JSON.stringify(normalizedCsv))
                         fetchNormalizedCsv(normalizedCsv);
                     }
                 }else{
-                    localStorage.setItem('normalizedData', JSON.stringify(normalizedCsv))
                     fetchNormalizedCsv(normalizedCsv);
                 }
                 setIsLoadingNormalized(false);

@@ -63,7 +63,7 @@ function CountryProfile (props, ) {
     const [dashboardPopupIndicatorsData, setDashboardPopupIndicatorsData] = useState([]);
     const [activePopup, setActivePopup] = useState('');
     const [loading, setLoading] = useState(true);
-    const [loadingPopup, setLoadingPopup] = useState(true);
+    const [loadingPopup, setLoadingPopup] = useState(false);
 
     const toggle = () => setOpenModal(!toggleModal);
     const toggleDashboard = () => setOpenIndicatorsModal(!toggleModal);
@@ -84,7 +84,13 @@ function CountryProfile (props, ) {
 
     //Modal
     const openModal = (countryCode) => {
-        setOpenModal(true);
+        setLoadingPopup(true)
+        setTimeout(() => {
+            setOpenModal(true);
+            setLoadingPopup(false)
+        }, 350);
+
+        //setOpenModal(true);
         setSelectedCountryCode(countryCode);
         parseCountryProfileData(countryCode)
     }
@@ -338,7 +344,6 @@ function CountryProfile (props, ) {
           complete: function(results){
             countryDetails = results.data
             parseCountryDetails(countryDetails, selectedCountryCode)
-            setLoadingPopup(false)
           }
         })
     }
@@ -374,7 +379,6 @@ function CountryProfile (props, ) {
       }
 
     useEffect(() => {
-        console.log(loadingPopup)
         //setLoading(true)
         // localStorage.removeItem('normalizedData')
         // localStorage.removeItem('countryDetailsData')
@@ -460,6 +464,7 @@ function CountryProfile (props, ) {
                                 parseCountryDetails(countriesData);
                                 localStorage.setItem('countryDetailsData', JSON.stringify(countriesData));
                             }else{
+                                console.log("Revert to CSV for country details data")
                                 fetchCountryDetailsCsv(countryDetailsCsv);
                             }
         
@@ -468,6 +473,7 @@ function CountryProfile (props, ) {
                                 parseDemographicsData(demographicsData); 
                                 localStorage.setItem('demographicsData', JSON.stringify(demographicsData));
                             }else{
+                                console.log("Revert to CSV for demographics data")
                                 fetchDemographicsCsv(demographicsCsv);
                             }
                         })
@@ -526,7 +532,7 @@ function CountryProfile (props, ) {
 
     return(
         <>
-          { console.log(loading)}
+          { console.log(loadingPopup)}
         <Header></Header>
             <main className="countryProfile">
                 <div className="container">
@@ -562,74 +568,81 @@ function CountryProfile (props, ) {
                         
                 </div>
                 <Container>
-
+                
                     {
                         loadingPopup ? (
-                            <Spinner></Spinner>
+                            <div className="country-spinner-div">
+                                <Spinner  className="country-profile-popup-spinner"></Spinner>
+                            </div>
+                            
                         ):(
                             <Modal size="xl" className="modal-dialog-centered country-profile-modal" isOpen={toggleModal}
-                            toggle={toggle}  >
-                             <div className="modal-header">
-                                <h5 className="countryName" cssmodule={{'modal-title': 'w-100 text-center'}}>{countryDetailsData.name}</h5>
-                                <button aria-label="Close" className="close" data-dismiss="modal" type="button"
-                                    onClick={closeModal} >
-                                    <span aria-hidden={true}>×</span>
-                                </button>
-                            </div>
-                            <div className="modal-body" >
-                                <CountryDetails countryData={countryDetailsData}></CountryDetails>
-                                <Row className="pt-2">
-                                    <Col lg="6" md="12">
-                                        <Card className="sdg-goal-card">
-                                            <CardHeader> 
-                                                <h5 className="display-4 text-center">SDGs </h5>
-                                            </CardHeader>
-                                            <CardBody>
-                                                <Row className="no-gutters sdgImages" >
-                                                    {sdgsData.map(function(sdg, index){
-                                                        let  imgSrc = sdgsImages(`./${sdg.image}.jpg`)
-                                                        let sdgIndex = index+1;
-                                                        return <Col md="2" sm="4" key={sdgIndex}>
-                                                                    <Button onClick={handleSdgChange} value={countryDetailsData.countryCode + sdgIndex}>
-                                                                        <CardImg className="countryProfileSdgsImg" alt={index} src={ imgSrc }></CardImg>  
-                                                                    </Button>   
-                                                                </Col>
-                                                    })}
-                                                </Row>
-                                            </CardBody>
-                                        
-                                        </Card>
-                                    </Col>
-                                    <Col lg="6" md="12">
-                                        <Card>
-                                            <CardHeader> 
-                                                <h5 className="display-4 text-center">Perfomance by Goal </h5> 
-                                            </CardHeader>
-                                            <CardBody>
-                                                <AngularGauge barometerData={barometerData} country={countryDetailsData.countryCode} sdg={activeSdg}></AngularGauge>
-                                            </CardBody>
-                                        
-                                            
-                                        </Card>
-                                    </Col>
-                                </Row>
-                                <Row className="mb-2">
-                                    <Col className="mt-4"> 
-                                        <Card className="demographics-card">
-                                            <CardHeader>
-                                            <h5 className="display-4 text-center">Country Demographics </h5>
-                                            </CardHeader>
-                                            <CardBody>
-                                               
-                                                <Demographics demographicsData={countryDemographics}></Demographics>
-                                            </CardBody>
-                                        </Card>   
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Modal>
+                            toggle={toggle}>
+                                <div>
+                                    <div className="modal-header">
+                                        <h5 className="countryName" cssmodule={{'modal-title': 'w-100 text-center'}}>{countryDetailsData.name}</h5>
+                                        <button aria-label="Close" className="close" data-dismiss="modal" type="button"
+                                            onClick={closeModal} >
+                                            <span aria-hidden={true}>×</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body" >
+                                        <CountryDetails countryData={countryDetailsData}></CountryDetails>
+                                        <Row className="pt-2">
+                                            <Col lg="6" md="12">
+                                                <Card className="sdg-goal-card">
+                                                    <CardHeader> 
+                                                        <h5 className="display-4 text-center">SDGs </h5>
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                        <Row className="no-gutters sdgImages" >
+                                                            {sdgsData.map(function(sdg, index){
+                                                                let  imgSrc = sdgsImages(`./${sdg.image}.jpg`)
+                                                                let sdgIndex = index+1;
+                                                                return <Col md="2" sm="4" key={sdgIndex}>
+                                                                            <Button onClick={handleSdgChange} value={countryDetailsData.countryCode + sdgIndex}>
+                                                                                <CardImg className="countryProfileSdgsImg" alt={index} src={ imgSrc }></CardImg>  
+                                                                            </Button>   
+                                                                        </Col>
+                                                            })}
+                                                        </Row>
+                                                    </CardBody>
+                                                
+                                                </Card>
+                                            </Col>
+                                            <Col lg="6" md="12">
+                                                <Card>
+                                                    <CardHeader> 
+                                                        <h5 className="display-4 text-center">Perfomance by Goal </h5> 
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                        <AngularGauge barometerData={barometerData} country={countryDetailsData.countryCode} sdg={activeSdg}></AngularGauge>
+                                                    </CardBody>
+                                                
+                                                    
+                                                </Card>
+                                            </Col>
+                                        </Row>
+                                        <Row className="mb-2">
+                                            <Col className="mt-4"> 
+                                                <Card className="demographics-card">
+                                                    <CardHeader>
+                                                    <h5 className="display-4 text-center">Country Demographics </h5>
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                    
+                                                        <Demographics demographicsData={countryDemographics}></Demographics>
+                                                    </CardBody>
+                                                </Card>   
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                </div>
+                                </Modal>
+                       
                         )
                     }
+                    
                    
                 </Container>
                 {/* 2nd modal */}
