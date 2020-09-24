@@ -1,7 +1,7 @@
 const moongose = require('mongoose');
 
 const fileSchema = new moongose.Schema({
-    title: String,
+    title: { type: String, index: true },
     description: String,
     page: String,
     year: Number,

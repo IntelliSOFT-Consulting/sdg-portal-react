@@ -496,7 +496,6 @@ function Sdgs1(props) {
     "17.19 % of reported total deaths to estimated total deaths" ]
     const toggle = () => setOpenModal(!toggleModal);
 
-    let csvDataSourceData = '';
     const unIndicators = require('../assets/data/unsdgapi.json');
     
     // let indi = [];    
@@ -584,6 +583,23 @@ function Sdgs1(props) {
         })
       }
 
+    const fetchCompiledCsv = (sdgCsvFile) => {
+        setIsLoading(true);
+        Papa.parse(sdgCsvFile, {
+            download: true,
+            header: true,
+            complete: function(results){
+                parseMapData(results.data);
+                const chartData = parseChartData(results.data)
+                filterChartData(chartData);
+
+                const lineData = parseLineData(results.data);
+                filterLineData(lineData)
+                setIsLoading(false);
+            }
+        })
+    }
+
 
       //Fetch API Data
     const fetchApiData = async() => {
@@ -591,44 +607,44 @@ function Sdgs1(props) {
         const apiData =  result.data.data;
         return apiData
     }
+    
 
+    //localStorage.removeItem('normalizedData')
+
+    //Normalized data 
     //Changes spider chart based on index map country click
     useEffect(() => {
         let normalizedCsv = require('../assets/data/normalizedGoalValues.csv');
-        let normalizedApiData = {}
-        let storedApiData = []
+        const cachedNormalizedData = localStorage.getItem('normalizedData');
 
-        
-       // setIsLoadingNormalized(true);
-        fetchApiData().then(function(apiData) {
-            storedApiData = apiData
+        if(cachedNormalizedData){
+            parseNormalizedData(JSON.parse(cachedNormalizedData));
+            parseIndexRadarData(JSON.parse(cachedNormalizedData))
             setIsLoadingNormalized(false);
-            setIsLoadingRadar(false);
-            if(apiData.length !== 0){
-                apiData.forEach(function(d){
-                    if(d.page === "SDG" && d.section === 'Normalized data'){
-                        normalizedApiData = d.data
-                    }
-                })
-                //SDG goal values
-                if(Object.getOwnPropertyNames(normalizedApiData).length !== 0){
-                    console.log(normalizedApiData)
-                    parseNormalizedData(normalizedApiData);
-                }else{
-                    fetchNormalizedCsv(normalizedCsv);
-                   
-                }
-            }else{
-                fetchNormalizedCsv(normalizedCsv);
-            }
-         })
-
-         if(storedApiData.length !== 0){
-            console.log("Subsequent times")
         }else{
-            console.log("First time")
-        }
+            fetchApiData().then(function(apiData) {
+                let normalizedApiData = {}
+                if(apiData.length !== 0){
+                    apiData.forEach(function(d){
+                        if(d.page === "SDG" && d.section === 'Normalized data'){
+                            normalizedApiData = d.data
+                            localStorage.setItem('normalizedData', JSON.stringify(normalizedApiData));
+                        }
+                    })
 
+                    if(Object.getOwnPropertyNames(normalizedApiData).length !== 0){
+                        parseNormalizedData(normalizedApiData);
+                    }else{
+                        localStorage.setItem('normalizedData', JSON.stringify(normalizedCsv))
+                        fetchNormalizedCsv(normalizedCsv);
+                    }
+                }else{
+                    localStorage.setItem('normalizedData', JSON.stringify(normalizedCsv))
+                    fetchNormalizedCsv(normalizedCsv);
+                }
+                setIsLoadingNormalized(false);
+            })
+        }
     }, [country]);
 
 
@@ -647,32 +663,55 @@ function Sdgs1(props) {
         }
     }, [target, activSdg])
 
+    //localStorage.removeItem('compiledData')
+
     useEffect(() => {
-        let compiledApiData = []
+        let compiledCsv = require('../assets/data/sdg/sdgDataCompiled.csv');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+            fetchApiData().then(function(apiData) {
+                let compiledApiData = {}
+                if(apiData.length !== 0){
+                    apiData.forEach(function(d){
+                        if(d.page === "SDG" && d.section === 'Compiled data'){
+                            compiledApiData = d.data
+                        }
+                    })
 
-        if(dataSource === 'pan'){
-            csvDataSourceData = require("../assets/data/sdg/pan.csv");
-        }else if (dataSource === 'gdb'){
-            csvDataSourceData = require("../assets/data/sdg/gdb.csv");
-        }
-
-        const loadSdgData = (sdgCsvFile) => {
-            setIsLoading(true);
-            Papa.parse(sdgCsvFile, {
-                download: true,
-                header: true,
-                complete: function(results){
-                        parseMapData(results.data);
-                        const chartData = parseChartData(results.data)
+                    if(Object.getOwnPropertyNames(compiledApiData).length !== 0){
+                        parseMapData(compiledApiData);
+                        const chartData = parseChartData(compiledApiData)
                         filterChartData(chartData);
 
-                        const lineData = parseLineData(results.data);
+                        const lineData = parseLineData(compiledApiData);
                         filterLineData(lineData)
-                        setIsLoading(false);
+                    }else{                                                                                                                                                                                                                                                                                                                                              
+                        fetchCompiledCsv(compiledCsv);
                     }
+                }else{
+                    fetchCompiledCsv(compiledCsv);
+                }
+                setIsLoadingNormalized(false);
             })
-        }
-        loadSdgData(csvDataSourceData);
+        
+
+
+        // const loadSdgData = (sdgCsvFile) => {
+        //     setIsLoading(true);
+        //     Papa.parse(sdgCsvFile, {
+        //         download: true,
+        //         header: true,
+        //         complete: function(results){
+        //                 parseMapData(results.data);
+        //                 const chartData = parseChartData(results.data)
+        //                 filterChartData(chartData);
+
+        //                 const lineData = parseLineData(results.data);
+        //                 filterLineData(lineData)
+        //                 setIsLoading(false);
+        //             }
+        //     })
+        // }
+       // loadSdgData(compiledCsv);
         getGoalTitles(data)
     }, [dataSource, indicator, year, target, activSdg, isChecked, country]);
 
@@ -691,6 +730,8 @@ function Sdgs1(props) {
             }
             
         })
+
+       
         goals.forEach(function(goal) {
             data.forEach(function(d){
                 if(d.id !== undefined){
@@ -704,10 +745,7 @@ function Sdgs1(props) {
                 
             })
         })
-        
-        console.log(radarData)
         setIndexMapData(mapData);
-        setIndexRadarChartData(radarData);
     }
 
     const parseIndexMapData = (data) => {
@@ -725,7 +763,7 @@ function Sdgs1(props) {
         setIndexMapData(mapData);
     }
 
-    const parseIndexRadarData = () => {
+    const parseIndexRadarData = (data) => {
         const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
         const radarData = [];
         goals.forEach(function(goal) {
@@ -742,13 +780,14 @@ function Sdgs1(props) {
             })
         })
         setIndexRadarChartData(radarData);
-
+        setIsLoadingRadar(false);
     }
 
     const parseMapData = (data) => {
         const mapData = [];
         let indicatorData = ''
         data.forEach(function(d){
+            
             if(d.Year === year ){
                 if(d[indicator] === ""){
                     indicatorData = null
@@ -843,7 +882,6 @@ function Sdgs1(props) {
         setIndicator(indic[0]);
         setIndicators(indic);
     }
-
 
     //Choose target
     const handleTargetChange = (e) => {
@@ -1082,7 +1120,7 @@ function Sdgs1(props) {
                                     <Col lg="6" md="12">
                                         <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
                                     </Col>
-                                    {
+                                    {   
                                         isLoadingRadar ? (
                                             <Col lg="6" md="12" className="spinner-height">
                                                 <Spinner></Spinner>
