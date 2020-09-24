@@ -17,7 +17,6 @@ import IndexMap from "../visualizations/indexMap";
   
 function Sdgs1(props) {
     const API_BASE = process.env.REACT_APP_API_BASE;
-    const [apiData, setApiData] = useState([])
     const override = css`
         display: block;
         margin: 0 auto;
@@ -721,7 +720,7 @@ function Sdgs1(props) {
         const radarData = [];
 
         data.forEach(function(d){
-            if(d.id !== undefined){
+            if(d.Country){
                 mapData.push({
                     "code": (d.id).toUpperCase(),
                     "value": Math.round(parseFloat(d.Score) * 100) / 100,
@@ -730,11 +729,10 @@ function Sdgs1(props) {
             }
             
         })
-
        
         goals.forEach(function(goal) {
             data.forEach(function(d){
-                if(d.id !== undefined){
+                if(d.Country){
                     if(country === (d.id).toUpperCase()){
                         radarData.push({
                             "category": goal,
@@ -768,7 +766,7 @@ function Sdgs1(props) {
         const radarData = [];
         goals.forEach(function(goal) {
             data.forEach(function(d){
-                if(d.id !== undefined){
+                if(d.Country){
                     if(country === (d.id).toUpperCase()){
                         radarData.push({
                             "category": goal,

@@ -44,7 +44,7 @@ const options = {
 // } = process.env;
 
 // const dbConnectionURL = {
-//   'LOCALURL': `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`
+//   'LOCALURL': `mongodb://${LOCAL_MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`
 // };
 
 mongoose.connect(uri, options);
