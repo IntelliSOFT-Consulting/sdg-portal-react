@@ -162,38 +162,6 @@ function DataUpload(){
         setPage(e.target.value);
     }
 
-//    const onFileUpload = (e) =>{
-//         let formData = new FormData();
-//         formData.append("file", file);
-
-//         axios({
-//             url: `${API_BASE}/files`,
-//             method: 'POST',
-//             data: formData,
-//             headers: { 'Content-Type': "multipart/form-data" },
-//             maxContentLength: Infinity,
-//             maxBodyLength: Infinity
-//         })
-//         .then((response) => {
-//             console.log(response)
-//         }).catch((error) => {
-//             console.log(error)
-//         })
-//         // return http.post(`${API_BASE}/files`, formData, {
-//         //     headers: {
-
-
-//         //     "Content-Type": "multipart/form-data",
-//         //     }
-//         // });
-//    }
-
-//    const onFileChange = (e) =>{
-//        console.log(e.target.files[0])
-//         setFile(e.target.files[0]);
-//        // setFilename(e.target.files[0].name);
-//     }
-
 if(!toggleModal){
     setIsLoading(false);
 }
