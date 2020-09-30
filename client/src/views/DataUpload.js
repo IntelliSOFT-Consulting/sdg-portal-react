@@ -162,11 +162,6 @@ function DataUpload(){
         setPage(e.target.value);
     }
 
-if(!toggleModal){
-    setIsLoading(false);
-}
-   
-
     return (
         <>
         <Header></Header>
