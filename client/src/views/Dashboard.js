@@ -2,15 +2,11 @@ import React , { useState , useEffect} from "react";
 import Header from "../components/dashboardHeader";
 import Footer from "../components/footer";
 import Spinner from '../visualizations/spinner';
-
-import {
-    Nav, Card, CardBody, TabContent, TabPane, Button, CardImg, Row, Col, Modal, Container,Table
-} from "reactstrap";
+import { Nav, Card, CardBody, TabContent, TabPane, Button, CardImg, Row, Col, Modal, Container,Table } from "reactstrap";
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 const Papa = require("papaparse/papaparse.min.js");
-
 
 function Dashboard (){
   const dashboardIndicators = require("../assets/data/dashboard.json");
@@ -29,6 +25,7 @@ function Dashboard (){
   const [loading, setLoading] = useState(false);
   const API_BASE = process.env.REACT_APP_API_BASE;
   let dashboardDataSource = require.context('../assets/data', true);
+  const toggle = () => setOpenModal(!toggleModal);
   
 
   const sdgs = [
@@ -167,38 +164,106 @@ function Dashboard (){
   }
 
   const setDashboardApi = (dashData) =>{ 
-    setDashboardData(dashData)
+    let dashboardData = []
+    dashData.forEach(function(data){
+      if(data.Country !== null){
+        dashboardData.push(data)
+      }
+    })
+    setDashboardData(dashboardData)
   }
 
+  const fetchApiData = async() => {
+    const result = await axios(API_BASE+'/files');
+    const apiData =  result.data.data;
+    return apiData
+}
+
   useEffect(() => {
+    const cachedDashboardData2018 = localStorage.getItem('dashboardData2018');
+    const cachedDashboardData2019 = localStorage.getItem('dashboardData2019');
     
-    const fetchDashboardApi = async() =>{ 
-      setLoading(true)
-      let apiData = []
-      let dashData = {}
-  
-      const result = await axios(API_BASE+'/files');
-      apiData =  result.data.data;
-      setLoading(false);
-      
-      if(apiData.length !== 0){
-        apiData.forEach(function(d){
-          if(d.page === "Dashboard" && d.year === year){
-            dashData = d.data
-          }
-        })
-        setDashboardApi(dashData)
+    let dashboardYear = 'dashboard_' + year;
+    let dashboardCsvFile = dashboardDataSource(`./${dashboardYear}.csv`);
+
+    if(year == 2018){
+      if(cachedDashboardData2018){
+        setDashboardApi(JSON.parse(cachedDashboardData2018))
       }else{
-        let dashboardYear = 'dashboard_' + year
-        let dashboardCsvFile = dashboardDataSource(`./${dashboardYear}.csv`);
-        fetchDashboardCsv(dashboardCsvFile)
+          fetchApiData().then(function(apiData){
+            let dashboardApiData = {}
+            if(apiData.length !== 0){
+              apiData.forEach(function(d){
+                if(d.page === "Dashboard" && d.year === year){
+                  dashboardApiData = d.data
+                  localStorage.setItem('dashboardData2018', JSON.stringify(dashboardApiData))
+                }
+              })
+                if(Object.getOwnPropertyNames(dashboardApiData).length !== 0){
+                  setDashboardApi(dashboardApiData)
+                }else{
+                    fetchDashboardCsv(dashboardCsvFile)
+                }
+              
+            }else{
+              fetchDashboardCsv(dashboardCsvFile)
+            }
+          })
+      }
+    }else if(year == 2019){
+      if(cachedDashboardData2019){
+        setDashboardApi(JSON.parse(cachedDashboardData2019))
+      }else{
+          fetchApiData().then(function(apiData){
+            let dashboardApiData = {}
+            if(apiData.length !== 0){
+              apiData.forEach(function(d){
+                if(d.page === "Dashboard" && d.year === year){
+                  dashboardApiData = d.data
+                  localStorage.setItem('dashboardData2019', JSON.stringify(dashboardApiData))
+                }
+              })
+                if(Object.getOwnPropertyNames(dashboardApiData).length !== 0){
+                  setDashboardApi(dashboardApiData)
+                }else{
+                    fetchDashboardCsv(dashboardCsvFile)
+                }
+              
+            }else{
+              fetchDashboardCsv(dashboardCsvFile)
+            }
+          })
       }
     }
-    fetchDashboardApi()
+
+    
+    
+    // const fetchDashboardApi = async() =>{ 
+    //   setLoading(true)
+    //   let apiData = []
+    //   let dashData = {}
+  
+    //   const result = await axios(API_BASE+'/files');
+    //   apiData =  result.data.data;
+    //   setLoading(false);
+      
+    //   if(apiData.length !== 0){
+    //     apiData.forEach(function(d){
+    //       if(d.page === "Dashboard" && d.year === year){
+    //         dashData = d.data
+    //       }
+    //     })
+    //     setDashboardApi(dashData)
+    //   }else{
+    //     let dashboardYear = 'dashboard_' + year
+    //     let dashboardCsvFile = dashboardDataSource(`./${dashboardYear}.csv`);
+    //     fetchDashboardCsv(dashboardCsvFile)
+    //   }
+    // }
+    //fetchDashboardApi()
   }, [year])
 
   useEffect(() => {   
-    console.log(dashboardData)
     const parseDashboardData = (countrySdg) => {
       let indicatorsNames = []
       let indicatorData = [];
@@ -227,8 +292,7 @@ function Dashboard (){
                 }else{
                   rounded_off_val = 0
                 }
-                console.log(rounded_off_val)
-                 
+
                 indicatorData.push({
                   "title": ind.title,
                   "value": rounded_off_val,
@@ -249,7 +313,6 @@ function Dashboard (){
         }
       }) 
     }
-    
     parseDashboardData(activePopup);
   }, [activeRegion, year, activePopup])
 
@@ -380,7 +443,7 @@ const handleClickYear = (year) => {
                         <Row className="no-gutters regions-header">
                           {
                           regions.map((region, index) =>{  
-                                  return <Col>
+                                  return <Col key={index}>
                                       <Button key={index} onClick={regionClick} value={region.id} className={ activeRegion === index+1 ? 'active': '' }> 
                                               {region.name}
                                       </Button>
@@ -405,16 +468,18 @@ const handleClickYear = (year) => {
                   <div className={ classnames("legend-widget-popup", {display: toggleLegendWidget === true}) }>
                       <h6>Legend</h6> 
                       <Table> 
+                        <tbody>
                       {
                         legend.map((data, index) => {
-                          return <tr>
-                            <td key={index}>
-                            <FontAwesomeIcon icon="circle" color={data.color} ></FontAwesomeIcon>
-                            </td>
+                          return <tr key={index}>
+                                  <td>
+                                      <FontAwesomeIcon icon="circle" color={data.color} ></FontAwesomeIcon>
+                                  </td>
                             <td> {data.name} </td>
                           </tr>
                         })
                       }
+                      </tbody>
                       </Table>
                     
                   </div>
@@ -644,7 +709,7 @@ const handleClickYear = (year) => {
                   </Card>
                  
               <Container>
-                  <Modal size="sm" isOpen={toggleModal} toggle={toggleModal} className="dashboard-modal">
+                  <Modal size="sm" isOpen={toggleModal} toggle={toggle} className="dashboard-modal">
                     <div className="modal-header">
                         <h5 className="modal-title dashboardCountryName">{dashboardPopupData.country}  </h5>
                         <button aria-label="Close" className="close" data-dismiss="modal" type="button"
@@ -668,7 +733,7 @@ const handleClickYear = (year) => {
                                   <tbody>
                                   {
                                       dashboardPopupIndicatorsData.map(function(dashboardInd, index){
-                                        return <tr>
+                                        return <tr key={index}>
                                           <td>{dashboardInd.title}</td>
                                           <td className="valueData">{dashboardInd.value}</td>
                                           <td className="ratingData">  <FontAwesomeIcon icon="circle" color={dashboardInd.color} /> </td>

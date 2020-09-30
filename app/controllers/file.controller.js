@@ -2,9 +2,43 @@ const formidable = require('formidable');
 let multer = require('multer');
 const fs = require('fs');
 const csv = require('csv-parser');
+const path   = require('path');
+
+
+
 
 //import File model
 const File = require('../models/file.model.js');
+
+// exports.create = function(req, res){
+//     const storageEngine = multer.diskStorage({
+//         destination: 'uploads/',
+//         filename: function(req, file, fn){
+//           fn(null,  new Date().getTime().toString()+'-'+file.fieldname+path.extname(file.originalname));
+//         },
+//         file = req.file
+//       }); 
+
+//     const upload = multer({ storage: storageEngine}).single("file");
+//     upload(req, res, (err) => {
+//         if(err) {
+//           res.status(400).send("Something went wrong!");
+//         }
+//         // res.send(req.file);
+//         var fullPath = "uploads/"+req.file.filename;
+//         const file = new File({
+//             file:''
+//         });   
+        
+//         file.save({ checkKeys: false }, function(err, record){
+//             if (err) return console.error(err);
+//             res.json({
+//                 data: file
+//             })
+//         })
+
+//       });
+// }
 
 //Create and save new file
 exports.create = function(req, res) {
@@ -37,6 +71,8 @@ exports.create = function(req, res) {
             })
     })
 }
+
+
 
 // Retrieve and return all files from the database.
 exports.findAll = function (req, res) {

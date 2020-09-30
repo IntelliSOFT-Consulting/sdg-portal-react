@@ -728,8 +728,8 @@ font-weight: 600;
   position: absolute;
     top: 50%;
     left: 50%;
-    width: 40px;
-    height: 40px;
+    height: 60px;
+  width: 60px;
     margin:-60px 0 0 -60px;
     -webkit-animation:spin 4s linear infinite;
     -moz-animation:spin 4s linear infinite;
@@ -1656,4 +1656,23 @@ html, body, #root{
 
 .delete-btn{
   background-color: #E30E28;
+}
+
+.country-spinner-div{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9999999999999999999999;
+  background: rgba(0, 0, 0, 0.83);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.country-spinner-div .spinner{
+  height: 60px;
+  width: 60px;
 }

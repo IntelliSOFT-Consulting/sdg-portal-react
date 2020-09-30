@@ -13,11 +13,9 @@ class CountryProfileHeader extends React.Component{
             <> 
             <header className="header-global country-profile-header">
             <Navbar>
-                <NavbarBrand>
-                    <Link to="/">
-                        <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
-                    </Link>   
-                </NavbarBrand>
+                <Link to="/" className="navbar-brand">
+                    <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
+                </Link>   
                 <Nav className="country-profile-title">
                 <h5 className="display-3 mb-4 mt-2 text-center"> African Country Profiles</h5>
                 </Nav>

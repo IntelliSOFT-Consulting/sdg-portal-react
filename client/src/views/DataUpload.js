@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Moment from 'react-moment';
 import CsvInterface from '../components/csvviewer/csvInterface';
 import { CSVLink } from "react-csv";
+import CSVReader from 'react-csv-reader'
 
 
 function DataUpload(){
@@ -17,15 +18,16 @@ function DataUpload(){
     const [year, setYear] = useState(2019);
     const yearFrom = 0
     const [yearTo, setYearTo] = useState(0);
+    // const [fileData, setFileData] = useState([])
 
     const pages = ['SDG', 'Agenda 2063', 'Country Profile', 'Dashboard']
     const [page, setPage] = useState('');
     const countryProfileSections = ['Country data', 'Goal perfomance', 'Demographics data' ];
-    const sdgSections = ['Normalized data', 'Compiled data'];
+    const sdgSections = ['Normalized data'];
     const [section, setSection] = useState('');
     const dataSources = ['Global Database', 'Pan African Database'];
     const [dataSource, setDataSource] = useState('Global Database');
-    const file = []
+   // const file = []
     const [fileData, setFileData] = useState([]);
     const [files, setFiles] = useState([]);
     const [csvDownloadFileData, setCsvDownloadFileData] = useState([]);
@@ -35,6 +37,9 @@ function DataUpload(){
     const [deleteModal, setDeleteModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [deleteID, setDeleteID] = useState([])
+
+    const [file, setFile] = useState('');
+    const [filename, setFilename] = useState('Choose File');
 
     const toggle = () => setOpenModal(!toggleModal);
     const toggleDelete = () => setDeleteModal(!deleteModal);
@@ -79,15 +84,11 @@ function DataUpload(){
       }
 
     const onClickHandler = (e) =>{
-
         e.preventDefault()
         //Set button spinner
         setIsLoading(true);
-
         if(fileData.length > 300){
-
-            let slicedArr = fileData.slice(0,299)
-
+            let slicedArr = fileData.slice(0,499)
             const data = new FormData();
             data.append('file', file)
             data.append("title", title);
@@ -161,11 +162,46 @@ function DataUpload(){
         setPage(e.target.value);
     }
 
+//    const onFileUpload = (e) =>{
+//         let formData = new FormData();
+//         formData.append("file", file);
+
+//         axios({
+//             url: `${API_BASE}/files`,
+//             method: 'POST',
+//             data: formData,
+//             headers: { 'Content-Type': "multipart/form-data" },
+//             maxContentLength: Infinity,
+//             maxBodyLength: Infinity
+//         })
+//         .then((response) => {
+//             console.log(response)
+//         }).catch((error) => {
+//             console.log(error)
+//         })
+//         // return http.post(`${API_BASE}/files`, formData, {
+//         //     headers: {
+
+
+//         //     "Content-Type": "multipart/form-data",
+//         //     }
+//         // });
+//    }
+
+//    const onFileChange = (e) =>{
+//        console.log(e.target.files[0])
+//         setFile(e.target.files[0]);
+//        // setFilename(e.target.files[0].name);
+//     }
+
    
 
     return (
         <>
         <Header></Header>
+
+       
+
         <div className="container-fluid files-div">
             <Row>
                 <Col md="6">
@@ -186,9 +222,10 @@ function DataUpload(){
                                 </thead>
                                 <tbody>
                                 {
+                                    
                                     files.map(file => {
                                         if(file.page === 'SDG'){
-                                            return <tr className="file-div" key={file.Id}>
+                                            return <tr className="file-div" key={file._id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> 
@@ -245,7 +282,7 @@ function DataUpload(){
                                 {
                                     files.map(file => {
                                         if(file.page === 'Agenda 2063'){
-                                            return <tr className="file-div" key={file.Id}>
+                                            return <tr className="file-div" key={file._id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> 
@@ -302,7 +339,7 @@ function DataUpload(){
                                 {
                                     files.map(file => {
                                         if(file.page === 'Country Profile'){
-                                            return <tr className="file-div" key={file.Id}>
+                                            return <tr className="file-div" key={file._id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> 
@@ -358,7 +395,7 @@ function DataUpload(){
                                 {
                                     files.map(file => {
                                         if(file.page === 'Dashboard'){
-                                            return <tr className="file-div" key={file.Id}>
+                                            return <tr className="file-div" key={file._id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> 
@@ -398,7 +435,7 @@ function DataUpload(){
 
             <Modal className="uploadFilesModal modal-lg" isOpen={toggleModal} toggle={toggle}>
                 <div className="modal-header">
-                <h5 className="countryName" cssModule={{'modal-title': 'w-100 text-center'}}>Add new data</h5>
+                <h5 className="countryName" cssmodule={{'modal-title': 'w-100 text-center'}}>Add new data</h5>
                     <button aria-label="Close" className="close" data-dismiss="modal" type="button"
                         onClick={ () => setOpenModal(false)} >
                         <span aria-hidden={true}>×</span>
@@ -422,7 +459,7 @@ function DataUpload(){
                                         <Input type="select" name="page" value={page} onChange={ e=> setPage(e.target.value) }>
                                             {
                                                 pages.map((page, index) => {
-                                                    return <option value={page}> {page} </option>
+                                                    return <option value={page} key={index}> {page} </option>
                                                 })
                                             }
                                         </Input>
@@ -432,18 +469,18 @@ function DataUpload(){
                                         <Input type="select" name="dataSourceSelect" onChange={ e => setDataSource(e.target.value) } value={dataSource} >
                                             {
                                                 dataSources.map((dataSource, index) => {
-                                                    return <option value = {dataSource}> {dataSource} </option>
+                                                    return <option value = {dataSource} key={index}> {dataSource} </option>
                                                 })
                                             }
                                         </Input>
-                                    </Col>
+                                    </Col>  
                                     
                                     <Col md="3">
                                         <label>Section</label>
                                         <Input type="select" name="sdgSection" onChange={ e => setSection(e.target.value) } >
                                             {
                                                 sdgSections.map((section, index) => {
-                                                    return <option value = {section}> {section} </option>
+                                                    return <option value = {section} key={index}> {section} </option>
                                                 })
                                             }
                                         </Input>
@@ -454,7 +491,7 @@ function DataUpload(){
                                         <Input type="select" name="yearTo" onChange={ e => setYearTo(parseInt(e.target.value)) } value={yearTo} >
                                             {
                                                 years.map((year, index) => {
-                                                    return <option value = {year}> {year} </option>
+                                                    return <option value = {year} key={index}> {year} </option>
                                                 })
                                             }
                                         </Input>
@@ -471,7 +508,7 @@ function DataUpload(){
                                         <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page} >
                                             {
                                                 pages.map((page, index) => {
-                                                    return <option value={page}> {page} </option>
+                                                    return <option value={page} key={index}> {page} </option>
                                                 })
                                             }
                                         </Input>
@@ -481,7 +518,7 @@ function DataUpload(){
                                         <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year} >
                                             {
                                                 years.map((year, index) => {
-                                                    return <option value = {year}> {year} </option>
+                                                    return <option value = {year} key={index}> {year} </option>
                                                 })
                                             }
                                         </Input>
@@ -498,7 +535,7 @@ function DataUpload(){
                                         <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page} >
                                             {
                                                 pages.map((page, index) => {
-                                                    return <option value={page}> {page} </option>
+                                                    return <option value={page} key={index}> {page} </option>
                                                 })
                                             }
                                         </Input>
@@ -508,7 +545,7 @@ function DataUpload(){
                                         <Input type="select" name="countryProfileSectionsSelect" onChange={ e => setSection(e.target.value) }  >
                                             {
                                                 countryProfileSections.map((section, index) => {
-                                                    return <option value={section}> {section} </option>
+                                                    return <option value={section} key={index}> {section} </option>
                                                 })
                                             }
                                         </Input>
@@ -518,7 +555,7 @@ function DataUpload(){
                                         <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year} >
                                             {
                                                 years.map((year, index) => {
-                                                    return <option value = {year}> {year} </option>
+                                                    return <option value = {year} key={index}> {year} </option>
                                                 })
                                             }
                                         </Input>
@@ -546,7 +583,7 @@ function DataUpload(){
 
             </Modal>
             
-            <Modal isOpen={deleteModal} toggle={toggleDelete} centered="true" className="delete-modal">
+            <Modal isOpen={deleteModal} toggle={toggleDelete} centered className="delete-modal">
                 <ModalHeader toggle={toggleDelete}></ModalHeader>
                 <ModalBody>
                     <FontAwesomeIcon icon={["far", "times-circle"]} size="3x" color="#E30E28"></FontAwesomeIcon>

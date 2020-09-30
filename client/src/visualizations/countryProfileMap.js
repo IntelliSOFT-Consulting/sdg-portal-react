@@ -7,11 +7,12 @@ import highchartsMap from "highcharts/modules/map";
 import dataModule from "highcharts/modules/data";
 import HC_exporting from 'highcharts/modules/exporting';
 import HC_exporting2 from 'highcharts/modules/export-data';
+import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 
 HC_exporting(Highcharts);
 HC_exporting2(Highcharts);
 
-function SdgMap({ mySdgData, onCountryClick }) {
+function CountryProfileMap({ myCountryProfileData, onCountryClick }) {
         drilldown(Highcharts);
         dataModule(Highcharts);
         highchartsMap(Highcharts);
@@ -1352,7 +1353,7 @@ function SdgMap({ mySdgData, onCountryClick }) {
         const handleCountryClick =  (country) =>{
             onCountryClick(country)
         }
-        let code = "hc-key";
+       // let code = "hc-key";
 
         (function(H){
             H.seriesTypes.map.prototype.translateColors = function () {
@@ -1377,7 +1378,7 @@ function SdgMap({ mySdgData, onCountryClick }) {
                         });
                     };
                 
-        H.ColorAxis.prototype.toColor = function (value, point) {
+                H.ColorAxis.prototype.toColor = function (value, point) {
                     var pos,
                         stops = this.stops,
                         from,
@@ -1435,20 +1436,58 @@ function SdgMap({ mySdgData, onCountryClick }) {
                 };        
         }(Highcharts))
   
+        let code = "hc-a2";
         const mapOptions = {
             chart: {
                 map: 'custom/africa',
                 backgroundColor: 'transparent',
-                height: '60%',
-                
+                height: 550
             },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: ''
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return  this.point.name + '<br>' +
+                        this.point.value;
+                }
+            },
+            exporting: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    point: {
+                        events: {
+                            click: function () {
+                                handleCountryClick(this.properties[code]);
+                            }
+                        }
+                    }
+                }
+             },
+        
+            mapNavigation: {},
+        
+            colorAxis: {
+                min: 0,
+                minColor: 'rgb(249, 219, 142)',
+                maxColor: 'rgb(249, 219, 142)'
+            },
+        
             series: [{
-                data: mySdgData,
-                mapData: geoj,
-                joinBy: ['hc-key', 'code'],
-                name: 'Indicator data',
+                data: myCountryProfileData,
+                mapData: africaMapData,
+                joinBy: ['iso-a2', 'code'],
+                name: '',
                 cursor: 'pointer',
-                borderColor: 'white', //changes color of the country borders
+                borderColor: 'black', //changes color of the country borders
                 borderWidth: 0.5,
                 states: {
                     hover: {
@@ -1459,114 +1498,8 @@ function SdgMap({ mySdgData, onCountryClick }) {
                     // enabled: true,
                     // format: '{point.name}'
                 }
-            }],
-
-            credits: {
-                enabled: false
-            },
-            title: {
-                text: ''
-            },
-            subtitle: {
-                text: 'Africa',
-                floating: true,
-                align: 'right',
-                y: 50,
-                style: {
-                    fontSize: '16px'
-                }
-            },
-            
-            plotOptions: {
-                series: {
-                    point: {
-                        events: {
-                            click: function () {
-                                handleCountryClick(this.properties[code])
-                            }
-                        }
-                    }
-                }
-            },
-        
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: {
-                    verticalAlign: 'bottom'
-                }
-            },
-
-            legend: {
-                title: {
-                    text: 'LEGEND',
-                    style: {
-                        color: ( // theme
-                            Highcharts.defaultOptions &&
-                            Highcharts.defaultOptions.legend &&
-                            Highcharts.defaultOptions.legend.title &&
-                            Highcharts.defaultOptions.legend.title.style &&
-                            Highcharts.defaultOptions.legend.title.style.color
-                        ) || 'black'
-                    }
-                },
-                layout: 'vertical',
-                align: 'left',
-                verticalAlign: 'middle'
-            },
-            
-            colors: [ '#cecdcd', '#ff0000', '#ffa500', '#f1cd00', '#008d00'],
-        
-            colorAxis: {
-                dataClasses: [{
-                    from: null,
-                    to: null,
-                    name: 'Information unavailable.',
-                    color: '#cecdcd'
-                }, {
-                    from: 0,
-                    to: 10,
-                    name: 'Off Track',
-                    color: '#ff0000'
-                }, {
-                    from: 10,
-                    to: 20,
-                    name: 'Significant challenges remain',
-                    color: '#ffa500'
-                },{
-                    from: 20,
-                    to: 30,
-                    name: 'Challenges remain',
-                    color: '#f1cd00'
-                },{
-                    from: 30,
-                    name: 'SDG Achieved',
-                    color: '#008d00'
-                }]
-                
-            },
-
-            drilldown: {
-                activeDataLabelStyle: {
-                    color: '#FFFFFF',
-                    textDecoration: 'none',
-                    textShadow: '0 0 3px #000000'
-                },
-                drillUpButton: {
-                    relativeTo: 'spacingBox',
-                    position: {
-                        x: 0,
-                        y: 60
-                    }
-                }
-            },
-            exporting: {
-                buttons: {
-                    contextButton: {
-                        menuItems: ['downloadCSV', 'downloadPDF', 'downloadPNG']
-                    }
-                }
-            }
-          }
+            }]
+        }
 
 
         return (
@@ -1581,4 +1514,4 @@ function SdgMap({ mySdgData, onCountryClick }) {
       
 }
 
-export default SdgMap;
+export default CountryProfileMap;

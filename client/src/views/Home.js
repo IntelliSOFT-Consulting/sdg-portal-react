@@ -63,7 +63,6 @@ class Home extends React.Component {
                             
                                 <PulseDiv>
                                 <Link to="/Sdgs" className="btn btn-warning text-white">Explore Development Data</Link>
-                                <Link to="/DataUpload"> Upload </Link>
                                 </PulseDiv>
                                
                             </Col>

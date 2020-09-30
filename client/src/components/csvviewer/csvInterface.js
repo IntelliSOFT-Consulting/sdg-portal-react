@@ -36,13 +36,14 @@ function Interface( {handleSetFileData} ) {
     let slicedData = []
     if(data.length > 100){
       slicedData = data.slice(0, 99)
-    }
+   }
     handleSetFileData(data);
     setData(data);
 
     setSlicedData(slicedData);
     setColumns(makeColumns(file.meta.fields));
     setLoading(false);
+    console.log(data)
   };
 
   return (

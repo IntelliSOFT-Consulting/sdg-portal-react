@@ -17,7 +17,6 @@ import IndexMap from "../visualizations/indexMap";
   
 function Sdgs1(props) {
     const API_BASE = process.env.REACT_APP_API_BASE;
-    const [apiData, setApiData] = useState([])
     const override = css`
         display: block;
         margin: 0 auto;
@@ -628,18 +627,16 @@ function Sdgs1(props) {
                     apiData.forEach(function(d){
                         if(d.page === "SDG" && d.section === 'Normalized data'){
                             normalizedApiData = d.data
-                            localStorage.setItem('normalizedData', JSON.stringify(normalizedApiData));
                         }
                     })
 
                     if(Object.getOwnPropertyNames(normalizedApiData).length !== 0){
                         parseNormalizedData(normalizedApiData);
+                        localStorage.setItem('normalizedData', JSON.stringify(normalizedApiData));
                     }else{
-                        localStorage.setItem('normalizedData', JSON.stringify(normalizedCsv))
                         fetchNormalizedCsv(normalizedCsv);
                     }
                 }else{
-                    localStorage.setItem('normalizedData', JSON.stringify(normalizedCsv))
                     fetchNormalizedCsv(normalizedCsv);
                 }
                 setIsLoadingNormalized(false);
@@ -721,7 +718,7 @@ function Sdgs1(props) {
         const radarData = [];
 
         data.forEach(function(d){
-            if(d.id !== undefined){
+            if(d.Country){
                 mapData.push({
                     "code": (d.id).toUpperCase(),
                     "value": Math.round(parseFloat(d.Score) * 100) / 100,
@@ -730,11 +727,10 @@ function Sdgs1(props) {
             }
             
         })
-
        
         goals.forEach(function(goal) {
             data.forEach(function(d){
-                if(d.id !== undefined){
+                if(d.Country){
                     if(country === (d.id).toUpperCase()){
                         radarData.push({
                             "category": goal,
@@ -768,7 +764,7 @@ function Sdgs1(props) {
         const radarData = [];
         goals.forEach(function(goal) {
             data.forEach(function(d){
-                if(d.id !== undefined){
+                if(d.Country){
                     if(country === (d.id).toUpperCase()){
                         radarData.push({
                             "category": goal,
