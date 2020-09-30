@@ -12,7 +12,7 @@ export const history = createBrowserHistory({forceRefresh:true});
 // reactstrap components
 
 
-function Header (){
+function LoginHeader (){
     const API_BASE = process.env.REACT_APP_API_BASE;
 
     const handleLogoutBtn = () => {
@@ -47,7 +47,7 @@ function Header (){
                         <Link to="/DataUpload" className="text-white">DATA DASHBOARD</Link>
                         <Link to="/Users" className="text-white">VIEW USERS</Link>
                         <Link to="/CreateUsers" className="text-white">CREATE USERS</Link>
-                        <Button className="btn-link btn-warning" onClick={handleLogoutBtn}>LOGOUT</Button>
+                      
                     </Menu>
                 </Navbar>
             </header> 
@@ -56,4 +56,4 @@ function Header (){
         );
 }
 
-export default Header;
+export default LoginHeader;

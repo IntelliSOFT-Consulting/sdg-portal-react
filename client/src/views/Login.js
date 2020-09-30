@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Header from '../components/header';
+import Header from '../components/LoginHeader';
 import {createBrowserHistory } from 'history';
 export const history = createBrowserHistory({forceRefresh:true});
 

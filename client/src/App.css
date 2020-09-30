@@ -1676,3 +1676,49 @@ html, body, #root{
   height: 60px;
   width: 60px;
 }
+
+/* .users-div{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.1rem;
+  
+} */
+
+.users-div h3{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.users-div table{
+  margin: 20px;
+}
+
+.users-div table tr{
+  line-height: 250%;
+}
+
+.users-div .card  .btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* .uploadFilesModal .btn:not(:disabled):not(.disabled){
+  left: 50%;
+  transform: translateX(-50%);
+} */
+
+.users-div .card{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.users-div .card:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.users-div .btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

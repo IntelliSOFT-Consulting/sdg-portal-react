@@ -19,6 +19,7 @@ import Faqs from "./views/Faqs";
 import DataUpload from "./views/DataUpload";
 import Login from './views/Login';
 import CreateUsers from './views/CreateUsers';
+import Users from './views/Users';
 
 import history from './history';
 import withAuth from './views/withAuth';
@@ -48,6 +49,7 @@ function App() {
             <Route path="/Faqs" component={Faqs}></Route>
             <Route path="/CreateUsers" component={CreateUsers}></Route>
             <Route path="/Login" component={Login}></Route>
+            <Route path="/Users" component={Users}></Route>
             <Route path="/DataUpload" component={withAuth(DataUpload)}></Route>
             {/* <Route path="/DataUpload" component={DataUpload}></Route> */}
             <Route exact path="/" component={Home}></Route>
