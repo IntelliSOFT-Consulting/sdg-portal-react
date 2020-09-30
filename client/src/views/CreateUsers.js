@@ -32,7 +32,7 @@ function CreateUsers(){
         }).then(res => {
             console.log(res)
             if(res.status === 200){
-                //history.push('/sdgportalreact/DataUpload');
+                history.push('/sdgportalreact/Login');
                 localStorage.setItem("user", email);
             }else{
                 const error = new Error(res.error);
