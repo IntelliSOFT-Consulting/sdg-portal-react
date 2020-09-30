@@ -160,8 +160,7 @@ function DataUpload(){
         setSection(activeSection)
         setOpenModal(true);
         setPage(e.target.value);
-    }
-
+    
 //    const onFileUpload = (e) =>{
 //         let formData = new FormData();
 //         formData.append("file", file);
@@ -193,8 +192,6 @@ function DataUpload(){
 //         setFile(e.target.files[0]);
 //        // setFilename(e.target.files[0].name);
 //     }
-
-   
 
     return (
         <>

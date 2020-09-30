@@ -516,7 +516,6 @@ function CountryProfile (props, ) {
 
     return(
         <>
-          { console.log(loadingPopup)}
         <Header></Header>
             <main className="countryProfile">
                 <div className="container">

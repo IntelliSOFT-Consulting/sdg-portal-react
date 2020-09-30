@@ -44,15 +44,24 @@ exports.authenticate = function(req, res, next){
                     });
                     res.cookie('token', token, {httpOnly: true, signedCookie: true})
                     .sendStatus(200);
-                    
+                    console.log(token)
                 }
             })
         }
     })
 }
 
-exports.withAuth = function(req, res){
-        res.sendStatus(200)
+exports.withAuth = function( req, res){
+    try {
+        // request.user is getting fetched from Middleware after token authentication
+        const user = User.findById(req.user.id);
+        res.json(user);
+        res.sendStatus(200);
+        console.log(res.json(user))
+      } catch (e) {
+        res.send({ message: "Error in Fetching user" });
+        console.log("Error")
+      }
 }
 
 exports.logOut = function(req, res){
