@@ -35,19 +35,22 @@ const options = {
   poolSize: 10,
   bufferMaxEntries: 0
 };
-//mongodb environment variables
-// const {
-//   LOCAL_MONGO_HOSTNAME,
-//   MONGO_HOSTNAME,
-//   MONGO_DB,
-//   MONGO_PORT
-// } = process.env;
+// mongodb environment variables
+const {
+  LOCAL_MONGO_HOSTNAME,
+  MONGO_HOSTNAME,
+  MONGO_DB,
+  MONGO_PORT
+} = process.env;
 
-// const dbConnectionURL = {
-//   'LOCALURL': `mongodb://${LOCAL_MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`
-// };
+const dbConnectionURL = {
+  'LOCALURL': `mongodb://${LOCAL_MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`
+};
 
-mongoose.connect(uri, options);
+// mongoose.connect(uri, options);
+// let db = mongoose.connection;
+
+mongoose.connect(dbConnectionURL.LOCALURL, options);
 let db = mongoose.connection;
 
 // Static files
