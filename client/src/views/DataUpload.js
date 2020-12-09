@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from '../components/dataUploadHeader';
 import axios from 'axios';
-import { Row, Col, Button, Modal, Card, CardBody, Table, Input, Form
+import { Row, Col, Button, Modal, Card, CardBody, Table, Input, Form, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Moment from 'react-moment';
 import CsvInterface from '../components/csvviewer/csvInterface';
 import { CSVLink } from "react-csv";
+import CSVReader from 'react-csv-reader'
 
 
 function DataUpload(){
@@ -17,27 +18,50 @@ function DataUpload(){
     const [year, setYear] = useState(2019);
     const yearFrom = 0
     const [yearTo, setYearTo] = useState(0);
+    // const [fileData, setFileData] = useState([])
 
     const pages = ['SDG', 'Agenda 2063', 'Country Profile', 'Dashboard']
     const [page, setPage] = useState('');
     const countryProfileSections = ['Country data', 'Goal perfomance', 'Demographics data' ];
-    const sdgSections = ['Normalized data', 'Compiled data'];
+    const sdgSections = ['Normalized data'];
     const [section, setSection] = useState('');
     const dataSources = ['Global Database', 'Pan African Database'];
     const [dataSource, setDataSource] = useState('Global Database');
-    const file = []
+   // const file = []
     const [fileData, setFileData] = useState([]);
     const [files, setFiles] = useState([]);
     const [csvDownloadFileData, setCsvDownloadFileData] = useState([]);
     const [csvFileName, setCsvFileName] = useState('');
-    const csvLink = React.createRef()
+    const csvLink = useRef();
     const [toggleModal, setOpenModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [deleteID, setDeleteID] = useState([])
 
-    const API_BASE = "http://localhost:8080/api"
+    const [file, setFile] = useState('');
+    const [filename, setFilename] = useState('Choose File');
 
+    const toggle = () => setOpenModal(!toggleModal);
+    const toggleDelete = () => setDeleteModal(!deleteModal);
+ 
+    const API_BASE = process.env.REACT_APP_API_BASE;
+    //const API_BASE = process.env.REACT_APP_TEST_API_BASE;
+ 
     const handleFileData = (fileData) =>{
         setFileData(fileData)
+    }
+
+    const handleDeleteBtn = (e) => {
+        setDeleteModal(true);
+        const id = e.currentTarget.value;
+        setDeleteID(id)
+    }
+
+    const deleteFile = () =>{
+        axios.delete(API_BASE + '/file/' + deleteID)
+        .then(res => {
+            setDeleteModal(false);
+          })
     }
 
     const handleDownload = (e) =>{
@@ -50,8 +74,9 @@ function DataUpload(){
                 csvLink.current.link.click();
             })
             .catch(error => {
-                console.log(error.res)
+                console.log(error)
             });
+            
     }
 
     const getCurrentUser = () => {
@@ -59,15 +84,11 @@ function DataUpload(){
       }
 
     const onClickHandler = (e) =>{
-
         e.preventDefault()
         //Set button spinner
         setIsLoading(true);
-
         if(fileData.length > 300){
-
-            let slicedArr = fileData.slice(0,299)
-
+            let slicedArr = fileData.slice(0,499)
             const data = new FormData();
             data.append('file', file)
             data.append("title", title);
@@ -114,7 +135,7 @@ function DataUpload(){
                 setIsLoading(false);
                 setOpenModal(false);
             }).catch((error) => {
-                console.log(error)
+               // console.log(error)
                 setResponse("error");
             })
     }
@@ -127,7 +148,7 @@ function DataUpload(){
             setFiles(result.data.data);
         }
         fetchData();
-    }, [isLoading, section])
+    }, [isLoading, section, files])
 
     const openModal = (e) =>{
         let activeSection = ''
@@ -144,6 +165,9 @@ function DataUpload(){
     return (
         <>
         <Header></Header>
+
+       
+
         <div className="container-fluid files-div">
             <Row>
                 <Col md="6">
@@ -154,18 +178,20 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                         <tr>
-                                            <th width="5%"></th>
+                                            <th width="3%"></th>
                                             <th width="13%">File name</th>
                                             <th width="10%">Date added</th>
                                             <th width="10%">Added by</th>
-                                            <th width="5%"></th>
+                                            <th width="3%"></th>
+                                            <th width="3%"></th>
                                         </tr>
                                 </thead>
                                 <tbody>
                                 {
+                                    
                                     files.map(file => {
                                         if(file.page === 'SDG'){
-                                            return <tr className="file-div" key={file.Id}>
+                                            return <tr className="file-div" key={file._id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> 
@@ -185,6 +211,11 @@ function DataUpload(){
                                                                 ref={csvLink}
                                                                 target="_blank" 
                                                             />
+                                                    </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDeleteBtn} value={file._id}>
+                                                            <FontAwesomeIcon icon="trash" size="lg"></FontAwesomeIcon>
+                                                        </Button>
                                                     </td>
                                             </tr>
                                         }
@@ -205,18 +236,19 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
+                                        <th width="3%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {
                                     files.map(file => {
                                         if(file.page === 'Agenda 2063'){
-                                            return <tr className="file-div" key={file.Id}>
+                                            return <tr className="file-div" key={file._id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> 
@@ -236,6 +268,11 @@ function DataUpload(){
                                                                 ref={csvLink}
                                                                 target="_blank" 
                                                             />
+                                                    </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDeleteBtn} value={file._id}>
+                                                            <FontAwesomeIcon icon="trash" size="lg"></FontAwesomeIcon>
+                                                        </Button>
                                                     </td>
                                             </tr>
                                         }
@@ -256,18 +293,19 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
+                                        <th width="3%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {
                                     files.map(file => {
                                         if(file.page === 'Country Profile'){
-                                            return <tr className="file-div" key={file.Id}>
+                                            return <tr className="file-div" key={file._id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> 
@@ -287,6 +325,11 @@ function DataUpload(){
                                                                 ref={csvLink}
                                                                 target="_blank" 
                                                             />
+                                                    </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDeleteBtn} value={file._id}>
+                                                            <FontAwesomeIcon icon="trash" size="lg"></FontAwesomeIcon>
+                                                        </Button>
                                                     </td>
                                             </tr>
                                         }
@@ -306,18 +349,19 @@ function DataUpload(){
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
                                         <th width="13%">File name</th>
                                         <th width="10%">Date added</th>
                                         <th width="10%">Added by</th>
-                                        <th width="5%"></th>
+                                        <th width="3%"></th>
+                                        <th width="3%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {
                                     files.map(file => {
                                         if(file.page === 'Dashboard'){
-                                            return <tr className="file-div" key={file.Id}>
+                                            return <tr className="file-div" key={file._id}>
                                                     <td> <FontAwesomeIcon icon="file-csv" size="lg"></FontAwesomeIcon> </td>
                                                     <td> {file.title} </td>   
                                                     <td> 
@@ -338,6 +382,11 @@ function DataUpload(){
                                                                 target="_blank" 
                                                             />
                                                     </td>
+                                                    <td> 
+                                                         <Button className="btn-icon" onClick={handleDeleteBtn} value={file._id}>
+                                                            <FontAwesomeIcon icon="trash" size="lg"></FontAwesomeIcon>
+                                                        </Button>
+                                                    </td>
                                             </tr>
                                         }
                                     })
@@ -350,9 +399,9 @@ function DataUpload(){
                 </Col>
             </Row>
 
-            <Modal className="uploadFilesModal modal-lg" isOpen={toggleModal} toggle={toggleModal}>
+            <Modal className="uploadFilesModal modal-lg" isOpen={toggleModal} toggle={toggle}>
                 <div className="modal-header">
-                <h5 className="countryName" cssModule={{'modal-title': 'w-100 text-center'}}>Add new data</h5>
+                <h5 className="countryName" cssmodule={{'modal-title': 'w-100 text-center'}}>Add new data</h5>
                     <button aria-label="Close" className="close" data-dismiss="modal" type="button"
                         onClick={ () => setOpenModal(false)} >
                         <span aria-hidden={true}>×</span>
@@ -376,7 +425,7 @@ function DataUpload(){
                                         <Input type="select" name="page" value={page} onChange={ e=> setPage(e.target.value) }>
                                             {
                                                 pages.map((page, index) => {
-                                                    return <option value={page}> {page} </option>
+                                                    return <option value={page} key={index}> {page} </option>
                                                 })
                                             }
                                         </Input>
@@ -386,18 +435,18 @@ function DataUpload(){
                                         <Input type="select" name="dataSourceSelect" onChange={ e => setDataSource(e.target.value) } value={dataSource} >
                                             {
                                                 dataSources.map((dataSource, index) => {
-                                                    return <option value = {dataSource}> {dataSource} </option>
+                                                    return <option value = {dataSource} key={index}> {dataSource} </option>
                                                 })
                                             }
                                         </Input>
-                                    </Col>
+                                    </Col>  
                                     
                                     <Col md="3">
                                         <label>Section</label>
                                         <Input type="select" name="sdgSection" onChange={ e => setSection(e.target.value) } >
                                             {
                                                 sdgSections.map((section, index) => {
-                                                    return <option value = {section}> {section} </option>
+                                                    return <option value = {section} key={index}> {section} </option>
                                                 })
                                             }
                                         </Input>
@@ -408,7 +457,7 @@ function DataUpload(){
                                         <Input type="select" name="yearTo" onChange={ e => setYearTo(parseInt(e.target.value)) } value={yearTo} >
                                             {
                                                 years.map((year, index) => {
-                                                    return <option value = {year}> {year} </option>
+                                                    return <option value = {year} key={index}> {year} </option>
                                                 })
                                             }
                                         </Input>
@@ -425,7 +474,7 @@ function DataUpload(){
                                         <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page} >
                                             {
                                                 pages.map((page, index) => {
-                                                    return <option value={page}> {page} </option>
+                                                    return <option value={page} key={index}> {page} </option>
                                                 })
                                             }
                                         </Input>
@@ -435,7 +484,7 @@ function DataUpload(){
                                         <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year} >
                                             {
                                                 years.map((year, index) => {
-                                                    return <option value = {year}> {year} </option>
+                                                    return <option value = {year} key={index}> {year} </option>
                                                 })
                                             }
                                         </Input>
@@ -452,7 +501,7 @@ function DataUpload(){
                                         <Input type="select" name="pagesSelect" onChange={ e => setPage(e.target.value) } value={page} >
                                             {
                                                 pages.map((page, index) => {
-                                                    return <option value={page}> {page} </option>
+                                                    return <option value={page} key={index}> {page} </option>
                                                 })
                                             }
                                         </Input>
@@ -462,7 +511,7 @@ function DataUpload(){
                                         <Input type="select" name="countryProfileSectionsSelect" onChange={ e => setSection(e.target.value) }  >
                                             {
                                                 countryProfileSections.map((section, index) => {
-                                                    return <option value={section}> {section} </option>
+                                                    return <option value={section} key={index}> {section} </option>
                                                 })
                                             }
                                         </Input>
@@ -472,7 +521,7 @@ function DataUpload(){
                                         <Input type="select" name="yearsSelect" onChange={ e => setYear(parseInt(e.target.value)) } value={year} >
                                             {
                                                 years.map((year, index) => {
-                                                    return <option value = {year}> {year} </option>
+                                                    return <option value = {year} key={index}> {year} </option>
                                                 })
                                             }
                                         </Input>
@@ -498,6 +547,19 @@ function DataUpload(){
                     </Form>
                 </div>
 
+            </Modal>
+            
+            <Modal isOpen={deleteModal} toggle={toggleDelete} centered className="delete-modal">
+                <ModalHeader toggle={toggleDelete}></ModalHeader>
+                <ModalBody>
+                    <FontAwesomeIcon icon={["far", "times-circle"]} size="3x" color="#E30E28"></FontAwesomeIcon>
+                    <h5>Confirm delete</h5> 
+                    Are you sure you want to delete this file? This action cannot be undone. 
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="danger" onClick={deleteFile} className="delete-btn">Delete</Button>{' '}
+                    <Button color="secondary" onClick={toggleDelete}>Cancel</Button>
+                </ModalFooter>
             </Modal>
 
         </div>

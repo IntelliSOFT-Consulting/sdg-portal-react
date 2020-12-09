@@ -3,7 +3,7 @@ import React, {useEffect } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-am4core.useTheme(am4themes_animated);
+//am4core.useTheme(am4themes_animated);
 
 
 function Radar( {radarData} ){
@@ -13,6 +13,7 @@ function Radar( {radarData} ){
             chart.data = radarData;
             chart.padding(10, 10, 10, 10);
             chart.fontSize = 12;
+            chart.logo.disabled=true;
 
             let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
             categoryAxis.dataFields.category = "category";
@@ -35,6 +36,7 @@ function Radar( {radarData} ){
             series1.stacked = true;
             series1.columns.template.tooltipY = 0;
             series1.columns.template.strokeOpacity = 0;
+            
 
             chart.colors.list = [
                 am4core.color("#E5243B"),
@@ -73,6 +75,7 @@ function Radar( {radarData} ){
             chart.cursor.lineX.strokeOpacity = 0;
             chart.cursor.lineX.fillOpacity = 0.1;
             chart.cursor.lineX.fill = am4core.color("#000000");
+
 
             return function cleanUp(){
                 chart.dispose();

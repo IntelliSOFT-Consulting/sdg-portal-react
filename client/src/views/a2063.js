@@ -1,129 +1,136 @@
 import React, {useState, useEffect} from "react";
 import {
-    Row, Col, Input, Button, Label, Container, Modal
+    Row, Col, Input, Button, Container, Modal
 } from "reactstrap";
 import CheckboxTree from 'react-checkbox-tree';
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 
 import Header from "../components/a2063Header";
 import Footer from "../components/footer";
-import SdgMap from "../visualizations/sdgMap";
+import Map from "../visualizations/sdgMap";
 import SdgHighChart from "../visualizations/a2063HighChart";
-import IndexMap from "../visualizations/indexMap";
-import TreeMap from "../visualizations/highTreeMap";
 import Spinner from "../visualizations/spinner";
 import LineChart from "../visualizations/lineChart";
 
 function A2063(props){
+    const API_BASE = process.env.REACT_APP_API_BASE;
     const Papa = require("papaparse/papaparse.min.js");
     const agenda2063 = require('../assets/data/agenda2063.json');
     const aspirationsData = require("../assets/data/aspirationsData.json");
     const countries = require("../assets/data/countries.json");
     const regions = ["North", "West", "Southern", "Central", "East"]
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [mapData, setMapData] = useState([]);
     const [chartData, setChartData] = useState([]);
     const [lineChartData, setLineChartData] = useState([]);
     const [goal, setGoal] = useState(1);
+    const [goalIndex, setGoalIndex] = useState(1);
     const [goals, setGoals] = useState([]);
     const [goalID, setGoalID] = useState(1);
-    const [indicator, setIndicator] = useState(1);
-    const [indicators, setIndicators] = useState([]);
-    const [firstIndicator, setFirstIndicator] = useState('');
+    
 
-    let   years = [2019];
+    let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
     const [year, setYear] = useState('2006');
     const [dataSource, setDataSource] = useState('pan');
     const [mapChartType, setMapChartType] = useState('map');
-    const [indexMapData, setIndexMapData] = useState([]);
     const [country, setCountry] = useState('DZ');
     const [aspirationTitle, setAspirationTitle] = useState('');
     const [toggleModal, setOpenModal] = useState(false);
     const [isChecked, setIsChecked] = useState(["DZ", "AO", "BJ", "BW", "CM", "BI"])
     const isExpanded = ["North", "West", "Southern", "Central", "East"]
     const [regionCountries, setRegionCountries] = useState([])
+    const [indicators, setIndicators] = useState([]);
+    const [countryLabel,setCountryLabel] = useState('')
+    const [agenda2063Data, setAgenda2063Data] = useState([]);
+
+    const toggle = () => setOpenModal(!toggleModal);
 
     let csvDataSourceData = '';
-    let redirectAgenda2063 = 0;
+    let redirectAgenda2063 = 1;
+    let redirectIndicator = ''
 
     if(props.location.state != null){
-        if(parseInt(props.location.state) === 18){
-            redirectAgenda2063 = 0
+        if(parseInt(props.location.state) === 0){
+            redirectAgenda2063 = 1
+            redirectIndicator = 'Indicator 1: Gross National Income (GNI) per capita"'
         }else{
             redirectAgenda2063 = props.location.state
+            redirectIndicator = indicators[0]
         }
     }
-
     const [activeTab, setActiveTab] = useState(redirectAgenda2063);
-
-    const handleA2063Change = (a2063) => {
-        setGoal(1)
-        setActiveTab(parseInt(a2063))
-        setIndicator(firstIndicator)
-    }
+    const [indicator, setIndicator] = useState('');
 
     useEffect(() =>{
         handleA2063Change(activeTab);
     }, [activeTab])
 
-   
-
     const parseMapData = (data) => {
+        let indicatorData = ''
         const mapData = [];
         data.forEach(function(d){
-            mapData.push({
-                "code": (d.id),
-                "value": Math.round(parseFloat(d.Score) * 100) / 100,
-                "name": d.Country
-            })
+            if(d.Year === parseInt(year) ){
+                console.log(d)
+                if(d[indicator] === ""){
+                    indicatorData = null
+                }else{
+                    indicatorData = parseInt(d[indicator])
+                }
+                mapData.push({
+                    "code": d.Code,
+                    "drilldown" : d.Code + "/" + d.Code + "-all",
+                    "value": Math.round(parseFloat(indicatorData) * 100) / 100,
+                    "country": d.Entity
+                })  
+            }
+
         })
+        console.log(mapData)
         setMapData(mapData);
+    }
+
+    const delayShowMap = () => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 200);
     }
 
     const parseChartData = (data) =>{
         const chartData = [];
         data.forEach(function(d){
-            chartData.push([d.id, parseInt(d.Score)])  
+            if(d.Year === year){
+                chartData.push([d.Code, parseInt(d[indicator])]) 
+            } 
         })
        return chartData;
     }
 
     const parseLineData = (data) => {
-        let countryData = []
+        let countryLabel = ''
+        let lineChartData = []
         years =  years.sort((a, b) => a - b);
-        data.forEach(function(d){
-                if(country.toLowerCase() === d.id){
-                    countryData.push(parseInt(d[indicator]))
-                }   
-             
-        })
-        setLineChartData(countryData); 
-    }
 
-    const parseNormalizedData = (data) => {
-        const goals = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
-        const mapData = [];
-        const radarData = [];
-
-        data.forEach(function(d){
-            mapData.push({
-                "code": (d.id),
-                "value": Math.round(parseFloat(d.Score) * 100) / 100,
-                "name": d.Country
-            })
-        })
-        goals.forEach(function(goal) {
+        countries.forEach(function(country){
+            let countryData = []
             data.forEach(function(d){
-                if(country === d.id){
-                    radarData.push({
-                        "category": goal,
-                        value1 : d["goal"+goal],
-                    })
-                }
+                years.forEach(function(year){
+                    if(parseInt(year) === parseInt(d.Year) && country.alpha2Code.toLowerCase() === d.Code ){
+                        countryData.push(parseInt(d[indicator]))
+                    }
+                })
+            })
+
+            lineChartData.push({
+                code: country.alpha2Code,
+                name: country.name,
+                data: countryData
             })
         })
-        setIndexMapData(mapData);
+
+        setCountryLabel(countryLabel) 
+        return lineChartData;
     }
 
     const parseCountriesRegions = () =>{
@@ -146,9 +153,53 @@ function A2063(props){
         })
         return nodes
     }
-    function handleSdgChildClick(country){
-        setMapChartType('line');
-        setCountry(country);
+
+    const filterChartData = (myChartData) =>{
+        let filteredChartData = []
+        isChecked.forEach(function(checked){
+            myChartData.forEach(function(data){
+                
+                if(data.includes(checked.toLowerCase())){
+                    for(const country of countries){
+                        if (country.alpha2Code === checked){
+                            data[0] = country.name
+                        }
+                    }
+                    filteredChartData.push(data)
+                }
+            })
+        })
+        setChartData(filteredChartData)
+    }
+
+    const filterLineData = (myLineData) =>{
+        let filteredLineData = []
+        isChecked.forEach(function(checked){
+            myLineData.forEach(function(data){
+                if(data.code == checked){
+                    filteredLineData.push(data)
+                }
+            })
+        })
+        setLineChartData(filteredLineData)
+    }
+
+    const fetchA2063Csv = (sdgCsvFile) => {
+        //setIsLoading(true);
+        Papa.parse(sdgCsvFile, {
+            download: true,
+            header: true,
+            complete: function(results){
+                    parseMapData(results.data)
+                    const chartData = parseChartData(results.data)
+                    filterChartData(chartData);
+                    const lineData = parseLineData(results.data);
+                    filterLineData(lineData)
+
+                    delayShowMap()
+                    setAgenda2063Data(results.data)
+            }
+        })
     }
 
     useEffect(() => {
@@ -156,86 +207,122 @@ function A2063(props){
         setRegionCountries(nodes)
     }, [])
 
+    function handleSdgChildClick(country){
+        setMapChartType('chart');
+        const code = country.toUpperCase();
+        setCountry(code);
+        setIsChecked([code])
+    }
+
+      //Fetch API Data
+      const fetchApiData = async() => {
+        const result = await axios(API_BASE+'/files');
+        const apiData =  result.data.data;
+        return apiData
+    }
+
+    localStorage.removeItem('cachedAgenda2063')
+
     useEffect(() => {
-        let isSubscribed = true;
-        if(dataSource === 'pan'){
-            csvDataSourceData = require("../assets/data/a2063DummyData.csv");
-        }else if (dataSource === 'gdb'){
-            csvDataSourceData = require("../assets/data/a2063DummyData.csv");
+        setIsLoading(true);
+        let compiledCsv = require("../assets/data/a2063/a2063CompiledData.csv");
+        let cachedAgenda2063 = localStorage.getItem('cachedAgenda2063');
+
+        if(cachedAgenda2063){
+            setAgenda2063Data(JSON.parse(cachedAgenda2063));
+            console.log("Cached data")
+            parseMapData(JSON.parse(cachedAgenda2063))
+            const chartData = parseChartData(JSON.parse(cachedAgenda2063))
+            filterChartData(chartData);
+
+            const lineData = parseLineData(JSON.parse(cachedAgenda2063));
+            filterLineData(lineData)
+        }else{
+            fetchApiData().then(function(apiData) {
+                let compiledApiData = {}
+                if(apiData.length !== 0){
+                    apiData.forEach(function(d){
+                        if(d.page === "Agenda 2063" && d.section === 'Compiled data'){
+                            compiledApiData = d.data
+                        }
+                    })
+
+                    if(Object.getOwnPropertyNames(compiledApiData).length !== 0){
+                        console.log("Fetch from API")
+                        parseMapData(compiledApiData)
+                        const chartData = parseChartData(compiledApiData)
+                        filterChartData(chartData);
+
+                        const lineData = parseLineData(compiledApiData);
+                        filterLineData(lineData)
+                        localStorage.setItem('cachedAgenda2063', JSON.stringify(compiledApiData));
+                        setAgenda2063Data(compiledApiData);
+                        delayShowMap();
+                        console.log(compiledApiData);
+                    }else{
+                        console.log("CSV fetch")
+                        fetchA2063Csv(compiledCsv);
+                    }
+                }else{
+                    console.log("CSV fetch")
+                    fetchA2063Csv(compiledCsv);
+                }
+               // setIsLoadingNormalized(false);
+            })
         }
+    }, [dataSource, indicator, goal, year, activeTab, isChecked, country])
+
+    useEffect(() => {
+        // if(agenda2063Data){
+        //     parseMapData(agenda2063Data)
+        //     const chartData = parseChartData(agenda2063Data)
+        //     filterChartData(chartData);
+    
+        //     const lineData = parseLineData(agenda2063Data);
+        //     filterLineData(lineData)
+        // }
+
+        console.log(agenda2063Data)
 
         if(parseInt(activeTab) !== 0){
             const a2063Goals = agenda2063[activeTab-1].goals;
             setGoals(a2063Goals);
-            setGoalID(1)
-
+            //setGoalID(1)
             let a2063Indicators = []
-            a2063Indicators = agenda2063[activeTab-1].goals[goalID-1].indicators;
+            a2063Indicators = agenda2063[activeTab-1].goals[goalIndex-1].indicators;
             setIndicators(a2063Indicators);
-            setFirstIndicator(a2063Indicators[0])
-            
-        }
-        getAspirationTitles(aspirationsData);
-
-        const filterChartData = (myChartData) =>{
-            let filteredChartData = []
-            isChecked.forEach(function(checked){
-                myChartData.forEach(function(data){
-                    if(data.includes(checked.toLowerCase())){
-                        for(const country of countries){
-                            if (country.alpha2Code === checked){
-                                data[0] = country.name
-                            }
-                        }
-                        filteredChartData.push(data)
-                    }
-                })
-            })
-            setChartData(filteredChartData)
+            //setIndicator(a2063Indicators[0])
         }
 
-        const loadSdgData = (sdgCsvFile) => {
-            setIsLoading(true);
-            Papa.parse(sdgCsvFile, {
-                download: true,
-                header: true,
-                complete: function(results){
-                    if(isSubscribed){
-                        parseMapData(results.data)
-                        const chartData = parseChartData(results.data)
-                        filterChartData(chartData);
-                        parseLineData(results.data);
-                        setIsLoading(false);
-                    }
-                }
-            })
-        }
-        loadSdgData(csvDataSourceData);
-        return () => isSubscribed = false
-    }, [dataSource, indicator, goal, year, activeTab, isChecked]);
-
-    useEffect(() => {
-        const normalizedData = require('../assets/data/normalizedGoalValues.csv')
-        const loadNormalizedData = (normalizedDataFile) => {
-            Papa.parse(normalizedDataFile, {
-                download: true,
-                header: true,
-                skipEmptyLines: true,
-                complete: function(results){
-                    parseNormalizedData(results.data);
-                }
-            })
-        }
-        loadNormalizedData(normalizedData);
-    }, [country]);
-
+        getAspirationTitles(aspirationsData); 
+    }, [dataSource, indicator, goal, year, activeTab, isChecked, country]);
     
+    //Choose Aspiration
+    const handleA2063Change = (a2063) => {
+        setActiveTab(parseInt(a2063))
+
+        setGoalIndex(agenda2063[activeTab-1].goals[0].id)
+        setGoal(agenda2063[activeTab-1].goals[0].number)
+
+        setIndicators(agenda2063[activeTab-1].goals[goalIndex-1].indicators)
+        setIndicator(agenda2063[activeTab-1].goals[goalIndex-1].indicators[0])
+    }
+
+    //Choose goal
     const handleGoalChange = (e) => {
+        const goalIndex = e.target.value
+        setGoalIndex(goalIndex)
         setGoal(parseInt(e.target.value))
         setGoalID(parseInt(e.target.value))
+
+        setIndicators(agenda2063[activeTab-1].goals[goalIndex-1].indicators)
+        setIndicator(agenda2063[activeTab-1].goals[goalIndex-1].indicators[0])
     }
+
+    //Choose indicator
     const handleIndicatorChange = (e) => {
-        setIndicator(parseInt(e.target.value));
+        setIndicators(agenda2063[activeTab-1].goals[goalIndex-1].indicators)
+        setIndicator(e.target.value);
     }
     const handleDataSourceChange = (e) => {
         setDataSource(e.target.value);
@@ -259,9 +346,6 @@ function A2063(props){
     const closeModal = () => {
         setOpenModal(false);
     }
-    function handleIndexChildClick(country){
-        setCountry(country);
-    }
     const getAspirationTitles = (data) => {
         data.forEach(function(d){
             if(parseInt(activeTab) === d.id){
@@ -279,15 +363,14 @@ function A2063(props){
     }
 
     return (
+       
         <>
         <Header onActiveA2063Changed={handleA2063Change}></Header>
             <main className="container agenda2063">
-                {
-                    parseInt(activeTab) !== 0 ? (
                         <div>
                             <h4 className="aspiration-title p-3"> ASPIRATION  {activeTab} :  {aspirationTitle} </h4>
-                        <Row className="mt-4 optionButtons ">
-                            <Col>
+                        <Row className="mt-4 optionButtons no-gutters">
+                            <Col md="2">
                                 <Input type="select" name="goalSelect" onChange={handleGoalChange} value={goal}>
                                         {
                                         goals.map((goal, index) =>{
@@ -296,12 +379,11 @@ function A2063(props){
                                     }
                                 </Input>
                             </Col>
-                            <Col>
+                            <Col md="6">
                                 <Input type="select" name="indicatorSelect" onChange={handleIndicatorChange} value={indicator}>
-                                  
                                     {
                                         indicators.map((indicator, index) => {
-                                            return <option key={index} value={indicator}> INDICATOR {indicator}</option>
+                                            return <option key={index} value={indicator}> {indicator}</option>
                                         })
                                     }
                                 </Input>
@@ -309,17 +391,9 @@ function A2063(props){
 
                             {
                                 mapChartType === 'line' ? (
-                                    <Col>
-                                        <Input type="select" name="countrySelect"  onChange={handleCountryChange} value={country}> 
-                                                {
-                                                     countries.map((country, index) => {
-                                                        return <option key={index} value={country.alpha2Code}>{country.name}</option>
-                                                    })
-                                                }
-                                        </Input>
-                                    </Col>  
+                                    null 
                                 ):(
-                                    <Col>
+                                    <Col md="2">
                                     <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
                                             {
                                                 years.map((year, index) => {
@@ -331,7 +405,7 @@ function A2063(props){
                                 )
                             }
                            
-                            <Col className="lastChild">
+                            <Col md="2" className="lastChild">
                                 <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
                                         <option value="gdb">Global Database</option>
                                         <option value="mrs">PanAfrican MRS</option>
@@ -343,15 +417,20 @@ function A2063(props){
                             <Col md="11" className="map-chart-container">   
                                 {
                                     mapChartType === 'map' ? (
-                                        <SdgMap mySdgData ={mapData} onCountryClick={handleSdgChildClick}></SdgMap>
-                                    ) : null
+
+                                        isLoading ? (
+                                                <Spinner></Spinner> 
+                                            ) : (
+                                                <Map mySdgData ={mapData} onCountryClick={handleSdgChildClick}></Map>
+                                            )
+                                        ) : null
                                 }
 
                                 {
                                     mapChartType === 'chart' ? (
-                                        isLoading ? (
-                                            <Spinner></Spinner> 
-                                        ) : (
+                                        // isLoading ? (
+                                        //     <Spinner></Spinner> 
+                                        // ) : (
                                             <div>
                                              <div className="add-country-div">
                                                     <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
@@ -361,26 +440,26 @@ function A2063(props){
                                                 </div>
                                                 <SdgHighChart myChartData = {chartData} indicator = {indicator} years = {years}></SdgHighChart>
                                         </div>      
-                                        )
+                                        //)
                                     ): null
                                 }           
 
                                 {
                                     mapChartType === 'line' ? (
-                                        isLoading ? (
-                                            <Spinner></Spinner> 
-                                        ) : (
+                                        // isLoading ? (
+                                        //     <Spinner></Spinner> 
+                                        // ) : (
                                             <div>
                                             <div className="add-country-div">
-                                                {/* <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
+                                                <Button className="btn-link ml-1 add-country-btn" color="info" type="button" onClick={openModal}>
                                                         <i className="fa fa-plus-circle mr-1" />
                                                         Add a country
-                                                </Button> */}
+                                                </Button>
                                             </div>
                                             
-                                                <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years}></LineChart>
+                                                <LineChart lineChartData = {lineChartData} indicator = {indicator} years = {years} country ={countryLabel}></LineChart>
                                             </div>
-                                        )
+                                        //)
                                     ): null
                                 }
                             </Col>
@@ -406,43 +485,10 @@ function A2063(props){
                             </Col>             
                         </Row> 
                         </div>
-                    ):(
-                        <div>
-                            <Row className="mt-4 optionButtons ">
-                                <Col>
-                                    <Label className="all-sdgs-label">ALL ASPIRATIONS </Label>
-                                </Col>
-                                <Col>
-                                    <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
-                                            {
-                                                years.map((year, index) => {
-                                                return <option key={index} value={year}> {year} </option>
-                                                })
-                                            }
-                                    </Input>
-                                </Col>   
-                                <Col className="lastChild">
-                                    <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
-                                            <option value="gdb">Global Database</option>
-                                            <option value="mrs">PanAfrican MRS</option>
-                                    </Input>
-                                </Col>      
-                            </Row>
-                            <Row>
-                                <Col lg="6" md="6" sm="12" xs="12">
-                                    <IndexMap mySdgData ={indexMapData} onCountryClick={handleIndexChildClick}></IndexMap>
-                                </Col>
-                                <Col lg="6" md="6" sm="12" xs="12">
-                                    <TreeMap treeMapData = {aspirationsData} ></TreeMap>
-                                </Col>
-                            </Row>
-                        </div>
-                    )
-                }
 
                 <Container>
                     <Modal size="xl" className="modal-dialog-centered" isOpen={toggleModal}
-                        toggle={toggleModal}  >
+                        toggle={toggle}  >
                         <div className="modal-header">
                         <h6 className="">Choose data to show</h6>
                             <button aria-label="Close" className="close" data-dismiss="modal" type="button"

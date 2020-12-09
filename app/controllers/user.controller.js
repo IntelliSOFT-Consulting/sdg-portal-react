@@ -4,8 +4,8 @@ const secret = 'mysecretshhh';
 const withAuthentication = require('../../middleware');
 
 exports.create = function(req, res){
-    const {email, password} = req.body;
-    const user = new User({email, password});
+    const {email, password, username, role} = req.body;
+    const user = new User({email, password, username, role});
     user.save(function(err){
         if(err){
             res.status(500)
@@ -44,15 +44,23 @@ exports.authenticate = function(req, res, next){
                     });
                     res.cookie('token', token, {httpOnly: true, signedCookie: true})
                     .sendStatus(200);
-                    
                 }
             })
         }
     })
 }
-
-exports.withAuth = function(req, res){
-        res.sendStatus(200)
+//good
+exports.withAuth = function( req, res){
+    try {
+        // request.user is getting fetched from Middleware after token authentication
+        const user = User.findById(req.user.id);
+        res.json(user);
+        res.sendStatus(200);
+       // console.log(res.json(user))
+      } catch (e) {
+        res.send({ message: "Error in Fetching user" });
+       // console.log("Error")
+      }
 }
 
 exports.logOut = function(req, res){
@@ -66,7 +74,7 @@ exports.readCookie = function(req, res){
 
 // Retrieve and return all files from the database.
 exports.findAll = function (req, res) {
-      console.log(res)
+      //console.log(res)
       User.get(function(err, users){
           if(err){
               res.json({

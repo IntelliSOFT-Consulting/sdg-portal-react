@@ -1,7 +1,7 @@
 const moongose = require('mongoose');
 
 const fileSchema = new moongose.Schema({
-    title: String,
+    title: { type: String, index: true },
     description: String,
     page: String,
     year: Number,
@@ -9,7 +9,8 @@ const fileSchema = new moongose.Schema({
     user: String,
     section: String,
     yearFrom: Number,
-    yearTo:Number
+    yearTo:Number,
+    file: Buffer
 },{
     timestamps: true
 });

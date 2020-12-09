@@ -1,39 +1,59 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
+import axios from 'axios';
 
 // reactstrap components
-import { Nav } from "reactstrap";
+import { Nav, Button, Navbar } from "reactstrap";
 
-class Header extends React.Component{
-    componentDidMount(){
+import { createBrowserHistory } from 'history';
 
+export const history = createBrowserHistory({forceRefresh:true});
+// reactstrap components
+
+
+function Header (){
+    const API_BASE = process.env.REACT_APP_API_BASE;
+
+    const handleLogoutBtn = () => {
+        axios.get(API_BASE + '/user/logout')
+        .then(res => {
+            if(res.status === 200){
+                localStorage.removeItem("user");
+                localStorage.clear();
+                history.push('/sdgportalreact/Login');
+            }else{
+                const error = new Error(res.error);
+                console.log(error);
+                //throw error;
+            }
+
+        }).catch(error => {
+            console.log(error.res);
+            //alert('Error logging in, please try again.')
+        })
     }
-    render(){
         return (
             <> 
-            <header className="header-global">
-            <Link to="/" className="navbar-brand">
+            <header className="header-global country-profile-header">
+                <Navbar>
+                <Link to="/" className="navbar-brand">
                         <img alt="..." src={require("../assets/img/brand/logo.png")}></img>
                     </Link>
-            <Nav className="about-title">
-            </Nav>
-               
-            <Menu right>
-                <Link to="/" className="text-white">HOME</Link> 
-                <Link to="/SdgLanding" className="text-white">SDGs</Link>
-                <Link to="/Dashboard" className="text-white">DASHBOARD</Link>
-                <Link to="/CountryProfile" className="text-white">COUNTRY PROFILE</Link>
-                <Link to="/A2063Landing" className="text-white">AGENDA 2063</Link>
-                <Link to="/About" className="text-white">ABOUT US</Link>
-                <Link to="/Faqs" className="text-white">FAQs</Link>
-                <Link to="/DataUpload" className="text-white">ADMIN</Link>
-            </Menu>
+                   
+                    
+                    <Menu right>
+                        <Link to="/" className="text-white">HOME</Link> 
+                        <Link to="/DataUpload" className="text-white">DATA DASHBOARD</Link>
+                        <Link to="/Users" className="text-white">VIEW USERS</Link>
+                        <Link to="/CreateUsers" className="text-white">CREATE USERS</Link>
+                        <Button className="btn-link btn-warning" onClick={handleLogoutBtn}>LOGOUT</Button>
+                    </Menu>
+                </Navbar>
             </header> 
           
             </>
         );
-    }
 }
 
 export default Header;

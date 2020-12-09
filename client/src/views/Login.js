@@ -4,8 +4,9 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Header from '../components/header';
-import history from '../history';
+import Header from '../components/LoginHeader';
+import {createBrowserHistory } from 'history';
+export const history = createBrowserHistory({forceRefresh:true});
 
 function Login(){
     const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ function Login(){
 
     const [errorMsg, setErrorMsg] = useState('');
 
-    const API_BASE = "http://localhost:8080/api"
+    const API_BASE = process.env.REACT_APP_API_BASE;
 
     // function validateForm() {
     //     return email.length > 0 && password.length > 0;
@@ -31,7 +32,7 @@ function Login(){
         }).then(res => {
             console.log(res)
             if(res.status === 200){
-                history.push('/DataUpload');
+                history.push('/sdgportalreact/DataUpload');
                 localStorage.setItem("user", email);
             }else{
                 const error = new Error(res.error);
@@ -79,7 +80,7 @@ function Login(){
                    <Input type="submit" value="Log in" className="btn btn-round btn-warning"></Input>
                 </Form>
 
-                <Link to="/DataUpload" className="btn-link btn-warning forgot-password-link">Forgot Password? </Link>
+                <Link to="/sdgportalreact/DataUpload" className="btn-link btn-warning forgot-password-link">Forgot Password? </Link>
             </Card>
                 </Col>
             </Row>

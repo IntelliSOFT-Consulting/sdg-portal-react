@@ -160,19 +160,19 @@ function SdgIndex() {
                           let border = '3px solid ' + sdg.color; 
 
                         return sdgNumber === parseInt(activeSdg) ? (
-                          <div style={{border}} className="sdg-goal-div" key={index}>
+                          <div style={{border}} className="sdg-goal-div bounce-2" key={index}>
                             <Row>
-                              <Col md="3">
+                              <Col md="4">
                                 <Button>
                                     <CardImg src={ imgSrc }></CardImg>
                                 </Button>
                               </Col>
-                              <Col md="9">
+                              <Col md="8">
                               <h5> {sdg.title} </h5>
                               <ReadMoreReact text = {sdg.description}
-                                    min={400}
-                                    ideal={400}
-                                    max={400} readMoreText="Read more..." >
+                                    min={145}
+                                    ideal={150}
+                                    max={155} readMoreText="Read more..." >
                               </ReadMoreReact>
                               </Col>
                               

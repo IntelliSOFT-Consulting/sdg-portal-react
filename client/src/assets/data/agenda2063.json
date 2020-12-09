@@ -6,31 +6,53 @@
             {
                 "id": 1,
                 "number":1,
-                "indicators": [1, 2, 3, 4, 5, 6, 7, 8]
-            },{
+                "indicators": ["Indicator 1: Gross National Income (GNI) per capita",
+				"Indicator 2: Unemployment rate",
+				"Indicator 3: Prevalence of underweight among children under 5",
+				"Indicator 4: Percentage of population with access to safe drinking water",
+				"Indicator 5: Percentage of household with access to electricity",
+				"Indicator 6: Percentage of household using electricity",
+				"Indicator 7: Percentage of population with access to the internet",
+				"Indicator 8: Percentage of population using internet"]
+		},
+                {
                 "id": 2,
                 "number":2,
-                "indicators": [9, 10, 11, 12]
+                "indicators": ["Indicator 9: Percentage of children in pre-school age attending preschool",
+				"Indicator 10: Net enrolment rate in basic education level",
+				"Indicator 11: Proportion of teachers qualified in Science or Technology or Engineering or Mathematics (STEM)",
+				"Indicator 12: Secondary school net enrolment rate."]
             },{
                 "id": 3,
                 "number":3,
-                "indicators": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+                "indicators": ["Indicator 13: Percentage of women in the reproductive age 15-49 who have access to sexual and reproductive health service",
+				"Indicator 14: Maternal mortality ratio",
+				"Indicator 15: Neonatal mortality rate (per 1,000 live births)",
+				"Indicator 16: Under five mortality rate",
+				"Indicator 17: Percentage of deliveries attended by skilled health personnel",
+				"Indicator 18: Number of new HIV infections per 1000 population","Indicator 19: TB incidence per 100,000",
+				"Indicator 20: Malaria incidence per 1000 per year",
+				"Indicator 21: Percentage of eligible population with HIV having access to ARV treatment",
+				"Indicator 22: Real GDP % Growth"]
             },{
                 "id": 4,
                 "number":4,
-                "indicators": [23, 24, 25]
-            },{
+                "indicators": ["Indicator 23: Manufacturing Value Added (as percentage of GDP)",
+				"Indicator 24: Research and development expenditure as a proportion of GDP",
+				"Indicator 25: Tourism value added as a proportion of GDP"]
+					    },{
                 "id": 5,
                 "number":5,
-                "indicators": [26, 27]
+                "indicators": ["Indicator 26: Total Factor Productivity (TFP)",
+				"Indicator 27: Percentage of small-scale farmers graduating into small-scale commercial farming"]
             },{
                 "id": 6,
                 "number":6,
-                "indicators": [28, 29]
+                "indicators": ["Indicator 28: Fisheries Sector Value added (as share of GDP)","Indicator 29: Marine-biotechnology value added (as share of GDP)"]
             },{
                 "id": 7,
                 "number":7,
-                "indicators": [30, 31]
+                "indicators": ["Indicator 30: Percentage of agricultural land placed under sustainable land management practice","Indicator 31: "]
             }
         ]
     },{
@@ -39,7 +61,7 @@
         "goals" : [{
             "id": 1,
             "number":8,
-            "indicators": [32, 33]
+            "indicators": ["Indicator 32: No. of Non-tariff barriers (NTBs) reported and eliminated","Indicator 33 : Percentage change in volume of intra-African Trade"]
         },{
             "id": 2,
             "number":9,
@@ -47,7 +69,12 @@
         },{
             "id": 3,
             "number":10 ,
-            "indicators": [34, 35, 36, 37,38,39]
+            "indicators": ["Indicator 34: Percentage of progress made on the implementation of trans Africa highway missing link",
+			"Indicator 35: Percentage of the progress made on the implementation of the African High Speed Rail Network",
+			"Indicator 36: No. of protocols on African open skies Implemented",
+			"Indicator 37: Number of additional Mega Watts added onto the national grid",
+			"Indicator 38: Proportion of population using mobile phones",
+			"Indicator 39: ICT Sector Value Addition as share of GDP"]
         }]
     },
     {
@@ -56,11 +83,12 @@
         "goals" : [{
             "id": 1,
             "number":11,
-            "indicators": [40, 41]
+            "indicators": ["Indicator 40: Percentage of people who believe that there are effective mechanisms and oversight institutions to hold their leaders accountable",
+			"Indicator 41: Percentage of people who perceive that there is freedom of the press."]
         },{
             "id": 2,
             "number":12,
-            "indicators": [43]
+            "indicators": ["Indicator 43: Proportion of persons who had at least one contact with a public official and asked or paid a bribe during the previous twelve months"]
         }]
     },
     {
@@ -69,7 +97,7 @@
         "goals" : [{
             "id": 1,
             "number":13,
-            "indicators": [44]
+            "indicators": ["Indicator 44: Conflict related deaths per 100,000 population"]
         },{
             "id": 2,
             "number":14,
@@ -77,7 +105,7 @@
         },{
             "id": 3,
             "number":15,
-            "indicators": [45]
+            "indicators": ["Indicator 45: Existence of a national peace council (Need to review the indicator with the view to understand its function, composition and roles)"]
         }]
     },
     {
@@ -86,7 +114,7 @@
         "goals" : [{
             "id": 1,
             "number":16,
-            "indicators": [46]
+            "indicators": ["Indicator 46: Proportion of the content of the curricula on indigenous African culture, values and language in primary and secondary schools"]
         }]
     },
     {
@@ -95,11 +123,18 @@
         "goals" : [{
             "id": 1,
             "number":17,
-            "indicators": [47, 48, 49, 50, 51]
+            "indicators": ["Indicator 47: Proportion of total agricultural population with ownership or secure rights over agricultural land.",
+			"Indicator 48: Proportion of seats held by women in national parliaments, regional and local bodies",
+			"Indicator 49: Proportion of women and girls subjected to sexual and physical violence [SM5]",
+			"Indicator 50: Proportion of girls and women aged 15-49 years who have gone undergone Female Genital Mutilation/Cutting (FGM/C)[SM6]",
+			"Indicator 51: The proportion of children whose births are registered within the first year"]
         },{
             "id": 2,
             "number":18,
-            "indicators": [52, 53, 54, 55, 56]
+            "indicators": ["Indicator 52: Unemployment rate","Indicator 53: Percentage of Children engaged in Child Labour",
+			"Indicator 54: Percentage of children engaged in child marriages",
+			"Indicator 55: Percentage of children who are victims of human trafficking",
+			"Indicator 56: Level of implementation of the provisions in the African Charter on the Rights of the Youth by Member States"]
         }]
     },
     {
@@ -108,11 +143,16 @@
         "goals" : [{
             "id": 1,
             "number":19,
-            "indicators": [57, 58, 59]
+            "indicators": ["Indicator 57: Availability of legislation on statistics that complies with fundamental principles of official statistics",
+			"Indicator 58: Proportion of funding allocated for the implementation of functional statistical system",
+			"Indicator 59: Existence of formal institutional arrangements for the coordination of the compilation of official statistics"]
         },{
             "id": 2,
             "number":20,
-            "indicators": [60, 61, 62, 63]
+            "indicators": ["Indicator 60: Proportion of public sector budget funded by national capital markets",
+			"Indicator 61: Total tax revenue as a percentage of GDP",
+			"Indicator 62: Total ODA as a percentage of the national budget",
+			"Indicator 63: Resources raised through innovative financing mechanisms as a percentage of national budget"]
         }]
     }
 

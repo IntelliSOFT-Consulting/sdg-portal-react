@@ -1,13 +1,11 @@
 import React from 'react';
 import "./assets/vendor/nucleo/css/nucleo.css";
 import "./assets/vendor/font-awesome/css/font-awesome.min.css";
-import "./assets/scss/argon-design-system-react.scss";
+import "./assets/css/argon-design-system-react.css";
 import './App.css';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 
-import {
-   Router, Switch, Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from "./views/Home";
 import Sdgs1 from "./views/Sdgs1";
@@ -20,6 +18,8 @@ import About from "./views/About";
 import Faqs from "./views/Faqs";
 import DataUpload from "./views/DataUpload";
 import Login from './views/Login';
+import CreateUsers from './views/CreateUsers';
+import Users from './views/Users';
 
 import history from './history';
 import withAuth from './views/withAuth';
@@ -27,14 +27,14 @@ import withAuth from './views/withAuth';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faYoutube, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faGlobeAfrica, faChartBar, faChartLine, faCircle, faCaretDown, faCaretUp, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 
-
-library.add(fab, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle)
+library.add(fab, faTimesCircle, faGlobeAfrica, faChartBar, faChartLine, faCircle, faFacebook, faYoutube, faTwitter, faCaretUp, faCaretDown, faFolder, faFile, faFileCsv, faSpinner, faCloudDownloadAlt, faEnvelope, faLock, faUserCircle, faTrash)
 
 function App() {  
   return ( 
-    <Router  basename="" history={history} forceRefresh={true}>
+    <Router  basename="/sdgportalreact" history={history} >
       <Switch>
             <Route exact path="/SdgLanding" component={SdgIndex}></Route>
             <Route exact path="/Sdgs" component={Sdgs1}></Route>
@@ -47,8 +47,11 @@ function App() {
            
             <Route path="/About" component={About}></Route>
             <Route path="/Faqs" component={Faqs}></Route>
+            <Route path="/CreateUsers" component={CreateUsers}></Route>
             <Route path="/Login" component={Login}></Route>
+            <Route path="/Users" component={Users}></Route>
             <Route path="/DataUpload" component={withAuth(DataUpload)}></Route>
+            {/* <Route path="/DataUpload" component={DataUpload}></Route> */}
             <Route exact path="/" component={Home}></Route>
       </Switch>
     </Router>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 export default function withAuth(ComponentToProtect) {
-  const API_BASE = "http://localhost:8080/api"
+  const API_BASE = process.env.REACT_APP_API_BASE;
 
   return class extends Component {
     constructor() {
@@ -18,13 +18,13 @@ export default function withAuth(ComponentToProtect) {
           if (res.status === 200) {
             this.setState({ loading: false });
           } else {
-            console.log(res)
+            //console.log(res)
             const error = new Error(res.error);
             throw error;
           }
         })
         .catch(err => {
-          console.error(err);
+          //console.error(err);
           this.setState({ loading: false, redirect: true });
         });
     }

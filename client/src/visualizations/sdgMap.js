@@ -1,48 +1,21 @@
 import React from 'react';
 import {  Container} from "reactstrap";
-
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import dataModule from "highcharts/modules/data";
-// import africaMapData from "@highcharts/map-collection/custom/africa.geo.json";
 import HC_exporting from 'highcharts/modules/exporting';
 import HC_exporting2 from 'highcharts/modules/export-data';
 
 HC_exporting(Highcharts);
 HC_exporting2(Highcharts);
+
 function SdgMap({ mySdgData, onCountryClick }) {
-        // let data = require('../assets/data/sdg/sdgTarget_11_gdb.json');
         drilldown(Highcharts);
         dataModule(Highcharts);
         highchartsMap(Highcharts);
 
-        let csvFile = require("../assets/data/sdg/sdgTarget_11_mrs.csv");
-        let Papa = require("papaparse/papaparse.min.js");
-        let sdgData = [];
-        const period = "2017";
-
-        const newCountryData = [];
-        Papa.parse(csvFile, {
-            download: true,
-            header: true,
-            complete: function(results){
-                sdgData = results.data;
-                // cycle through source data and filter out required data points
-                for (let i = 0; i < sdgData.length; i++) {
-                    let dataPoint = sdgData[i];
-                    newCountryData.push({
-                            "code": dataPoint.code,
-                            "drilldown": dataPoint.drilldown,
-                            "value": dataPoint[period],
-                            "country":dataPoint.country
-                        });        
-                }
-                
-            }
-        })     
-  
         const geoj = Highcharts.maps["custom/africa"] = {
             "title": "Africa",
             "version": "1.1.2",
@@ -1378,7 +1351,6 @@ function SdgMap({ mySdgData, onCountryClick }) {
 
         const handleCountryClick =  (country) =>{
             onCountryClick(country)
-            //console.log(country)
         }
         let code = "hc-key";
 

@@ -2,13 +2,15 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import axios from 'axios';
-import history from '../history';
+import { Navbar, Nav, Button } from "reactstrap";
+import { createBrowserHistory } from 'history';
 
+export const history = createBrowserHistory({forceRefresh:true});
 // reactstrap components
-import {Navbar,Nav,Button} from "reactstrap";
 
-function CountryProfileHeader (){
-    const API_BASE = "http://localhost:8080/api"
+
+function dataUploadHeader (){
+    const API_BASE = process.env.REACT_APP_API_BASE;
 
     const handleLogoutBtn = () => {
         axios.get(API_BASE + '/user/logout')
@@ -16,7 +18,7 @@ function CountryProfileHeader (){
             if(res.status === 200){
                 localStorage.removeItem("user");
                 localStorage.clear();
-                history.push('/Login');
+                history.push('/sdgportalreact/Login');
             }else{
                 const error = new Error(res.error);
                 console.log(error);
@@ -41,12 +43,9 @@ function CountryProfileHeader (){
                     
                     <Menu right>
                         <Link to="/" className="text-white">HOME</Link> 
-                        <Link to="/SdgLanding" className="text-white">SDGs</Link>
-                        <Link to="/Dashboard" className="text-white">DASHBOARD</Link>
-                        <Link to="/CountryProfile" className="text-white">COUNTRY PROFILE</Link>
-                        <Link to="/A2063Landing" className="text-white">AGENDA 2063</Link>
-                        <Link to="/About" className="text-white">ABOUT US</Link>
-                        <Link to="/Faqs" className="text-white">FAQs</Link>
+                        <Link to="/DataUpload" className="text-white">DATA DASHBOARD</Link>
+                        <Link to="/Users" className="text-white">VIEW USERS</Link>
+                        <Link to="/CreateUsers" className="text-white">CREATE USERS</Link>
                         <Button className="btn-link btn-warning" onClick={handleLogoutBtn}>LOGOUT</Button>
                     </Menu>
                 </Navbar>
@@ -56,4 +55,4 @@ function CountryProfileHeader (){
         );
 }
 
-export default CountryProfileHeader;
+export default dataUploadHeader;

@@ -104,13 +104,6 @@ class HomeHeader extends React.Component{
                                         <span className="nav-link-inner--text ml-1">FAQs</span>
                                     </Link>
                                 </NavItem>
-                                <NavItem>
-                                    <Link to="/DataUpload" className="btn btn-header btn-icon text-white">
-                                    <FontAwesomeIcon icon={['fas', 'user-circle']} size="175x" color="black"/>
-                                        <br></br>
-                                        <span className="nav-link-inner--text ml-1">ADMIN</span>
-                                    </Link>
-                                </NavItem>
                             </Nav>
                         </UncontrolledCollapse>
                     </div>

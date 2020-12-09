@@ -95,7 +95,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 
 .navbar-brand img {
-  height: 70px;
+  height: 90px;
 }
 .btn{
   letter-spacing: 0;
@@ -380,7 +380,8 @@ text-align: center;
   width: 120px;
 }
 /* Country profile page */
- .modal-body{
+ .country-profile-modal .modal-body,
+ .dashboard-modal .modal-body{
   padding: 0 0.9rem;
 }
 
@@ -394,14 +395,14 @@ text-align: center;
   .modal-xl {
     max-width: 1200px; } }
 
-.countryDemographics {
-    color: #32325d;
-    
-    font-weight: 600;
-}
-
-.countryDemographics label{
+.country-details label{
   font-size: 1rem;
+  text-transform: uppercase;
+  color: #32325d;
+}
+.country-details label span{
+  font-weight: 700;
+    letter-spacing: 0.2px;
 }
 .countryName{
   text-transform: uppercase;
@@ -468,28 +469,43 @@ text-align: center;
   transform: scale(1.1, 1.1);
 }
 
-.modal-header .close {
+.country-profile-modal .modal-header .close,
+.dashboard-modal .modal-header .close {
   padding: 0;
   margin: 0;
   border-bottom: 0px solid #e9ecef; 
 }
 
-.modal-header{
+.country-profile-modal .modal-header,
+.dashboard-modal .modal-header{
   padding-bottom: 0;
   padding-top: 10px;
 }
 
-.modal-dialog{
+.country-profile-modal .modal-dialog,
+.dashboard-modal .modal-dialog{
   width: 1150px;
   padding-top: 50px;
 }
 
 
 /* FAQ Page */
-
+.faqs .card-body p{
+  color: #32325d;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.1rem;
+}
 .faqs .card{
   margin-bottom: 8px;
 }
+
+.faqs .card-header {
+  padding: 0.5em 1.5rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.2rem;
+  color: #32325d;
+}
+
 
 /* About us page */
 .card-header {
@@ -589,7 +605,6 @@ text-align: center;
   box-shadow: 0px 1px 2px #ccc;
   background: #fff;
   z-index: 99;
-  display: flex;
   margin: 0;
   padding: 0;
   justify-content: center;
@@ -623,6 +638,11 @@ text-align: center;
   color: #000;
   text-align: right;
   width: 100px;
+}
+
+.sdg-data-country{
+  max-height: 28px;
+    overflow: hidden;
 }
 
 .red{
@@ -708,8 +728,8 @@ font-weight: 600;
   position: absolute;
     top: 50%;
     left: 50%;
-    width: 40px;
-    height: 40px;
+    height: 60px;
+  width: 60px;
     margin:-60px 0 0 -60px;
     -webkit-animation:spin 4s linear infinite;
     -moz-animation:spin 4s linear infinite;
@@ -865,18 +885,24 @@ font-weight: 600;
 .countryProfile{
  
 }
+
+.country-profile-row{
+margin-top: 2%;
+}
 .country-profile-text{
   margin-top: 10%;
 }
 .country-profile-search{
-  padding-left: 10%;
-  padding-right: 10%;
   padding-bottom: 10px;
-  padding-top: 10px;
+  padding-top: 15%;
   font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.15rem;
 }
 
+.home-search{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.15rem;
+}
 .demographics-card .card-body{
   padding-left: 12%;
   padding-right: 12%;
@@ -896,13 +922,37 @@ font-weight: 600;
   color: #4267b2;
 }
 
-.dashboard  .table th, .table td {
-  vertical-align: top;
+.dashboard .table th, .dashboard .table td {
+  /* vertical-align: top; */
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.dashboard .table td{
+  font-size: 9px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.dashboard .table th{
+  border-left: 1px solid #d7dad8a3;
+}
+
+.dashboard .table th:first-child{
+  border-left: 0px solid #d7dad8a3;
 }
 
 .table thead th {
   vertical-align: bottom;
   border-bottom: 0rem solid #dee2e6;
+  /* border-left: 1px solid #d7dad8a3; */
+}
+
+.table thead th:first-child {
+  vertical-align: bottom;
+  border-bottom: 0rem solid #dee2e6;
+  /* border-left: 0px solid #d7dad8a3; */
 }
 
 .table th, .table td {
@@ -1085,11 +1135,7 @@ html, body, #root{
 
 }
 
-.sdg-goal-div{
-  border: 2px solid #000;
-  text-align: center;
-  padding: 30px;
-}
+
 .a2063-goal-div{
   text-align: center;
   padding: 10px;
@@ -1291,7 +1337,6 @@ html, body, #root{
     box-shadow: 0px 0px 0px #ccc;
     background: #fff;
     z-index: 99;
-    display: flex;
     margin: 0;
     padding: 0;
     justify-content: center;
@@ -1311,7 +1356,6 @@ html, body, #root{
         box-shadow: 0px 0px 0px #ccc;
         background: #fff;
         z-index: 99;
-        display: flex;
         margin: 0;
         padding: 0;
         justify-content: center;
@@ -1515,7 +1559,7 @@ html, body, #root{
     color: #fd6825;
 }
 
-.country-profile-text p{
+.country-profile-text {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
@@ -1554,4 +1598,127 @@ html, body, #root{
 .aboutCards{
   margin-top: 25px;
   margin-bottom: 60px;
+}
+
+
+.country-profile-indicators-modal{
+  left: 75%;
+}
+
+.sdg-goal-div{
+  border: 2px solid #000;
+  text-align: center;
+  padding: 30px;
+  min-height: 50%;
+  max-height: 100%;
+  margin-top: 18%;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+.box {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+.bounce-2 {
+  animation-name: bounce-2;
+  animation-timing-function: ease;
+}
+@keyframes bounce-2 {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-100px); }
+}
+
+.spinner-height{
+  height: 40vh;
+}
+
+.delete-modal .modal-header{
+  border-bottom: 0px solid #e9ecef;
+  padding: 0px;
+  padding-top: 0.8rem;
+  padding-right: 1.5rem;
+}
+
+.delete-modal .modal-body{
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.delete-modal .modal-body h5{
+  padding-top: 0.8rem;
+}
+
+.delete-modal .modal-footer{
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.delete-btn{
+  background-color: #E30E28;
+}
+
+.country-spinner-div{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9999999999999999999999;
+  background: rgba(0, 0, 0, 0.83);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.country-spinner-div .spinner{
+  height: 60px;
+  width: 60px;
+}
+
+/* .users-div{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.1rem;
+  
+} */
+
+.users-div h3{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.users-div table{
+  margin: 20px;
+}
+
+.users-div table tr{
+  line-height: 250%;
+}
+
+.users-div .card  .btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* .uploadFilesModal .btn:not(:disabled):not(.disabled){
+  left: 50%;
+  transform: translateX(-50%);
+} */
+
+.users-div .card{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.users-div .card:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.users-div .btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
