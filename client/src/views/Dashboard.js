@@ -541,13 +541,14 @@ const handleClickYear = (year) => {
                           <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
-                                { 
-                                  sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          return <th key={index}>
-                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
-                                          </th>
-                                  })}
+                                  { 
+                                      sdgs.map(function(sdg, index){
+                                              let  imgSrc = sdgsImages(`./${sdg.image}.png`);
+                                              return <th key={index} style={{color:getShortHand(index+1)[1] }} >
+                                                              {getShortHand(index+1)[0]}
+                                                      </th>
+                                      })
+                                    }
                                     
                                 </tr>
                               </thead>
@@ -574,13 +575,14 @@ const handleClickYear = (year) => {
                             <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
-                                { 
-                                  sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          return <th key={index}>
-                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
-                                          </th>
-                                  })}
+                                  { 
+                                      sdgs.map(function(sdg, index){
+                                              let  imgSrc = sdgsImages(`./${sdg.image}.png`);
+                                              return <th key={index} style={{color:getShortHand(index+1)[1] }} >
+                                                              {getShortHand(index+1)[0]}
+                                                      </th>
+                                      })
+                                  }
                                     
                                 </tr>
                               </thead>
@@ -608,13 +610,14 @@ const handleClickYear = (year) => {
                             <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
-                                { 
-                                  sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          return <th key={index}>
-                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
-                                          </th>
-                                  })}
+                                  { 
+                                      sdgs.map(function(sdg, index){
+                                              let  imgSrc = sdgsImages(`./${sdg.image}.png`);
+                                              return <th key={index} style={{color:getShortHand(index+1)[1] }} >
+                                                              {getShortHand(index+1)[0]}
+                                                      </th>
+                                      })
+                                    }
                                     
                                 </tr>
                               </thead>
@@ -641,13 +644,14 @@ const handleClickYear = (year) => {
                             <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
-                                { 
-                                  sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          return <th key={index}>
-                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
-                                          </th>
-                                  })}
+                                  { 
+                                      sdgs.map(function(sdg, index){
+                                              let  imgSrc = sdgsImages(`./${sdg.image}.png`);
+                                              return <th key={index} style={{color:getShortHand(index+1)[1] }} >
+                                                              {getShortHand(index+1)[0]}
+                                                      </th>
+                                      })
+                                    }
                                     
                                 </tr>
                               </thead>
@@ -674,13 +678,14 @@ const handleClickYear = (year) => {
                             <thead className="dashboard-goal-icons">
                                 <tr>
                                   <th></th>
-                                { 
-                                  sdgs.map(function(sdg, index){
-                                          let  imgSrc = sdgsImages(`./${sdg.image}.png`);
-                                          return <th key={index}>
-                                                          <CardImg value={index}  alt="..." src={ imgSrc }></CardImg>
-                                          </th>
-                                  })}
+                                  { 
+                                      sdgs.map(function(sdg, index){
+                                              let  imgSrc = sdgsImages(`./${sdg.image}.png`);
+                                              return <th key={index} style={{color:getShortHand(index+1)[1] }} >
+                                                              {getShortHand(index+1)[0]}
+                                                      </th>
+                                      })
+                                    }
                                     
                                 </tr>
                               </thead>
