@@ -1319,7 +1319,7 @@ function Sdgs1(props) {
                             { 
                                 dataSource === 'pan' ? (
                                 <label className="disclaimer-text">
-                                        Disclaimer: The Pan African MRS data shown on this website is based on the Global Database data that has already been collected. 
+                                        Disclaimer: The Pan African MRS data shown on this website is based on previous Global Database data. 
                                         While we have used our reasonable efforts to ensure the accuracy of the data based on the Global Database indicators,the data should be read as indicative of magnitude rather than exact figures.
                                     </label>
                                 ) : (

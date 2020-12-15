@@ -6,6 +6,7 @@ import { Nav, Card, CardBody, TabContent, TabPane, Button, CardImg, Row, Col, Mo
 import classnames from "classnames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+
 const Papa = require("papaparse/papaparse.min.js");
 
 function Dashboard (){
@@ -757,6 +758,17 @@ const handleClickYear = (year) => {
                   </Container>
                   <Footer></Footer>
               </main>
+
+              <style
+                  dangerouslySetInnerHTML={{
+                      __html: `
+                      
+                      body{
+                        overflow-y: auto;
+                        padding-top: 290px;
+                      }          `
+                  }}
+                  />
           
             </>
         )
