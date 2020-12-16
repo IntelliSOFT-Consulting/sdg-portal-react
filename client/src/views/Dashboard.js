@@ -497,7 +497,7 @@ const handleClickYear = (year) => {
                           <TabPane tabId="1">
                             <Table>
                               <thead className="dashboard-goal-icons">
-                                <tr>
+                                <tr className="names"> 
                                   <th></th>
                                     { 
                                       sdgs.map(function(sdg, index){
@@ -508,7 +508,7 @@ const handleClickYear = (year) => {
                                       })
                                     }
                                 </tr>
-                                <tr>
+                                <tr className="counters">
                                   <th></th>
                                   { 
                                     sdgs.map(function(sdg, index){
@@ -765,7 +765,7 @@ const handleClickYear = (year) => {
                       
                       body{
                         overflow-y: auto;
-                        padding-top: 290px;
+                        padding-top: 275px;
                       }          `
                   }}
                   />
