@@ -787,8 +787,12 @@ function Sdgs1(props) {
 "17.19.2(b) Proportion of countries that have achieved 80 per cent death registration" ]
 
     let dict = {};
+    let csvDict = {}; 
+
     dict['gdb'] = keysHardCode;
     dict['pan'] = panAfricanIndicators;
+
+    
 
     const [dataSourceIndicators, setDataSourceIndicators] = useState(dict[dataSource])
 
@@ -888,6 +892,7 @@ function Sdgs1(props) {
             header: true,
             complete: function(results){
                 parseMapData(results.data);
+
                 const chartData = parseChartData(results.data)
                 filterChartData(chartData);
 
@@ -945,8 +950,6 @@ function Sdgs1(props) {
 
 
     useEffect(() => {
-        console.log(indicator)
-
         if(parseInt(activSdg) !== 0){
             targ = unIndicators[activSdg-1].targets;
         }
@@ -966,10 +969,16 @@ function Sdgs1(props) {
     useEffect(() => {
        
         let compiledCsv = require('../assets/data/sdg/sdgDataCompiled.csv');
+        let gdbAfricanData = require('../assets/data/sdg/sdgCompiledGdb.csv');
+        let panAfricanData = require('../assets/data/sdg/sdgCompiledPan.csv');
+
+        csvDict['gdb'] = gdbAfricanData;
+        csvDict['pan'] = panAfricanData;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
             fetchApiData().then(function(apiData) {
                 let compiledApiData = {}
                 if(apiData.length !== 0){
+                    //console.log("data")
                     apiData.forEach(function(d){
                         if(d.page === "SDG" && d.section === 'Compiled data'){
                             compiledApiData = d.data
@@ -984,10 +993,10 @@ function Sdgs1(props) {
                         const lineData = parseLineData(compiledApiData);
                         filterLineData(lineData)
                     }else{                                                                                                                                                                                                                                                                                                                                              
-                        fetchCompiledCsv(compiledCsv);
+                        fetchCompiledCsv(csvDict[dataSource]);
                     }
                 }else{
-                    fetchCompiledCsv(compiledCsv);
+                    fetchCompiledCsv(csvDict[dataSource]);
                 }
                 setIsLoadingNormalized(false);
             })
@@ -1084,22 +1093,26 @@ function Sdgs1(props) {
     const parseMapData = (data) => {
         const mapData = [];
         let indicatorData = ''
+
         data.forEach(function(d){
-            
             if(d.Year === year ){
                 if(d[indicator] === ""){
                     indicatorData = null
                 }else{
                     indicatorData = parseInt(d[indicator])
                 }
+                
                 mapData.push({
                     "code": d.Code,
                     "drilldown" : d.Code + "/" + d.Code + "-all",
                     "value": Math.round(parseFloat(indicatorData) * 100) / 100,
                     "country": d.Entity
                 })  
+
+                
             }
         })
+        
         setSdgMapData(mapData);
     }
 
@@ -1211,7 +1224,6 @@ function Sdgs1(props) {
         setDataSourceIndicators(dict[dataSource]);
 
         let indic = []
-        console.log(target)
 
         dict[dataSource].forEach(function(indicator){
             if(indicator.startsWith( (target).toUpperCase()) || indicator.startsWith(target) ){
@@ -1219,7 +1231,7 @@ function Sdgs1(props) {
                 indic.push(indicator);
             }
         })
-        console.log(dict[dataSource])
+
         setIndicator(indic[0]);
         setIndicators(indic);
     }
@@ -1433,7 +1445,7 @@ function Sdgs1(props) {
                             <Col className="lastChild">
                                 <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
                                         <option value="gdb">Global Database</option>
-                                        <option value="mrs">PanAfrican MRS</option>
+                                        <option value="pan">PanAfrican MRS</option>
                                 </Input>
                             </Col>      
                         </Row>

@@ -43,7 +43,7 @@ function Interface( {handleSetFileData} ) {
     setSlicedData(slicedData);
     setColumns(makeColumns(file.meta.fields));
     setLoading(false);
-    console.log(data)
+    //console.log(data)
   };
 
   return (

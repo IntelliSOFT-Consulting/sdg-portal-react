@@ -74,7 +74,7 @@ function DataUpload(){
                 csvLink.current.link.click();
             })
             .catch(error => {
-                console.log(error)
+               // console.log(error)
             });
             
     }
