@@ -21,12 +21,12 @@ function dataUploadHeader (){
                 history.push('/sdgportalreact/Login');
             }else{
                 const error = new Error(res.error);
-                console.log(error);
+                //console.log(error);
                 //throw error;
             }
 
         }).catch(error => {
-            console.log(error.res);
+            //console.log(error.res);
             //alert('Error logging in, please try again.')
         })
     }

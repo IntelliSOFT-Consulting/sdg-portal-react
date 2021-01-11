@@ -381,7 +381,7 @@ function CountryProfile (props, ) {
         let countriesData = {}
 
         if(cachedNormalizedData && cachedCountryDetailsData && cachedDemographicsData){
-            console.log("There is cached data for all");
+            //console.log("There is cached data for all");
             parseMapData(JSON.parse(cachedNormalizedData));  
             setLoading(false);
             parseCountryDetails(JSON.parse(cachedCountryDetailsData),selectedCountryCode );
@@ -421,11 +421,11 @@ function CountryProfile (props, ) {
                     }
                 })
             }else{
-                console.log("No cached data so we fetch beginning with the API")
+                //console.log("No cached data so we fetch beginning with the API")
                 
                 fetchApiData().then(function(apiData){
                     if(apiData.length !== 0){
-                        console.log("Yaay api data")
+                        //console.log("Yaay api data")
                         apiData.forEach(function(d){
                             if(d.page === "Country Profile" && d.section === 'Goal perfomance'){
                                 normalizedApiData = d.data
@@ -436,7 +436,7 @@ function CountryProfile (props, ) {
                             }
 
                             if(Object.getOwnPropertyNames(normalizedApiData).length !== 0){
-                                console.log("Yaay api data, cache normalized data")
+                                //console.log("Yaay api data, cache normalized data")
                                 parseMapData(normalizedApiData);
                                 localStorage.setItem('normalizedData', JSON.stringify(normalizedApiData));
                             }else{
@@ -444,25 +444,25 @@ function CountryProfile (props, ) {
                             }
 
                             if(Object.getOwnPropertyNames(countriesData).length !== 0){
-                                console.log("Yaay api data, cache country details")
+                                //console.log("Yaay api data, cache country details")
                                 parseCountryDetails(countriesData);
                                 localStorage.setItem('countryDetailsData', JSON.stringify(countriesData));
                             }else{
-                                console.log("Revert to CSV for country details data")
+                                //console.log("Revert to CSV for country details data")
                                 fetchCountryDetailsCsv(countryDetailsCsv);
                             }
         
                             if(Object.getOwnPropertyNames(demographicsData).length !== 0){
-                                console.log("Yaay api data, cache demographics data")
+                                //console.log("Yaay api data, cache demographics data")
                                 parseDemographicsData(demographicsData); 
                                 localStorage.setItem('demographicsData', JSON.stringify(demographicsData));
                             }else{
-                                console.log("Revert to CSV for demographics data")
+                                //console.log("Revert to CSV for demographics data")
                                 fetchDemographicsCsv(demographicsCsv);
                             }
                         })
                     }else{
-                        console.log("No api data, revert to csv files")
+                        //console.log("No api data, revert to csv files")
                         fetchNormalizedCsv(normalizedCsv);
                         fetchCountryDetailsCsv(countryDetailsCsv);
                         fetchDemographicsCsv(demographicsCsv);

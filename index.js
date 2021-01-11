@@ -14,6 +14,8 @@ let app = express();
 const CLIENT_BUILD_PATH = path.join(__dirname, "/client/build");
 const apiRoutes = require('./app/routes/file.routes.js');
 
+//console.log(CLIENT_BUILD_PATH);
+
 const uri = process.env.ATLAS_MONGO_CONNECTION_STRING;
 
 app.use(bodyParser.json({limit: "50mb"}));

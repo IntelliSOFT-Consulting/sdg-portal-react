@@ -565,9 +565,7 @@ text-align: center;
 }
 
 /* Dashboard page */
-.dashboard{
-  padding-top: 20%;
-}
+
 
 .dashboard tr{
   height: 28px;
@@ -617,7 +615,7 @@ text-align: center;
 .dashboard-goal-icons th {
   vertical-align: bottom;
   border-bottom: 0rem solid #dee2e6;
-  width: 95px;
+  width: 5.5%;
 }
 
 .dashboard table{
@@ -1331,28 +1329,23 @@ html, body, #root{
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (min-width: 600px) {
-  .dashboard-goal-icons {
-    position: fixed;
-    top: 190px;
-    box-shadow: 0px 0px 0px #ccc;
-    background: #fff;
-    z-index: 99;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-}
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  
+    .dashboard-goal-icons {
+      position: fixed;
+      top: 200px;
+      box-shadow: 0px 0px 0px #ccc;
+      background: #fff;
+      z-index: 99;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
       .dashboard-goal-icons {
         position: fixed;
-        top: 190px;
+        top: 200px;
         box-shadow: 0px 0px 0px #ccc;
         background: #fff;
         z-index: 99;
@@ -1362,8 +1355,20 @@ html, body, #root{
     }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
+
+.dashboard .names,
+.dashboard .counters{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dashboard tbody td{
+  /* width: 5.614% !important; */
+  width: 5.5556% !important;
 }
 
 @media only screen and (max-width: 945px) {
@@ -1383,28 +1388,23 @@ html, body, #root{
         .agenda2063Header img{
           width: 160px;
         }
-
-        .dashboard{
-          padding-top: 270px;
-        }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .dashboard{
-    padding-top: 20%;
-  }
-}
+
 /* Large screens ----------- */
 @media only screen and (min-width : 1400px) {
     .agenda2063Header .a2063-icon-padding .btn {
       padding: 5px;
       width: 97%;
   }
-  .dashboard{
-    padding-top: 15%;
-  }
 }
+
+/* .dashboard{
+  padding-top: 30%;
+} */
+
+
+
 
 .files-div{
   padding: 10px 100px;
@@ -1721,4 +1721,9 @@ html, body, #root{
 .users-div .btn{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.disclaimer-text{
+  font-size: 0.8rem;
+color: #ff0000a8;
 }

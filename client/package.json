@@ -2,7 +2,7 @@
   "name": "sdg-portal-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/sdgportalreact",
+  "homepage": "/dataportal",
   "dependencies": {
     "@amcharts/amcharts4": "^4.7.10",
     "@bit/formidablelabs.react-animations.bounce": "^1.0.0",

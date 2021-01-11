@@ -24,7 +24,7 @@ function LoginHeader (){
                 history.push('/sdgportalreact/Login');
             }else{
                 const error = new Error(res.error);
-                console.log(error);
+                //console.log(error);
                 //throw error;
             }
 
