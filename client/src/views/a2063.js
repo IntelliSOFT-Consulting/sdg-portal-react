@@ -33,7 +33,7 @@ function A2063(props){
 
     let years = [2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000];
     const [year, setYear] = useState('2006');
-    const [dataSource, setDataSource] = useState('pan');
+    const [dataSource, setDataSource] = useState('gdb');
     const [mapChartType, setMapChartType] = useState('map');
     const [country, setCountry] = useState('DZ');
     const [aspirationTitle, setAspirationTitle] = useState('');
@@ -44,6 +44,8 @@ function A2063(props){
     const [indicators, setIndicators] = useState([]);
     const [countryLabel,setCountryLabel] = useState('')
     const [agenda2063Data, setAgenda2063Data] = useState([]);
+
+    let csvDict = {}; 
 
     const toggle = () => setOpenModal(!toggleModal);
 
@@ -70,11 +72,16 @@ function A2063(props){
     const parseMapData = (data) => {
         let indicatorData = ''
         const mapData = [];
+
         data.forEach(function(d){
-            if(d.Year === parseInt(year) ){
+           
+           
+            if(d.Year === year ){
+                console.log(d.Year, year)
                 if(d[indicator] === ""){
                     indicatorData = null
                 }else{
+                    
                     indicatorData = parseInt(d[indicator])
                 }
                 mapData.push({
@@ -86,6 +93,7 @@ function A2063(props){
             }
 
         })
+        console.log(mapData)
         setMapData(mapData);
     }
 
@@ -187,12 +195,13 @@ function A2063(props){
         Papa.parse(sdgCsvFile, {
             download: true,
             header: true,
+            skipEmptyLines: true,
             complete: function(results){
                     parseMapData(results.data)
                     const chartData = parseChartData(results.data)
                     filterChartData(chartData);
                     const lineData = parseLineData(results.data);
-                    filterLineData(lineData)
+                    filterLineData(lineData);
 
                     delayShowMap()
                     setAgenda2063Data(results.data)
@@ -224,6 +233,13 @@ function A2063(props){
     useEffect(() => {
         setIsLoading(true);
         let compiledCsv = require("../assets/data/a2063/a2063CompiledData.csv");
+
+        let gdbData = require("../assets/data/a2063/a2063CompiledData.csv");
+        let panData = require("../assets/data/a2063/a2063CompiledPan.csv");
+
+        csvDict['gdb'] = gdbData;
+        csvDict['pan'] = panData;
+
         let cachedAgenda2063 = localStorage.getItem('cachedAgenda2063');
 
         if(cachedAgenda2063){
@@ -259,11 +275,11 @@ function A2063(props){
                         //console.log(compiledApiData);
                     }else{
                         //console.log("CSV fetch")
-                        fetchA2063Csv(compiledCsv);
+                        fetchA2063Csv(csvDict[dataSource]);
                     }
                 }else{
                     //console.log("CSV fetch")
-                    fetchA2063Csv(compiledCsv);
+                    fetchA2063Csv(csvDict[dataSource]);
                 }
                // setIsLoadingNormalized(false);
             })
@@ -391,7 +407,7 @@ function A2063(props){
                                 mapChartType === 'line' ? (
                                     null 
                                 ):(
-                                    <Col md="2">
+                                    <Col md="1">
                                     <Input type="select" name="yearSelect"  onChange={handleYearChange} value={year}> 
                                             {
                                                 years.map((year, index) => {
@@ -403,10 +419,10 @@ function A2063(props){
                                 )
                             }
                            
-                            <Col md="2" className="lastChild">
+                            <Col md="3" className="lastChild">
                                 <Input type="select" name="datasourceSelect" onChange={handleDataSourceChange} value={dataSource}>
                                         <option value="gdb">Global Database</option>
-                                        <option value="mrs">PanAfrican MRS</option>
+                                        <option value="pan">PanAfrican MRS</option>
                                 </Input>
                             </Col>      
                         </Row>
