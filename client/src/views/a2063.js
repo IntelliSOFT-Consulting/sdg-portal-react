@@ -77,7 +77,6 @@ function A2063(props){
            
            
             if(d.Year === year ){
-                console.log(d.Year, year)
                 if(d[indicator] === ""){
                     indicatorData = null
                 }else{
@@ -93,7 +92,6 @@ function A2063(props){
             }
 
         })
-        console.log(mapData)
         setMapData(mapData);
     }
 
@@ -426,8 +424,21 @@ function A2063(props){
                                 </Input>
                             </Col>      
                         </Row>
+
+                        <Row className="mt-3">
+                            { 
+                                dataSource === 'pan' ? (
+                                <label className="disclaimer-text">
+                                        Disclaimer: The Pan African MRS data shown on this website is based on previous Global Database data. 
+                                        While we have used our reasonable efforts to ensure the accuracy of the data based on the Global Database indicators,the data should be read as indicative of magnitude rather than exact figures.
+                                    </label>
+                                ) : (
+                                    null
+                                )
+                            }
+                        </Row>
                 
-                        <Row className="mt-5">
+                        <Row className="mt-3">
                             <Col md="11" className="map-chart-container">   
                                 {
                                     mapChartType === 'map' ? (
