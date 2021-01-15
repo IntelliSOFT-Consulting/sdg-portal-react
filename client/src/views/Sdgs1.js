@@ -903,6 +903,26 @@ function Sdgs1(props) {
         })
     }
 
+    useEffect(() => {
+        const fetchCompiledCsv = (sdgCsvFile) => {
+            setIsLoading(true);
+            Papa.parse(sdgCsvFile, {
+                download: true,
+                header: true,
+                complete: function(results){
+                    // parseMapData(results.data);
+    
+                    // const chartData = parseChartData(results.data)
+                    // filterChartData(chartData);
+    
+                    // const lineData = parseLineData(results.data);
+                    // filterLineData(lineData)
+                    // setIsLoading(false);
+                }
+            })
+        }
+    }, [])
+
 
       //Fetch API Data
     const fetchApiData = async() => {
