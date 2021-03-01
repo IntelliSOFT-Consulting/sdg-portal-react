@@ -430,7 +430,6 @@ function A2063(props){
                                 dataSource === 'pan' ? (
                                 <label className="disclaimer-text">
                                         Disclaimer: The Pan African MRS data shown on this website is based on previous Global Database data. 
-                                        While we have used our reasonable efforts to ensure the accuracy of the data based on the Global Database indicators,the data should be read as indicative of magnitude rather than exact figures.
                                     </label>
                                 ) : (
                                     null

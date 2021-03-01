@@ -24,6 +24,8 @@ import Users from './views/Users';
 import history from './history';
 import withAuth from './views/withAuth';
 
+import uploadDemo from './views/uploadDemo';
+
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faYoutube, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
@@ -50,8 +52,9 @@ function App() {
             <Route path="/CreateUsers" component={CreateUsers}></Route>
             <Route path="/Login" component={Login}></Route>
             <Route path="/Users" component={Users}></Route>
-            <Route path="/DataUpload" component={withAuth(DataUpload)}></Route>
-            {/* <Route path="/DataUpload" component={DataUpload}></Route> */}
+            {/* <Route path="/DataUpload" component={withAuth(DataUpload)}></Route> */}
+            <Route path="/DataUpload" component={DataUpload}></Route>
+            <Route path="/uploadDemo" component={uploadDemo}></Route>
             <Route exact path="/" component={Home}></Route>
       </Switch>
     </Router>

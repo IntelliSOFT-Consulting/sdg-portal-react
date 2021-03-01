@@ -51,6 +51,7 @@
     "react-hook-form": "^5.7.2",
     "react-moment": "^0.9.7",
     "react-multiselect-checkboxes": "^0.1.1",
+    "react-papaparse": "^3.11.1",
     "react-pie-menu": "^0.2.5",
     "react-radial-menu": "^1.0.0",
     "react-router-dom": "^5.1.2",
